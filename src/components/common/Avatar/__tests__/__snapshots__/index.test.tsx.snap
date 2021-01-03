@@ -1,0 +1,18 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Avatar Match snapshot 1`] = `
+<div
+  className="avatar"
+>
+  <img
+    alt=""
+    className="avatar__image"
+    src={
+      Object {
+        "process": [Function],
+      }
+    }
+  />
+  <Loader />
+</div>
+`;
