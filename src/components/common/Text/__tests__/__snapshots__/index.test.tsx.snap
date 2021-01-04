@@ -1,9 +1,11 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Text Match snapshot 1`] = `
-<p
-  className="text text--description"
->
-  Hello world
-</p>
+<div>
+  <p
+    class="text text--description"
+  >
+    Hello world
+  </p>
+</div>
 `;

@@ -24,31 +24,32 @@ export const Dialog: FC<IPropsDialog> = ({
 
   return (
     <div className="dialog">
-        <Avatar src={avatar} />
+      <Avatar src={avatar} />
 
-        <div className="dialog__data">
-          <div className="dialog__text">
-            <Text
-              type={TextTypes.h4}
-              customStyles="dialog__text-title"
-              numberOfLines={1}
-            >
-              {name}
-            </Text>
-            <Text>{description}</Text>
-          </div>
-
-          <div className="dialog__info">
-            <Text
-              type={TextTypes.mixed}
-              size={TextSize.EXTRA_SMALL}
-              customStyles="dialog__info-date"
-            >
-              {dateTime}
-            </Text>
-            {!!messages ? <Counter count={counter} status={status}/> : null}
-          </div>
+      <div className="dialog__data">
+        <div className="dialog__text">
+          <Text
+            type={TextTypes.h4}
+            customStyles="dialog__text-title"
+            numberOfLines={1}
+          >
+            {name}
+          </Text>
+          <Text>{description}</Text>
         </div>
+
+        <div className="dialog__info">
+          <Text
+            type={TextTypes.mixed}
+            size={TextSize.EXTRA_SMALL}
+            customStyles="dialog__info-date"
+          >
+            {dateTime}
+          </Text>
+
+          {!!messages ? <Counter count={counter} status={status}/> : null}
+        </div>
+      </div>
     </div>
   )
 }

@@ -1,4 +1,4 @@
-import {shallow} from 'enzyme'
+import {shallow, render} from 'enzyme'
 import {IPropsText, Text} from 'components/common/Text'
 import {TextTypes, TextWeight} from 'models/common/text';
 
@@ -14,8 +14,8 @@ const ELEMENT_SELECTORS = {
   light: 'text--light',
 }
 
-const shallowComponent = (props: IPropsText) => (
-  shallow(<Text {...props} />)
+const renderComponent = (props: IPropsText) => (
+  render(<Text {...props} />)
 )
 
 describe('Text', () => {
@@ -28,20 +28,20 @@ describe('Text', () => {
   })
 
   it('Should render Text component', () => {
-    const component = shallowComponent(props)
+    const component = renderComponent(props)
     const wrapper = component.find(`.${ELEMENT_SELECTORS.text}`)
 
     expect(wrapper.length).toBe(1)
   })
 
   it('Match snapshot', () => {
-    const component = shallowComponent(props)
+    const component = renderComponent(props)
 
     expect(component).toMatchSnapshot()
   })
 
   it('Should render <p></p>', () => {
-    const component = shallowComponent(props)
+    const component = renderComponent(props)
     const wrapper = component.find(ELEMENT_SELECTORS.paragraph)
 
     expect(wrapper.length).toBe(1)
@@ -50,7 +50,7 @@ describe('Text', () => {
   it('Should render heading-1', () => {
     props.type = TextTypes.h1
 
-    const component = shallowComponent(props)
+    const component = renderComponent(props)
     const wrapper = component.find(`.${ELEMENT_SELECTORS.heading1}`)
 
     expect(wrapper.length).toBe(1)
@@ -59,7 +59,7 @@ describe('Text', () => {
   it('Should render heading-2', () => {
     props.type = TextTypes.h2
 
-    const component = shallowComponent(props)
+    const component = renderComponent(props)
     const wrapper = component.find(`.${ELEMENT_SELECTORS.heading2}`)
 
     expect(wrapper.length).toBe(1)
@@ -68,7 +68,7 @@ describe('Text', () => {
   it('Should render heading-3', () => {
     props.type = TextTypes.h3
 
-    const component = shallowComponent(props)
+    const component = renderComponent(props)
     const wrapper = component.find(`.${ELEMENT_SELECTORS.heading3}`)
 
     expect(wrapper.length).toBe(1)
@@ -77,7 +77,7 @@ describe('Text', () => {
   it('Should render heading-4', () => {
     props.type = TextTypes.h4
 
-    const component = shallowComponent(props)
+    const component = renderComponent(props)
     const wrapper = component.find(`.${ELEMENT_SELECTORS.heading4}`)
 
     expect(wrapper.length).toBe(1)
@@ -86,7 +86,7 @@ describe('Text', () => {
   it('Should render heading-5', () => {
     props.type = TextTypes.h5
 
-    const component = shallowComponent(props)
+    const component = renderComponent(props)
     const wrapper = component.find(`.${ELEMENT_SELECTORS.heading5}`)
 
     expect(wrapper.length).toBe(1)
@@ -95,7 +95,7 @@ describe('Text', () => {
   it('Should render heading-6', () => {
     props.type = TextTypes.h6
 
-    const component = shallowComponent(props)
+    const component = renderComponent(props)
     const wrapper = component.find(`.${ELEMENT_SELECTORS.heading6}`)
 
     expect(wrapper.length).toBe(1)
@@ -105,7 +105,7 @@ describe('Text', () => {
     // @ts-ignore
     props.type = 'another type'
 
-    const component = shallowComponent(props)
+    const component = renderComponent(props)
     const wrapper = component.find(ELEMENT_SELECTORS.paragraph)
 
     expect(wrapper.length).toBe(1)
@@ -115,7 +115,7 @@ describe('Text', () => {
     props.type = TextTypes.mixed
     props.weight = TextWeight.LIGHT
 
-    const component = shallowComponent(props)
+    const component = renderComponent(props)
     const wrapper = component.find(`.${ELEMENT_SELECTORS.light}`)
 
     expect(wrapper.length).toBe(1)
