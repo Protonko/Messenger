@@ -3,7 +3,6 @@ import {TextSize, TextTypes} from 'models/common/text';
 import {IDialog} from 'models/dialog';
 
 import {FC} from 'react'
-import Dotdotdot from 'react-dotdotdot';
 import {Text} from 'components/common/Text';
 import {Counter} from 'components/common/Counter';
 import {Avatar} from 'components/common/Avatar';
@@ -16,10 +15,12 @@ export const Dialog: FC<IPropsDialog> = ({
   avatar,
   date,
   time,
+  messages,
   status,
   readStatus,
 }) => {
   const dateTime = time ?? date;
+  const counter = messages.toString().length > 2 ? '99+' : messages;
 
   return (
     <div className="dialog">
@@ -45,7 +46,7 @@ export const Dialog: FC<IPropsDialog> = ({
             >
               {dateTime}
             </Text>
-            <Counter count={2} status={status} />
+            {!!messages ? <Counter count={counter} status={status}/> : null}
           </div>
         </div>
     </div>

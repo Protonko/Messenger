@@ -4,9 +4,8 @@ import {Status} from 'models/common/status'
 import {FC} from 'react'
 import classNames from 'classnames'
 
-
 export interface IPropsCounter {
-  count: number,
+  count: number | '99+',
   status?: Status,
 }
 

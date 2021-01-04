@@ -6,6 +6,7 @@ export interface IDialog {
   avatar: string,
   date: string,
   time: string | null,
+  messages: number,
   status: Status,
   readStatus: ReadStatus | null,
 }

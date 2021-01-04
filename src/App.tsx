@@ -11,6 +11,7 @@ function App() {
       time: null,
       status: Status.MUTED,
       readStatus: null,
+      messages: 0
     }, {
       name: 'string',
       description: 'string',
@@ -19,6 +20,7 @@ function App() {
       time: null,
       status: Status.ACTIVE,
       readStatus: null,
+      messages: 22
     }]} />
   )
 }
