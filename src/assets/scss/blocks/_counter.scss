@@ -1,0 +1,19 @@
+.status {
+    $min-width: 26px;
+
+    display: inline-flex;
+    justify-content: center;
+    min-width: rem($min-width);
+    padding: rem(4px);
+    border-radius: rem($min-width / 2);
+    background-color: $brand-color;
+
+    &--muted {
+        background-color: $alto;
+    }
+
+    &__text {
+        font-size: rem($font-size-small);
+        color: $white;
+    }
+}

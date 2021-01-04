@@ -1,0 +1,85 @@
+.text {
+    @include margin-vertical(0);
+
+    color: $text-color;
+
+    &--heading {
+        &-1 {
+            font-size: rem($font-size-extra-large);
+            font-weight: $font-weight-medium;
+        }
+
+        &-2 {
+            font-size: rem($font-size-large);
+            font-weight: $font-weight-medium;
+        }
+
+        &-3 {
+            font-size: rem($font-size-big);
+            font-weight: $font-weight-medium;
+        }
+
+        &-4 {
+            font-size: rem($font-size-base);
+            font-weight: $font-weight-medium;
+        }
+
+        &-5 {
+            font-size: rem($font-size-small);
+            font-weight: $font-weight-medium;
+        }
+
+        &-6 {
+            font-size: rem($font-size-extra-small);
+            font-weight: $font-weight-medium;
+        }
+    }
+
+    &--description {
+        font-size: $font-size-base;
+        font-weight: $font-weight-normal;
+        color: $text-color-light;
+    }
+
+
+    &--light {
+        font-weight: $font-weight-light;
+    }
+
+    &--regular {
+        font-weight: $font-weight-normal;
+    }
+
+    &--medium {
+        font-weight: $font-weight-medium;
+    }
+
+    &--bold {
+        font-weight: $font-weight-bold;
+    }
+
+    &--xs {
+        font-size: rem($font-size-extra-small);
+    }
+
+    &--sm {
+        font-size: rem($font-size-small);
+    }
+
+    &--md {
+        font-size: rem($font-size-base);
+    }
+
+    &--lg {
+        font-size: rem($font-size-big);
+    }
+
+
+    &--xl {
+        font-size: rem($font-size-large);
+    }
+
+    &--xxl {
+        font-size: rem($font-size-extra-large);
+    }
+}

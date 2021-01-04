@@ -9,7 +9,7 @@ const ELEMENT_SELECTORS = {
   avatarLarge: 'avatar--lg',
 }
 
-const shallowCardComponent = (props: IPropsAvatar) => (
+const shallowComponent = (props: IPropsAvatar) => (
   shallow(<Avatar {...props} />)
 )
 
@@ -24,13 +24,13 @@ describe('Avatar', () => {
   })
 
   it('Should render Avatar component', () => {
-    const component = shallowCardComponent(props)
+    const component = shallowComponent(props)
     const wrapper = component.find(`.${ELEMENT_SELECTORS.avatar}`)
     expect(wrapper.length).toBe(1)
   })
 
   it('Match snapshot', () => {
-    const component = shallowCardComponent(props)
+    const component = shallowComponent(props)
 
     expect(component).toMatchSnapshot()
   })
@@ -38,7 +38,7 @@ describe('Avatar', () => {
   it('Shouldn`t find sm and lg modifiers', () => {
     props.size = undefined
 
-    const component = shallowCardComponent(props)
+    const component = shallowComponent(props)
     const wrapperSmall = component.find(`.${ELEMENT_SELECTORS.avatarSmall}`)
     const wrapperLarge = component.find(`.${ELEMENT_SELECTORS.avatarLarge}`)
     expect(wrapperSmall.length + wrapperLarge.length).toBe(0)
@@ -47,7 +47,7 @@ describe('Avatar', () => {
   it('Should return small classname', () => {
     props.size = Sizes.SMALL
 
-    const component = shallowCardComponent(props)
+    const component = shallowComponent(props)
     const wrapper = component.find(`.${ELEMENT_SELECTORS.avatarSmall}`)
     expect(wrapper.length).toBe(1)
   })
@@ -55,7 +55,7 @@ describe('Avatar', () => {
   it('Should return large classname', () => {
     props.size = Sizes.LARGE
 
-    const component = shallowCardComponent(props)
+    const component = shallowComponent(props)
     const wrapper = component.find(`.${ELEMENT_SELECTORS.avatarLarge}`)
     expect(wrapper.length).toBe(1)
   })

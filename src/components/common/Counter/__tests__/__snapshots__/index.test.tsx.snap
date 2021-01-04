@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Counter Match snapshot 1`] = `
+<div
+  className="counter counter--muted"
+>
+  <span
+    className="counter__text"
+  >
+    1
+  </span>
+</div>
+`;
