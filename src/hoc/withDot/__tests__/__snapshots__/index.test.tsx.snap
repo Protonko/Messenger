@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`withDot Match snapshot 1`] = `
+<div>
+  <div>
+    <p
+      class="text text--description"
+    >
+      Hello world
+    </p>
+  </div>
+</div>
+`;

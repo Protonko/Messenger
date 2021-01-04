@@ -1,6 +1,6 @@
-import {shallow, render} from 'enzyme'
+import {render} from 'enzyme'
 import {IPropsText, Text} from 'components/common/Text'
-import {TextTypes, TextWeight} from 'models/common/text';
+import {TextTypes, TextWeight} from 'models/common/text'
 
 const ELEMENT_SELECTORS = {
   text: 'text',
@@ -12,6 +12,7 @@ const ELEMENT_SELECTORS = {
   heading5: 'text--heading-5',
   heading6: 'text--heading-6',
   light: 'text--light',
+  custom: 'custom-style',
 }
 
 const renderComponent = (props: IPropsText) => (
@@ -117,6 +118,15 @@ describe('Text', () => {
 
     const component = renderComponent(props)
     const wrapper = component.find(`.${ELEMENT_SELECTORS.light}`)
+
+    expect(wrapper.length).toBe(1)
+  })
+
+  it('Should render custom styles', () => {
+    props.customStyles = ELEMENT_SELECTORS.custom
+
+    const component = renderComponent(props)
+    const wrapper = component.find(`.${ELEMENT_SELECTORS.custom}`)
 
     expect(wrapper.length).toBe(1)
   })
