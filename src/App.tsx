@@ -1,12 +1,8 @@
-import {Avatar} from 'components/common/Avatar'
-import {Counter} from './components/common/Counter';
+import {DialogsList} from './components/DialogsList';
 
 function App() {
   return (
-    <>
-      <Avatar src={''} />
-      <Counter count={29} />
-    </>
+    <DialogsList dialogs={[]} />
   )
 }
 

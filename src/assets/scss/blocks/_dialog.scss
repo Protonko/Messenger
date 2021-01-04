@@ -1,0 +1,16 @@
+.dialog {
+    display: flex;
+    align-items: center;
+
+    &__text {
+        @include margin-horizontal(10px);
+
+        flex-grow: 5;
+    }
+
+    &__info {
+        display: flex;
+        flex-direction: column;
+        flex-grow: 1;
+    }
+}
