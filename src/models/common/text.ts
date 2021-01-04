@@ -24,3 +24,5 @@ export enum TextSize {
   LARGE = 'XL',
   EXTRA_LARGE = 'XXL',
 }
+
+export type TNumberOfLines = number | 'auto'

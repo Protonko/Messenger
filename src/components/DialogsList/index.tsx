@@ -10,11 +10,19 @@ export interface IPropsDialogList {
 }
 
 export const DialogsList: FC<IPropsDialogList> = ({dialogs}) => {
-  const renderItem = (elem: IDialog) => {
-    return <Dialog key={hash(elem)} />
+  const renderItem = (dialog: IDialog) => {
+    return (
+      <li className="dialogs__item" key={hash(dialog)}>
+        <Dialog {...dialog} />
+      </li>
+    )
   }
 
   return (
-    <div className="dialog-list">{dialogs.map(renderItem)}</div>
+    <div className="dialogs">
+      <ul className="dialogs__list list list--reset">
+        {dialogs.map(renderItem)}
+      </ul>
+    </div>
   )
 }

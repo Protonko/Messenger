@@ -1,8 +1,10 @@
 // types
-import {TextTypes, TextSize, TextWeight} from 'models/common/text'
+import {TextTypes, TextSize, TextWeight, TNumberOfLines} from 'models/common/text'
 
 import {FC} from 'react'
 import classNames from 'classnames';
+import {classNamesText} from 'utils/classNamesText';
+import {withDot} from 'hoc/withDot';
 
 export interface IPropsText {
   type?: TextTypes,
@@ -10,9 +12,10 @@ export interface IPropsText {
   size?: TextSize,
   children: string,
   customStyles?: string,
+  numberOfLines?: TNumberOfLines,
 }
 
-export const Text: FC<IPropsText> = ({
+export const Text: FC<IPropsText> = withDot<IPropsText>(({
   type = TextTypes.p,
   weight,
   size,
@@ -34,27 +37,67 @@ export const Text: FC<IPropsText> = ({
     {'text--xl': size === TextSize.LARGE},
     {'text--xxl': size === TextSize.EXTRA_LARGE},
     // custom
-    {customStyles: !!customStyles}
+    {[customStyles ?? '']: !!customStyles}
   )
 
   switch (type) {
     case TextTypes.h1:
-      return <h1 className="text text--heading-1">{children}</h1>
+      return (
+        <h1 className={classNamesText('heading-1', customStyles)}>
+          {children}
+        </h1>
+      )
+
     case TextTypes.h2:
-      return <h2 className="text text--heading-2">{children}</h2>
+      return (
+        <h2 className={classNamesText('heading-2', customStyles)}>
+          {children}
+        </h2>
+      )
+
     case TextTypes.h3:
-      return <h3 className="text text--heading-3">{children}</h3>
+      return (
+        <h3 className={classNamesText('heading-3', customStyles)}>
+          {children}
+        </h3>
+      )
+
     case TextTypes.h4:
-      return <h4 className="text text--heading-4">{children}</h4>
+      return (
+        <h4 className={classNamesText('heading-4', customStyles)}>
+          {children}
+        </h4>
+      )
+
     case TextTypes.h5:
-      return <h5 className="text text--heading-5">{children}</h5>
+      return (
+        <h5 className={classNamesText('heading-5', customStyles)}>
+          {children}
+        </h5>
+      )
+
     case TextTypes.h6:
-      return <h6 className="text text--heading-6">{children}</h6>
+      return (
+        <h6 className={classNamesText('heading-6', customStyles)}>
+          {children}
+        </h6>
+      )
+
     case TextTypes.p:
-      return <p className="text text--description">{children}</p>
+      return (
+        <p className={classNamesText('description', customStyles)}>
+          {children}
+        </p>
+      )
+
     case TextTypes.mixed:
       return <p className={classNamesMixed}>{children}</p>
+
     default:
-      return <p className="text text--description">{children}</p>
+      return (
+        <p className={classNamesText('description', customStyles)}>
+          {children}
+        </p>
+      )
   }
-}
+})

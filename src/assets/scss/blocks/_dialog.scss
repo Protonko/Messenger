@@ -1,16 +1,36 @@
 .dialog {
+    $horizontal-gutter: 10px;
+    $vertical-gutter: 10px;
+
     display: flex;
     align-items: center;
+    padding-left: rem($horizontal-gutter);
+
+    &__data {
+        @include padding-vertical($vertical-gutter);
+
+        flex: 1;
+        display: flex;
+        justify-content: space-between;
+        border-bottom: rem(1px) solid rgba($alto, .5);
+    }
 
     &__text {
-        @include margin-horizontal(10px);
+        @include margin-horizontal($horizontal-gutter);
 
-        flex-grow: 5;
+        &-title {
+            margin-bottom: rem(5px);
+        }
     }
 
     &__info {
         display: flex;
         flex-direction: column;
-        flex-grow: 1;
+        padding-right: rem(10px);
+
+        &-date {
+            margin-bottom: rem(5px);
+            color: $text-color-light;
+        }
     }
 }
