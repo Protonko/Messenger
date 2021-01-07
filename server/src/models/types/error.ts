@@ -1,0 +1,7 @@
+export interface IError {
+  stringValue: string,
+  kind: string,
+  value: string,
+  path: string,
+  reason: Object
+}

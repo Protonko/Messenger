@@ -1,6 +1,6 @@
 import {shallow} from 'enzyme'
 import image from 'assets/images/test-image.jpg'
-import {Avatar, IPropsAvatar} from 'components/common/Avatar'
+import {Avatar, IPropsAvatar} from 'components/common/Avatar/index'
 import {Sizes} from 'models/common/sizes'
 
 const ELEMENT_SELECTORS = {

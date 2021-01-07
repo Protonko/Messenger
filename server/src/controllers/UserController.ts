@@ -1,0 +1,59 @@
+import {Request, Response} from 'express'
+import {User} from '../models/User'
+import {IUser} from '../models/types/user'
+import {IError} from '../models/types/error'
+
+export class UserController {
+  find(request: Request, response: Response) {
+    const {id} = request.params
+
+    User.findById(id, (error: IError, user: IUser) => {
+      try {
+        if (error) {
+          return response
+            .status(404)
+            .json({message: 'Not found'})
+        }
+
+        return response.json(user)
+      } catch {
+        return response
+          .json({message: 'undefined error'})
+      }
+    })
+  }
+
+  getOwnProfile() {}
+
+  async create(request: Request, response: Response) {
+    const {email, full_name, password} = request.body
+
+    try {
+      const user = new User({email, full_name, password})
+      const createdUser = await user.save()
+
+      response.json(createdUser)
+    } catch (reason) {
+      response.json(reason)
+    }
+  }
+
+  async delete(request: Request, response: Response) {
+    const {id} = request.params
+
+    const user = await User.findOneAndRemove({_id: id})
+
+    try {
+      if (!user) {
+        return response
+          .status(404)
+          .json({message: 'Not found'})
+      }
+
+      return response.json({message: 'User deleted'})
+    } catch {
+      return response
+        .json({message: 'undefined error'})
+    }
+  }
+}

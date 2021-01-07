@@ -1,5 +1,5 @@
 import {render} from 'enzyme'
-import {IPropsText, Text} from 'components/common/Text'
+import {IPropsText, Text} from 'components/common/Text/index'
 import {TextTypes, TextWeight} from 'models/common/text'
 
 const ELEMENT_SELECTORS = {

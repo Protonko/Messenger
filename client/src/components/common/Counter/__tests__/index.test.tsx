@@ -1,5 +1,5 @@
 import {shallow} from 'enzyme'
-import {Counter, IPropsCounter} from 'components/common/Counter';
+import {Counter, IPropsCounter} from 'components/common/Counter/index';
 import {Status} from 'models/common/status';
 
 const ELEMENT_SELECTORS = {
