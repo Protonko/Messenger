@@ -1,10 +1,8 @@
-import {Document} from 'mongoose';
-import {IUser} from './user';
+import {Document} from 'mongoose'
+import {IDialog} from './dialog'
 
 export interface IMessage extends Document {
-  author: IUser,
-  partner: string,
-  dialog: string,
   text: string,
+  dialog: IDialog,
   read: boolean,
 }
