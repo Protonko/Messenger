@@ -1,9 +1,11 @@
 import express from 'express'
 import mongoose from 'mongoose'
 import bodyParser from 'body-parser'
+import {config} from './config'
 import {UserController} from './controllers/UserController'
 import {DialogController} from './controllers/DialogController'
 import {MessageController} from './controllers/MessageController'
+import {updateLastSeen} from './middlewares/updateLastSeen'
 
 const app = express()
 const user = new UserController()
@@ -11,9 +13,10 @@ const dialog = new DialogController()
 const message = new MessageController()
 
 app.use(bodyParser.json())
+app.use(updateLastSeen)
 
 mongoose.connect(
-  'mongodb://localhost:27017/messenger',
+  config.URL_DB,
   {
     useNewUrlParser: true,
     useUnifiedTopology: true,
@@ -26,6 +29,7 @@ mongoose.connect(
 app.get('/user/:id', user.find)
 app.delete('/user/:id', user.delete)
 app.post('/user/signup', user.create)
+app.post('/user/login', user.login)
 
 // dialogs
 app.get('/dialogs/:id', dialog.find)
@@ -37,6 +41,6 @@ app.get('/messages', message.find)
 app.post('/messages', message.create)
 app.delete('/messages', message.delete)
 
-app.listen(3000, () => {
-  console.log('App has been started on port 3000')
+app.listen(config.PORT, () => {
+  console.log(`App has been started on port ${config.PORT}`)
 })

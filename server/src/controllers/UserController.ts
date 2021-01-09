@@ -2,6 +2,7 @@ import {Request, Response} from 'express'
 import {User} from '../models/User'
 import {IUser} from '../models/types/user'
 import {IError} from '../models/types/error'
+import {jwtCreate} from '../utils/jwtCreate';
 
 export class UserController {
   find(request: Request, response: Response) {
@@ -23,7 +24,31 @@ export class UserController {
     })
   }
 
-  getOwnProfile() {}
+  login(request: Request, response: Response) {
+    const {login, password} = request.body
+
+    User.findOne({email: login}, (error: IError, user: IUser) => {
+      if (error) {
+        return response.status(404).json({
+          message: 'User not found.',
+        })
+      }
+
+      if (user.password === password) {
+        const token = jwtCreate({email: login, password})
+
+        response.json({
+          status: 'success',
+          token,
+        })
+      } else {
+        response.json({
+          status: 'error',
+          message: 'Incorrect password or email.',
+        })
+      }
+    })
+  }
 
   async create(request: Request, response: Response) {
     const {email, full_name, password} = request.body

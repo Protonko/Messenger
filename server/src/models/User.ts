@@ -27,7 +27,10 @@ const schema = new Schema({
     type: Boolean,
     default: false,
   },
-  last_seen: Date,
+  last_seen: {
+    type: Date,
+    default: new Date(),
+  },
 }, {
   timestamps: true,
 })
