@@ -1,8 +1,10 @@
 import {Request, Response} from 'express'
+import {compareSync} from 'bcrypt'
+import {validationResult} from 'express-validator'
 import {User} from '../models/User'
 import {IUser} from '../models/types/user'
 import {IError} from '../models/types/error'
-import {jwtCreate} from '../utils/jwtCreate';
+import {jwtCreate} from '../utils/jwtCreate'
 
 export class UserController {
   find(request: Request, response: Response) {
@@ -19,12 +21,21 @@ export class UserController {
         return response.json(user)
       } catch {
         return response
+          .status(500)
           .json({message: 'Undefined error.'})
       }
     })
   }
 
   login(request: Request, response: Response) {
+    const errors = validationResult(request)
+
+    if (!errors.isEmpty()) {
+      return response
+        .status(422)
+        .json({errors: errors.array()});
+    }
+
     const {email, password} = request.body
 
     User.findOne({email}, (error: IError, user: IUser) => {
@@ -34,7 +45,7 @@ export class UserController {
         })
       }
 
-      if (user.password === password) {
+      if (compareSync(password, user.password)) {
         const token = jwtCreate({email, password})
 
         response.json({
@@ -52,6 +63,14 @@ export class UserController {
 
   async create(request: Request, response: Response) {
     try {
+      const errors = validationResult(request)
+
+      if (!errors.isEmpty()) {
+        return response
+          .status(422)
+          .json({errors: errors.array()});
+      }
+
       const {email, full_name, password} = request.body
       const user = new User({email, full_name, password})
       const createdUser = await user.save()
@@ -76,6 +95,7 @@ export class UserController {
       return response.json({message: 'User deleted.'})
     } catch {
       return response
+        .status(500)
         .json({message: 'Undefined error.'})
     }
   }

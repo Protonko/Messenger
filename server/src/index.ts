@@ -2,11 +2,12 @@ import express from 'express'
 import mongoose from 'mongoose'
 import bodyParser from 'body-parser'
 import {config} from './config'
+import {loginValidation} from './utils/validations/login'
 import {UserController} from './controllers/UserController'
 import {DialogController} from './controllers/DialogController'
 import {MessageController} from './controllers/MessageController'
 import {updateLastSeen} from './middlewares/updateLastSeen'
-import {checkAuth} from './middlewares/checkAuth';
+import {checkAuth} from './middlewares/checkAuth'
 
 const app = express()
 const user = new UserController()
@@ -30,8 +31,8 @@ mongoose.connect(
 // users
 app.get('/user/:id', user.find)
 app.delete('/user/:id', user.delete)
-app.post('/user/signup', user.create)
-app.post('/user/login', user.login)
+app.post('/user/signup', loginValidation, user.create)
+app.post('/user/login', loginValidation, user.login)
 
 // dialogs
 app.get('/dialogs/:id', dialog.find)
