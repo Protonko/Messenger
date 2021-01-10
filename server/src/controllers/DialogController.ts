@@ -1,6 +1,6 @@
 import {Request, Response} from 'express'
 import {Dialog} from '../models/Dialog'
-import {Message} from '../models/Message';
+import {Message} from '../models/Message'
 import {IError} from '../models/types/error'
 import {IDialog} from '../models/types/dialog'
 
@@ -8,6 +8,8 @@ export class DialogController {
   find(request: Request, response: Response) {
     // author id
     const {id} = request.params
+
+    console.log(request.user)
 
     // @ts-ignore
     Dialog

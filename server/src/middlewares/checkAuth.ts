@@ -4,7 +4,7 @@ import {DecodedData} from '../models/types/jwt'
 import {jwtVerify} from '../utils/jwtVerify'
 
 export const checkAuth = async (
-  request: any, // TODO: исправить
+  request: Request,
   response: Response,
   next: NextFunction,
 ) => {
