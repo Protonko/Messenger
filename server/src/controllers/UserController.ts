@@ -13,21 +13,21 @@ export class UserController {
         if (error) {
           return response
             .status(404)
-            .json({message: 'Not found'})
+            .json({message: 'User not found.'})
         }
 
         return response.json(user)
       } catch {
         return response
-          .json({message: 'undefined error'})
+          .json({message: 'Undefined error.'})
       }
     })
   }
 
   login(request: Request, response: Response) {
-    const {login, password} = request.body
+    const {email, password} = request.body
 
-    User.findOne({email: login}, (error: IError, user: IUser) => {
+    User.findOne({email}, (error: IError, user: IUser) => {
       if (error) {
         return response.status(404).json({
           message: 'User not found.',
@@ -35,7 +35,7 @@ export class UserController {
       }
 
       if (user.password === password) {
-        const token = jwtCreate({email: login, password})
+        const token = jwtCreate({email, password})
 
         response.json({
           status: 'success',
@@ -51,9 +51,8 @@ export class UserController {
   }
 
   async create(request: Request, response: Response) {
-    const {email, full_name, password} = request.body
-
     try {
+      const {email, full_name, password} = request.body
       const user = new User({email, full_name, password})
       const createdUser = await user.save()
 
@@ -65,20 +64,19 @@ export class UserController {
 
   async delete(request: Request, response: Response) {
     const {id} = request.params
-
     const user = await User.findOneAndRemove({_id: id})
 
     try {
       if (!user) {
         return response
           .status(404)
-          .json({message: 'Not found'})
+          .json({message: 'User not found.'})
       }
 
-      return response.json({message: 'User deleted'})
+      return response.json({message: 'User deleted.'})
     } catch {
       return response
-        .json({message: 'undefined error'})
+        .json({message: 'Undefined error.'})
     }
   }
 }

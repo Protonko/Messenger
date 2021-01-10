@@ -1,19 +1,17 @@
 import {Request, Response, NextFunction} from 'express'
-import {IUser} from '../models/types/user';
-import {DecodedData} from '../models/types/jwt';
+import {PATHS} from '../static'
+import {DecodedData} from '../models/types/jwt'
 import {jwtVerify} from '../utils/jwtVerify'
 
-declare namespace Express {
-  export interface Request {
-    user?: IUser
-  }
-}
-
 export const checkAuth = async (
-  request: Request,
+  request: any, // TODO: исправить
   response: Response,
   next: NextFunction,
 ) => {
+  if (PATHS.includes(request.path)) {
+    return next()
+  }
+
   const token: string | null =
     'token' in request.headers ? (request.headers.token as string) : null
 
@@ -31,5 +29,9 @@ export const checkAuth = async (
         .status(403)
         .json({message: 'Invalid auth token provided.'})
     }
+  } else {
+    return response
+      .status(403)
+      .json({message: 'Invalid auth token provided.'})
   }
 }

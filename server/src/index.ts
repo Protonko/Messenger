@@ -6,6 +6,7 @@ import {UserController} from './controllers/UserController'
 import {DialogController} from './controllers/DialogController'
 import {MessageController} from './controllers/MessageController'
 import {updateLastSeen} from './middlewares/updateLastSeen'
+import {checkAuth} from './middlewares/checkAuth';
 
 const app = express()
 const user = new UserController()
@@ -14,6 +15,7 @@ const message = new MessageController()
 
 app.use(bodyParser.json())
 app.use(updateLastSeen)
+app.use(checkAuth)
 
 mongoose.connect(
   config.URL_DB,
