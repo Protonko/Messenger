@@ -18,12 +18,28 @@ export class UserController {
             .json({message: 'User not found.'})
         }
 
+        console.log(user)
         return response.json(user)
       } catch {
         return response
           .status(500)
           .json({message: 'Undefined error.'})
       }
+    })
+  }
+
+  getOwnProfile(request: Request, response: Response) {
+    // @ts-ignore
+    const id = request.user?._id ?? null
+
+    User.findById(id, (error: IError, user: IUser) => {
+      if (error) {
+        return response
+          .status(404)
+          .json({message: 'User not found.'})
+      }
+
+      response.json(user)
     })
   }
 

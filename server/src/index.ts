@@ -29,6 +29,7 @@ mongoose.connect(
 )
 
 // users
+app.get('/user/own', user.getOwnProfile)
 app.get('/user/:id', user.find)
 app.delete('/user/:id', user.delete)
 app.post('/user/signup', loginValidation, user.create)

@@ -6,14 +6,11 @@ import {IDialog} from '../models/types/dialog'
 
 export class DialogController {
   find(request: Request, response: Response) {
-    // author id
-    const {id} = request.params
-
-    console.log(request.user)
-
     // @ts-ignore
+    const authorId = request.user?._id ?? null
+
     Dialog
-      .find({author: id})
+      .find({author: authorId})
       .populate(['author', 'interlocutor'])
       .exec((error: IError, dialogs: IDialog) => {
         try {
