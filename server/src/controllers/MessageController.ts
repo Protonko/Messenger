@@ -1,9 +1,19 @@
 import {Request, Response} from 'express'
+import {Server} from 'socket.io'
+import {EVENTS_SOCKET} from '../static';
 import {Message} from '../models/Message'
 import {IError} from '../types/error'
 import {IMessage} from '../types/message'
 
 export class MessageController {
+  io: Server
+
+  constructor(io: Server) {
+    this.io = io
+
+    this.create = this.create.bind(this)
+  }
+
   find(request: Request, response: Response) {
     const {id} = request.query
 
@@ -28,14 +38,24 @@ export class MessageController {
   }
 
   async create(request: Request, response: Response) {
-    const userId = '5ff7142f21141a287a33c159';
-    const {text, user, id} = request.body
+    // @ts-ignore
+    const userId = request.user?._id ?? null
+    const {text, id} = request.body
 
     try {
       const message = new Message({text, user: userId, id})
       const createdMessage = await message.save()
 
-      response.json(createdMessage)
+      createdMessage.populate(
+        'dialog',
+        (error, message) => {
+          if (error) {
+            return response.status(500).json({message: error})
+          }
+
+          response.json(message)
+          this.io.emit(EVENTS_SOCKET.newMessage, message)
+      })
     } catch (reason) {
       response.json(reason)
     }
@@ -44,7 +64,6 @@ export class MessageController {
   async delete(request: Request, response: Response) {
     // message id
     const {id} = request.query
-
     const message = await Message.findOneAndRemove({_id: id})
 
     try {

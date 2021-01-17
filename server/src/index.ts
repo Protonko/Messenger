@@ -1,25 +1,21 @@
 import express from 'express'
-import {Socket} from 'socket.io'
+import {Server} from 'socket.io'
 import {createServer} from 'http'
 import {config} from './config'
 import './core/db'
 import {createRoutes} from './core/routes'
+import {createSocket} from './core/socket'
 
 const app = express()
 const http = createServer(app)
-const io = require('socket.io')(http, {
+const io = new Server(http, {
   cors: {
     origin: '*',
   }
 });
 
-createRoutes(app)
-
-// sockets
-io.on('connection', (socket: Socket) => {
-  console.log('Connected')
-  socket.emit('test', 'Text value')
-})
+createRoutes(app, io)
+createSocket(http, io)
 
 http.listen(config.PORT, () => {
   console.log(`App has been started on port ${config.PORT}`)

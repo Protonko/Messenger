@@ -1,12 +1,19 @@
 import {Request, Response} from 'express'
-import {compareSync} from 'bcrypt'
 import {validationResult} from 'express-validator'
+import {Server} from 'socket.io'
+import {compareSync} from 'bcrypt'
 import {User} from '../models/User'
 import {IUser} from '../types/user'
 import {IError} from '../types/error'
 import {jwtCreate} from '../utils/jwtCreate'
 
 export class UserController {
+  io: Server
+
+  constructor(io: Server) {
+    this.io = io
+  }
+
   find(request: Request, response: Response) {
     const {id} = request.params
 

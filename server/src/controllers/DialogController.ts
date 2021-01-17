@@ -1,17 +1,23 @@
 import {Request, Response} from 'express'
+import {Server} from 'socket.io'
 import {Dialog} from '../models/Dialog'
 import {Message} from '../models/Message'
 import {IError} from '../types/error'
 import {IDialog} from '../types/dialog'
 
 export class DialogController {
+  io: Server
+
+  constructor(io: Server) {
+    this.io = io
+  }
+
   find(request: Request, response: Response) {
     // @ts-ignore
-    const authorEmail = request.user?.email ?? null
+    const authorId = request.user?._id ?? null;
 
-    // @ts-ignore
     Dialog
-      .find({author: '5ffb4eaf0dd3f211e62772cf'})
+      .find({author: authorId})
       .populate(['author', 'interlocutor'])
       .exec((error: IError, dialogs: IDialog) => {
         try {
@@ -36,7 +42,6 @@ export class DialogController {
       const dialog = new Dialog({author, interlocutor})
       const createdDialog = await dialog.save()
 
-      console.log(createdDialog)
       const message = new Message({
         text,
         dialog: createdDialog._id,
