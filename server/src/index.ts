@@ -1,5 +1,5 @@
 import express from 'express'
-import {Socket} from 'socket.io';
+import {Socket} from 'socket.io'
 import {createServer} from 'http'
 import {config} from './config'
 import './core/db'
