@@ -1,7 +1,7 @@
 import {Request, Response} from 'express'
 import {Message} from '../models/Message'
-import {IError} from '../models/types/error'
-import {IMessage} from '../models/types/message'
+import {IError} from '../types/error'
+import {IMessage} from '../types/message'
 
 export class MessageController {
   find(request: Request, response: Response) {

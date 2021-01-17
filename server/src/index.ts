@@ -1,4 +1,5 @@
 import express from 'express'
+import {Socket} from 'socket.io';
 import {createServer} from 'http'
 import {config} from './config'
 import './core/db'
@@ -15,7 +16,7 @@ const io = require('socket.io')(http, {
 createRoutes(app)
 
 // sockets
-io.on('connection', (socket: any) => {
+io.on('connection', (socket: Socket) => {
   console.log('Connected')
   socket.emit('test', 'Text value')
 })

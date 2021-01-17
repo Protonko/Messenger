@@ -1,8 +1,8 @@
 import {Request, Response, NextFunction} from 'express'
 import {PATHS} from '../static'
-import {DecodedData} from '../models/types/jwt'
-import {IError} from '../models/types/error'
-import {IUser} from '../models/types/user'
+import {DecodedData} from '../types/jwt'
+import {IError} from '../types/error'
+import {IUser} from '../types/user'
 import {User} from '../models/User'
 import {jwtVerify} from '../utils/jwtVerify'
 

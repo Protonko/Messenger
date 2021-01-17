@@ -1,6 +1,6 @@
 import {verify, VerifyErrors} from 'jsonwebtoken'
 import {config} from '../config'
-import {DecodedData} from '../models/types/jwt';
+import {DecodedData} from '../types/jwt';
 
 export const jwtVerify = (token: string): Promise<DecodedData> => {
   return new Promise((resolve, reject) => {

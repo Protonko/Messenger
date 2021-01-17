@@ -2,8 +2,8 @@ import {Request, Response} from 'express'
 import {compareSync} from 'bcrypt'
 import {validationResult} from 'express-validator'
 import {User} from '../models/User'
-import {IUser} from '../models/types/user'
-import {IError} from '../models/types/error'
+import {IUser} from '../types/user'
+import {IError} from '../types/error'
 import {jwtCreate} from '../utils/jwtCreate'
 
 export class UserController {

@@ -1,7 +1,7 @@
 import {sign} from 'jsonwebtoken'
 import _ from 'lodash'
 import {config} from '../config'
-import {ILoginUser} from '../models/types/user';
+import {ILoginUser} from '../types/user';
 
 const options = {
   expiresIn: config.JWT_MAX_AGE,

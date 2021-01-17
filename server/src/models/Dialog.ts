@@ -1,5 +1,5 @@
 import {model, Schema} from 'mongoose'
-import {IDialog} from './types/dialog'
+import {IDialog} from '../types/dialog'
 
 const DialogSchema = new Schema({
   author: {

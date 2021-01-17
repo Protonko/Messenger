@@ -1,8 +1,8 @@
 import {Request, Response} from 'express'
 import {Dialog} from '../models/Dialog'
 import {Message} from '../models/Message'
-import {IError} from '../models/types/error'
-import {IDialog} from '../models/types/dialog'
+import {IError} from '../types/error'
+import {IDialog} from '../types/dialog'
 
 export class DialogController {
   find(request: Request, response: Response) {

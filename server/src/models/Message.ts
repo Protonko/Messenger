@@ -1,6 +1,6 @@
 import {model, Schema} from 'mongoose'
 import {User} from './User'
-import {IMessage} from './types/message';
+import {IMessage} from '../types/message';
 
 const MessageSchema = new Schema({
   text: String,
