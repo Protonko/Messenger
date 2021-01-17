@@ -5,12 +5,10 @@ const DialogSchema = new Schema({
   author: {
     type: Schema.Types.ObjectId,
     ref: 'User',
-    required: true,
   },
   interlocutor: {
     type: Schema.Types.ObjectId,
     ref: 'User',
-    required: true,
   },
   last_message: {
     type: Schema.Types.ObjectId,

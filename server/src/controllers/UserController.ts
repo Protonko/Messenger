@@ -18,7 +18,6 @@ export class UserController {
             .json({message: 'User not found.'})
         }
 
-        console.log(user)
         return response.json(user)
       } catch {
         return response

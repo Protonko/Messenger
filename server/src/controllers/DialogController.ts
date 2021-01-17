@@ -7,10 +7,11 @@ import {IDialog} from '../models/types/dialog'
 export class DialogController {
   find(request: Request, response: Response) {
     // @ts-ignore
-    const authorId = request.user?._id ?? null
+    const authorEmail = request.user?.email ?? null
 
+    // @ts-ignore
     Dialog
-      .find({author: authorId})
+      .find({author: '5ffb4eaf0dd3f211e62772cf'})
       .populate(['author', 'interlocutor'])
       .exec((error: IError, dialogs: IDialog) => {
         try {
@@ -34,6 +35,8 @@ export class DialogController {
     try {
       const dialog = new Dialog({author, interlocutor})
       const createdDialog = await dialog.save()
+
+      console.log(createdDialog)
       const message = new Message({
         text,
         dialog: createdDialog._id,
