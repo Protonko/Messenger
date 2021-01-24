@@ -1,0 +1,47 @@
+.button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: rem(7px) rem(30px);
+    cursor: pointer;
+    transition: color $transition-duration,
+                border-color $transition-duration,
+                background-color $transition-duration;
+    text-align: center;
+    color: $white;
+    border: rem(1px) solid $brand-color;
+    border-radius: rem(5px);
+    outline: none;
+    background-color: $brand-color;
+
+    &:hover,
+    &:active {
+        color: $brand-color;
+        background-color: $white;
+    }
+
+    &--bordered {
+        border-color: $brand-color;
+        background-color: $white;
+    }
+
+    &--circle {
+        border-radius: 50%;
+    }
+
+    &--linking {
+        padding: 0;
+        color: $brand-color;
+        border: none;
+        background-color: transparent;
+    }
+
+    &__text {
+        font-size: rem($font-size-small);
+        line-height: (15px / $font-size-small);
+    }
+
+    &__icon {
+
+    }
+}

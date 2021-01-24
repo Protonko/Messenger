@@ -40,7 +40,7 @@
         position: absolute;
         top: rem($padding);
         left: rem($padding);
-        transition-property: all;
+        transition-property: top;
         transition-duration: $transition-duration-short;
         transition-timing-function: cubic-bezier(.35, 0, .25, 1);
         pointer-events: none;

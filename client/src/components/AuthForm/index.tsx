@@ -1,13 +1,14 @@
 // types
 import {TextTypes} from 'models/common/text'
 import {FormTypes} from 'models/common/auth'
-import {TInputTypes} from 'models/common/input';
+import {TInputTypes} from 'models/common/input'
 
 import {FC, useEffect, useState} from 'react'
 import {useFormik} from 'formik'
 import * as yup from 'yup'
 import {Text} from 'components/common/Text'
 import {Input} from 'components/common/Input'
+import {Button} from 'components/common/Button'
 
 export interface IPropsAuthForm {
   title: string
@@ -103,6 +104,8 @@ export const AuthForm: FC<IPropsAuthForm> = ({
           {inputsData.map(renderInputs)}
         </ul>
       </div>
+
+      <Button text={'text'} />
     </form>
   )
 }
