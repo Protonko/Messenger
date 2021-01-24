@@ -8,15 +8,15 @@
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-dotdotdot": "^1.3.1",
-    "react-scripts": "4.0.1"
+    "react-scripts": "^4.0.1"
   },
   "scripts": {
-    "start": "../node_modules/.bin/react-scripts start",
-    "build": "../node_modules/.bin/react-scripts build",
-    "eject": "../node_modules/.bin/react-scripts eject",
-    "test": "../node_modules/.bin/jest",
-    "test:watch": "../node_modules/.bin/jest --watch",
-    "test:coverage": "../node_modules/.bin/jest --coverage"
+    "start": "./node_modules/.bin/react-scripts start",
+    "build": "./node_modules/.bin/react-scripts build",
+    "eject": "./node_modules/.bin/react-scripts eject",
+    "test": "./node_modules/.bin/jest",
+    "test:watch": "./node_modules/.bin/jest --watch",
+    "test:coverage": "./node_modules/.bin/jest --coverage"
   },
   "browserslist": {
     "production": [

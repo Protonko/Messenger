@@ -1,0 +1,16 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Input Match snapshot 1`] = `
+<div
+  className="input"
+>
+  <input
+    className="input__form"
+    onChange={[Function]}
+    type="text"
+  />
+  <label
+    className="input__label"
+  />
+</div>
+`;

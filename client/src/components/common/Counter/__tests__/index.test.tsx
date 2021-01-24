@@ -1,6 +1,6 @@
 import {shallow} from 'enzyme'
-import {Counter, IPropsCounter} from 'components/common/Counter/index';
-import {Status} from 'models/common/status';
+import {Counter, IPropsCounter} from 'components/common/Counter/index'
+import {Status} from 'models/common/status'
 
 const ELEMENT_SELECTORS = {
   counter: 'counter',
