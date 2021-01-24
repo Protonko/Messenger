@@ -7,6 +7,7 @@ const ELEMENT_SELECTORS = {
   inputForm: 'input__form',
   inputWithValue: 'input--has-value',
   customClassName: 'custom-class-name',
+  incorrect: 'input--incorrect',
 }
 
 const shallowComponent = (props: IPropsInput) => (
@@ -96,5 +97,27 @@ describe('Input', () => {
       const input = component.find(`.${ELEMENT_SELECTORS.customClassName}`)
 
       expect(input.length).toBe(1)
+    })
+
+  it(
+    `Input should contains className: ${ELEMENT_SELECTORS.incorrect} on error`,
+    () => {
+      props.error = 'error message'
+
+      const component = shallowComponent(props)
+      const input = component.find(`.${ELEMENT_SELECTORS.incorrect}`)
+
+      expect(input.length).toBe(1)
+    })
+
+  it(
+    `Input should return error`,
+    () => {
+      props.error = 'error message'
+
+      const component = shallowComponent(props)
+      const label = component.find(`.${ELEMENT_SELECTORS.label}`)
+
+      expect(label.text()).toBe('error message')
     })
 })
