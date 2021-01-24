@@ -1,0 +1,14 @@
+.auth-form {
+    max-width: rem(440px);
+    margin: rem(-60px) auto auto;
+    padding: rem(44px) rem(65px);
+    background-color: $white;
+
+    &__description {
+        margin-top: rem(15px);
+    }
+
+    &__button {
+
+    }
+}

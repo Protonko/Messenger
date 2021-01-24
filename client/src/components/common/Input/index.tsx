@@ -6,6 +6,7 @@ import classNames from 'classnames'
 
 export interface IPropsInput extends IInput {
   withLabel?: boolean
+  className?: string
 }
 
 export const Input: FC<IPropsInput> = ({
@@ -13,12 +14,15 @@ export const Input: FC<IPropsInput> = ({
   value,
   placeholder,
   name,
+  className,
   ...inputProps
 }) => {
   const inputClassNames = classNames([
     'input',
-    {'input--has-value': !!value}
+    {'input--has-value': !!value},
+    {[className ?? '']: !!className}
   ])
+
   return (
     <div className={inputClassNames}>
       <input

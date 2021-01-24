@@ -11,7 +11,7 @@ interface IWithDotsProps {
 export const withDot = <P extends object>(
   WrappedComponent: ComponentType<P>,
 ): FC<P & IWithDotsProps> => ({
-  numberOfLines = 'auto',
+  numberOfLines = Infinity,
   ...props
 }) => {
   return (

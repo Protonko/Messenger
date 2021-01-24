@@ -6,6 +6,7 @@ const ELEMENT_SELECTORS = {
   label: 'input__label',
   inputForm: 'input__form',
   inputWithValue: 'input--has-value',
+  customClassName: 'custom-class-name',
 }
 
 const shallowComponent = (props: IPropsInput) => (
@@ -85,4 +86,15 @@ describe('Input', () => {
 
       expect(input.length).toBe(1)
   })
+
+  it(
+    `Input should contains className: ${ELEMENT_SELECTORS.customClassName}`,
+    () => {
+      props.className = ELEMENT_SELECTORS.customClassName
+
+      const component = shallowComponent(props)
+      const input = component.find(`.${ELEMENT_SELECTORS.customClassName}`)
+
+      expect(input.length).toBe(1)
+    })
 })

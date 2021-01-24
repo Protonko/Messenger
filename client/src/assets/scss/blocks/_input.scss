@@ -38,12 +38,12 @@
     }
 
     &__form {
+        width: 100%;
         padding: rem($padding);
         border-width: 0 0 rem(1px) 0;
         border-color: $mercury;
         outline: none;
-    }
-    &__form {
+
         &:focus {
             border-color: $brand-color;
         }
