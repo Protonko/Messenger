@@ -3,7 +3,7 @@
     $label-padding: $font-size-base + $padding;
 
     position: relative;
-    margin-top: rem($label-padding);
+    margin-top: rem($label-padding * 1.5);
 
     &--without-label {
         margin-top: 0;
@@ -17,10 +17,20 @@
             }
         }
     }
-
     &--has-value & {
         &__label {
             top: rem(-$label-padding);
+        }
+    }
+
+    &--incorrect & {
+        &__form,
+        &__form:focus {
+            border-color: $error-color;
+        }
+
+        &__label {
+            color: $error-color;
         }
     }
 
@@ -40,7 +50,7 @@
     &__form {
         width: 100%;
         padding: rem($padding);
-        border-width: 0 0 rem(1px) 0;
+        border-width: 0 0 rem(2px) 0;
         border-color: $mercury;
         outline: none;
 

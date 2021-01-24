@@ -8,21 +8,22 @@ import {
   Ref,
 } from 'react'
 
+export type TInputTypes =
+  | 'number'
+  | 'card'
+  | 'email'
+  | 'file'
+  | 'hidden'
+  | 'money'
+  | 'password'
+  | 'tel'
+  | 'text'
+
 export interface IInput {
   /**
    * @default 'text'
    */
-  type?:
-    | 'number'
-    | 'card'
-    | 'email'
-    | 'file'
-    | 'hidden'
-    | 'money'
-    | 'password'
-    | 'tel'
-    | 'text'
-
+  type?: TInputTypes
   view?: 'default' | 'filled'
   width?: 'default' | 'available'
   autocomplete?: boolean | string
@@ -41,7 +42,7 @@ export interface IInput {
   title?: string
   required?: boolean
   inputRef?: Ref<HTMLInputElement>
-  onChange: (event: ChangeEvent<HTMLInputElement>) => void
+  onChange?: (event: ChangeEvent<HTMLInputElement>) => void
   onFocus?: (event?: FocusEvent<any>) => void
   onClick?: (event?: MouseEvent<any>) => void
   onBlur?: (event?: FocusEvent<any>) => void

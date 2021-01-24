@@ -1,39 +1,93 @@
 // types
 import {TextTypes} from 'models/common/text'
-import {IInput} from 'models/common/input'
+import {FormTypes} from 'models/common/auth'
+import {TInputTypes} from 'models/common/input';
 
-import {FC} from 'react'
+import {FC, useEffect, useState} from 'react'
+import {useFormik} from 'formik'
+import * as yup from 'yup'
 import {Text} from 'components/common/Text'
 import {Input} from 'components/common/Input'
 
 export interface IPropsAuthForm {
   title: string
   description?: string
-  inputs: Array<IInput>
+  type?: FormTypes
 }
+
+interface IInputForm {
+  id: number
+  name: 'email' | 'password'
+  placeholder: string
+  type: TInputTypes
+}
+
+const INPUTS_DATA: Array<IInputForm> = [{
+  id: 0,
+  name: 'email',
+  placeholder: 'Email',
+  type: 'text',
+}]
 
 export const AuthForm: FC<IPropsAuthForm> = ({
   title,
   description,
-  inputs,
+  type = FormTypes.auth,
 }) => {
-  const renderInputs = (elem: IInput) => {
-    const {name, placeholder, value, onChange} = elem
+  const [inputsData, setInputsData] = useState(INPUTS_DATA)
+  const formik = useFormik({
+    initialValues: {
+      email: '',
+      password: '',
+    },
+    validationSchema: yup.object({
+      email: yup
+        .string()
+        .email('Incorrect email address or password')
+        .required('Field is required'),
+      password: yup
+        .string()
+        .min(6, 'Incorrect email address or password')
+        .required('Field is required'),
+    }),
+    onSubmit: (values: any) => {
+      alert(JSON.stringify(values, null, 2))
+    },
+  })
+
+  useEffect(() => {
+    if (type === FormTypes.auth) {
+      setInputsData([
+        ...inputsData,
+        {
+          id: 1,
+          name: 'password',
+          type: 'password',
+          placeholder: 'Password',
+        }
+      ])
+    }
+  }, [])
+
+  const renderInputs = (elem: IInputForm) => {
+    const {name, placeholder, type} = elem
 
     return (
       <li key={elem.id} className="auth-form__input">
         <Input
-          value={value}
-          onChange={onChange}
+          value={formik.values[name]}
+          onChange={formik.handleChange}
           name={name}
+          type={type}
           placeholder={placeholder}
+          error={formik.touched[name] && formik.errors[name]}
         />
       </li>
     )
   }
 
   return (
-    <div className="auth-form">
+    <form className="auth-form" onSubmit={formik.handleSubmit}>
       <Text type={TextTypes.h3}>
         {title}
       </Text>
@@ -46,11 +100,9 @@ export const AuthForm: FC<IPropsAuthForm> = ({
 
       <div className="auth-form__inputs">
         <ul className="list list--reset auth-form__inputs-list">
-          <li className="auth-form__input">
-            {inputs.map(renderInputs)}
-          </li>
+          {inputsData.map(renderInputs)}
         </ul>
       </div>
-    </div>
+    </form>
   )
 }

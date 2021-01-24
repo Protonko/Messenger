@@ -7,6 +7,7 @@ import classNames from 'classnames'
 export interface IPropsInput extends IInput {
   withLabel?: boolean
   className?: string
+  error?: boolean | string
 }
 
 export const Input: FC<IPropsInput> = ({
@@ -15,11 +16,13 @@ export const Input: FC<IPropsInput> = ({
   placeholder,
   name,
   className,
+  error,
   ...inputProps
 }) => {
   const inputClassNames = classNames([
     'input',
     {'input--has-value': !!value},
+    {'input--incorrect': !!error},
     {[className ?? '']: !!className}
   ])
 
@@ -35,7 +38,7 @@ export const Input: FC<IPropsInput> = ({
       />
       {withLabel && (
         <label htmlFor={name} className="input__label">
-          {placeholder}
+          {error || placeholder}
         </label>
       )}
     </div>
