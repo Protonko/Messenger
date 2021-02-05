@@ -16,7 +16,7 @@ const shallowComponent = (props: IPropsInput) => (
 
 describe('Input', () => {
   let props: IPropsInput
-  let text: string;
+  let text: string
 
   beforeEach(() => {
     props = {

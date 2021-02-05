@@ -14,10 +14,12 @@
     outline: none;
     background-color: $brand-color;
 
-    &:hover,
-    &:active {
-        color: $brand-color;
-        background-color: $white;
+    &:not([disabled]) {
+        &:hover,
+        &:active {
+            color: $brand-color;
+            background-color: $white;
+        }
     }
 
     &--bordered {
@@ -34,6 +36,10 @@
         color: $brand-color;
         border: none;
         background-color: transparent;
+    }
+
+    &--disabled {
+        opacity: 0.8;
     }
 
     &__text {
