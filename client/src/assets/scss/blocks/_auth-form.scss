@@ -1,4 +1,6 @@
 .auth-form {
+    $vertical-gutter: 30px;
+
     max-width: rem(440px);
     margin: rem(-60px) auto auto;
     padding: rem(44px) rem(65px);
@@ -8,7 +10,15 @@
         margin-top: rem(15px);
     }
 
-    &__button {
+    &__buttons {
+        margin-top: rem($vertical-gutter);
 
+        &-item {
+            margin-top: rem($vertical-gutter / 2);
+        }
+    }
+
+    &__button {
+        width: 100%;
     }
 }

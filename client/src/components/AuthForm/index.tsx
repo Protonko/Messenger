@@ -44,11 +44,11 @@ export const AuthForm: FC<IPropsAuthForm> = ({
     validationSchema: yup.object({
       email: yup
         .string()
-        .email('Incorrect email address or password')
+        .email('Incorrect email address')
         .required('Field is required'),
       password: yup
         .string()
-        .min(6, 'Incorrect email address or password')
+        .min(6, 'The minimum password length is 6 characters')
         .required('Field is required'),
     }),
     onSubmit: (values: any) => {
@@ -105,7 +105,24 @@ export const AuthForm: FC<IPropsAuthForm> = ({
         </ul>
       </div>
 
-      <Button text={'text'} />
+      <div className="auth-form__buttons">
+        <ul className="list list--reset auth-form__buttons-list">
+          <li className="auth-form__buttons-item">
+            <Button
+              text="Log In"
+              type="submit"
+              additionalClassName="auth-form__button"
+            />
+          </li>
+          <li className="auth-form__buttons-item">
+            <Button
+              text="Create New Account"
+              modifier="linking"
+              additionalClassName="auth-form__button"
+            />
+          </li>
+        </ul>
+      </div>
     </form>
   )
 }
