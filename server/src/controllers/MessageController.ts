@@ -21,7 +21,7 @@ export class MessageController {
       // @ts-ignore
       .find({_id: id})
       .populate(['dialog'])
-      .exec((error: IError, messages: IMessage) => {
+      .exec((error: IError, messages: Array<IMessage>) => {
         try {
           if (error) {
             return response

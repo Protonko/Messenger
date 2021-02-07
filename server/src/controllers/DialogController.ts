@@ -12,14 +12,14 @@ export class DialogController {
     this.io = io
   }
 
-  find(request: Request, response: Response) {
+  async find(request: Request, response: Response) {
     // @ts-ignore
     const authorId = request.user?._id ?? null;
 
-    Dialog
+    await Dialog
       .find({author: authorId})
       .populate(['author', 'interlocutor'])
-      .exec((error: IError, dialogs: IDialog) => {
+      .exec((error: IError, dialogs: Array<IDialog>) => {
         try {
           if (error) {
             return response
