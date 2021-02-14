@@ -30,7 +30,7 @@ export const AuthForm: FC = () => {
         .required('Field is required'),
       name: yup
         .string()
-        .when([], {
+        .when('isRegister', {
           is: typeAuth === FormTypes.register,
           then: yup.string().required('Field is required'),
           otherwise: yup.string().notRequired(),
