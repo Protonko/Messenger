@@ -1,45 +1,26 @@
 // types
 import {TextTypes} from 'models/common/text'
 import {FormTypes} from 'models/common/auth'
-import {TInputTypes} from 'models/common/input'
+import {IInputForm} from './static'
 
-import {FC, useEffect, useState} from 'react'
+import {FC, useEffect, useState, useCallback} from 'react'
 import {useFormik} from 'formik'
 import * as yup from 'yup'
+import {useDispatch, useSelector} from 'react-redux'
+import {INPUTS_DATA} from './static'
+import {FORM_DATA} from './static'
 import {Text} from 'components/common/Text'
 import {Input} from 'components/common/Input'
 import {Button} from 'components/common/Button'
 
-export interface IPropsAuthForm {
-  title: string
-  description?: string
-  type?: FormTypes
-}
-
-interface IInputForm {
-  id: number
-  name: 'email' | 'password'
-  placeholder: string
-  type: TInputTypes
-}
-
-const INPUTS_DATA: Array<IInputForm> = [{
-  id: 0,
-  name: 'email',
-  placeholder: 'Email',
-  type: 'text',
-}]
-
-export const AuthForm: FC<IPropsAuthForm> = ({
-  title,
-  description,
-  type = FormTypes.auth,
-}) => {
+export const AuthForm: FC = () => {
   const [inputsData, setInputsData] = useState(INPUTS_DATA)
+  const [typeAuth, setTypeAuth] = useState<FormTypes>(FormTypes.auth);
   const formik = useFormik({
     initialValues: {
       email: '',
       password: '',
+      name: '',
     },
     validationSchema: yup.object({
       email: yup
@@ -50,6 +31,9 @@ export const AuthForm: FC<IPropsAuthForm> = ({
         .string()
         .min(6, 'The minimum password length is 6 characters')
         .required('Field is required'),
+      name: yup
+        .string()
+        .required('Field is required'),
     }),
     onSubmit: (values: any) => {
       alert(JSON.stringify(values, null, 2))
@@ -57,18 +41,28 @@ export const AuthForm: FC<IPropsAuthForm> = ({
   })
 
   useEffect(() => {
-    if (type === FormTypes.auth) {
+    formik.setErrors({})
+
+    if (typeAuth === FormTypes.register) {
       setInputsData([
         ...inputsData,
         {
-          id: 1,
-          name: 'password',
-          type: 'password',
-          placeholder: 'Password',
+          id: 2,
+          name: 'name',
+          type: 'text',
+          placeholder: 'Your name',
         }
       ])
+    } else {
+      setInputsData(
+        inputsData.filter(input => input.name !== 'name')
+      )
     }
-  }, [])
+  }, [typeAuth])
+
+  const handleClickLinkingButton = useCallback(() => {
+    setTypeAuth(FormTypes[typeAuth === 'register' ? 'auth' : 'register'])
+  }, [setTypeAuth, typeAuth])
 
   const renderInputs = (elem: IInputForm) => {
     const {name, placeholder, type} = elem
@@ -90,14 +84,12 @@ export const AuthForm: FC<IPropsAuthForm> = ({
   return (
     <form className="auth-form" onSubmit={formik.handleSubmit}>
       <Text type={TextTypes.h3}>
-        {title}
+        {FORM_DATA[typeAuth].title}
       </Text>
 
-      {description && (
-        <Text type={TextTypes.p} customStyles="auth-form__description">
-          {description}
-        </Text>
-      )}
+      <Text type={TextTypes.p} customStyles="auth-form__description">
+        {FORM_DATA[typeAuth].description}
+      </Text>
 
       <div className="auth-form__inputs">
         <ul className="list list--reset auth-form__inputs-list">
@@ -109,16 +101,17 @@ export const AuthForm: FC<IPropsAuthForm> = ({
         <ul className="list list--reset auth-form__buttons-list">
           <li className="auth-form__buttons-item">
             <Button
-              text="Log In"
+              text={FORM_DATA[typeAuth].buttonTitle}
               type="submit"
               additionalClassName="auth-form__button"
             />
           </li>
           <li className="auth-form__buttons-item">
             <Button
-              text="Create New Account"
+              text={FORM_DATA[typeAuth].linkingButtonTitle}
               modifier="linking"
               additionalClassName="auth-form__button"
+              onClick={handleClickLinkingButton}
             />
           </li>
         </ul>
