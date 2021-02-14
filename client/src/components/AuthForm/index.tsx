@@ -1,14 +1,11 @@
 // types
 import {TextTypes} from 'models/common/text'
 import {FormTypes} from 'models/common/auth'
-import {IInputForm} from './static'
 
-import {FC, useEffect, useState, useCallback} from 'react'
+import {FC, useCallback, useEffect, useState} from 'react'
 import {useFormik} from 'formik'
 import * as yup from 'yup'
-import {useDispatch, useSelector} from 'react-redux'
-import {INPUTS_DATA} from './static'
-import {FORM_DATA} from './static'
+import {IInputForm, FORM_DATA, INPUT_NAME_DATA, INPUTS_DATA} from './static'
 import {Text} from 'components/common/Text'
 import {Input} from 'components/common/Input'
 import {Button} from 'components/common/Button'
@@ -33,7 +30,11 @@ export const AuthForm: FC = () => {
         .required('Field is required'),
       name: yup
         .string()
-        .required('Field is required'),
+        .when([], {
+          is: typeAuth === FormTypes.register,
+          then: yup.string().required('Field is required'),
+          otherwise: yup.string().notRequired(),
+        })
     }),
     onSubmit: (values: any) => {
       alert(JSON.stringify(values, null, 2))
@@ -42,16 +43,12 @@ export const AuthForm: FC = () => {
 
   useEffect(() => {
     formik.setErrors({})
+    formik.resetForm()
 
     if (typeAuth === FormTypes.register) {
       setInputsData([
         ...inputsData,
-        {
-          id: 2,
-          name: 'name',
-          type: 'text',
-          placeholder: 'Your name',
-        }
+        INPUT_NAME_DATA,
       ])
     } else {
       setInputsData(
@@ -64,11 +61,9 @@ export const AuthForm: FC = () => {
     setTypeAuth(FormTypes[typeAuth === 'register' ? 'auth' : 'register'])
   }, [setTypeAuth, typeAuth])
 
-  const renderInputs = (elem: IInputForm) => {
-    const {name, placeholder, type} = elem
-
+  const renderInputs = ({id, name, placeholder, type}: IInputForm) => {
     return (
-      <li key={elem.id} className="auth-form__input">
+      <li key={id} className="auth-form__input">
         <Input
           value={formik.values[name]}
           onChange={formik.handleChange}

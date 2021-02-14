@@ -38,3 +38,10 @@ export const INPUTS_DATA: Array<IInputForm> = [
     placeholder: 'Password',
   }
 ]
+
+export const INPUT_NAME_DATA: IInputForm = {
+  id: 2,
+  name: 'name',
+  type: 'text',
+  placeholder: 'Your name',
+}
