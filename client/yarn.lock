@@ -5727,6 +5727,11 @@ functions-have-names@^1.2.1:
   resolved "https://registry.yarnpkg.com/functions-have-names/-/functions-have-names-1.2.2.tgz#98d93991c39da9361f8e50b337c4f6e41f120e21"
   integrity sha512-bLgc3asbWdwPbx2mNk2S49kmJCuQeu0nfmaOgbs8WIyzzkw3r4htszdIi9Q9EMezDPTYuJx2wvjZ/EwgAthpnA==
 
+fw-fetch-wrapper@^1.0.5:
+  version "1.0.5"
+  resolved "https://registry.yarnpkg.com/fw-fetch-wrapper/-/fw-fetch-wrapper-1.0.5.tgz#3d71407ccd4250002b4bbcb8c55c1eeb2e4d6051"
+  integrity sha512-POo6VGVYP2KJ43MtmsOMEn9OyMLVHsFlCXvWGlEtMW3MJD3hlE6ZvYvDahKiqWjiptCih57Z18OpbCfwR6pHPw==
+
 gauge@~2.7.3:
   version "2.7.4"
   resolved "https://registry.yarnpkg.com/gauge/-/gauge-2.7.4.tgz#2c03405c7538c39d7eb37b317022e325fb018bf7"

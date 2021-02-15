@@ -1,23 +1,31 @@
 // types
 import {TextTypes} from 'models/common/text'
-import {FormTypes} from 'models/common/auth'
+import {FormTypes} from 'models/auth'
 
 import {FC, useCallback, useEffect, useState} from 'react'
 import {useFormik} from 'formik'
 import * as yup from 'yup'
-import {IInputForm, FORM_DATA, INPUT_NAME_DATA, INPUTS_DATA} from './static'
+import {useDispatch} from 'react-redux'
+import {login} from 'store/actions/auth'
+import {
+  IInputForm,
+  FORM_DATA,
+  INPUT_NAME_DATA,
+  INPUTS_DATA
+} from './static'
 import {Text} from 'components/common/Text'
 import {Input} from 'components/common/Input'
 import {Button} from 'components/common/Button'
 
 export const AuthForm: FC = () => {
+  const dispatch = useDispatch()
   const [inputsData, setInputsData] = useState(INPUTS_DATA)
-  const [typeAuth, setTypeAuth] = useState<FormTypes>(FormTypes.auth);
+  const [typeAuth, setTypeAuth] = useState<FormTypes>(FormTypes.auth)
   const formik = useFormik({
     initialValues: {
       email: '',
       password: '',
-      name: '',
+      full_name: '',
     },
     validationSchema: yup.object({
       email: yup
@@ -36,12 +44,13 @@ export const AuthForm: FC = () => {
           otherwise: yup.string().notRequired(),
         })
     }),
-    onSubmit: (values: any) => {
+    onSubmit: (values) => {
       alert(JSON.stringify(values, null, 2))
     },
   })
 
   useEffect(() => {
+    dispatch(login({email: 'test1@test.ru', password: '123456'}))
     formik.setErrors({})
     formik.resetForm()
 
@@ -52,7 +61,7 @@ export const AuthForm: FC = () => {
       ])
     } else {
       setInputsData(
-        inputsData.filter(input => input.name !== 'name')
+        inputsData.filter(input => input.name !== 'full_name')
       )
     }
   }, [typeAuth])

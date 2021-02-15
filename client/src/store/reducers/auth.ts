@@ -1,5 +1,5 @@
-import {AuthActionTypes, ISetTypeOfSign} from 'models/store/auth'
-import {FormTypes} from 'models/common/auth'
+import {AuthActionTypes} from 'models/store/auth'
+import {FormTypes} from 'models/auth'
 import {TReducers} from 'models/common/store'
 import {buildReducer} from 'utils/buildReducer'
 
@@ -10,11 +10,11 @@ const initialState = {
 export type TInitialState = typeof initialState;
 
 const reducers = {
-  [AuthActionTypes.SET_TYPE_OF_SIGN](state: TInitialState, action: ISetTypeOfSign) {
-    return {
-      type: FormTypes.register
-    };
-  },
+  // [AuthActionTypes.SET_TYPE_OF_SIGN](state: TInitialState, action: ISetTypeOfSign) {
+  //   return {
+  //     type: FormTypes.register
+  //   };
+  // },
 } as TReducers<TInitialState, any, AuthActionTypes>
 
 export const auth = buildReducer(reducers, initialState)

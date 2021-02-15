@@ -2,6 +2,7 @@ import {createStore, applyMiddleware, compose} from 'redux';
 import logger from 'redux-logger';
 import createSagaMiddleware from 'redux-saga'
 import rootReducer from './reducers';
+import {rootWatcher} from './saga'
 
 declare global {
   interface Window {
@@ -9,7 +10,8 @@ declare global {
   }
 }
 
-const middleware = [createSagaMiddleware(), logger];
+const sagaMiddleware = createSagaMiddleware()
+const middleware = [sagaMiddleware, logger];
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
 
 export default createStore(
@@ -20,3 +22,5 @@ export default createStore(
     composeEnhancers(),
   )
 );
+
+sagaMiddleware.run(rootWatcher)

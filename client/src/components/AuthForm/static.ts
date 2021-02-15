@@ -1,9 +1,9 @@
 import {TInputTypes} from 'models/common/input'
-import {FormTypes} from 'models/common/auth'
+import {FormTypes} from 'models/auth'
 
 export interface IInputForm {
   id: number
-  name: 'email' | 'password' | 'name',
+  name: 'email' | 'password' | 'full_name'
   placeholder: string
   type: TInputTypes
 }
@@ -41,7 +41,7 @@ export const INPUTS_DATA: Array<IInputForm> = [
 
 export const INPUT_NAME_DATA: IInputForm = {
   id: 2,
-  name: 'name',
+  name: 'full_name',
   type: 'text',
   placeholder: 'Your name',
 }
