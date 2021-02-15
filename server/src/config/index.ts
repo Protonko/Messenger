@@ -27,4 +27,10 @@ export const config: TConfig = {
   JWT_MAX_AGE,
   // @ts-ignore
   JWT_ALGORITHM,
-};
+}
+
+export const CORS_OPTIONS = {
+  origin: '*',
+  credentials: true,
+  optionSuccessStatus: 200,
+}
