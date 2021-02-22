@@ -56,7 +56,7 @@ export const Button: FC<IPropsButton> = ({
 }) => {
   const buttonClassNames = classNames([
     'button',
-    {['button--disabled']: !!disabled},
+    {'button--disabled': !!disabled},
     {[`button--${modifier}`]: !!modifier},
     {[additionalClassName ?? '']: !!additionalClassName},
   ])

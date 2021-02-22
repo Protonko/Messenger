@@ -1,3 +1,5 @@
+import {TStatusResponse} from './common/fetch'
+
 export enum FormTypes {
   auth = 'auth',
   register = 'register',
@@ -13,6 +15,6 @@ export interface IUserSignupBody extends IUserLoginBody {
 }
 
 export interface IUserLoginResponse {
-  success: string
+  status: TStatusResponse
   token: string
 }

@@ -1,12 +1,14 @@
 // types
 import {TextTypes} from 'models/common/text'
 import {FormTypes} from 'models/auth'
+import {RootState} from 'store/reducers'
 
-import {FC, useCallback, useEffect, useState} from 'react'
+import {ChangeEvent, FC, useCallback, useEffect, useState} from 'react'
+import {useHistory} from 'react-router-dom'
 import {useFormik} from 'formik'
 import * as yup from 'yup'
-import {useDispatch} from 'react-redux'
-import {login} from 'store/actions/auth'
+import {useDispatch, useSelector} from 'react-redux'
+import {login, signUp, resetErrorMessage} from 'store/actions/auth'
 import {
   IInputForm,
   FORM_DATA,
@@ -18,7 +20,9 @@ import {Input} from 'components/common/Input'
 import {Button} from 'components/common/Button'
 
 export const AuthForm: FC = () => {
+  const history = useHistory()
   const dispatch = useDispatch()
+  const {errorMessage} = useSelector((state: RootState) => state.auth)
   const [inputsData, setInputsData] = useState(INPUTS_DATA)
   const [typeAuth, setTypeAuth] = useState<FormTypes>(FormTypes.auth)
   const formik = useFormik({
@@ -36,7 +40,7 @@ export const AuthForm: FC = () => {
         .string()
         .min(6, 'The minimum password length is 6 characters')
         .required('Field is required'),
-      name: yup
+      full_name: yup
         .string()
         .when('isRegister', {
           is: typeAuth === FormTypes.register,
@@ -44,25 +48,36 @@ export const AuthForm: FC = () => {
           otherwise: yup.string().notRequired(),
         })
     }),
-    onSubmit: (values) => {
-      alert(JSON.stringify(values, null, 2))
+    onSubmit: ({email, password, full_name}) => {
+      if (typeAuth === FormTypes.register) {
+        dispatch(signUp({email, password, full_name}))
+      } else {
+        dispatch(login({email, password}))
+      }
     },
   })
 
+  useEffect(() => () => {
+    dispatch(resetErrorMessage())
+  }, [dispatch])
+
   useEffect(() => {
-    dispatch(login({email: 'test1@test.ru', password: '123456'}))
+    if (errorMessage === false) {
+      history.push('dialogs')
+    }
+  }, [errorMessage, history])
+
+  useEffect(() => {
     formik.setErrors({})
     formik.resetForm()
 
     if (typeAuth === FormTypes.register) {
-      setInputsData([
-        ...inputsData,
+      setInputsData(prev => ([
+        ...prev,
         INPUT_NAME_DATA,
-      ])
+      ]))
     } else {
-      setInputsData(
-        inputsData.filter(input => input.name !== 'full_name')
-      )
+      setInputsData(prev => prev.filter(input => input.name !== 'full_name'))
     }
   }, [typeAuth])
 
@@ -70,16 +85,24 @@ export const AuthForm: FC = () => {
     setTypeAuth(FormTypes[typeAuth === 'register' ? 'auth' : 'register'])
   }, [setTypeAuth, typeAuth])
 
+  const onChange = (event: ChangeEvent<HTMLInputElement>) => {
+    if (errorMessage) {
+      dispatch(resetErrorMessage())
+    }
+
+    formik.handleChange(event)
+  }
+
   const renderInputs = ({id, name, placeholder, type}: IInputForm) => {
     return (
       <li key={id} className="auth-form__input">
         <Input
           value={formik.values[name]}
-          onChange={formik.handleChange}
+          onChange={onChange}
           name={name}
           type={type}
           placeholder={placeholder}
-          error={formik.touched[name] && formik.errors[name]}
+          error={(formik.touched[name] && formik.errors[name]) || errorMessage}
         />
       </li>
     )

@@ -1,11 +1,15 @@
 import {Switch, Route} from 'react-router-dom';
 import {Auth} from './pages/Auth';
+import {Chat} from './pages/Chat'
 
 const App = () => {
   return (
     <Switch>
-      <Route path="/">
+      <Route exact path="/">
         <Auth />
+      </Route>
+      <Route exact path="/dialogs">
+        <Chat />
       </Route>
     </Switch>
   )

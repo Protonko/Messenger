@@ -1,20 +1,39 @@
 import {IAction} from 'models/common/store'
-import {IUserLoginBody} from 'models/auth'
+import {IUserLoginBody, IUserSignupBody} from 'models/auth'
 import {AuthActionTypes} from 'models/store/auth'
 
+import {api} from 'api'
 import {put, takeEvery, call} from 'redux-saga/effects'
-import {UserApi} from 'classes/User'
-import {setLoginData} from 'store/actions/auth'
+import {UserApi} from 'api/User'
+import {setLoginData, setErrorMessage, setSignUpData} from 'store/actions/auth'
 
+// login
 function* loginWorker({payload}: IAction<AuthActionTypes.LOGIN, IUserLoginBody>) {
   try {
-    const data = yield call(() => UserApi.login(payload))
-    yield put(setLoginData(data))
+    const {token} = yield call(() => UserApi.login(payload))
+    yield api.defaults.headers.common['token'] = token;
+    yield put(setLoginData(token))
   } catch (e) {
-    console.log(e)
+    yield put(setErrorMessage(e))
   }
 }
 
 export function* authWatcher() {
   yield takeEvery(AuthActionTypes.LOGIN, loginWorker)
 }
+// ./login
+
+// sign up
+function* signUpWorker({payload}: IAction<AuthActionTypes.SIGN_UP, IUserSignupBody>) {
+  try {
+    const data = yield call(() => UserApi.signUp(payload))
+    yield put(setSignUpData(data))
+  } catch (e) {
+    yield put(setErrorMessage(e))
+  }
+}
+
+export function* signUpWatcher() {
+  yield takeEvery(AuthActionTypes.SIGN_UP, signUpWorker)
+}
+// ./sign up

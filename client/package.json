@@ -3,8 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "axios": "^0.21.1",
     "formik": "^2.2.6",
-    "fw-fetch-wrapper": "^1.0.5",
     "object-fit-images": "^3.2.4",
     "object-hash": "^2.1.1",
     "react": "^17.0.1",

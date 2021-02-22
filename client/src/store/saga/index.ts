@@ -1,6 +1,6 @@
 import {all} from 'redux-saga/effects'
-import {authWatcher} from './auth'
+import {authWatcher, signUpWatcher} from './auth'
 
 export function* rootWatcher() {
-  yield all([authWatcher()])
+  yield all([authWatcher(), signUpWatcher()])
 }
