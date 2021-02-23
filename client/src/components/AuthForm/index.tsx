@@ -30,23 +30,21 @@ export const AuthForm: FC = () => {
       email: '',
       password: '',
       full_name: '',
+      isRegister: false,
     },
     validationSchema: yup.object({
       email: yup
         .string()
         .email('Incorrect email address')
-        .required('Field is required'),
+        .required('Field  is required'),
       password: yup
         .string()
         .min(6, 'The minimum password length is 6 characters')
         .required('Field is required'),
-      full_name: yup
-        .string()
-        .when(['isRegister'], {
-          is: typeAuth === FormTypes.register,
-          then: yup.string().required('Field is required'),
-          otherwise: yup.string().notRequired(),
-        })
+      isRegister: yup.boolean().default(false),
+      full_name: typeAuth === FormTypes.register
+        ? yup.string().required('Field is required')
+        : yup.string().notRequired()
     }),
     onSubmit: ({email, password, full_name}) => {
       if (typeAuth === FormTypes.register) {
