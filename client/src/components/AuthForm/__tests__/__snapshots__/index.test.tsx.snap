@@ -1,58 +1,35 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`AuthForm Match snapshot 1`] = `
-<form
-  className="auth-form"
-  onSubmit={[Function]}
+<ContextProvider
+  value={
+    Object {
+      "store": Object {
+        "dispatch": [Function],
+        "getState": [Function],
+        "replaceReducer": [Function],
+        "subscribe": [Function],
+        Symbol(observable): [Function],
+      },
+      "subscription": Subscription {
+        "handleChangeWrapper": [Function],
+        "listeners": Object {
+          "notify": [Function],
+        },
+        "onStateChange": [Function],
+        "parentSub": undefined,
+        "store": Object {
+          "dispatch": [Function],
+          "getState": [Function],
+          "replaceReducer": [Function],
+          "subscribe": [Function],
+          Symbol(observable): [Function],
+        },
+        "unsubscribe": null,
+      },
+    }
+  }
 >
-  <Component
-    type="h3"
-  />
-  <div
-    className="auth-form__inputs"
-  >
-    <ul
-      className="list list--reset auth-form__inputs-list"
-    >
-      <li
-        className="auth-form__input"
-        key="0"
-      >
-        <Input
-          name="email"
-          onChange={[Function]}
-          placeholder="Email"
-          type="text"
-          value=""
-        />
-      </li>
-    </ul>
-  </div>
-  <div
-    className="auth-form__buttons"
-  >
-    <ul
-      className="list list--reset auth-form__buttons-list"
-    >
-      <li
-        className="auth-form__buttons-item"
-      >
-        <Button
-          additionalClassName="auth-form__button"
-          text="Log In"
-          type="submit"
-        />
-      </li>
-      <li
-        className="auth-form__buttons-item"
-      >
-        <Button
-          additionalClassName="auth-form__button"
-          modifier="linking"
-          text="Create New Account"
-        />
-      </li>
-    </ul>
-  </div>
-</form>
+  <AuthForm />
+</ContextProvider>
 `;

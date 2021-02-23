@@ -1,19 +1,19 @@
 import {shallow} from 'enzyme'
-import {AuthForm, IPropsAuthForm} from 'components/AuthForm'
+import {Provider} from 'react-redux'
+import store from 'store';
+import {AuthForm} from 'components/AuthForm'
 
-const shallowComponent = (props: IPropsAuthForm) => (
-  shallow(<AuthForm {...props} />)
+const shallowComponent = () => (
+  shallow(<Provider store={store}><AuthForm /></Provider>)
 )
 
 describe('AuthForm', () => {
-  let props: IPropsAuthForm
-
   // beforeEach(() => {
   //   props = {}
   // })
 
   it('Match snapshot', () => {
-    const component = shallowComponent(props)
+    const component = shallowComponent()
 
     expect(component).toMatchSnapshot()
   })
