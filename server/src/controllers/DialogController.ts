@@ -24,7 +24,7 @@ export class DialogController {
           if (error) {
             return response
               .status(404)
-              .json({message: 'Dialogs not found'})
+              .json({message: 'Chat not found'})
           }
 
           return response.json(dialogs)

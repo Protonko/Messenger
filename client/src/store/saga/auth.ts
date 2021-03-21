@@ -3,13 +3,13 @@ import {IUserLoginBody, IUserSignupBody} from 'models/auth'
 import {AuthActionTypes} from 'models/store/auth'
 
 import {api} from 'api'
-import {put, takeEvery, call} from 'redux-saga/effects'
+import {put, take, takeEvery, call} from 'redux-saga/effects'
 import {UserApi} from 'api/User'
 import {setLoginData, setErrorMessage, setSignUpData} from 'store/actions/auth'
-import {IUser} from '../../models/user'
+import {IUser} from 'models/user'
 
 // login
-function* loginWorker({payload}: IAction<AuthActionTypes.LOGIN, IUserLoginBody>) {
+export function* loginWorker({payload}: IAction<AuthActionTypes.LOGIN, IUserLoginBody>) {
   try {
     const {token}: {token: string} = yield call(() => UserApi.login(payload))
     yield api.defaults.headers.common['token'] = token;
@@ -20,7 +20,8 @@ function* loginWorker({payload}: IAction<AuthActionTypes.LOGIN, IUserLoginBody>)
 }
 
 export function* authWatcher() {
-  yield takeEvery(AuthActionTypes.LOGIN, loginWorker)
+  const data = yield take(AuthActionTypes.LOGIN)
+  yield call(loginWorker, data)
 }
 // ./login
 

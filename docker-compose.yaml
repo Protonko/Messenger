@@ -1,0 +1,18 @@
+version: "2.2"
+
+services:
+  client:
+    build: client/
+    restart: always
+    ports:
+    - 3006:3006
+    environment:
+      - TZ=Europe/Moscow
+
+  server:
+    build: server/
+    restart: always
+    ports:
+    - 3000:3000
+    environment:
+      - TZ=Europe/Moscow

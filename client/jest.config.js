@@ -17,7 +17,7 @@ module.exports = {
     './node_modules/enzyme-to-json/serializer',
   ],
   "transform": {
-    "^.+\\.tsx?$": "<rootDir>/node_modules/ts-jest/preprocessor.js",
+    "^.+\\.tsx?$": "<rootDir>/node_modules/ts-jest",
   },
   moduleNameMapper: {
     '\\.(css|scss)$': 'identity-obj-proxy',
