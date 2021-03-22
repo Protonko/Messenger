@@ -26,7 +26,7 @@ export function* authWatcher() {
 // ./login
 
 // sign up
-function* signUpWorker({payload}: IAction<AuthActionTypes.SIGN_UP, IUserSignupBody>) {
+export function* signUpWorker({payload}: IAction<AuthActionTypes.SIGN_UP, IUserSignupBody>) {
   try {
     const data: IUser = yield call(() => UserApi.signUp(payload))
     yield put(setSignUpData(data))

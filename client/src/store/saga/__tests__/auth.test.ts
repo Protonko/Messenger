@@ -1,9 +1,9 @@
 import sagaHelper from 'redux-saga-testing'
-import {call, take} from 'redux-saga/effects'
+import {call, take, takeEvery} from 'redux-saga/effects'
 import {AuthActionTypes} from 'models/store/auth'
 import {IAction} from 'models/common/store'
 import {IUserLoginBody} from 'models/auth'
-import {loginWorker, authWatcher} from 'store/saga/auth'
+import {loginWorker, authWatcher, signUpWorker, signUpWatcher} from 'store/saga/auth'
 
 const ACTION_LOGIN: IAction<AuthActionTypes.LOGIN, IUserLoginBody> = {
   type: AuthActionTypes.LOGIN,
@@ -15,15 +15,25 @@ const ACTION_LOGIN: IAction<AuthActionTypes.LOGIN, IUserLoginBody> = {
 }
 
 describe('auth sagas', () => {
-  const it = sagaHelper(authWatcher())
+  describe('authWatcher', () => {
+    const it = sagaHelper(authWatcher())
 
-  it('[authWatcher] should have took LOGIN action', (result) => {
-    expect(result).toEqual(take(AuthActionTypes.LOGIN))
+    it('Should have took LOGIN action', (result) => {
+      expect(result).toEqual(take(AuthActionTypes.LOGIN))
 
-    return ACTION_LOGIN
+      return ACTION_LOGIN
+    })
+
+    it('Should have called a worker second', (result) => {
+      expect(result).toEqual(call(loginWorker, ACTION_LOGIN))
+    })
   })
 
-  it('[authWatcher] should have called the mock API secondly', (result) => {
-    expect(result).toEqual(call(loginWorker, ACTION_LOGIN))
+  describe('signUpWatcher', () => {
+    const it = sagaHelper(signUpWatcher())
+
+    it('Should have called a worker first', (result) => {
+      expect(result).toEqual(takeEvery(AuthActionTypes.SIGN_UP, signUpWorker))
+    })
   })
 })
