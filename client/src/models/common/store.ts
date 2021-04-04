@@ -4,10 +4,8 @@ export interface IAction<T extends string, U = undefined, V = undefined> {
   meta: V
 }
 
-export interface IBuildReducer<T, U, V extends string> {
-  (state: T, action: IAction<V, U, T>): T
+export interface IBuildReducer<T, U, V extends string, M = undefined> {
+  (state: T, action: IAction<V, U, M>): T
 }
 
-export type TReducers<T, U, V extends string> = {
-  [key: string]: IBuildReducer<T, U, V>,
-}
+export type TReducers<T, U, V extends string, M = undefined> = Record<string, IBuildReducer<T, U, V, M>>

@@ -1,20 +1,21 @@
 import {AuthActionTypes} from 'models/store/auth'
 import {TReducers} from 'models/common/store'
+import {AllPayloads} from 'models/auth'
 import {IUser} from 'models/user'
 
 import {buildReducer} from 'utils/buildReducer'
 
-interface TInitialState {
+export interface IInitialState {
   token: null | string
   errorMessage: null | string | false
   account: null | IUser
 }
 
-const initialState = {
+export const initialState = {
   token: null,
   errorMessage: null,
   account: null,
-} as TInitialState
+} as IInitialState
 
 const reducers = {
   [AuthActionTypes.SET_LOGIN_DATA](state, action) {
@@ -45,6 +46,6 @@ const reducers = {
       account: action.payload,
     }
   },
-} as TReducers<TInitialState, any, AuthActionTypes>
+} as TReducers<IInitialState, AllPayloads, AuthActionTypes>
 
 export const auth = buildReducer(reducers, initialState)

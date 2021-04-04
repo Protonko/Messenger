@@ -1,12 +1,8 @@
-type TMirrorObj = {
-  [key: string]: string
-}
-
 export const keyMirror = (
   arr: Array<string> = [],
   prefix: string = '',
-): TMirrorObj => {
-  return arr.reduce((obj: TMirrorObj, key) => {
+): Record<string, string> => {
+  return arr.reduce((obj: Record<string, string>, key) => {
     obj[key] = prefix + key;
     return obj;
   }, {});

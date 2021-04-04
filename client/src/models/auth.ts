@@ -18,3 +18,5 @@ export interface IUserLoginResponse {
   status: TStatusResponse
   token: string
 }
+
+export type AllPayloads = IUserLoginBody | void | null;
