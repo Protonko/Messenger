@@ -1,0 +1,44 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Modal component Match snapshot 1`] = `
+<ModalContent
+  modalVisibility={true}
+  toggleVisibilityModal={[MockFunction]}
+>
+  <Transition
+    appear={false}
+    enter={true}
+    exit={true}
+    in={true}
+    mountOnEnter={true}
+    onEnter={[Function]}
+    onEntered={[Function]}
+    onEntering={[Function]}
+    onExit={[Function]}
+    onExited={[Function]}
+    onExiting={[Function]}
+    timeout={400}
+    unmountOnExit={true}
+  >
+    <div
+      className="modal"
+    >
+      <article
+        className="modal__popup"
+        style={
+          Object {
+            "height": "31.25rem",
+            "width": "47rem",
+          }
+        }
+      >
+        <Child>
+          <div>
+            Yolo
+          </div>
+        </Child>
+      </article>
+    </div>
+  </Transition>
+</ModalContent>
+`;

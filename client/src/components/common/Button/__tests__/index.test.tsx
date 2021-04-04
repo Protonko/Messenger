@@ -23,6 +23,7 @@ describe('Button', () => {
   it('Should render Button component', () => {
     const component = shallowComponent(props)
     const wrapper = component.find(`.${ELEMENT_SELECTORS.button}`)
+
     expect(wrapper.length).toBe(1)
   })
 
