@@ -18,7 +18,7 @@ const shallowComponent = (props: IPropsButton) => (
 
 describe('Button', () => {
   let props: IPropsButton = {}
-  let eventFn = jest.fn();
+  let eventFn = jest.fn()
 
   it('Should render Button component', () => {
     const component = shallowComponent(props)
@@ -102,7 +102,7 @@ describe('Button', () => {
     const type = component.prop('type')
 
     expect(type).toBe('button')
-  });
+  })
 
   it('Should have disabled attribute', () => {
     props.disabled = true
@@ -112,7 +112,7 @@ describe('Button', () => {
     const disabled = component.prop('disabled')
 
     expect(disabled).toBe(true)
-  });
+  })
 
   it('Should call `onClick` callback after button was clicked', () => {
     props.onClick = eventFn

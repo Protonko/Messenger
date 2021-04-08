@@ -1,5 +1,5 @@
 import {shallow} from 'enzyme'
-import {Loader} from 'components/common/Loader/index'
+import {Loader} from 'components/common/Loader'
 
 const ELEMENT_SELECTORS = {
   loader: 'loader',

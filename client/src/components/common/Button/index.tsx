@@ -1,4 +1,4 @@
-import {FC, HTMLProps, ReactNode} from 'react'
+import type {FC, HTMLProps, ReactNode} from 'react'
 import classNames from 'classnames'
 
 export interface IPropsButton extends HTMLProps<HTMLButtonElement> {

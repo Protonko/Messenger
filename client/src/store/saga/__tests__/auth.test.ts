@@ -1,11 +1,9 @@
 import sagaHelper from 'redux-saga-testing'
 import {call, take, takeEvery} from 'redux-saga/effects'
-import {AuthActionTypes} from 'models/store/auth'
-import {IAction} from 'models/common/store'
-import {IUserLoginBody} from 'models/auth'
 import {loginWorker, authWatcher, signUpWorker, signUpWatcher} from 'store/saga/auth'
+import {AuthActionTypes, LoginAction} from 'models/store/actions/auth'
 
-const ACTION_LOGIN: IAction<AuthActionTypes.LOGIN, IUserLoginBody> = {
+const ACTION_LOGIN: LoginAction = {
   type: AuthActionTypes.LOGIN,
   payload: {
     email: 'email@test.com',

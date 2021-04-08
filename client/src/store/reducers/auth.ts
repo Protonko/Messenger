@@ -1,13 +1,9 @@
-import {AuthActionTypes} from 'models/store/auth'
-import {TReducers} from 'models/common/store'
-import {AllPayloads} from 'models/auth'
-import {IUser} from 'models/user'
-
-import {buildReducer} from 'utils/buildReducer'
+import type {IUser} from 'models/user'
+import {AuthActionTypes} from 'models/store/actions/auth'
 
 export interface IInitialState {
   token: null | string
-  errorMessage: null | string | false
+  errorMessage: null | string | boolean
   account: null | IUser
 }
 
@@ -17,35 +13,35 @@ export const initialState = {
   account: null,
 } as IInitialState
 
-const reducers = {
-  [AuthActionTypes.SET_LOGIN_DATA](state, action) {
-    return {
-      ...state,
-      token: action.payload,
-      errorMessage: false,
-    }
-  },
+const reducers = (
+  state = initialState,
+  action: any,
+): IInitialState => {
+  switch (action.type) {
+    case AuthActionTypes.SET_LOGIN_DATA:
+      return {
+        ...state,
+        token: action.payload,
+        errorMessage: false,
+      }
+    case AuthActionTypes.SET_ERROR_MESSAGE:
+      return {
+        ...state,
+        errorMessage: action.payload
+      }
+    case AuthActionTypes.RESET_ERROR_MESSAGE:
+      return {
+        ...state,
+        errorMessage: null
+      }
+    case AuthActionTypes.SET_SIGN_UP_DATA:
+      return {
+        ...state,
+        account: action.payload,
+      }
+    default:
+      return state
+  }
+}
 
-  [AuthActionTypes.SET_ERROR_MESSAGE](state, action) {
-    return {
-      ...state,
-      errorMessage: action.payload
-    }
-  },
-
-  [AuthActionTypes.RESET_ERROR_MESSAGE](state) {
-    return {
-      ...state,
-      errorMessage: null
-    }
-  },
-
-  [AuthActionTypes.SET_SIGN_UP_DATA](state, action) {
-    return {
-      ...state,
-      account: action.payload,
-    }
-  },
-} as TReducers<IInitialState, AllPayloads, AuthActionTypes>
-
-export const auth = buildReducer(reducers, initialState)
+export default reducers

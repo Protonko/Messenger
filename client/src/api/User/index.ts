@@ -1,10 +1,9 @@
-import {
+import type {
   IUserLoginBody,
   IUserSignupBody,
   IUserLoginResponse,
 } from 'models/auth'
-import {IUser} from 'models/user'
-
+import type {IUser} from 'models/user'
 import {api} from 'api'
 
 export class UserApi {

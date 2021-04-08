@@ -1,6 +1,6 @@
-import {render} from 'enzyme';
+import {render} from 'enzyme'
 import {IPropsText, Text} from 'components/common/Text'
-import {withDot} from 'hoc/withDot/index';
+import {withDot} from 'hoc/withDot';
 
 const ELEMENT_SELECTORS = {
   text: 'text',

@@ -1,4 +1,4 @@
-import {FC} from 'react'
+import type {FC} from 'react'
 
 export const Loader: FC = () => {
   const lines = new Array(12).fill('')

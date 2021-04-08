@@ -1,7 +1,5 @@
-// types
-import {IInput} from 'models/common/input'
-
-import {FC} from 'react'
+import type {IInput} from 'models/common/input'
+import type {FC} from 'react'
 import classNames from 'classnames'
 
 export interface IPropsInput extends IInput {
@@ -23,7 +21,7 @@ export const Input: FC<IPropsInput> = ({
     'input',
     {'input--has-value': !!value},
     {'input--incorrect': !!error},
-    {[className ?? '']: !!className}
+    {[className ?? '']: !!className},
   ])
 
   return (

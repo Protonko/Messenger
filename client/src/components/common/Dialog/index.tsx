@@ -1,11 +1,9 @@
-// types
-import {TextSize, TextTypes} from 'models/common/text';
-import {IDialog} from 'models/dialog';
-
-import {FC} from 'react'
-import {Text} from 'components/common/Text';
-import {Counter} from 'components/common/Counter';
-import {Avatar} from 'components/common/Avatar';
+import type {FC} from 'react'
+import type {IDialog} from 'models/dialog'
+import {TextSize, TextTypes} from 'models/common/text'
+import {Text} from 'components/common/Text'
+import {Counter} from 'components/common/Counter'
+import {Avatar} from 'components/common/Avatar'
 
 interface IPropsDialog extends IDialog {}
 
@@ -19,8 +17,8 @@ export const Dialog: FC<IPropsDialog> = ({
   status,
   readStatus,
 }) => {
-  const dateTime = time ?? date;
-  const counter = messages.toString().length > 2 ? '99+' : messages;
+  const dateTime = time ?? date
+  const counter = messages.toString().length > 2 ? '99+' : messages
 
   return (
     <div className="dialog">

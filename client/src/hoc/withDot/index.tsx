@@ -1,8 +1,6 @@
-// types
-import {TNumberOfLines} from 'models/common/text';
-
+import type {ComponentType, FC} from 'react'
+import type {TNumberOfLines} from 'models/common/text'
 import Dotdotdot from 'react-dotdotdot'
-import {ComponentType, FC} from 'react'
 
 interface IWithDotsProps {
   numberOfLines?: TNumberOfLines

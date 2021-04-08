@@ -7,12 +7,12 @@ import {HEIGHT_MODAL, WIDTH_MODAL, TOGGLE_MODAL_TIMEOUT} from 'static/constants'
 import {rem} from 'utils/rem'
 
 export interface IPropsModal {
-  children: ReactNode,
-  modalVisibility: boolean,
-  toggleVisibilityModal: (visibility: boolean) => void,
-  timeout?: number,
-  width?: number,
-  height?: number,
+  children: ReactNode
+  modalVisibility: boolean
+  toggleVisibilityModal: (visibility: boolean) => void
+  timeout?: number
+  width?: number
+  height?: number
 }
 
 const TRANSITION_CLASSNAMES = {

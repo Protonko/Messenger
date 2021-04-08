@@ -1,13 +1,11 @@
-// types
-import {TextTypes} from 'models/common/text'
-import {FormTypes} from 'models/auth'
-import {RootState} from 'store/reducers'
-
+import type {RootState} from 'store/reducers'
 import {ChangeEvent, FC, useCallback, useEffect, useState} from 'react'
 import {useHistory} from 'react-router-dom'
 import {useFormik} from 'formik'
 import * as yup from 'yup'
 import {useDispatch, useSelector} from 'react-redux'
+import {TextTypes} from 'models/common/text'
+import {FormTypes} from 'models/auth'
 import {login, signUp, resetErrorMessage} from 'store/actions/auth'
 import {
   IInputForm,
@@ -100,7 +98,7 @@ export const AuthForm: FC = () => {
           name={name}
           type={type}
           placeholder={placeholder}
-          error={(formik.touched[name] && formik.errors[name]) || errorMessage}
+          error={((formik.touched[name] && formik.errors[name]) || errorMessage) ?? undefined}
         />
       </li>
     )

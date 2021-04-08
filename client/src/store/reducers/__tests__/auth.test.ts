@@ -1,6 +1,5 @@
-import {AuthActionTypes} from 'models/store/auth'
-
-import {auth, initialState} from 'store/reducers/auth'
+import auth, {initialState} from 'store/reducers/auth'
+import {AuthActionTypes} from 'models/store/actions/auth'
 
 describe('auth reducer', () => {
   const ACTIONS = {

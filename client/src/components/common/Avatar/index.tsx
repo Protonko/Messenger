@@ -1,7 +1,5 @@
-// types
-import {FC} from 'react'
+import type {FC} from 'react'
 import {Sizes} from 'models/common/sizes'
-
 import {Loader} from 'components/common/Loader'
 
 type TAvatarClassNames =
@@ -10,8 +8,8 @@ type TAvatarClassNames =
   | 'avatar avatar--lg'
 
 export interface IPropsAvatar {
-  src: string,
-  size?: Sizes,
+  src: string
+  size?: Sizes
 }
 
 export const Avatar: FC<IPropsAvatar> = ({
@@ -33,7 +31,7 @@ export const Avatar: FC<IPropsAvatar> = ({
 
   return (
     <div className={avatarClassname}>
-      <img className="avatar__image" src={src} alt=""/>
+      <img className="avatar__image" src={src} alt="" />
       <Loader />
     </div>
   )

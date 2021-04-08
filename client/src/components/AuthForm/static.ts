@@ -1,4 +1,4 @@
-import {TInputTypes} from 'models/common/input'
+import type {TInputTypes} from 'models/common/input'
 import {FormTypes} from 'models/auth'
 
 export interface IInputForm {
@@ -36,7 +36,7 @@ export const INPUTS_DATA: Array<IInputForm> = [
     name: 'password',
     type: 'password',
     placeholder: 'Password',
-  }
+  },
 ]
 
 export const INPUT_NAME_DATA: IInputForm = {

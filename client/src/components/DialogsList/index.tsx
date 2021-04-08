@@ -1,7 +1,5 @@
-// types
-import {IDialog} from 'models/dialog'
-
-import {FC} from 'react'
+import type {FC} from 'react'
+import type {IDialog} from 'models/dialog'
 import hash from 'object-hash'
 import {Dialog} from 'components/common/Dialog'
 

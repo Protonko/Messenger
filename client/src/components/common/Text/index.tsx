@@ -1,18 +1,16 @@
-// types
+import type {FC} from 'react'
 import {TextTypes, TextSize, TextWeight, TNumberOfLines} from 'models/common/text'
-
-import {FC} from 'react'
-import classNames from 'classnames';
-import {classNamesText} from 'utils/classNamesText';
-import {withDot} from 'hoc/withDot';
+import classNames from 'classnames'
+import {classNamesText} from 'utils/classNamesText'
+import {withDot} from 'hoc/withDot'
 
 export interface IPropsText {
-  type?: TextTypes,
-  weight?: TextWeight,
-  size?: TextSize,
-  children: string,
-  customStyles?: string,
-  numberOfLines?: TNumberOfLines,
+  type?: TextTypes
+  weight?: TextWeight
+  size?: TextSize
+  children: string
+  customStyles?: string
+  numberOfLines?: TNumberOfLines
 }
 
 export const Text: FC<IPropsText> = withDot<IPropsText>(({
@@ -37,7 +35,7 @@ export const Text: FC<IPropsText> = withDot<IPropsText>(({
     {'text--xl': size === TextSize.LARGE},
     {'text--xxl': size === TextSize.EXTRA_LARGE},
     // custom
-    {[customStyles ?? '']: !!customStyles}
+    {[customStyles ?? '']: !!customStyles},
   )
 
   switch (type) {

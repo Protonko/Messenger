@@ -1,12 +1,10 @@
-// types
+import type {FC} from 'react'
 import {Status} from 'models/common/status'
-
-import {FC} from 'react'
 import classNames from 'classnames'
 
 export interface IPropsCounter {
-  count: number | '99+',
-  status?: Status,
+  count: number | '99+'
+  status?: Status
 }
 
 export const Counter: FC<IPropsCounter> = ({
@@ -15,7 +13,7 @@ export const Counter: FC<IPropsCounter> = ({
 }) => {
   const classNameStatus = classNames(
     'counter',
-    {'counter--muted': status === Status.MUTED}
+    {'counter--muted': status === Status.MUTED},
   )
 
   return (

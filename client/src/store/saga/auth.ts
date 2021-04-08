@@ -1,15 +1,12 @@
-import {IAction} from 'models/common/store'
-import {IUserLoginBody, IUserSignupBody} from 'models/auth'
-import {AuthActionTypes} from 'models/store/auth'
-
-import {api} from 'api'
+import type {IUser} from 'models/user'
 import {put, take, takeEvery, call} from 'redux-saga/effects'
+import {AuthActionTypes, LoginAction, SignUpAction} from 'models/store/actions/auth'
+import {api} from 'api'
 import {UserApi} from 'api/User'
 import {setLoginData, setErrorMessage, setSignUpData} from 'store/actions/auth'
-import {IUser} from 'models/user'
 
 // login
-export function* loginWorker({payload}: IAction<AuthActionTypes.LOGIN, IUserLoginBody>) {
+export function* loginWorker({payload}: LoginAction) {
   try {
     const {token}: {token: string} = yield call(() => UserApi.login(payload))
     yield api.defaults.headers.common['token'] = token;
@@ -26,7 +23,7 @@ export function* authWatcher() {
 // ./login
 
 // sign up
-export function* signUpWorker({payload}: IAction<AuthActionTypes.SIGN_UP, IUserSignupBody>) {
+export function* signUpWorker({payload}: SignUpAction) {
   try {
     const data: IUser = yield call(() => UserApi.signUp(payload))
     yield put(setSignUpData(data))

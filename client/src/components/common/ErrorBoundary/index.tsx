@@ -1,15 +1,15 @@
-import {Component, ErrorInfo} from 'react';
+import {Component, ErrorInfo} from 'react'
 
 interface IProps {}
 interface IState {
-  error: null | Error;
-  errorInfo: null | ErrorInfo;
-  hasError: boolean;
+  error: null | Error
+  errorInfo: null | ErrorInfo
+  hasError: boolean
 }
 
 export class ErrorBoundary extends Component<IProps, IState> {
   constructor(props: IProps) {
-    super(props);
+    super(props)
 
     this.state = {
       error: null,
@@ -22,7 +22,7 @@ export class ErrorBoundary extends Component<IProps, IState> {
     console.log(error)
     return {
       hasError: true,
-    };
+    }
   }
 
   componentDidCatch(error: Error, errorInfo: ErrorInfo) {
@@ -61,6 +61,6 @@ export class ErrorBoundary extends Component<IProps, IState> {
       )
     }
 
-    return this.props.children;
+    return this.props.children
   }
 }

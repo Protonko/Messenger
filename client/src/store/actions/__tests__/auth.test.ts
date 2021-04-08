@@ -1,4 +1,3 @@
-import {AuthActionTypes} from 'models/store/auth'
 import {
   setLoginData,
   login,
@@ -7,6 +6,7 @@ import {
   setSignUpData,
   signUp
 } from 'store/actions/auth'
+import {AuthActionTypes} from 'models/store/actions/auth'
 
 const USER = {
   email: 'test@email.com',

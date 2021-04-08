@@ -1,4 +1,4 @@
-import {classNamesText} from 'utils/classNamesText/index'
+import {classNamesText} from 'utils/classNamesText'
 
 const regexp = 'text--test'
 const regexpCustomStyle = 'custom-style'
