@@ -11,6 +11,18 @@ exports[`Modal component Match snapshot 1`] = `
     exit={true}
     in={true}
     mountOnEnter={true}
+    nodeRef={
+      Object {
+        "current": <article
+          class="modal__popup"
+          style="width: 47rem; height: 31.25rem;"
+        >
+          <div>
+            Yolo
+          </div>
+        </article>,
+      }
+    }
     onEnter={[Function]}
     onEntered={[Function]}
     onEntering={[Function]}
