@@ -1,22 +1,25 @@
-import {mount} from 'enzyme'
+import {mount, ReactWrapper} from 'enzyme'
 import {Modal, ModalContent, IPropsModal} from 'components/common/Modal'
 import {rem} from 'utils/rem'
 import {Transition} from 'react-transition-group'
 
 const ELEMENT_SELECTORS = {
   modal: 'modal',
-  popup: 'modal__popup'
+  popup: 'modal__popup',
+  customStyle: 'modal__test',
 }
 
 describe('Modal component', () => {
   const Child = () => <div>Yolo</div>
   const portalRoot = document.createElement('div')
   const body = document.querySelector('body')
+  const fn = jest.fn();
+
   portalRoot.setAttribute('id', 'portal-modal')
   body!.appendChild(portalRoot)
 
   let props: IPropsModal
-  const fn = jest.fn();
+  let component: ReactWrapper<IPropsModal>
 
   beforeEach(() => {
     props = {
@@ -24,37 +27,23 @@ describe('Modal component', () => {
       modalVisibility: true,
       toggleVisibilityModal: fn,
     }
-  })
 
-  it('Should create portal with ModalContent component', () => {
-    const component = mount(
+    component = mount(
       <Modal {...props}>
         <Child />
       </Modal>,
     );
-    const wrapper = component.find(ModalContent);
+  })
 
-    expect(wrapper.length).toBe(1)
+  it('Should create portal with ModalContent component', () => {
+    expect(component.find(ModalContent).length).toBe(1)
   })
 
   it('Should render ModalContent component', () => {
-    const component = mount(
-      <ModalContent {...props}>
-        <Child />
-      </ModalContent>,
-    );
-    const wrapper = component.find(`.${ELEMENT_SELECTORS.modal}`)
-
-    expect(wrapper.length).toBe(1)
+    expect(component.find(`.${ELEMENT_SELECTORS.modal}`).length).toBe(1)
   })
 
   it('Match snapshot', () => {
-    const component = mount(
-      <ModalContent {...props}>
-        <Child />
-      </ModalContent>,
-    );
-
     expect(component).toMatchSnapshot()
   })
 
@@ -62,7 +51,7 @@ describe('Modal component', () => {
     props.width = 160
     props.height = 160
 
-    const component = mount(
+    component = mount(
       <ModalContent {...props}>
         <Child />
       </ModalContent>,
@@ -76,13 +65,24 @@ describe('Modal component', () => {
   it('Should change timeout from default value to 160', () => {
     props.timeout = 160
 
-    const component = mount(
+    component = mount(
       <ModalContent {...props}>
         <Child />
       </ModalContent>,
     );
-    const transition = component.find(Transition)
 
-    expect(transition.prop('timeout')).toBe(160)
+    expect(component.find(Transition).prop('timeout')).toBe(160)
+  })
+
+  it('Modal with customStyles', () => {
+    props.customStyles = ELEMENT_SELECTORS.customStyle
+
+    component = mount(
+      <ModalContent {...props}>
+        <Child />
+      </ModalContent>,
+    );
+
+    expect(component.find(`.${ELEMENT_SELECTORS.customStyle}`).length).toBe(1)
   })
 })

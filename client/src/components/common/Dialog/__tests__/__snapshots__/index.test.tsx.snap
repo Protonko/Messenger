@@ -1,0 +1,337 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Dialog Match snapshot 1`] = `
+<div
+  className="dialog"
+>
+  <Avatar
+    src="string"
+  />
+  <div
+    className="dialog__data"
+  >
+    <div
+      className="dialog__text"
+    >
+      <Component
+        customStyles="dialog__text-title"
+        numberOfLines={1}
+        type="h4"
+      >
+        string
+      </Component>
+      <Component>
+        string
+      </Component>
+    </div>
+    <div
+      className="dialog__info"
+    >
+      <Component
+        customStyles="dialog__info-date"
+        size="XS"
+        type="mixed"
+      >
+        string
+      </Component>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Dialog Should render Check icon: Dialog with readStatus === SENT 1`] = `
+<div
+  className="dialog"
+>
+  <Avatar
+    src="string"
+  />
+  <div
+    className="dialog__data"
+  >
+    <div
+      className="dialog__text"
+    >
+      <Component
+        customStyles="dialog__text-title"
+        numberOfLines={1}
+        type="h4"
+      >
+        string
+      </Component>
+      <Component>
+        string
+      </Component>
+    </div>
+    <div
+      className="dialog__info"
+    >
+      <Component
+        customStyles="dialog__info-date"
+        size="XS"
+        type="mixed"
+      >
+        string
+      </Component>
+      <div
+        color="#999999"
+        height={15}
+        width={15}
+      />
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Dialog Should render Counter: Dialog with counter 1`] = `
+<div
+  className="dialog"
+>
+  <Avatar
+    src="string"
+  />
+  <div
+    className="dialog__data"
+  >
+    <div
+      className="dialog__text"
+    >
+      <Component
+        customStyles="dialog__text-title"
+        numberOfLines={1}
+        type="h4"
+      >
+        string
+      </Component>
+      <Component>
+        string
+      </Component>
+    </div>
+    <div
+      className="dialog__info"
+    >
+      <Component
+        customStyles="dialog__info-date"
+        size="XS"
+        type="mixed"
+      >
+        string
+      </Component>
+      <Counter
+        count="99+"
+        status="ACTIVE"
+      />
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Dialog Should render DoubleCheck icon: Dialog with readStatus === READ 1`] = `
+<div
+  className="dialog"
+>
+  <Avatar
+    src="string"
+  />
+  <div
+    className="dialog__data"
+  >
+    <div
+      className="dialog__text"
+    >
+      <Component
+        customStyles="dialog__text-title"
+        numberOfLines={1}
+        type="h4"
+      >
+        string
+      </Component>
+      <Component>
+        string
+      </Component>
+    </div>
+    <div
+      className="dialog__info"
+    >
+      <Component
+        customStyles="dialog__info-date"
+        size="XS"
+        type="mixed"
+      >
+        string
+      </Component>
+      <div
+        color="#999999"
+        height={15}
+        width={15}
+      />
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Dialog Should render date: Dialog with date 1`] = `
+<Dialog
+  avatar="string"
+  date="date"
+  description="string"
+  messages={0}
+  name="string"
+  readStatus={null}
+  status="ACTIVE"
+  time=""
+>
+  <div
+    className="dialog"
+  >
+    <Avatar
+      src="string"
+    >
+      <div
+        className="avatar"
+      >
+        <img
+          alt=""
+          className="avatar__image"
+          src="string"
+        />
+        <Loader>
+          <div
+            className="loader"
+          >
+            <div
+              className="loader__line"
+              key="0"
+            />
+            <div
+              className="loader__line"
+              key="1"
+            />
+            <div
+              className="loader__line"
+              key="2"
+            />
+            <div
+              className="loader__line"
+              key="3"
+            />
+            <div
+              className="loader__line"
+              key="4"
+            />
+            <div
+              className="loader__line"
+              key="5"
+            />
+            <div
+              className="loader__line"
+              key="6"
+            />
+            <div
+              className="loader__line"
+              key="7"
+            />
+            <div
+              className="loader__line"
+              key="8"
+            />
+            <div
+              className="loader__line"
+              key="9"
+            />
+            <div
+              className="loader__line"
+              key="10"
+            />
+            <div
+              className="loader__line"
+              key="11"
+            />
+          </div>
+        </Loader>
+      </div>
+    </Avatar>
+    <div
+      className="dialog__data"
+    >
+      <div
+        className="dialog__text"
+      >
+        <Component
+          customStyles="dialog__text-title"
+          numberOfLines={1}
+          type="h4"
+        >
+          <Dotdotdot
+            clamp={1}
+            tagName="div"
+            truncationChar="…"
+            useNativeClamp={false}
+          >
+            <div>
+              <Component
+                customStyles="dialog__text-title"
+                type="h4"
+              >
+                <h4
+                  className="text text--heading-4 dialog__text-title"
+                >
+                  string
+                </h4>
+              </Component>
+            </div>
+          </Dotdotdot>
+        </Component>
+        <Component>
+          <Dotdotdot
+            clamp={Infinity}
+            tagName="div"
+            truncationChar="…"
+            useNativeClamp={false}
+          >
+            <div>
+              <Component>
+                <p
+                  className="text text--description"
+                >
+                  string
+                </p>
+              </Component>
+            </div>
+          </Dotdotdot>
+        </Component>
+      </div>
+      <div
+        className="dialog__info"
+      >
+        <Component
+          customStyles="dialog__info-date"
+          size="XS"
+          type="mixed"
+        >
+          <Dotdotdot
+            clamp={Infinity}
+            tagName="div"
+            truncationChar="…"
+            useNativeClamp={false}
+          >
+            <div>
+              <Component
+                customStyles="dialog__info-date"
+                size="XS"
+                type="mixed"
+              >
+                <p
+                  className="text text--xs dialog__info-date"
+                >
+                  date
+                </p>
+              </Component>
+            </div>
+          </Dotdotdot>
+        </Component>
+      </div>
+    </div>
+  </div>
+</Dialog>
+`;

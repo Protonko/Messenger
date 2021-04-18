@@ -1,0 +1,26 @@
+.chat {
+    width: 100%;
+    background-color: $white;
+
+    &__section {
+        display: flex;
+
+        &--header {
+            justify-content: center;
+            padding: rem(17px) rem(20px);
+            background-color: $brand-color;
+        }
+    }
+
+    &__title {
+        color: $white;
+    }
+
+    &__dialogs {
+        width: 30%;
+    }
+
+    &__messages {
+        width: 70%;
+    }
+}

@@ -1,13 +1,15 @@
 import type {FC} from 'react'
 import type {IDialog} from 'models/dialog'
+import {ReadStatus} from 'models/common/status'
 import {TextSize, TextTypes} from 'models/common/text'
+import {ReactComponent as DoubleCheck} from 'assets/icons/double-check.svg'
+import {ReactComponent as Check} from 'assets/icons/check.svg'
+import {COLORS} from 'static/colors'
 import {Text} from 'components/common/Text'
 import {Counter} from 'components/common/Counter'
 import {Avatar} from 'components/common/Avatar'
 
-interface IPropsDialog extends IDialog {}
-
-export const Dialog: FC<IPropsDialog> = ({
+export const Dialog: FC<IDialog> = ({
   name,
   description,
   avatar,
@@ -17,8 +19,25 @@ export const Dialog: FC<IPropsDialog> = ({
   status,
   readStatus,
 }) => {
-  const dateTime = time ?? date
+  const dateTime = time || date
   const counter = messages.toString().length > 2 ? '99+' : messages
+
+  const renderStatus = () => {
+    if (!!counter) {
+      return <Counter count={counter} status={status}/>
+    }
+
+    if (readStatus) {
+      const props = {
+        width: 15,
+        height: 15,
+        color: COLORS.dustyGray,
+      }
+      return readStatus === ReadStatus.READ ? <DoubleCheck {...props} /> : <Check {...props} />
+    }
+
+    return null
+  }
 
   return (
     <div className="dialog">
@@ -45,7 +64,7 @@ export const Dialog: FC<IPropsDialog> = ({
             {dateTime}
           </Text>
 
-          {!!messages ? <Counter count={counter} status={status}/> : null}
+          {renderStatus()}
         </div>
       </div>
     </div>

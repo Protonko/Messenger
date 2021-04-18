@@ -4,7 +4,17 @@
 
     display: flex;
     align-items: center;
+    padding-top: rem($vertical-gutter);
     padding-left: rem($horizontal-gutter);
+    transition: background-color $transition-duration;
+
+    &:hover {
+        background-color: rgba($brand-color, .1);
+    }
+
+    &--active {
+        background-color: $brand-color;
+    }
 
     &__data {
         @include padding-vertical($vertical-gutter);
