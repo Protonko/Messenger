@@ -1,3 +1,7 @@
 .dialogs {
-    width: rem(350px);
+    width: 100%;
+
+    &__search {
+        padding: rem(10px);
+    }
 }

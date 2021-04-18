@@ -1,8 +1,6 @@
-import {ReadStatus, Status} from 'models/common/status'
 import {TextTypes} from 'models/common/text'
 import {Text} from 'components/common/Text'
-import {Dialog} from 'components/common/Dialog'
-import {Search} from 'components/common/Search'
+import {Dialogs} from 'components/Dialogs'
 
 export const Chat = () => {
   return (
@@ -15,9 +13,7 @@ export const Chat = () => {
         </div>
         <div className="chat__section chat__section--body">
           <div className="chat__dialogs">
-            <Search />
-            <Dialog avatar={''} date={'asdfsf'} description={''} messages={0} name={'wqe'} readStatus={ReadStatus.READ} status={Status.ACTIVE} time={'koj'} />
-            <Dialog avatar={''} date={''} description={''} messages={2} name={'wqe'} readStatus={null} status={Status.ACTIVE} time={''} />
+            <Dialogs dialogs={[]} />
           </div>
           <div className="chat__messages">
             Messages

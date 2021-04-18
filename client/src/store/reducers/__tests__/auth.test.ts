@@ -1,8 +1,8 @@
 import auth, {initialState} from 'store/reducers/auth'
-import {AuthActionTypes} from 'models/store/actions/auth'
+import {AllAuthActions, AuthActionTypes} from 'models/store/actions/auth'
 
 describe('auth reducer', () => {
-  const ACTIONS = {
+  const ACTIONS: Record<string, AllAuthActions> = {
     SET_LOGIN_DATA: {
       type: AuthActionTypes.SET_LOGIN_DATA,
       payload: 'token123',
@@ -28,7 +28,7 @@ describe('auth reducer', () => {
         full_name: 'full_name',
         last_seen: new Date(),
         updatedAt: new Date(),
-        id: 2,
+        id: '2',
       },
       meta: undefined,
     },

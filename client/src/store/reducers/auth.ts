@@ -1,5 +1,5 @@
 import type {IUser} from 'models/user'
-import {AuthActionTypes} from 'models/store/actions/auth'
+import {AllAuthActions, AuthActionTypes} from 'models/store/actions/auth'
 
 export interface IInitialState {
   token: null | string
@@ -15,7 +15,7 @@ export const initialState = {
 
 const reducers = (
   state = initialState,
-  action: any,
+  action: AllAuthActions,
 ): IInitialState => {
   switch (action.type) {
     case AuthActionTypes.SET_LOGIN_DATA:
