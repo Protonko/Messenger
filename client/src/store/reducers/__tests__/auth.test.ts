@@ -5,7 +5,19 @@ describe('auth reducer', () => {
   const ACTIONS: Record<string, AllAuthActions> = {
     SET_LOGIN_DATA: {
       type: AuthActionTypes.SET_LOGIN_DATA,
-      payload: 'token123',
+      payload: {
+        token: 'token123',
+        user: {
+          avatar: null,
+          confirmed: false,
+          createdAt: new Date(),
+          email: 'email',
+          full_name: 'full_name',
+          last_seen: new Date(),
+          updatedAt: new Date(),
+          id: 'test_id',
+        }
+      },
       meta: undefined,
     },
     SET_ERROR_MESSAGE: {
@@ -38,7 +50,8 @@ describe('auth reducer', () => {
     expect(auth(initialState, ACTIONS.SET_LOGIN_DATA)).toEqual(
       {
         ...initialState,
-        token: ACTIONS.SET_LOGIN_DATA.payload,
+        token: ACTIONS.SET_LOGIN_DATA.payload.token,
+        account: ACTIONS.SET_LOGIN_DATA.payload.user,
         errorMessage: false
       },
     )

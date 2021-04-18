@@ -8,9 +8,9 @@ import {setLoginData, setErrorMessage, setSignUpData} from 'store/actions/auth'
 // login
 export function* loginWorker({payload}: LoginAction) {
   try {
-    const {token}: {token: string} = yield call(() => UserApi.login(payload))
+    const {token, user}: {token: string, user: IUser} = yield call(() => UserApi.login(payload))
     yield api.defaults.headers.common['token'] = token;
-    yield put(setLoginData(token))
+    yield put(setLoginData({token, user}))
   } catch (e) {
     yield put(setErrorMessage(e))
   }

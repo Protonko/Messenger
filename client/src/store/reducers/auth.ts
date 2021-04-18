@@ -21,7 +21,8 @@ const reducers = (
     case AuthActionTypes.SET_LOGIN_DATA:
       return {
         ...state,
-        token: action.payload,
+        token: action.payload.token,
+        account: action.payload.user,
         errorMessage: false,
       }
     case AuthActionTypes.SET_ERROR_MESSAGE:

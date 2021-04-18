@@ -73,6 +73,7 @@ export class UserController {
 
         response.json({
           status: 'success',
+          user: userMapper(user),
           token,
         })
       } else {

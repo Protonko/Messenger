@@ -1,5 +1,5 @@
 import type {AnyAction} from 'redux'
-import type {IUserLoginBody, IUserSignupBody} from 'models/auth'
+import type {IUserLoginBody, IUserLoginResponse, IUserSignupBody} from 'models/auth'
 import type {IUser} from 'models/user'
 
 export enum AuthActionTypes {
@@ -18,7 +18,7 @@ export interface LoginAction extends AnyAction {
 
 export interface SetLoginDataAction extends AnyAction {
   type: AuthActionTypes.SET_LOGIN_DATA
-  payload: string
+  payload: Omit<IUserLoginResponse, 'status'>
 }
 
 export interface SignUpAction extends AnyAction {

@@ -1,4 +1,4 @@
-import type {IUserLoginBody, IUserSignupBody} from 'models/auth'
+import type {IUserLoginBody, IUserLoginResponse, IUserSignupBody} from 'models/auth'
 import type {IUser} from 'models/user'
 import {
   AuthActionTypes,
@@ -14,7 +14,7 @@ import {
 export const login = (payload: IUserLoginBody): LoginAction =>
   ({type: AuthActionTypes.LOGIN, payload})
 
-export const setLoginData = (payload: string): SetLoginDataAction =>
+export const setLoginData = (payload: Omit<IUserLoginResponse, 'status'>): SetLoginDataAction =>
   ({type: AuthActionTypes.SET_LOGIN_DATA, payload})
 
 // sign up
