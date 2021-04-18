@@ -1,0 +1,109 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Search Search with custom placeholder: Search with custom placeholder 1`] = `
+<Search
+  placeholder="test"
+>
+  <div
+    className="search"
+  >
+    <div
+      className="search__icon"
+    />
+    <input
+      autoComplete="off"
+      className="search__input"
+      onChange={[Function]}
+      placeholder="test"
+      type="search"
+      value=""
+    />
+  </div>
+</Search>
+`;
+
+exports[`Search Search with custom styles: Search with custom styles 1`] = `
+<Search
+  customStyles="test-style"
+>
+  <div
+    className="search test-style"
+  >
+    <div
+      className="search__icon"
+    />
+    <input
+      autoComplete="off"
+      className="search__input"
+      onChange={[Function]}
+      placeholder="Search..."
+      type="search"
+      value=""
+    />
+  </div>
+</Search>
+`;
+
+exports[`Search Search with large size: Search with large size 1`] = `
+<Search
+  size="LARGE"
+>
+  <div
+    className="search search--large"
+  >
+    <div
+      className="search__icon"
+    />
+    <input
+      autoComplete="off"
+      className="search__input"
+      onChange={[Function]}
+      placeholder="Search..."
+      type="search"
+      value=""
+    />
+  </div>
+</Search>
+`;
+
+exports[`Search Search with small size: Search with small size 1`] = `
+<Search
+  size="SMALL"
+>
+  <div
+    className="search search--small"
+  >
+    <div
+      className="search__icon"
+    />
+    <input
+      autoComplete="off"
+      className="search__input"
+      onChange={[Function]}
+      placeholder="Search..."
+      type="search"
+      value=""
+    />
+  </div>
+</Search>
+`;
+
+exports[`Search Search without props: Search without props 1`] = `
+<Search>
+  <div
+    className="search"
+  >
+    <div
+      className="search__icon"
+    />
+    <input
+      autoComplete="off"
+      className="search__input"
+      onChange={[Function]}
+      placeholder="Search..."
+      type="search"
+      value=""
+    />
+  </div>
+</Search>
+`;
