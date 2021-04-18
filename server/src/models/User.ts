@@ -1,6 +1,6 @@
 import {Schema, model} from 'mongoose'
 import validator from 'validator'
-import {IUser} from '../types/user'
+import {IUserMongoose} from '../types/user'
 import {generatePasswordHash} from '../utils/generatePaswordHash'
 
 const schema = new Schema({
@@ -35,7 +35,7 @@ const schema = new Schema({
   timestamps: true,
 })
 
-schema.pre<IUser>('save', async function (next) {
+schema.pre<IUserMongoose>('save', async function (next) {
   const user = this
 
   if (!user.isModified('password')) {
@@ -50,4 +50,4 @@ schema.pre<IUser>('save', async function (next) {
   }
 })
 
-export const User = model<IUser>('User', schema)
+export const User = model<IUserMongoose>('User', schema)

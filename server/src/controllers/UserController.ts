@@ -3,9 +3,10 @@ import {validationResult} from 'express-validator'
 import {Server} from 'socket.io'
 import {compareSync} from 'bcrypt'
 import {User} from '../models/User'
-import {IUser} from '../types/user'
+import {IUserMongoose} from '../types/user'
 import {IError} from '../types/error'
 import {jwtCreate} from '../utils/jwtCreate'
+import {userMapper} from '../mappers/userMapper'
 
 export class UserController {
   io: Server
@@ -17,7 +18,7 @@ export class UserController {
   find(request: Request, response: Response) {
     const {id} = request.params
 
-    User.findById(id, (error: IError, user: IUser) => {
+    User.findById(id, (error: IError, user: IUserMongoose) => {
       try {
         if (error) {
           return response
@@ -25,7 +26,7 @@ export class UserController {
             .json({message: 'User not found.'})
         }
 
-        return response.json(user)
+        return response.json(userMapper(user))
       } catch {
         return response
           .status(500)
@@ -38,14 +39,14 @@ export class UserController {
     // @ts-ignore
     const id = request.user?._id ?? null
 
-    User.findById(id, (error: IError, user: IUser) => {
+    User.findById(id, (error: IError, user: IUserMongoose) => {
       if (error) {
         return response
           .status(404)
           .json({message: 'User not found.'})
       }
 
-      response.json(user)
+      response.json(userMapper(user))
     })
   }
 
@@ -60,7 +61,7 @@ export class UserController {
 
     const {email, password} = request.body
 
-    User.findOne({email}, (error: IError, user: IUser) => {
+    User.findOne({email}, (error: IError, user: IUserMongoose) => {
       if (error) {
         return response.status(404).json({
           message: 'User not found.',
@@ -97,7 +98,7 @@ export class UserController {
       const user = new User({email, full_name, password})
       const createdUser = await user.save()
 
-      response.json(createdUser)
+      response.json(userMapper(createdUser))
     } catch (reason) {
       response.json(reason)
     }

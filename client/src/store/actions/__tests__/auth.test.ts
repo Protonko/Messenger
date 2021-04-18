@@ -23,8 +23,7 @@ const USER_DATA = {
   createdAt: new Date(),
   last_seen: new Date(),
   updatedAt: new Date(),
-  __v: 1,
-  _id: 'string',
+  id: 'string',
 }
 
 describe('auth actions', () => {

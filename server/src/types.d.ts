@@ -1,5 +1,5 @@
 declare namespace Express {
-  import {IUser} from './models/User'
+  import {IUserMongoose} from './models/User'
 
   export interface Request {
     user?: IUser

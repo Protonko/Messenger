@@ -30,10 +30,8 @@ const RESPONSE_SIGN_UP_SUCCESS = {
       email: 'email@email.com',
       full_name: 'full name',
       last_seen: new Date(),
-      password: '123456',
       updatedAt: new Date(),
-      __v: 0,
-      _id: 'a32d',
+      id: 'a32d',
     }
   }
 }

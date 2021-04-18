@@ -61,10 +61,10 @@ export const AuthForm: FC = () => {
   }, [errorMessage, history])
 
   useEffect(() => {
-    if (account?._id) {
+    if (account?.id) {
       setModalVisibility(true);
     }
-  }, [account?._id])
+  }, [account?.id])
 
   useEffect(() => {
     formik.setErrors({})

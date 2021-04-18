@@ -5,11 +5,21 @@ export interface ILoginUser {
   password: string,
 }
 
-export interface IUser extends Document {
+export interface IUserMongoose extends Document {
   id: string,
   avatar: null | string,
   last_seen: Date,
   password: string,
+  email: string,
+  full_name: string,
+  confirmed: boolean,
+  confirm_hash?: string,
+}
+
+export interface IUser {
+  id: string,
+  avatar: null | string,
+  last_seen: Date,
   email: string,
   full_name: string,
   confirmed: boolean,

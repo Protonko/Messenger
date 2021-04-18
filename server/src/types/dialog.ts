@@ -1,9 +1,9 @@
 import {Document} from 'mongoose'
-import {IUser} from './user'
+import {IUserMongoose} from './user'
 import {IMessage} from './message'
 
 export interface IDialog extends Document {
-  author: IUser,
-  partner: IUser,
+  author: IUserMongoose,
+  partner: IUserMongoose,
   last_message: IMessage,
 }

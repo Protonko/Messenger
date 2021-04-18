@@ -2,7 +2,7 @@ import {Request, Response, NextFunction} from 'express'
 import {PATHS} from '../static'
 import {DecodedData} from '../types/jwt'
 import {IError} from '../types/error'
-import {IUser} from '../types/user'
+import {IUserMongoose} from '../types/user'
 import {User} from '../models/User'
 import {jwtVerify} from '../utils/jwtVerify'
 
@@ -25,7 +25,7 @@ export const checkAuth = async (
       if (user) {
         const {email} = user.data
 
-        await User.findOne({email}, (error: IError, user: IUser) => {
+        await User.findOne({email}, (error: IError, user: IUserMongoose) => {
           if (error) {
             return response
               .status(404)
