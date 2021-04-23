@@ -1,4 +1,4 @@
-import {IUser, IUserMongoose} from '../types/user'
+import {IUser, IUserMongoose} from '../../types/user'
 
 export const userMapper = (user: IUserMongoose): IUser => ({
   id: user._id,

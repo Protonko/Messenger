@@ -1,8 +1,8 @@
 import {Document} from 'mongoose'
-import {IDialog} from './dialog'
+import {IDialogMongoose} from './dialog'
 
 export interface IMessage extends Document {
   text: string,
-  dialog: IDialog,
+  dialog: IDialogMongoose,
   read: boolean,
 }

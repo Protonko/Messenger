@@ -6,7 +6,7 @@ import {User} from '../models/User'
 import {IUserMongoose} from '../types/user'
 import {IError} from '../types/error'
 import {jwtCreate} from '../utils/jwtCreate'
-import {userMapper} from '../mappers/userMapper'
+import {userMapper} from '../utils/mappers/userMapper'
 
 export class UserController {
   io: Server

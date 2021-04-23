@@ -3,7 +3,8 @@ import {Server} from 'socket.io'
 import {Dialog} from '../models/Dialog'
 import {Message} from '../models/Message'
 import {IError} from '../types/error'
-import {IDialog} from '../types/dialog'
+import {IDialogMongoose} from '../types/dialog'
+import {dialogMapper} from '../utils/mappers/dialogMapper'
 
 export class DialogController {
   io: Server
@@ -19,7 +20,7 @@ export class DialogController {
     await Dialog
       .find({author: authorId})
       .populate(['author', 'interlocutor'])
-      .exec((error: IError, dialogs: Array<IDialog>) => {
+      .exec((error: IError, dialogs: Array<IDialogMongoose>) => {
         try {
           if (error) {
             return response
@@ -27,7 +28,7 @@ export class DialogController {
               .json({message: 'Chat not found'})
           }
 
-          return response.json(dialogs)
+          return response.json(dialogs.map(dialogMapper))
         } catch {
           return response
             .json({message: 'undefined error'})
@@ -50,7 +51,7 @@ export class DialogController {
       const createdMessage = await message.save()
 
       response.json({
-        dialog: createdDialog,
+        dialog: dialogMapper(createdDialog),
         message: createdMessage,
       })
     } catch (reason) {
