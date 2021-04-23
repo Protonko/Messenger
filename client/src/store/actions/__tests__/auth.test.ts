@@ -7,6 +7,8 @@ import {
   signUp
 } from 'store/actions/auth'
 import {AuthActionTypes} from 'models/store/actions/auth'
+import {TStatusResponse} from '../../../models/common/fetch'
+import {IUser} from '../../../models/user'
 
 const USER = {
   email: 'test@email.com',
@@ -39,10 +41,16 @@ describe('auth actions', () => {
   it('should create setLoginData', () => {
     const expectedAction = {
       type: AuthActionTypes.SET_LOGIN_DATA,
-      payload: 'string',
+      payload: {
+        token: 'string',
+        user: USER_DATA,
+      },
     }
 
-    expect(setLoginData('string')).toEqual(expectedAction)
+    expect(setLoginData({
+      token: 'string',
+      user: USER_DATA,
+    })).toEqual(expectedAction)
   })
 
   it('should create signUp', () => {

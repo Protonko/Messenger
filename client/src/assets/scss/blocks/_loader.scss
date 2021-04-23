@@ -1,10 +1,52 @@
 .loader {
     $size: 40px;
+    $size-small: 20px;
+    $size-large: 60px;
 
     position: absolute;
     display: inline-block;
     width: rem($size);
     height: rem($size);
+
+    &--center {
+        @include centering();
+    }
+
+    &--small {
+        width: rem($size-small);
+        height: rem($size-small);
+    }
+    &--small & {
+        &__line {
+            transform-origin: rem($size-small / 2) rem($size-small / 2);
+
+            &::after {
+                top: rem(1px);
+                left: rem(12px);
+                display: block;
+                width: rem(2px);
+                height: rem(6px);
+            }
+        }
+    }
+
+    &--large {
+        width: rem($size-large);
+        height: rem($size-large);
+    }
+    &--large & {
+        &__line {
+            transform-origin: rem($size-large / 2) rem($size-large / 2);
+
+            &::after {
+                top: rem(2.5px);
+                left: rem(24px);
+                display: block;
+                width: rem(4.5px);
+                height: rem(13.5px);
+            }
+        }
+    }
 
     &__line {
         transform-origin: rem($size / 2) rem($size / 2);

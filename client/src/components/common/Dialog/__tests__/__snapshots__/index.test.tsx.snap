@@ -32,7 +32,7 @@ exports[`Dialog Match snapshot 1`] = `
         size="XS"
         type="mixed"
       >
-        string
+        createdAt
       </Component>
     </div>
   </div>
@@ -71,7 +71,7 @@ exports[`Dialog Should render Check icon: Dialog with readStatus === SENT 1`] = 
         size="XS"
         type="mixed"
       >
-        string
+        createdAt
       </Component>
       <div
         color="#999999"
@@ -115,7 +115,7 @@ exports[`Dialog Should render Counter: Dialog with counter 1`] = `
         size="XS"
         type="mixed"
       >
-        string
+        createdAt
       </Component>
       <Counter
         count="99+"
@@ -158,7 +158,7 @@ exports[`Dialog Should render DoubleCheck icon: Dialog with readStatus === READ 
         size="XS"
         type="mixed"
       >
-        string
+        createdAt
       </Component>
       <div
         color="#999999"
@@ -170,16 +170,18 @@ exports[`Dialog Should render DoubleCheck icon: Dialog with readStatus === READ 
 </div>
 `;
 
-exports[`Dialog Should render date: Dialog with date 1`] = `
+exports[`Dialog Should render updated date: Dialog with date 1`] = `
 <Dialog
   avatar="string"
-  date="date"
+  createdAt="createdAt"
   description="string"
+  edited={true}
+  id="123"
   messages={0}
   name="string"
   readStatus={null}
   status="ACTIVE"
-  time=""
+  updatedAt="updatedAt"
 >
   <div
     className="dialog"
@@ -324,7 +326,7 @@ exports[`Dialog Should render date: Dialog with date 1`] = `
                 <p
                   className="text text--xs dialog__info-date"
                 >
-                  date
+                  updatedAt
                 </p>
               </Component>
             </div>

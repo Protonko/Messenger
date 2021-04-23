@@ -1,23 +1,23 @@
 import type {IDialog} from 'models/dialog'
-import {useEffect, FC} from 'react';
-import {useDispatch} from 'react-redux'
-import hash from 'object-hash'
+import {useEffect, FC} from 'react'
+import {useDispatch, useSelector} from 'react-redux'
+import {RootState} from 'store/reducers'
+import {getDialogs} from 'store/actions/dialogs'
 import {Dialog} from 'components/common/Dialog'
 import {Search} from 'components/common/Search'
-import {getDialogs} from 'store/actions/dialogs'
+import {ContentContainer} from 'components/common/ContentContainer'
 
-interface IPropsDialogs {
-  dialogs: IDialog[]
-}
-
-export const Dialogs: FC<IPropsDialogs> = ({dialogs}) => {
+export const Dialogs: FC = () => {
   const dispatch = useDispatch()
+  const {dialogs, loading, errorMessage} = useSelector((state: RootState) => state.dialogs)
+
   useEffect(() => {
     dispatch(getDialogs())
   }, [])
+
   const renderItem = (dialog: IDialog) => {
     return (
-      <li className="dialogs__item" key={hash(dialog)}>
+      <li className="dialogs__item" key={dialog.id}>
         <Dialog {...dialog} />
       </li>
     )
@@ -29,9 +29,11 @@ export const Dialogs: FC<IPropsDialogs> = ({dialogs}) => {
         <Search />
       </div>
 
-      <ul className="dialogs__list list list--reset">
-        {dialogs.map(renderItem)}
-      </ul>
+      <ContentContainer loading={loading} errorMessage={errorMessage}>
+        <ul className="dialogs__list list list--reset">
+          {dialogs ? dialogs.map(renderItem) : <p>Empty</p>}
+        </ul>
+      </ContentContainer>
     </div>
   )
 }

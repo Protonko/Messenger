@@ -1,6 +1,6 @@
 import {AuthForm} from 'components/AuthForm'
 
-export const Auth = () => {
+const Auth = () => {
   return (
     <div className="auth">
       <div className="auth__head-bg" />
@@ -8,3 +8,5 @@ export const Auth = () => {
     </div>
   )
 }
+
+export default Auth

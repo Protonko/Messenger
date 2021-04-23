@@ -2,7 +2,7 @@ import {TextTypes} from 'models/common/text'
 import {Text} from 'components/common/Text'
 import {Dialogs} from 'components/Dialogs'
 
-export const Chat = () => {
+const Chat = () => {
   return (
     <div className="container">
       <div className="chat">
@@ -13,7 +13,7 @@ export const Chat = () => {
         </div>
         <div className="chat__section chat__section--body">
           <div className="chat__dialogs">
-            <Dialogs dialogs={[]} />
+            <Dialogs />
           </div>
           <div className="chat__messages">
             Messages
@@ -23,3 +23,5 @@ export const Chat = () => {
     </div>
   )
 }
+
+export default Chat

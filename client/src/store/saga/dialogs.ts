@@ -11,7 +11,7 @@ export function* getDialogsWorker() {
     const {account}: AuthState = yield select((state: RootState) => state.auth)
 
     if (account?.id) {
-      const {dialogs}: {dialogs: IDialog[]} = yield call(() => DialogsApi.getDialogs(account.id))
+      const dialogs: IDialog[] = yield call(() => DialogsApi.getDialogs(account.id))
       yield put(getDialogsSuccess(dialogs))
     } else {
       yield put(getDialogsError('ID not found!'))

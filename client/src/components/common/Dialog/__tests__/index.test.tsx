@@ -18,11 +18,13 @@ describe('Dialog', () => {
 
   beforeEach(() => {
     props = {
+      id: '123',
       name: 'string',
       description: 'string',
       avatar: 'string',
-      date: 'date',
-      time: 'string',
+      createdAt: 'createdAt',
+      updatedAt: 'updatedAt',
+      edited: false,
       messages: 0,
       status: Status.ACTIVE,
       readStatus: null,
@@ -60,10 +62,10 @@ describe('Dialog', () => {
     expect(component).toMatchSnapshot('Dialog with readStatus === SENT')
   })
 
-  it('Should render date', () => {
-    props.time = ''
+  it('Should render updated date', () => {
+    props.edited = true;
     componentMount = mount(<Dialog {...props} />)
-    expect(componentMount.find(`.${ELEMENT_SELECTORS.date}`).text()).toBe(props.date)
+    expect(componentMount.find(`.${ELEMENT_SELECTORS.date}`).text()).toBe(props.updatedAt)
     expect(componentMount).toMatchSnapshot('Dialog with date')
   })
 })

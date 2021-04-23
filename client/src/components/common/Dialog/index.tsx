@@ -13,13 +13,13 @@ export const Dialog: FC<IDialog> = ({
   name,
   description,
   avatar,
-  date,
-  time,
+  edited,
+  createdAt,
+  updatedAt,
   messages,
   status,
   readStatus,
 }) => {
-  const dateTime = time || date
   const counter = messages.toString().length > 2 ? '99+' : messages
 
   const renderStatus = () => {
@@ -61,7 +61,7 @@ export const Dialog: FC<IDialog> = ({
             size={TextSize.EXTRA_SMALL}
             customStyles="dialog__info-date"
           >
-            {dateTime}
+            {new Date(edited ? updatedAt : createdAt).toLocaleDateString()}
           </Text>
 
           {renderStatus()}
