@@ -1,32 +1,40 @@
 import type {FC} from 'react'
+import classNames from 'classnames'
 import {Sizes} from 'models/common/sizes'
+import {getRandomColor} from 'utils/getRandomColor'
+import {isDarkColor} from 'utils/isDarkColor'
 import {Loader} from 'components/common/Loader'
-
-type TAvatarClassNames =
-  | 'avatar'
-  | 'avatar avatar--sm'
-  | 'avatar avatar--lg'
 
 export interface IPropsAvatar {
   src: string
+  name?: string
   size?: Sizes
 }
 
 export const Avatar: FC<IPropsAvatar> = ({
   src,
+  name,
   size = Sizes.MEDIUM,
 }) => {
-  let avatarClassname: TAvatarClassNames;
+  const avatarClassname = classNames(
+    'avatar',
+    {'avatar--sm': size === Sizes.SMALL},
+    {'avatar--lg': size === Sizes.LARGE},
+  )
 
-  switch (size) {
-      case Sizes.SMALL:
-        avatarClassname = 'avatar avatar--sm'
-        break
-      case Sizes.LARGE:
-        avatarClassname = 'avatar avatar--lg'
-        break
-    default:
-      avatarClassname = 'avatar'
+  if (!src && name) {
+    const backgroundColor = getRandomColor()
+    const classNamesText = classNames(
+      'avatar__text',
+      {'avatar__text--light': isDarkColor(backgroundColor)},
+      {'avatar__text--dark': !isDarkColor(backgroundColor)},
+    )
+
+    return (
+      <div className={avatarClassname} style={{backgroundColor}}>
+        <span className={classNamesText}>{name.charAt(0)}</span>
+      </div>
+    )
   }
 
   return (

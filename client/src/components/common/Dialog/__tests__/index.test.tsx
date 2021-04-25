@@ -20,10 +20,10 @@ describe('Dialog', () => {
     props = {
       id: '123',
       name: 'string',
-      description: 'string',
+      lastMessage: 'string',
       avatar: 'string',
-      createdAt: 'createdAt',
-      updatedAt: 'updatedAt',
+      createdAt: new Date().toString(),
+      updatedAt: new Date().toString(),
       edited: false,
       messages: 0,
       status: Status.ACTIVE,
@@ -65,7 +65,7 @@ describe('Dialog', () => {
   it('Should render updated date', () => {
     props.edited = true;
     componentMount = mount(<Dialog {...props} />)
-    expect(componentMount.find(`.${ELEMENT_SELECTORS.date}`).text()).toBe(props.updatedAt)
+    expect(componentMount.find(`.${ELEMENT_SELECTORS.date}`).text()).toBe(new Date(props.updatedAt).toLocaleDateString())
     expect(componentMount).toMatchSnapshot('Dialog with date')
   })
 })

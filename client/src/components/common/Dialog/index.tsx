@@ -11,7 +11,7 @@ import {Avatar} from 'components/common/Avatar'
 
 export const Dialog: FC<IDialog> = ({
   name,
-  description,
+  lastMessage,
   avatar,
   edited,
   createdAt,
@@ -41,7 +41,7 @@ export const Dialog: FC<IDialog> = ({
 
   return (
     <div className="dialog">
-      <Avatar src={avatar} />
+      <Avatar src={avatar} name={name} />
 
       <div className="dialog__data">
         <div className="dialog__text">
@@ -52,7 +52,7 @@ export const Dialog: FC<IDialog> = ({
           >
             {name}
           </Text>
-          <Text>{description}</Text>
+          <Text>{lastMessage}</Text>
         </div>
 
         <div className="dialog__info">

@@ -3,7 +3,7 @@ import {Status, ReadStatus} from './common/status'
 export interface IDialog {
   id: string
   name: string
-  description: string
+  lastMessage: string
   avatar: string
   edited: boolean
   createdAt: string
