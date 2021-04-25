@@ -31,6 +31,11 @@
         &-title {
             margin-bottom: rem(5px);
         }
+
+        &-description {
+            font-size: $font-size-small;
+            color: $grey;
+        }
     }
 
     &__info {

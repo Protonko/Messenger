@@ -52,7 +52,7 @@ export const Dialog: FC<IDialog> = ({
           >
             {name}
           </Text>
-          <Text>{lastMessage}</Text>
+          <Text customStyles="dialog__text-description">{lastMessage}</Text>
         </div>
 
         <div className="dialog__info">
