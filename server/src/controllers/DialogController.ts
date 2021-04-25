@@ -19,7 +19,7 @@ export class DialogController {
 
     await Dialog
       .find({author: authorId})
-      .populate(['author', 'interlocutor'])
+      .populate(['author', 'interlocutor', 'last_message'])
       .exec((error: IError, dialogs: Array<IDialogMongoose>) => {
         try {
           if (error) {
@@ -40,20 +40,41 @@ export class DialogController {
     const {author, text, interlocutor} = request.body
 
     try {
-      const dialog = new Dialog({author, interlocutor})
-      const createdDialog = await dialog.save()
-
+      const dialog = new Dialog({author, interlocutor, mute: false, status: null})
+      await dialog.save()
       const message = new Message({
         text,
-        dialog: createdDialog._id,
+        dialog: dialog._id,
         user: author,
       })
-      const createdMessage = await message.save()
+      await message.save()
+      dialog.last_message = message._id
+      await dialog.save();
 
-      response.json({
-        dialog: dialogMapper(createdDialog),
-        message: createdMessage,
-      })
+      await Dialog
+        .findOne({_id: dialog._id})
+        .populate(['author', 'interlocutor', 'last_message'])
+        .exec((error: IError, dialog: IDialogMongoose) => {
+          try {
+            if (error) {
+              return response
+                .status(404)
+                .json({message: 'Chat not found'})
+            }
+
+            if (dialog) {
+              return response.status(403).json({
+                status: 'error',
+                message: 'This dialog already exist',
+              });
+            }
+
+            return response.json(dialogMapper(dialog))
+          } catch {
+            return response
+              .json({message: 'undefined error'})
+          }
+        })
     } catch (reason) {
       response.json(reason)
     }
