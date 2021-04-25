@@ -21,7 +21,9 @@ exports[`Dialog Match snapshot 1`] = `
       >
         string
       </Component>
-      <Component>
+      <Component
+        customStyles="dialog__text-description"
+      >
         string
       </Component>
     </div>
@@ -61,7 +63,9 @@ exports[`Dialog Should render Check icon: Dialog with readStatus === SENT 1`] = 
       >
         string
       </Component>
-      <Component>
+      <Component
+        customStyles="dialog__text-description"
+      >
         string
       </Component>
     </div>
@@ -106,7 +110,9 @@ exports[`Dialog Should render Counter: Dialog with counter 1`] = `
       >
         string
       </Component>
-      <Component>
+      <Component
+        customStyles="dialog__text-description"
+      >
         string
       </Component>
     </div>
@@ -150,7 +156,9 @@ exports[`Dialog Should render DoubleCheck icon: Dialog with readStatus === READ 
       >
         string
       </Component>
-      <Component>
+      <Component
+        customStyles="dialog__text-description"
+      >
         string
       </Component>
     </div>
@@ -177,7 +185,7 @@ exports[`Dialog Should render DoubleCheck icon: Dialog with readStatus === READ 
 exports[`Dialog Should render updated date: Dialog with date 1`] = `
 <Dialog
   avatar="string"
-  createdAt="Sun Apr 25 2021 18:07:47 GMT+0300 (Moscow Standard Time)"
+  createdAt="Sun Apr 25 2021 20:34:29 GMT+0300 (Moscow Standard Time)"
   edited={true}
   id="123"
   lastMessage="string"
@@ -185,7 +193,7 @@ exports[`Dialog Should render updated date: Dialog with date 1`] = `
   name="string"
   readStatus={null}
   status="ACTIVE"
-  updatedAt="Sun Apr 25 2021 18:07:47 GMT+0300 (Moscow Standard Time)"
+  updatedAt="Sun Apr 25 2021 20:34:29 GMT+0300 (Moscow Standard Time)"
 >
   <div
     className="dialog"
@@ -289,7 +297,9 @@ exports[`Dialog Should render updated date: Dialog with date 1`] = `
             </div>
           </Dotdotdot>
         </Component>
-        <Component>
+        <Component
+          customStyles="dialog__text-description"
+        >
           <Dotdotdot
             clamp={Infinity}
             tagName="div"
@@ -297,9 +307,11 @@ exports[`Dialog Should render updated date: Dialog with date 1`] = `
             useNativeClamp={false}
           >
             <div>
-              <Component>
+              <Component
+                customStyles="dialog__text-description"
+              >
                 <p
-                  className="text text--description"
+                  className="text text--description dialog__text-description"
                 >
                   string
                 </p>

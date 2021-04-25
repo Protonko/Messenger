@@ -1,8 +1,8 @@
 import type {IInput} from 'models/common/input'
-import {Sizes} from 'models/common/sizes'
 import {useState, ChangeEvent, FC} from 'react'
 import classNames from 'classnames'
 import {ReactComponent as Magnifier} from 'assets/icons/magnifier.svg'
+import {Sizes} from 'models/common/sizes'
 
 export interface IPropsSearch extends Omit<IInput, 'value' | 'onChange'> {
   size?: Sizes

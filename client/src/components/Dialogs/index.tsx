@@ -1,6 +1,7 @@
 import type {IDialog} from 'models/dialog'
 import {useEffect, FC} from 'react'
 import {useDispatch, useSelector} from 'react-redux'
+import {ReactComponent as PencilPaper} from 'assets/icons/pencil-paper.svg'
 import {RootState} from 'store/reducers'
 import {getDialogs} from 'store/actions/dialogs'
 import {Dialog} from 'components/common/Dialog'
@@ -25,13 +26,14 @@ export const Dialogs: FC = () => {
 
   return (
     <div className="dialogs">
-      <div className="dialogs__search">
-        <Search />
+      <div className="dialogs__header">
+        <Search customStyles="dialogs__header-search-input" />
+        <PencilPaper className="dialogs__header-button" />
       </div>
 
       <ContentContainer loading={loading} errorMessage={errorMessage}>
         <ul className="dialogs__list list list--reset">
-          {dialogs ? dialogs.map(renderItem) : <p>Empty</p>}
+          {dialogs?.length ? dialogs.map(renderItem) : <li className="dialogs__item dialogs__item--empty">Empty</li>}
         </ul>
       </ContentContainer>
     </div>
