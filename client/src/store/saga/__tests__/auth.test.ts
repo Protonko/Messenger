@@ -1,37 +1,34 @@
-import sagaHelper from 'redux-saga-testing'
-import {call, take, takeEvery} from 'redux-saga/effects'
-import {loginWorker, authWatcher, signUpWorker, signUpWatcher} from 'store/saga/auth'
-import {AuthActionTypes, LoginAction} from 'models/store/actions/auth'
-
-const ACTION_LOGIN: LoginAction = {
-  type: AuthActionTypes.LOGIN,
-  payload: {
-    email: 'email@test.com',
-    password: '123456'
-  },
-  meta: undefined,
-}
+import {call} from 'redux-saga-test-plan/matchers'
+import {expectSaga} from 'redux-saga-test-plan'
+import {authWatcher, loginWorker, signUpWorker, signUpWatcher} from 'store/saga/auth'
+import {AuthActionTypes, SignUpAction} from 'models/store/actions/auth'
+import {UserApi} from 'api/User'
+import {IUserSignupBody} from '../../../models/auth'
 
 describe('auth sagas', () => {
-  describe('authWatcher', () => {
-    const it = sagaHelper(authWatcher())
+  const user = {
+    avatar: null,
+    confirmed: false,
+    createdAt: 'now',
+    email: 'string',
+    full_name: 'full name',
+    last_seen: 'Date',
+    updatedAt: 'Date',
+    id: 'stringID',
+  }
 
-    it('Should have took LOGIN action', (result) => {
-      expect(result).toEqual(take(AuthActionTypes.LOGIN))
-
-      return ACTION_LOGIN
-    })
-
-    it('Should have called a worker second', (result) => {
-      expect(result).toEqual(call(loginWorker, ACTION_LOGIN))
-    })
-  })
-
-  describe('signUpWatcher', () => {
-    const it = sagaHelper(signUpWatcher())
-
-    it('Should have called a worker first', (result) => {
-      expect(result).toEqual(takeEvery(AuthActionTypes.SIGN_UP, signUpWorker))
-    })
+  it('tmp test', () => {
+    const action: SignUpAction = {
+      type: AuthActionTypes.SIGN_UP,
+      payload: {
+        email: 'email@email.test',
+        password: 'password1234',
+        full_name: 'name full',
+      },
+    }
+    return expectSaga(signUpWorker, action)
+      .provide([[call.fn(UserApi.signUp), []]])
+      .put({type: AuthActionTypes.SET_SIGN_UP_DATA, payload: {token: '123', user}})
+      .run();
   })
 })

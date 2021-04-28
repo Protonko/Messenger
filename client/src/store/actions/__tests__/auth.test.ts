@@ -7,8 +7,6 @@ import {
   signUp
 } from 'store/actions/auth'
 import {AuthActionTypes} from 'models/store/actions/auth'
-import {TStatusResponse} from '../../../models/common/fetch'
-import {IUser} from '../../../models/user'
 
 const USER = {
   email: 'test@email.com',

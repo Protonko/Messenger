@@ -44,9 +44,17 @@ describe('auth reducer', () => {
       },
       meta: undefined,
     },
+    SIGN_UP: {
+      type: AuthActionTypes.SIGN_UP,
+      payload: {
+        email: 'test@test.test',
+        full_name: 'full name',
+        password: '123456',
+      },
+    },
   }
 
-  it('should return the payload from SET_LOGIN_DATA action', () => {
+  it('Should return the payload from SET_LOGIN_DATA action', () => {
     expect(auth(initialState, ACTIONS.SET_LOGIN_DATA)).toEqual(
       {
         ...initialState,
@@ -57,7 +65,7 @@ describe('auth reducer', () => {
     )
   })
 
-  it('should return the payload from SET_ERROR_MESSAGE action', () => {
+  it('Should return the payload from SET_ERROR_MESSAGE action', () => {
     expect(auth(initialState, ACTIONS.SET_ERROR_MESSAGE)).toEqual(
       {
         ...initialState,
@@ -66,7 +74,7 @@ describe('auth reducer', () => {
     )
   })
 
-  it('should return the payload from RESET_ERROR_MESSAGE action', () => {
+  it('Should return the payload from RESET_ERROR_MESSAGE action', () => {
     expect(auth(initialState, ACTIONS.RESET_ERROR_MESSAGE)).toEqual(
       {
         ...initialState,
@@ -75,12 +83,16 @@ describe('auth reducer', () => {
     )
   })
 
-  it('should return the payload from SET_SIGN_UP_DATA action', () => {
+  it('Should return the payload from SET_SIGN_UP_DATA action', () => {
     expect(auth(initialState, ACTIONS.SET_SIGN_UP_DATA)).toEqual(
       {
         ...initialState,
         account: ACTIONS.SET_SIGN_UP_DATA.payload,
       },
     )
+  })
+
+  it('Should return state without changes', () => {
+    expect(auth(initialState, ACTIONS.SIGN_UP)).toEqual(initialState)
   })
 })
