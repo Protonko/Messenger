@@ -21,7 +21,7 @@ export class UserApi {
     })
   }
 
-  static async signUp(body: IUserSignupBody): Promise<IUser | string> {
+  static signUp(body: IUserSignupBody | void): Promise<IUser | string> {
     return new Promise((resolve, reject) => {
       api.post('/user/signup', body)
         .then(response => {

@@ -36,6 +36,8 @@ const reducers = (
         dialogs: null,
         errorMessage: action.payload,
       }
+    default:
+      return state
   }
 }
 

@@ -4,20 +4,21 @@ import {AuthActionTypes, LoginAction, SignUpAction} from 'models/store/actions/a
 import {api} from 'api'
 import {UserApi} from 'api/User'
 import {setLoginData, setErrorMessage, setSignUpData} from 'store/actions/auth'
+import {SagaIterator} from 'redux-saga'
 
 // login
-export function* loginWorker({payload}: LoginAction) {
+export function* loginWorker({payload}: LoginAction): SagaIterator | Generator {
   try {
-    const {token, user}: {token: string, user: IUser} = yield call(() => UserApi.login(payload))
+    const {token, user}: {token: string, user: IUser} = yield call(UserApi.login, payload)
     yield api.defaults.headers.common['token'] = token;
     yield put(setLoginData({token, user}))
   } catch (e) {
-    yield put(setErrorMessage(e))
+    yield put(setErrorMessage(e.message))
   }
 }
 
 export function* authWatcher() {
-  const data = yield take(AuthActionTypes.LOGIN)
+  const data: LoginAction = yield take(AuthActionTypes.LOGIN)
   yield call(loginWorker, data)
 }
 // ./login
@@ -25,10 +26,10 @@ export function* authWatcher() {
 // sign up
 export function* signUpWorker({payload}: SignUpAction) {
   try {
-    const data: IUser = yield call(() => UserApi.signUp(payload))
+    const data: IUser = yield call(UserApi.signUp, payload)
     yield put(setSignUpData(data))
   } catch (e) {
-    yield put(setErrorMessage(e))
+    yield put(setErrorMessage(e.message))
   }
 }
 

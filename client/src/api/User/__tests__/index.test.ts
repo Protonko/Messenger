@@ -1,5 +1,6 @@
 import axios from 'axios'
 import {UserApi} from 'api/User'
+import {RESPONSE_ERROR} from 'static/constants'
 
 jest.mock('axios')
 
@@ -33,13 +34,6 @@ const RESPONSE_SIGN_UP_SUCCESS = {
       updatedAt: new Date(),
       id: 'a32d',
     }
-  }
-}
-
-const RESPONSE_ERROR = {
-  data: {
-    status: 'error',
-    message: 'error'
   }
 }
 

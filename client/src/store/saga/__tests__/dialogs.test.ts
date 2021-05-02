@@ -1,4 +1,4 @@
-import * as matchers from 'redux-saga-test-plan/matchers'
+import {call} from 'redux-saga-test-plan/matchers'
 import {expectSaga} from 'redux-saga-test-plan'
 import {throwError} from 'redux-saga-test-plan/providers'
 import {select} from 'redux-saga/effects'
@@ -36,7 +36,7 @@ describe('dialogs sagas', () => {
     return expectSaga(getDialogsWorker)
       .provide([
         [select(selectors.getAuth), {account: {id: '123'}}],
-        [matchers.call.fn(DialogsApi.getDialogs), dialogs]
+        [call.fn(DialogsApi.getDialogs), dialogs]
       ])
       .put({type: DialogsActionTypes.GET_SUCCESS, payload: dialogs})
       .run();
@@ -46,7 +46,7 @@ describe('dialogs sagas', () => {
     return expectSaga(getDialogsWorker)
       .provide([
         [select(selectors.getAuth), {account: {id: '123'}}],
-        [matchers.call.fn(DialogsApi.getDialogs), throwError(new Error('error'))]
+        [call.fn(DialogsApi.getDialogs), throwError(new Error('error'))]
       ])
       .put({type: DialogsActionTypes.GET_ERROR, payload: 'error'})
       .run();
