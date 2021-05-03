@@ -1,4 +1,4 @@
-import {useRef, FC, ReactPortal, ReactNode} from 'react'
+import {useRef, FC, ReactPortal, ReactNode, RefObject} from 'react'
 import {createPortal} from 'react-dom'
 import {Transition} from 'react-transition-group'
 import classNames from 'classnames'
@@ -8,6 +8,7 @@ import {rem} from 'utils/rem'
 
 export interface IPropsModal {
   children: ReactNode
+  initiatorRef?: RefObject<HTMLElement>
   modalVisibility: boolean
   toggleVisibilityModal: (visibility: boolean) => void
   onClose?: () => void;
@@ -34,13 +35,13 @@ export const ModalContent: FC<IPropsModal> = ({
   width = WIDTH_MODAL,
   height = HEIGHT_MODAL,
   customStyles,
+  initiatorRef,
 }) => {
   const modal = useRef<HTMLElement>(null)
-
-  useOutsideClick(modal, () => {
+  useOutsideClick<HTMLElement>(modal, () => {
     onClose?.()
     toggleVisibilityModal(false)
-  })
+  }, initiatorRef)
 
   return (
     <Transition
@@ -77,14 +78,14 @@ export const ModalContent: FC<IPropsModal> = ({
 }
 
 export const Modal = ({children, ...props}: IPropsModal): ReactPortal => {
-  const portalRoot = document.getElementById('portal-modal') as HTMLElement
-  const el = useRef(document.createElement('div'))
-  portalRoot.appendChild(el.current)
+    const portalRoot = document.getElementById('portal-modal') as HTMLElement
+    const el = useRef(document.createElement('div'))
+    portalRoot.appendChild(el.current)
 
-  return createPortal(
-    <ModalContent {...props}>
-      {children}
-    </ModalContent>,
-    el.current
-  )
+    return createPortal(
+      <ModalContent {...props}>
+        {children}
+      </ModalContent>,
+      el.current
+    )
 }

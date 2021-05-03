@@ -1,4 +1,4 @@
-import type {FC} from 'react'
+import {useMemo, FC} from 'react'
 import classNames from 'classnames'
 import {Sizes} from 'models/common/sizes'
 import {getRandomColor} from 'utils/getRandomColor'
@@ -16,6 +16,7 @@ export const Avatar: FC<IPropsAvatar> = ({
   name,
   size = Sizes.MEDIUM,
 }) => {
+  const backgroundColor = useMemo(() => getRandomColor(), [src, name])
   const avatarClassname = classNames(
     'avatar',
     {'avatar--sm': size === Sizes.SMALL},
@@ -23,7 +24,6 @@ export const Avatar: FC<IPropsAvatar> = ({
   )
 
   if (!src && name) {
-    const backgroundColor = getRandomColor()
     const classNamesText = classNames(
       'avatar__text',
       {'avatar__text--light': isDarkColor(backgroundColor)},

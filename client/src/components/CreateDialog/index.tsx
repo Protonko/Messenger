@@ -1,4 +1,4 @@
-import {useState} from 'react'
+import {useRef, useState} from 'react'
 import {ReactComponent as PencilPaper} from 'assets/icons/pencil-paper.svg'
 import {TextTypes} from 'models/common/text'
 import {Modal} from 'components/common/Modal'
@@ -6,16 +6,20 @@ import {Text} from 'components/common/Text'
 import {User} from 'components/common/User'
 
 export const CreateDialog = () => {
-  const [modalVisibility, setModalVisibility] = useState(true);
+  const [modalVisibility, setModalVisibility] = useState(false);
+  const buttonRef = useRef(null)
+
   return (
     <>
       <PencilPaper
+        ref={buttonRef}
         className="dialogs__header-button"
         onClick={() => setModalVisibility(true)}
       />
 
       <Modal
         customStyles="dialogs-modal"
+        initiatorRef={buttonRef}
         modalVisibility={modalVisibility}
         toggleVisibilityModal={setModalVisibility}
         width={420}
