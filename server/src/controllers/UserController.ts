@@ -35,6 +35,24 @@ export class UserController {
     })
   }
 
+  getProfiles(request: Request, response: Response) {
+    User.find({}, (error: IError, users: IUserMongoose[]) => {
+      try {
+        if (error) {
+          return response
+            .status(404)
+            .json({message: 'Users not found.'})
+        }
+
+        return response.json(users.map(userMapper))
+      } catch {
+        return response
+          .status(500)
+          .json({message: 'Undefined error.'})
+      }
+    }).limit( 10 )
+  }
+
   getOwnProfile(request: Request, response: Response) {
     // @ts-ignore
     const id = request.user?._id ?? null

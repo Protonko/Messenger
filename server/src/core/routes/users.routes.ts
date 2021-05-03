@@ -8,6 +8,7 @@ export const usersRoute = (app: Express, io: Server) => {
 
   app.get('/user/own', user.getOwnProfile)
   app.get('/user/:id', user.find)
+  app.get('/users', user.getProfiles)
   app.delete('/user/:id', user.delete)
   app.post('/user/signup', loginValidation, user.create)
   app.post('/user/login', loginValidation, user.login)
