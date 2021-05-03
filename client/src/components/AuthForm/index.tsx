@@ -150,22 +150,22 @@ export const AuthForm: FC = () => {
         </div>
       </form>
       <Modal
-        customStyles="auth__modal"
+        customStyles="auth-modal"
         width={350}
         height={170}
         modalVisibility={modalVisibility}
         toggleVisibilityModal={setModalVisibility}
         onClose={redirectToAuthScreen}
       >
-        <div className="auth__modal-section auth__modal-section--content">
+        <div className="auth-modal__section auth-modal__section--content">
           <Text type={TextTypes.h3} customStyles="auth__modal-title">
             Success!
           </Text>
-          <Text type={TextTypes.p} customStyles="auth__modal-description">
+          <Text type={TextTypes.p} customStyles="auth-modal__description">
             Registration successfully completed. Click on the "OK" button to enter the system
           </Text>
         </div>
-        <footer className="auth__modal-section auth__modal-section--footer">
+        <footer className="auth-modal__section auth-modal__section--footer">
           <Button modifier="linking" text="OK" onClick={redirectToAuthScreen} />
         </footer>
       </Modal>

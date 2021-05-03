@@ -1,0 +1,19 @@
+.dialogs-modal {
+    $padding: 20px;
+
+    &__section {
+        &--header {
+            margin: rem(-$padding);
+            padding: rem($padding);
+            background-color: $brand-color;
+        }
+
+        &--body {
+            margin-top: rem($padding);
+        }
+    }
+
+    &__title {
+        color: $white;
+    }
+}

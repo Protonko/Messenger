@@ -35,7 +35,7 @@ exports[`Dialog Match snapshot 1`] = `
         size="XS"
         type="mixed"
       >
-        5/2/2021
+        5/3/2021
       </Component>
     </div>
   </div>
@@ -77,7 +77,7 @@ exports[`Dialog Should render Check icon: Dialog with readStatus === SENT 1`] = 
         size="XS"
         type="mixed"
       >
-        5/2/2021
+        5/3/2021
       </Component>
       <div
         color="#999999"
@@ -124,7 +124,7 @@ exports[`Dialog Should render Counter: Dialog with counter 1`] = `
         size="XS"
         type="mixed"
       >
-        5/2/2021
+        5/3/2021
       </Component>
       <Counter
         count="99+"
@@ -170,7 +170,7 @@ exports[`Dialog Should render DoubleCheck icon: Dialog with readStatus === READ 
         size="XS"
         type="mixed"
       >
-        5/2/2021
+        5/3/2021
       </Component>
       <div
         color="#999999"
@@ -185,7 +185,7 @@ exports[`Dialog Should render DoubleCheck icon: Dialog with readStatus === READ 
 exports[`Dialog Should render updated date: Dialog with date 1`] = `
 <Dialog
   avatar="string"
-  createdAt="Sun May 02 2021 13:49:57 GMT+0300 (Moscow Standard Time)"
+  createdAt="Mon May 03 2021 16:44:54 GMT+0300 (Moscow Standard Time)"
   edited={true}
   id="123"
   lastMessage="string"
@@ -193,7 +193,7 @@ exports[`Dialog Should render updated date: Dialog with date 1`] = `
   name="string"
   readStatus={null}
   status="ACTIVE"
-  updatedAt="Sun May 02 2021 13:49:57 GMT+0300 (Moscow Standard Time)"
+  updatedAt="Mon May 03 2021 16:44:54 GMT+0300 (Moscow Standard Time)"
 >
   <div
     className="dialog"
@@ -343,7 +343,7 @@ exports[`Dialog Should render updated date: Dialog with date 1`] = `
                 <p
                   className="text text--xs dialog__info-date"
                 >
-                  5/2/2021
+                  5/3/2021
                 </p>
               </Component>
             </div>
