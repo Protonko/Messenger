@@ -36,6 +36,8 @@ const reducers = (
         users: null,
         errorMessage: action.payload,
       }
+    case UsersActionTypes.RESET:
+      return initialState
     default:
       return state
   }

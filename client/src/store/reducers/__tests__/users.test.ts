@@ -23,6 +23,9 @@ describe('Users reducer', () => {
       type: UsersActionTypes.GET_ERROR,
       payload: 'errorMessage',
     },
+    RESET: {
+      type: UsersActionTypes.RESET,
+    }
   }
 
   it('Should return the payload from GET_START action', () => {
@@ -50,5 +53,9 @@ describe('Users reducer', () => {
         errorMessage: ACTIONS.GET_ERROR.payload,
       },
     )
+  })
+
+  it('Should return the initial state after RESET action', () => {
+    expect(users(initialState, ACTIONS.RESET)).toEqual(initialState)
   })
 })

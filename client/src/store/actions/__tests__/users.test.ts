@@ -1,5 +1,10 @@
 import {UsersActionTypes} from 'models/store/actions/users'
-import {getUsers, getUsersSuccess, getUsersError} from 'store/actions/users'
+import {
+  getUsers,
+  getUsersSuccess,
+  getUsersError,
+  resetUsersState,
+} from 'store/actions/users'
 
 describe('Auth actions', () => {
   const users = [{
@@ -37,5 +42,13 @@ describe('Auth actions', () => {
     }
 
     expect(getUsersError('errorMessage')).toEqual(expectedAction)
+  })
+
+  it('Should create resetUsersState', () => {
+    const expectedAction = {
+      type: UsersActionTypes.RESET,
+    }
+
+    expect(resetUsersState()).toEqual(expectedAction)
   })
 })

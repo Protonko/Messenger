@@ -5,6 +5,7 @@ export enum UsersActionTypes {
   GET_START = '[USERS]GET_START',
   GET_SUCCESS = '[USERS]GET_SUCCESS',
   GET_ERROR = '[USERS]GET_ERROR',
+  RESET = '[USERS]RESET',
 }
 
 export interface GetUsersStartAction extends AnyAction {
@@ -21,7 +22,12 @@ export interface GetUsersErrorAction extends AnyAction {
   payload: string
 }
 
+export interface ResetUsersStateAction extends AnyAction {
+  type: UsersActionTypes.RESET
+}
+
 export type AllUsersActions =
   | GetUsersStartAction
   | GetUsersSuccessAction
   | GetUsersErrorAction
+  | ResetUsersStateAction

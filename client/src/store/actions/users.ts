@@ -4,6 +4,7 @@ import {
   GetUsersErrorAction,
   GetUsersStartAction,
   GetUsersSuccessAction,
+  ResetUsersStateAction,
 } from 'models/store/actions/users'
 
 export const getUsers = (): GetUsersStartAction =>
@@ -14,3 +15,6 @@ export const getUsersSuccess = (payload: IUser[]): GetUsersSuccessAction =>
 
 export const getUsersError = (payload: string): GetUsersErrorAction =>
   ({type: UsersActionTypes.GET_ERROR, payload})
+
+export const resetUsersState = (): ResetUsersStateAction =>
+  ({type: UsersActionTypes.RESET})
