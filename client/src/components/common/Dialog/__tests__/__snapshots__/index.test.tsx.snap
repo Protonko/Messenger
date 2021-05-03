@@ -185,7 +185,7 @@ exports[`Dialog Should render DoubleCheck icon: Dialog with readStatus === READ 
 exports[`Dialog Should render updated date: Dialog with date 1`] = `
 <Dialog
   avatar="string"
-  createdAt="Mon May 03 2021 16:44:54 GMT+0300 (Moscow Standard Time)"
+  createdAt="Mon May 03 2021 16:47:32 GMT+0300 (Москва, стандартное время)"
   edited={true}
   id="123"
   lastMessage="string"
@@ -193,7 +193,7 @@ exports[`Dialog Should render updated date: Dialog with date 1`] = `
   name="string"
   readStatus={null}
   status="ACTIVE"
-  updatedAt="Mon May 03 2021 16:44:54 GMT+0300 (Moscow Standard Time)"
+  updatedAt="Mon May 03 2021 16:47:32 GMT+0300 (Москва, стандартное время)"
 >
   <div
     className="dialog"
