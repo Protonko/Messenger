@@ -1,10 +1,12 @@
 import {combineReducers} from 'redux'
 import auth from './auth'
 import dialogs from './dialogs'
+import users from './users'
 
 const rootReducer = combineReducers({
   auth,
   dialogs,
+  users,
 })
 
 export default rootReducer

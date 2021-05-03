@@ -34,4 +34,18 @@ export class UserApi {
         .catch(error => reject(error.message))
     })
   }
+
+  static getUsers(): Promise<IUser[] | string> {
+    return new Promise((resolve, reject) => {
+      api.get('/user')
+        .then(response => {
+          if (response.data.status === 'error') {
+            reject(response.data.message)
+          } else {
+            resolve(response.data)
+          }
+        })
+        .catch(error => reject(error.message))
+    })
+  }
 }
