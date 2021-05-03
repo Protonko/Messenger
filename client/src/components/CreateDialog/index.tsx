@@ -44,11 +44,10 @@ export const CreateDialog = () => {
         toggleVisibilityModal={setModalVisibility}
         onClose={() => dispatch(resetUsersState())}
         width={420}
-        height={200}
       >
         <header className="dialogs-modal__section dialogs-modal__section--header">
           <Text type={TextTypes.h4} customStyles="dialogs-modal__title">
-            New dialog
+            Select user
           </Text>
         </header>
 

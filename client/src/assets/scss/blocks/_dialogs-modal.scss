@@ -2,8 +2,9 @@
     $padding: 20px;
 
     &__section {
+        margin: rem(-$padding);
+
         &--header {
-            margin: rem(-$padding);
             padding: rem($padding);
             background-color: $brand-color;
         }

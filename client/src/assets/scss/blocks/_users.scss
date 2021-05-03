@@ -1,3 +1,21 @@
 .users {
+    $vertical-gutter: 10px;
 
+    &__item {
+        @include padding-horizontal(20px);
+        @include padding-vertical($vertical-gutter / 2);
+
+        transition: background-color $transition-duration;
+        cursor: pointer;
+
+        &:hover {
+            background-color: rgba($brand-color, .1);
+        }
+
+        &--empty {
+            padding-top: rem($vertical-gutter * 2);
+            color: $grey;
+            text-align: center;
+        }
+    }
 }
