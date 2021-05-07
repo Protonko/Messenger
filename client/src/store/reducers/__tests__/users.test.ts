@@ -25,7 +25,14 @@ describe('Users reducer', () => {
     },
     RESET: {
       type: UsersActionTypes.RESET,
-    }
+    },
+    SET_SELECTED_USER_ID: {
+      type: UsersActionTypes.SET_SELECTED_USER_ID,
+      payload: 'foo',
+    },
+    RESET_SELECTED_USER_ID: {
+      type: UsersActionTypes.RESET_SELECTED_USER_ID,
+    },
   }
 
   it('Should return the payload from GET_START action', () => {
@@ -55,7 +62,21 @@ describe('Users reducer', () => {
     )
   })
 
-  it('Should return the initial state after RESET action', () => {
+  it('Should return the initial state after SET_SELECTED_USER_ID action', () => {
     expect(users(initialState, ACTIONS.RESET)).toEqual(initialState)
+  })
+
+  it('Should return the payload after SET_SELECTED_USER_ID action', () => {
+    expect(users(initialState, ACTIONS.SET_SELECTED_USER_ID)).toEqual({
+      ...initialState,
+      selectedUserId: ACTIONS.SET_SELECTED_USER_ID.payload,
+    })
+  })
+
+  it('Should reset selectedUserId after RESET_SELECTED_USER_ID action', () => {
+    expect(users(initialState, ACTIONS.RESET_SELECTED_USER_ID)).toEqual({
+      ...initialState,
+      selectedUserId: null,
+    })
   })
 })

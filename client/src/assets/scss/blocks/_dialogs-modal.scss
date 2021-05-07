@@ -10,11 +10,21 @@
         }
 
         &--body {
+            flex-grow: 1;
             margin-top: rem($padding);
+        }
+
+        &--footer {
+            text-align: right;
+            padding: rem($padding);
         }
     }
 
     &__title {
         color: $white;
+    }
+
+    &__textarea {
+        padding: rem(10px);
     }
 }

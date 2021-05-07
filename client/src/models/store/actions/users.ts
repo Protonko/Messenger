@@ -6,6 +6,8 @@ export enum UsersActionTypes {
   GET_SUCCESS = '[USERS]GET_SUCCESS',
   GET_ERROR = '[USERS]GET_ERROR',
   RESET = '[USERS]RESET',
+  SET_SELECTED_USER_ID = '[USERS]SET_SELECTED_USER_ID',
+  RESET_SELECTED_USER_ID = '[USERS]RESET_SELECTED_USER_ID',
 }
 
 export interface GetUsersStartAction extends AnyAction {
@@ -26,8 +28,19 @@ export interface ResetUsersStateAction extends AnyAction {
   type: UsersActionTypes.RESET
 }
 
+export interface SetSelectedUserIdAction extends AnyAction {
+  type: UsersActionTypes.SET_SELECTED_USER_ID
+  payload: string
+}
+
+export interface ResetSelectedUserIdAction extends AnyAction {
+  type: UsersActionTypes.RESET_SELECTED_USER_ID
+}
+
 export type AllUsersActions =
   | GetUsersStartAction
   | GetUsersSuccessAction
   | GetUsersErrorAction
   | ResetUsersStateAction
+  | SetSelectedUserIdAction
+  | ResetSelectedUserIdAction

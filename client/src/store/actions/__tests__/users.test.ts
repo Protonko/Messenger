@@ -4,6 +4,8 @@ import {
   getUsersSuccess,
   getUsersError,
   resetUsersState,
+  setSelectedUserId,
+  resetSelectedUserId,
 } from 'store/actions/users'
 
 describe('Auth actions', () => {
@@ -50,5 +52,22 @@ describe('Auth actions', () => {
     }
 
     expect(resetUsersState()).toEqual(expectedAction)
+  })
+
+  it('Should create setSelectedUserId', () => {
+    const expectedAction = {
+      type: UsersActionTypes.SET_SELECTED_USER_ID,
+      payload: 'foo',
+    }
+
+    expect(setSelectedUserId('foo')).toEqual(expectedAction)
+  })
+
+  it('Should create resetSelectedUserId', () => {
+    const expectedAction = {
+      type: UsersActionTypes.RESET_SELECTED_USER_ID,
+    }
+
+    expect(resetSelectedUserId()).toEqual(expectedAction)
   })
 })

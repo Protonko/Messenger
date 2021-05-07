@@ -16,6 +16,10 @@
             padding-top: rem($vertical-gutter * 2);
             color: $grey;
             text-align: center;
+
+            &:hover {
+                background-color: transparent;
+            }
         }
     }
 }

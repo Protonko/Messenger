@@ -1,10 +1,12 @@
 import type {IUser} from 'models/user'
 import {
-  UsersActionTypes,
   GetUsersErrorAction,
   GetUsersStartAction,
   GetUsersSuccessAction,
+  ResetSelectedUserIdAction,
   ResetUsersStateAction,
+  SetSelectedUserIdAction,
+  UsersActionTypes,
 } from 'models/store/actions/users'
 
 export const getUsers = (): GetUsersStartAction =>
@@ -18,3 +20,9 @@ export const getUsersError = (payload: string): GetUsersErrorAction =>
 
 export const resetUsersState = (): ResetUsersStateAction =>
   ({type: UsersActionTypes.RESET})
+
+export const setSelectedUserId = (payload: string): SetSelectedUserIdAction =>
+  ({type: UsersActionTypes.SET_SELECTED_USER_ID, payload})
+
+export const resetSelectedUserId = (): ResetSelectedUserIdAction =>
+  ({type: UsersActionTypes.RESET_SELECTED_USER_ID})

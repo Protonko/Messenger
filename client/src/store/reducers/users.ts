@@ -5,6 +5,7 @@ import {UsersActionTypes} from 'models/store/actions/users'
 export interface IInitialState {
   loading: boolean
   users: null | IUser[]
+  selectedUserId: null | string
   errorMessage: null | string
 }
 
@@ -12,6 +13,7 @@ export const initialState = {
   loading: false,
   users: null,
   errorMessage: null,
+  selectedUserId: null,
 } as IInitialState
 
 const reducers = (
@@ -26,18 +28,26 @@ const reducers = (
       }
     case UsersActionTypes.GET_SUCCESS:
       return {
-        loading: false,
-        errorMessage: null,
+        ...initialState,
         users: action.payload
       }
     case UsersActionTypes.GET_ERROR:
       return {
-        loading: false,
-        users: null,
+        ...initialState,
         errorMessage: action.payload,
+      }
+    case UsersActionTypes.SET_SELECTED_USER_ID:
+      return {
+        ...state,
+        selectedUserId: action.payload,
       }
     case UsersActionTypes.RESET:
       return initialState
+    case UsersActionTypes.RESET_SELECTED_USER_ID:
+      return {
+        ...state,
+        selectedUserId: initialState.selectedUserId,
+      }
     default:
       return state
   }
