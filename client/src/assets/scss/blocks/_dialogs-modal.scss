@@ -20,6 +20,12 @@
         }
     }
 
+    &__error {
+        margin-top: rem(25px);
+        text-align: center;
+
+    }
+
     &__title {
         color: $white;
     }

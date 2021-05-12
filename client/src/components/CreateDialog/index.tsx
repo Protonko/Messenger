@@ -1,10 +1,11 @@
 import type {RootState} from 'store/reducers'
 import type {IUser} from 'models/user'
-import {useRef, useState} from 'react'
+import {useEffect, useRef, useState} from 'react'
 import {useDispatch, useSelector} from 'react-redux'
 import {ReactComponent as PencilPaper} from 'assets/icons/pencil-paper.svg'
 import {TextTypes} from 'models/common/text'
 import {getUsers, resetUsersState, setSelectedUserId} from 'store/actions/users'
+import {createDialog, resetCreateDialogState} from 'store/actions/dialogs'
 import {Modal} from 'components/common/Modal'
 import {Text} from 'components/common/Text'
 import {User} from 'components/common/User'
@@ -13,12 +14,22 @@ import {Textarea} from 'components/common/Textarea'
 import {ContentContainer} from 'components/common/ContentContainer'
 
 export const CreateDialog = () => {
-  const {users, loading, errorMessage} = useSelector((state: RootState) => state.users)
+  const {users, loading, errorMessage, creating, createErrorMessage} = useSelector((state: RootState) => ({
+    ...state.users,
+    ...state.dialogs,
+  }))
   const dispatch = useDispatch()
   const [modalStepOneVisibility, setModalStepOneVisibility] = useState(false)
   const [modalStepTwoVisibility, setModalStepTwoVisibility] = useState(false)
   const buttonRef = useRef(null)
   const usersRef = useRef(null)
+  const message = useRef('')
+
+  useEffect(() => {
+    if (createErrorMessage === false) {
+      setModalStepTwoVisibility(false)
+    }
+  }, [createErrorMessage])
 
   const renderUsers = (user: IUser) => {
     return (
@@ -76,7 +87,10 @@ export const CreateDialog = () => {
         initiatorRef={usersRef}
         modalVisibility={modalStepTwoVisibility}
         toggleVisibilityModal={setModalStepTwoVisibility}
-        onClose={() => dispatch(resetUsersState())}
+        onClose={() => {
+          dispatch(resetUsersState())
+          dispatch(resetCreateDialogState())
+        }}
         width={420}
         height={300}
       >
@@ -87,13 +101,19 @@ export const CreateDialog = () => {
         </header>
 
         <div className="dialogs-modal__section dialogs-modal__section--body">
-          <div className="dialogs-modal__textarea">
-            <Textarea rows={10} />
-          </div>
+          <ContentContainer
+            customStyles={'dialogs-modal__error'}
+            errorMessage={createErrorMessage}
+            loading={creating}
+          >
+            <div className="dialogs-modal__textarea">
+              <Textarea rows={10} onChange={value => message.current = value} />
+            </div>
+          </ContentContainer>
         </div>
 
         <footer className="dialogs-modal__section dialogs-modal__section--footer">
-          <Button text="Create dialog" />
+          <Button text="Create dialog" onClick={() => dispatch(createDialog(message.current))} />
         </footer>
       </Modal>
     </>

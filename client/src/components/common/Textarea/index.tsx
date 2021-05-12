@@ -1,5 +1,10 @@
-import type {FC, DetailedHTMLProps, TextareaHTMLAttributes} from 'react'
-import {ChangeEvent, useState} from 'react'
+import {
+  useState,
+  FC,
+  DetailedHTMLProps,
+  TextareaHTMLAttributes,
+  ChangeEvent,
+} from 'react'
 import classNames from 'classnames'
 
 type TTextArea = Omit<

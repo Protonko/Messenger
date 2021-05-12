@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ContentContainer Should render ContentContainer component with Loader: ContentContainer with Loader 1`] = `
+<Loader
+  center={true}
+/>
+`;
+
+exports[`ContentContainer Should render ContentContainer component with children: ContentContainer with children 1`] = `
+<div
+  data-test="test"
+/>
+`;
+
+exports[`ContentContainer Should render ContentContainer component with error: ContentContainer with error 1`] = `
+<Component>
+  error message
+</Component>
+`;

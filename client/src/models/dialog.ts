@@ -12,3 +12,9 @@ export interface IDialog {
   status: Status
   readStatus: ReadStatus | null
 }
+
+export interface ICreateDialogBody {
+  author: string
+  interlocutor: string
+  text: string
+}

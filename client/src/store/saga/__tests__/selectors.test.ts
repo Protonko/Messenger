@@ -14,4 +14,8 @@ describe('selectors', () => {
   it('Should return auth state', () => {
     expect(selectors.getAuth(reducer)).toStrictEqual(auth)
   })
+
+  it('Should return users state', () => {
+    expect(selectors.getUsers(reducer)).toStrictEqual(users)
+  })
 })

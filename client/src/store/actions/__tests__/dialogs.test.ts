@@ -1,6 +1,14 @@
 import {DialogsActionTypes} from 'models/store/actions/dialogs'
 import {Status} from 'models/common/status'
-import {getDialogs, getDialogsSuccess, getDialogsError} from 'store/actions/dialogs'
+import {
+  getDialogs,
+  getDialogsSuccess,
+  getDialogsError,
+  createDialog,
+  createDialogError,
+  createDialogSuccess,
+  resetCreateDialogState,
+} from 'store/actions/dialogs'
 
 describe('Auth actions', () => {
   const dialogs = [{
@@ -40,5 +48,40 @@ describe('Auth actions', () => {
     }
 
     expect(getDialogsError('errorMessage')).toEqual(expectedAction)
+  })
+
+  it('Should create createDialog', () => {
+    const expectedAction = {
+      type: DialogsActionTypes.CREATE_DIALOG,
+      payload: 'message'
+    }
+
+    expect(createDialog('message')).toEqual(expectedAction)
+  })
+
+  it('Should create createDialogSuccess', () => {
+    const expectedAction = {
+      type: DialogsActionTypes.CREATE_DIALOG_SUCCESS,
+      payload: dialogs[0],
+    }
+
+    expect(createDialogSuccess(dialogs[0])).toEqual(expectedAction)
+  })
+
+  it('Should create createDialogError', () => {
+    const expectedAction = {
+      type: DialogsActionTypes.CREATE_DIALOG_ERROR,
+      payload: 'message'
+    }
+
+    expect(createDialogError('message')).toEqual(expectedAction)
+  })
+
+  it('Should create resetCreateDialogState', () => {
+    const expectedAction = {
+      type: DialogsActionTypes.RESET_CREATE_DIALOG_STATE,
+    }
+
+    expect(resetCreateDialogState()).toEqual(expectedAction)
   })
 })

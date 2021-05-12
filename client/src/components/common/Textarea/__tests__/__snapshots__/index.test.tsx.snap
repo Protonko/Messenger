@@ -1,0 +1,25 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Textarea Match snapshot: Textarea 1`] = `
+<div
+  className="textarea"
+>
+  <textarea
+    className="textarea__form"
+    onChange={[Function]}
+    value=""
+  />
+</div>
+`;
+
+exports[`Textarea Should render Textarea with custom class name: Textarea with custom className 1`] = `
+<div
+  className="textarea custom-class-name"
+>
+  <textarea
+    className="textarea__form"
+    onChange={[Function]}
+    value=""
+  />
+</div>
+`;

@@ -2,19 +2,21 @@ import type {FC} from 'react'
 import {Loader} from 'components/common/Loader'
 import {Text} from 'components/common/Text'
 
-interface ContentContainerProps {
+export interface IContentContainerProps {
   loading: boolean
-  errorMessage: string | null
+  errorMessage: string | null | false
+  customStyles?: string
   children: JSX.Element
 }
 
-export const ContentContainer: FC<ContentContainerProps> = ({
+export const ContentContainer: FC<IContentContainerProps> = ({
   loading,
   errorMessage,
+  customStyles,
   children,
 }) => {
   if (errorMessage) {
-    return <Text>{errorMessage}</Text>
+    return <Text customStyles={customStyles}>{errorMessage}</Text>
   }
 
   if (loading) {
