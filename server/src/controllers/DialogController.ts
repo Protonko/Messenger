@@ -37,9 +37,32 @@ export class DialogController {
   }
 
   async create(request: Request, response: Response) {
+    let shouldContinue = true
     const {author, text, interlocutor} = request.body
 
     try {
+      await Dialog
+        .findOne(
+          {author, interlocutor},
+          (error: IError, dialog: IDialogMongoose) => {
+            if (error) {
+              shouldContinue = false
+              return response
+                .status(404)
+                .json({message: error})
+            }
+
+            if (dialog) {
+              shouldContinue = false
+              return response
+                .status(403)
+                .json({message: 'Dialog already exist'})
+            }
+          }
+        )
+
+      if (!shouldContinue) return
+
       const dialog = new Dialog({author, interlocutor, mute: false, status: null})
       await dialog.save()
       const message = new Message({
@@ -49,7 +72,7 @@ export class DialogController {
       })
       await message.save()
       dialog.last_message = message._id
-      await dialog.save();
+      await dialog.save()
 
       await Dialog
         .findOne({_id: dialog._id})
@@ -60,13 +83,6 @@ export class DialogController {
               return response
                 .status(404)
                 .json({message: 'Chat not found'})
-            }
-
-            if (dialog) {
-              return response.status(403).json({
-                status: 'error',
-                message: 'This dialog already exist',
-              });
             }
 
             return response.json(dialogMapper(dialog))
