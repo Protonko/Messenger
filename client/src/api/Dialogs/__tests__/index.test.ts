@@ -6,48 +6,90 @@ import {RESPONSE_ERROR} from 'static/constants'
 jest.mock('axios')
 
 describe('DialogsApi', () => {
+  const mockRejectedJSON = Promise.resolve(RESPONSE_ERROR)
+  const DIALOG = {
+    id: 'id',
+    name: 'name',
+    lastMessage: 'lastMessage',
+    avatar: 'avatar',
+    edited: false,
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt',
+    messages: 1,
+    status: Status.MUTED,
+    readStatus: null,
+  }
+
   const GET_SUCCESS = {
     data: {
       status: 'success',
-      data: [{
-        id: 'id',
-        name: 'name',
-        lastMessage: 'lastMessage',
-        avatar: 'avatar',
-        edited: false,
-        createdAt: 'createdAt',
-        updatedAt: 'updatedAt',
-        messages: 1,
-        status: Status.MUTED,
-        readStatus: null,
-      }]
+      data: [DIALOG],
     }
   }
 
-  const mockResolvedGetDialogsJSON = Promise.resolve(GET_SUCCESS)
-  const mockRejectedJSON = Promise.resolve(RESPONSE_ERROR)
+  const SEND_SUCCESS = {
+    status: 'success',
+    data: DIALOG,
+  }
 
-  it('Should return success response', async () => {
-    (axios.get as jest.Mock).mockResolvedValue(mockResolvedGetDialogsJSON)
+  describe('getDialogs', () => {
+    const mockResolvedGetDialogsJSON = Promise.resolve(GET_SUCCESS)
 
-    return DialogsApi.getDialogs('123').then(response => {
-      expect(response).toEqual(GET_SUCCESS.data)
+    it('Should return success response', async () => {
+      (axios.get as jest.Mock).mockResolvedValue(mockResolvedGetDialogsJSON)
+
+      return DialogsApi.getDialogs('123').then(response => {
+        expect(response).toEqual(GET_SUCCESS.data)
+      })
+    })
+
+    it('Should return error response if status === "error"', async () => {
+      (axios.get as jest.Mock).mockResolvedValue(mockRejectedJSON)
+
+      return DialogsApi.getDialogs('123').catch(err => {
+        expect(err).toEqual(RESPONSE_ERROR.data.message)
+      })
+    })
+
+    it('Should return error response', async () => {
+      (axios.get as jest.Mock).mockRejectedValue(new Error('error'))
+
+      return DialogsApi.getDialogs('123').catch(err => {
+        expect(err).toEqual(RESPONSE_ERROR.data.message)
+      })
     })
   })
 
-  it('Should return error response if status === "error"', async () => {
-    (axios.get as jest.Mock).mockResolvedValue(mockRejectedJSON)
+  describe('createDialog', () => {
+    const mockResolvedCreateDialogJSON = Promise.resolve(SEND_SUCCESS)
+    const body = {
+      author: 'author',
+      interlocutor: 'interlocutor',
+      text: 'text',
+    }
 
-    return DialogsApi.getDialogs('123').catch(err => {
-      expect(err).toEqual(RESPONSE_ERROR.data.message)
+    it('Should return success response', async () => {
+      (axios.post as jest.Mock).mockResolvedValue(mockResolvedCreateDialogJSON)
+
+      return DialogsApi.createDialog(body).then(response => {
+        expect(response).toEqual(SEND_SUCCESS.data)
+      })
     })
-  })
 
-  it('Should return error response', async () => {
-    (axios.get as jest.Mock).mockRejectedValue(new Error('error'))
+    it('Should return error response if status === "error"', async () => {
+      (axios.post as jest.Mock).mockResolvedValue(mockRejectedJSON)
 
-    return DialogsApi.getDialogs('123').catch(err => {
-      expect(err).toEqual(RESPONSE_ERROR.data.message)
+      return DialogsApi.createDialog(body).catch(err => {
+        expect(err).toEqual(RESPONSE_ERROR.data.message)
+      })
+    })
+
+    it('Should return error response', async () => {
+      (axios.post as jest.Mock).mockRejectedValue(new Error('error'))
+
+      return DialogsApi.createDialog(body).catch(err => {
+        expect(err).toEqual(RESPONSE_ERROR.data.message)
+      })
     })
   })
 })
