@@ -1,6 +1,8 @@
 import {TextTypes} from 'models/common/text'
 import {Text} from 'components/common/Text'
 import {Dialogs} from 'components/Dialogs'
+import {Messages} from 'components/Messages'
+import {CreateMessageForm} from 'components/CreateMessageForm'
 
 const Chat = () => {
   return (
@@ -16,7 +18,8 @@ const Chat = () => {
             <Dialogs />
           </div>
           <div className="chat__messages">
-            Messages
+            <Messages />
+            <CreateMessageForm />
           </div>
         </div>
       </div>

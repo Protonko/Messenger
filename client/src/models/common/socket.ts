@@ -1,0 +1,3 @@
+export enum EVENTS_SOCKET {
+  NEW_MESSAGE = 'MESSAGE:CREATE'
+}
