@@ -9,7 +9,7 @@ const options = {
 }
 
 const reduceData = (
-  acc: {[key: string]: string},
+  acc: Record<string, string>,
   value: string,
   key: string
 ) => {

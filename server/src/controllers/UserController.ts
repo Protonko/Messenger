@@ -9,7 +9,7 @@ import {jwtCreate} from '../utils/jwtCreate'
 import {userMapper} from '../utils/mappers/userMapper'
 
 export class UserController {
-  io: Server
+  private io: Server
 
   constructor(io: Server) {
     this.io = io

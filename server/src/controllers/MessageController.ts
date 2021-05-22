@@ -6,7 +6,7 @@ import {IError} from '../types/error'
 import {IMessage} from '../types/message'
 
 export class MessageController {
-  io: Server
+  private io: Server
 
   constructor(io: Server) {
     this.io = io
@@ -15,6 +15,7 @@ export class MessageController {
   }
 
   find(request: Request, response: Response) {
+    // dialog id
     const {id} = request.query
 
     Message
@@ -54,7 +55,7 @@ export class MessageController {
           }
 
           response.json(message)
-          this.io.emit(EVENTS_SOCKET.newMessage, message)
+          this.io.emit(EVENTS_SOCKET.NEW_MESSAGE, message)
       })
     } catch (reason) {
       response.json(reason)

@@ -1,5 +1,5 @@
 export const PATHS = ['/user/login', '/user/signup']
 
-export const EVENTS_SOCKET = {
-  newMessage: 'MESSAGE:CREATE'
+export enum EVENTS_SOCKET {
+  NEW_MESSAGE = 'MESSAGE:CREATE'
 }

@@ -7,7 +7,7 @@ import {IDialogMongoose} from '../types/dialog'
 import {dialogMapper} from '../utils/mappers/dialogMapper'
 
 export class DialogController {
-  io: Server
+  private io: Server
 
   constructor(io: Server) {
     this.io = io
