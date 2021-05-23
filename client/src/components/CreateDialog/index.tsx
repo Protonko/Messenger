@@ -107,7 +107,11 @@ export const CreateDialog = () => {
             loading={creating}
           >
             <div className="dialogs-modal__textarea">
-              <Textarea rows={10} onChange={value => message.current = value} />
+              <Textarea
+                rows={10}
+                value={message.current}
+                onChange={value => message.current = value}
+              />
             </div>
           </ContentContainer>
         </div>

@@ -12,12 +12,13 @@ const shallowComponent = (props: IPropsTextarea) => (
 )
 
 describe('Textarea', () => {
-  let onChange: jest.Mock
   let props: IPropsTextarea
 
   beforeEach(() => {
-    props = {}
-    onChange = jest.fn();
+    props = {
+      value: '',
+      onChange: jest.fn(),
+    }
   })
 
   it('Should render Textarea component', () => {
@@ -41,18 +42,10 @@ describe('Textarea', () => {
   })
 
   it('Should call onChange func', () => {
-    props.onChange = onChange
     const component = shallowComponent(props)
     const form = component.find(`.${ELEMENT_SELECTORS.form}`)
     form.simulate('change', {target: {value: 'test'}})
     expect(props.onChange).toBeCalledTimes(1)
     expect(props.onChange).toBeCalledWith('test')
-  })
-
-  it('Shouldn`t call onChange func', () => {
-    const component = shallowComponent(props)
-    const form = component.find(`.${ELEMENT_SELECTORS.form}`)
-    form.simulate('change', {target: {value: 'test'}})
-    expect(onChange).not.toBeCalled()
   })
 })
