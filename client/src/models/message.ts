@@ -16,4 +16,12 @@ export interface ICreateMessageResponse {
   updatedAt: string
 }
 
-export interface IMessage {}
+export interface IMessage {
+  read: boolean
+  // TODO: FIX
+  attachments: Array<any>
+  id: string
+  user: string
+  createdAt: string
+  updatedAt: string
+}

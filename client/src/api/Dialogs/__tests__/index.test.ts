@@ -3,8 +3,6 @@ import {DialogsApi} from 'api/Dialogs'
 import {Status} from 'models/common/status'
 import {RESPONSE_ERROR} from 'static/constants'
 
-jest.mock('axios')
-
 describe('DialogsApi', () => {
   const mockRejectedJSON = Promise.resolve(RESPONSE_ERROR)
   const DIALOG = {

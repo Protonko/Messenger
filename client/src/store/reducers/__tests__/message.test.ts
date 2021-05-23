@@ -5,10 +5,7 @@ describe('auth reducer', () => {
   const ACTIONS: Record<string, AllMessageActions> = {
     CREATE_MESSAGE: {
       type: MessageActionsTypes.CREATE_MESSAGE,
-      payload: {
-        id: 'id',
-        text: 'text',
-      },
+      payload: 'text',
     },
     CREATE_MESSAGE_SUCCESS: {
       type: MessageActionsTypes.CREATE_MESSAGE_SUCCESS,

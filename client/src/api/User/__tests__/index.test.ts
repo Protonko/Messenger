@@ -2,8 +2,6 @@ import axios from 'axios'
 import {UserApi} from 'api/User'
 import {RESPONSE_ERROR} from 'static/constants'
 
-jest.mock('axios')
-
 describe('UserApi', () => {
   const BODY_LOGIN = {
     email: 'email@email.com',

@@ -6,11 +6,6 @@ import {
 import {MessageActionsTypes} from 'models/store/actions/message'
 
 describe('message actions', () => {
-  const createMessageBody = {
-    id: '123',
-    text: 'text',
-  }
-
   const createMessageResponse = {
     status: 'success',
     read: false,
@@ -24,10 +19,10 @@ describe('message actions', () => {
   it('should create createMessage', () => {
     const expectedAction = {
       type: MessageActionsTypes.CREATE_MESSAGE,
-      payload: createMessageBody,
+      payload: 'text',
     }
 
-    expect(createMessage(createMessageBody)).toEqual(expectedAction)
+    expect(createMessage('text')).toEqual(expectedAction)
   })
 
   it('should create createMessageSuccess', () => {
