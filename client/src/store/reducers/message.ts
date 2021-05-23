@@ -18,7 +18,7 @@ export const initialState = {
 } as IInitialState
 
 const reducers = (
-  state: IInitialState,
+  state = initialState,
   action: AllMessageActions,
 ) => {
   switch (action.type) {
