@@ -90,13 +90,11 @@ export class UserController {
         const token = jwtCreate({email, password})
 
         response.json({
-          status: 'success',
           user: userMapper(user),
           token,
         })
       } else {
-        response.json({
-          status: 'error',
+        response.status(535).json({
           message: 'Incorrect password or email.',
         })
       }
