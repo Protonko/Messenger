@@ -1,26 +1,31 @@
 import type {IUser} from 'models/user'
-import {put, take, takeEvery, call} from 'redux-saga/effects'
+import {put, takeEvery, call} from 'redux-saga/effects'
 import {AuthActionTypes, LoginAction, SignUpAction} from 'models/store/actions/auth'
 import {api} from 'api'
 import {UserApi} from 'api/User'
+import {setCookie} from 'utils/setCookie'
 import {setLoginData, setErrorMessage, setSignUpData} from 'store/actions/auth'
 import {SagaIterator} from 'redux-saga'
 
 // login
 export function* loginWorker({payload}: LoginAction): SagaIterator | Generator {
   try {
+    yield console.log(123)
     const {token, user}: {token: string, user: IUser} = yield call(UserApi.login, payload)
-    yield api.defaults.headers.common['token'] = token;
+    yield api.defaults.headers.common['token'] = token
+    yield setCookie('token', token, {secure: true})
     yield put(setLoginData({token, user}))
+    return
   } catch (e) {
-    yield put(setErrorMessage(e.message))
+    yield put(setErrorMessage(e))
+    return
   }
 }
 
 export function* authWatcher() {
-  const data: LoginAction = yield take(AuthActionTypes.LOGIN)
-  yield call(loginWorker, data)
+  yield takeEvery(AuthActionTypes.LOGIN, loginWorker)
 }
+
 // ./login
 
 // sign up
@@ -36,4 +41,5 @@ export function* signUpWorker({payload}: SignUpAction) {
 export function* signUpWatcher() {
   yield takeEvery(AuthActionTypes.SIGN_UP, signUpWorker)
 }
+
 // ./sign up

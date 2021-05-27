@@ -1,6 +1,7 @@
 import type {IDialog} from 'models/dialog'
 import type {RootState} from 'store/reducers'
 import {useEffect, FC} from 'react'
+import {useHistory} from 'react-router-dom'
 import {useDispatch, useSelector} from 'react-redux'
 import {getDialogs} from 'store/actions/dialogs'
 import {Dialog} from 'components/common/Dialog'
@@ -9,6 +10,7 @@ import {ContentContainer} from 'components/common/ContentContainer'
 import {CreateDialog} from 'components/CreateDialog'
 
 export const Dialogs: FC = () => {
+  const history = useHistory()
   const dispatch = useDispatch()
   const {dialogs, loading, errorMessage} = useSelector((state: RootState) => state.dialogs)
 
@@ -16,9 +18,17 @@ export const Dialogs: FC = () => {
     dispatch(getDialogs())
   }, [])
 
+  const selectDialog = (id: string) => {
+    history.push(`?user=${id}`)
+  }
+
   const renderItem = (dialog: IDialog) => {
     return (
-      <li className="dialogs__item" key={dialog.id}>
+      <li
+        className="dialogs__item"
+        key={dialog.id}
+        onClick={() => selectDialog(dialog.id)}
+      >
         <Dialog {...dialog} />
       </li>
     )

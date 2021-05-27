@@ -14,47 +14,30 @@ describe('UserApi', () => {
   }
 
   const RESPONSE_LOGIN_SUCCESS = {
+    status: 200,
+    statusText: 'Ok',
     data: {
-      status: 'success',
       token: 'testToken123'
     }
   }
 
   const RESPONSE_SIGN_UP_SUCCESS = {
+    status: 200,
+    statusText: 'Ok',
     data: {
-      status: 'success',
-      data: {
-        avatar: 'img',
-        confirmed: true,
-        createdAt: new Date(),
-        email: 'email@email.com',
-        full_name: 'full name',
-        last_seen: new Date(),
-        updatedAt: new Date(),
-        id: 'a32d',
-      }
-    }
-  }
-
-  const RESPONSE_GET_USERS_SUCCESS = {
-    data: {
-      status: 'success',
-      data: [{
-        avatar: 'img',
-        confirmed: true,
-        createdAt: new Date(),
-        email: 'email@email.com',
-        full_name: 'full name',
-        last_seen: new Date(),
-        updatedAt: new Date(),
-        id: 'a32d',
-      }]
-    }
+      avatar: 'img',
+      confirmed: true,
+      createdAt: new Date(),
+      email: 'email@email.com',
+      full_name: 'full name',
+      last_seen: new Date(),
+      updatedAt: new Date(),
+      id: 'a32d'
+    },
   }
 
   const mockResolvedLoginJSON = Promise.resolve(RESPONSE_LOGIN_SUCCESS)
   const mockResolvedSignUpJSON = Promise.resolve(RESPONSE_SIGN_UP_SUCCESS)
-  const mockResolvedGetUsersJSON = Promise.reject(RESPONSE_GET_USERS_SUCCESS)
   const mockRejectedJSON = Promise.resolve(RESPONSE_ERROR)
 
   describe('login', () => {
@@ -66,19 +49,19 @@ describe('UserApi', () => {
       })
     })
 
-    it('Should return error response if status === "error"', async () => {
+    it('Should return error response if status is 400', async () => {
       (axios.post as jest.Mock).mockResolvedValue(mockRejectedJSON)
 
       return UserApi.login(BODY_LOGIN).catch(err => {
-        expect(err).toEqual(RESPONSE_ERROR.data.message)
+        expect(err).toEqual(RESPONSE_ERROR.statusText)
       })
     })
 
     it('Should return error response', async () => {
-      (axios.post as jest.Mock).mockRejectedValue(new Error('error'))
+      (axios.post as jest.Mock).mockRejectedValue(new Error(RESPONSE_ERROR.message))
 
       return UserApi.login(BODY_LOGIN).catch(err => {
-        expect(err).toEqual(RESPONSE_ERROR.data.message)
+        expect(err).toEqual(RESPONSE_ERROR.message)
       })
     })
   })
@@ -92,19 +75,19 @@ describe('UserApi', () => {
       })
     })
 
-    it('Should return error response if status === "error"', async () => {
+    it('Should return error response if status is 400', async () => {
       (axios.post as jest.Mock).mockResolvedValue(mockRejectedJSON)
 
       return UserApi.signUp(BODY_SIGN_UP).catch(err => {
-        expect(err).toEqual(RESPONSE_ERROR.data.message)
+        expect(err).toEqual(RESPONSE_ERROR.statusText)
       })
     })
 
     it('Should return error response', async () => {
-      (axios.post as jest.Mock).mockRejectedValue(new Error('error'))
+      (axios.post as jest.Mock).mockRejectedValue(new Error(RESPONSE_ERROR.message))
 
       return UserApi.signUp(BODY_SIGN_UP).catch(err => {
-        expect(err).toEqual(RESPONSE_ERROR.data.message)
+        expect(err).toEqual(RESPONSE_ERROR.message)
       })
     })
   })
@@ -118,19 +101,19 @@ describe('UserApi', () => {
       })
     })
 
-    it('Should return error response if status === "error"', async () => {
+    it('Should return error response if status is 400', async () => {
       (axios.get as jest.Mock).mockResolvedValue(mockRejectedJSON)
 
       return UserApi.getUsers().catch(err => {
-        expect(err).toEqual(RESPONSE_ERROR.data.message)
+        expect(err).toEqual(RESPONSE_ERROR.statusText)
       })
     })
 
     it('Should return error response', async () => {
-      (axios.get as jest.Mock).mockRejectedValue(new Error('error'))
+      (axios.get as jest.Mock).mockRejectedValue(new Error(RESPONSE_ERROR.message))
 
       return UserApi.getUsers().catch(err => {
-        expect(err).toEqual(RESPONSE_ERROR.data.message)
+        expect(err).toEqual(RESPONSE_ERROR.message)
       })
     })
   })

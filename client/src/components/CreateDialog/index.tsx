@@ -14,10 +14,8 @@ import {Textarea} from 'components/common/Textarea'
 import {ContentContainer} from 'components/common/ContentContainer'
 
 export const CreateDialog = () => {
-  const {users, loading, errorMessage, creating, createErrorMessage} = useSelector((state: RootState) => ({
-    ...state.users,
-    ...state.dialogs,
-  }))
+  const {users, loading, errorMessage} = useSelector((state: RootState) => (state.users))
+  const {creating, createErrorMessage} = useSelector((state: RootState) => (state.dialogs))
   const dispatch = useDispatch()
   const [modalStepOneVisibility, setModalStepOneVisibility] = useState(false)
   const [modalStepTwoVisibility, setModalStepTwoVisibility] = useState(false)

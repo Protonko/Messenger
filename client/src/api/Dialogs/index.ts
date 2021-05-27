@@ -2,31 +2,31 @@ import type {ICreateDialogBody, IDialog} from 'models/dialog'
 import {api} from 'api'
 
 export class DialogsApi {
-  static getDialogs(id: string): Promise<IDialog[]> {
+  static getDialogs(id: string): Promise<IDialog[] | string> {
     return new Promise((resolve, reject) => {
-      api.get(`/dialogs/${id}`)
+      api.get<IDialog[]>(`/dialogs/${id}`)
         .then(response => {
-          if (response.data.status === 'error') {
-            reject(response.data.message)
-          } else {
+          if (response.status === 200) {
             resolve(response.data)
+          } else {
+            reject(response.statusText)
           }
         })
-        .catch(error => reject(error.message))
+        .catch((error: Error) => reject(error.message))
     })
   }
 
-  static createDialog(dialog: ICreateDialogBody): Promise<IDialog> {
+  static createDialog(dialog: ICreateDialogBody): Promise<IDialog | string> {
     return new Promise((resolve, reject) => {
-      api.post('/dialogs', dialog)
+      api.post<IDialog>('/dialogs', dialog)
         .then(response => {
-          if (response.data.status === 'error') {
-            reject(response.data.message)
-          } else {
+          if (response.status === 200) {
             resolve(response.data)
+          } else {
+            reject(response.statusText)
           }
         })
-        .catch(error => reject(error.message))
+        .catch((error: Error) => reject(error.message))
     })
   }
 }

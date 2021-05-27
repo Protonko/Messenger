@@ -9,12 +9,12 @@ import {api} from 'api'
 export class UserApi {
   static login(body: IUserLoginBody): Promise<IUserLoginResponse | string> {
     return new Promise((resolve, reject) => {
-      api.post('/user/login', body)
+      api.post<IUserLoginResponse>('/user/login', body)
         .then(response => {
-          if (response.data.status === 'error') {
-            reject(response.data.message)
-          } else {
+          if (response.status === 200) {
             resolve(response.data)
+          } else {
+            reject(response.statusText)
           }
         })
         .catch(error => reject(error.message))
@@ -23,12 +23,12 @@ export class UserApi {
 
   static signUp(body: IUserSignupBody | void): Promise<IUser | string> {
     return new Promise((resolve, reject) => {
-      api.post('/user/signup', body)
+      api.post<IUser>('/user/signup', body)
         .then(response => {
-          if (response.data.status === 'error') {
-            reject(response.data.message)
-          } else {
+          if (response.status === 200) {
             resolve(response.data)
+          } else {
+            reject(response.statusText)
           }
         })
         .catch(error => reject(error.message))
@@ -37,12 +37,12 @@ export class UserApi {
 
   static getUsers(): Promise<IUser[] | string> {
     return new Promise((resolve, reject) => {
-      api.get('/users')
+      api.get<IUser[]>('/users')
         .then(response => {
-          if (response.data.status === 'error') {
-            reject(response.data.message)
-          } else {
+          if (response.status === 200) {
             resolve(response.data)
+          } else {
+            reject(response.statusText)
           }
         })
         .catch(error => reject(error.message))

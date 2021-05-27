@@ -4,12 +4,12 @@ import {api} from 'api'
 export class MessagesApi {
   static createMessage(body: ICreateMessageBody): Promise<ICreateMessageResponse | string> {
     return new Promise((resolve, reject) => {
-      api.post('/messages', body)
+      api.post<ICreateMessageResponse>('/messages', body)
         .then(response => {
-          if (response.data.status === 'error') {
-            reject(response.data.message)
-          } else {
+          if (response.status === 200) {
             resolve(response.data)
+          } else {
+            reject(response.statusText)
           }
         })
         .catch(error => reject(error.message))

@@ -18,7 +18,7 @@ export const AuthForm: FC = () => {
   const dispatch = useDispatch()
   const {errorMessage, account} = useSelector((state: RootState) => state.auth)
   const [inputsData, setInputsData] = useState(INPUTS_DATA)
-  const [modalVisibility, setModalVisibility] = useState(false);
+  const [modalVisibility, setModalVisibility] = useState(false)
   const [typeAuth, setTypeAuth] = useState<FormTypes>(FormTypes.auth)
   const formik = useFormik({
     initialValues: {
@@ -50,18 +50,15 @@ export const AuthForm: FC = () => {
     },
   })
 
-  useEffect(() => () => {
-    dispatch(resetErrorMessage())
-  }, [dispatch])
-
   useEffect(() => {
     if (errorMessage === false) {
       history.push('dialogs')
+      dispatch(resetErrorMessage())
     }
-  }, [errorMessage, history])
+  }, [errorMessage])
 
   useEffect(() => {
-    if (account?.id) {
+    if (account?.id && typeAuth === FormTypes.register) {
       setModalVisibility(true);
     }
   }, [account?.id])

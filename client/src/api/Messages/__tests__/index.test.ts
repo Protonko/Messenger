@@ -9,7 +9,8 @@ describe('MessagesApi', () => {
   }
   const mockRejectedJSON = Promise.resolve(RESPONSE_ERROR)
   const RESPONSE_CREATE_SUCCESS = {
-    status: 'success',
+    status: 200,
+    statusText: 'Ok',
     data: {
       read: false,
       attachments: [],
@@ -28,19 +29,19 @@ describe('MessagesApi', () => {
     })
   })
 
-  it('Should return error response if status === "error"', async () => {
+  it('Should return error response if status is 400', async () => {
     (axios.post as jest.Mock).mockResolvedValue(mockRejectedJSON)
 
     return MessagesApi.createMessage(BODY_CREATE).catch(err => {
-      expect(err).toEqual(RESPONSE_ERROR.data.message)
+      expect(err).toEqual(RESPONSE_ERROR.statusText)
     })
   })
 
   it('Should return error response', async () => {
-    (axios.post as jest.Mock).mockRejectedValue(new Error('error'))
+    (axios.post as jest.Mock).mockRejectedValue(new Error(RESPONSE_ERROR.message))
 
     return MessagesApi.createMessage(BODY_CREATE).catch(err => {
-      expect(err).toEqual(RESPONSE_ERROR.data.message)
+      expect(err).toEqual(RESPONSE_ERROR.message)
     })
   })
 })

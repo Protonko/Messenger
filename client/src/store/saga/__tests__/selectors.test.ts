@@ -2,6 +2,7 @@ import type {RootState} from 'store/reducers'
 import {initialState as auth} from 'store/reducers/auth'
 import {initialState as dialogs} from 'store/reducers/dialogs'
 import {initialState as users} from 'store/reducers/users'
+import {initialState as message} from 'store/reducers/message'
 import {selectors} from 'store/saga/selectors'
 
 describe('selectors', () => {
@@ -9,6 +10,7 @@ describe('selectors', () => {
     auth,
     dialogs,
     users,
+    message,
   }
 
   it('Should return auth state', () => {
