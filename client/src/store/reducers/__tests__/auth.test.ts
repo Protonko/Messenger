@@ -2,22 +2,29 @@ import auth, {initialState} from 'store/reducers/auth'
 import {AllAuthActions, AuthActionTypes} from 'models/store/actions/auth'
 
 describe('auth reducer', () => {
+  const USER = {
+    avatar: null,
+    confirmed: false,
+    createdAt: new Date(),
+    email: 'email',
+    full_name: 'full_name',
+    last_seen: new Date(),
+    updatedAt: new Date(),
+    id: 'test_id',
+  }
+
   const ACTIONS: Record<string, AllAuthActions> = {
     SET_LOGIN_DATA: {
       type: AuthActionTypes.SET_LOGIN_DATA,
       payload: {
         token: 'token123',
-        user: {
-          avatar: null,
-          confirmed: false,
-          createdAt: new Date(),
-          email: 'email',
-          full_name: 'full_name',
-          last_seen: new Date(),
-          updatedAt: new Date(),
-          id: 'test_id',
-        }
+        user: USER,
       },
+      meta: undefined,
+    },
+    SET_USER_DATA: {
+      type: AuthActionTypes.SET_USER_DATA,
+      payload: USER,
       meta: undefined,
     },
     SET_ERROR_MESSAGE: {
@@ -61,6 +68,15 @@ describe('auth reducer', () => {
         token: ACTIONS.SET_LOGIN_DATA.payload.token,
         account: ACTIONS.SET_LOGIN_DATA.payload.user,
         errorMessage: false
+      },
+    )
+  })
+
+  it('Should return the payload from SET_USER_DATA action', () => {
+    expect(auth(initialState, ACTIONS.SET_USER_DATA)).toEqual(
+      {
+        ...initialState,
+        account: ACTIONS.SET_USER_DATA.payload,
       },
     )
   })

@@ -48,7 +48,7 @@ describe('message sagas', () => {
         [select(selectors.getUsers), {selectedUserId: '1'}],
         [call.fn(MessagesApi.createMessage), throwError(new Error('error'))]
       ])
-      .put({type: MessageActionsTypes.CREATE_MESSAGE_ERROR, payload: new Error('error')})
+      .put({type: MessageActionsTypes.CREATE_MESSAGE_ERROR, payload: 'error'})
       .run();
   })
 })

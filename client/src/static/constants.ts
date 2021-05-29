@@ -5,5 +5,7 @@ export const FONT_SIZE_BASE = 16
 export const RESPONSE_ERROR = {
     status: 400,
     statusText: 'error 400',
-    message: 'error',
+    response: {
+        message: 'error',
+    },
 }

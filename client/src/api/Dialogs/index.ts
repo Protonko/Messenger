@@ -1,5 +1,6 @@
 import type {ICreateDialogBody, IDialog} from 'models/dialog'
 import {api} from 'api'
+import {AxiosError} from 'axios'
 
 export class DialogsApi {
   static getDialogs(id: string): Promise<IDialog[] | string> {
@@ -12,7 +13,7 @@ export class DialogsApi {
             reject(response.statusText)
           }
         })
-        .catch((error: Error) => reject(error.message))
+        .catch((error: AxiosError) => reject(error.response))
     })
   }
 
@@ -26,7 +27,7 @@ export class DialogsApi {
             reject(response.statusText)
           }
         })
-        .catch((error: Error) => reject(error.message))
+        .catch((error: AxiosError) => reject(error.response))
     })
   }
 }

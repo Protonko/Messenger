@@ -11,6 +11,7 @@ import {
   createDialogSuccess,
   createDialogError,
 } from 'store/actions/dialogs'
+import {errorHandler} from 'utils/errorHandler'
 
 // get
 export function* getDialogsWorker() {
@@ -23,8 +24,8 @@ export function* getDialogsWorker() {
     } else {
       yield put(getDialogsError('ID not found!'))
     }
-  } catch (e) {
-    yield put(getDialogsError(e.message))
+  } catch (error) {
+    yield put(errorHandler(error, getDialogsError))
   }
 }
 
@@ -50,8 +51,8 @@ export function* createDialogWorker({payload}: CreateDialogAction) {
     } else {
       yield put(createDialogError('ID not found!'))
     }
-  } catch (e) {
-    yield put(createDialogError(e))
+  } catch (error) {
+    yield put(errorHandler(error, createDialogError))
   }
 }
 

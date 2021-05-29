@@ -58,10 +58,10 @@ describe('UserApi', () => {
     })
 
     it('Should return error response', async () => {
-      (axios.post as jest.Mock).mockRejectedValue(new Error(RESPONSE_ERROR.message))
+      (axios.post as jest.Mock).mockRejectedValue(RESPONSE_ERROR)
 
       return UserApi.login(BODY_LOGIN).catch(err => {
-        expect(err).toEqual(RESPONSE_ERROR.message)
+        expect(err).toEqual(RESPONSE_ERROR.response)
       })
     })
   })
@@ -84,10 +84,10 @@ describe('UserApi', () => {
     })
 
     it('Should return error response', async () => {
-      (axios.post as jest.Mock).mockRejectedValue(new Error(RESPONSE_ERROR.message))
+      (axios.post as jest.Mock).mockRejectedValue(RESPONSE_ERROR)
 
       return UserApi.signUp(BODY_SIGN_UP).catch(err => {
-        expect(err).toEqual(RESPONSE_ERROR.message)
+        expect(err).toEqual(RESPONSE_ERROR.response)
       })
     })
   })
@@ -110,10 +110,11 @@ describe('UserApi', () => {
     })
 
     it('Should return error response', async () => {
-      (axios.get as jest.Mock).mockRejectedValue(new Error(RESPONSE_ERROR.message))
+      (axios.get as jest.Mock).mockRejectedValue(RESPONSE_ERROR)
 
       return UserApi.getUsers().catch(err => {
-        expect(err).toEqual(RESPONSE_ERROR.message)
+        console.log('ALLO', err)
+        expect(err).toEqual(RESPONSE_ERROR.response)
       })
     })
   })

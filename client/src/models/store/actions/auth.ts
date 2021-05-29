@@ -5,6 +5,7 @@ import type {IUser} from 'models/user'
 export enum AuthActionTypes {
   LOGIN = '[AUTH]LOGIN',
   SET_LOGIN_DATA = '[AUTH]SET_LOGIN_DATA',
+  SET_USER_DATA = '[AUTH]SET_USER_DATA',
   SET_ERROR_MESSAGE = '[AUTH]SET_ERROR_MESSAGE',
   RESET_ERROR_MESSAGE = '[AUTH]RESET_ERROR_MESSAGE',
   SIGN_UP = '[AUTH]SIGN_UP',
@@ -19,6 +20,11 @@ export interface LoginAction extends AnyAction {
 export interface SetLoginDataAction extends AnyAction {
   type: AuthActionTypes.SET_LOGIN_DATA
   payload: Omit<IUserLoginResponse, 'status'>
+}
+
+export interface SetUserDataAction extends AnyAction {
+  type: AuthActionTypes.SET_USER_DATA
+  payload: IUser
 }
 
 export interface SignUpAction extends AnyAction {
@@ -43,6 +49,7 @@ export interface SetErrorMessageAction extends AnyAction {
 export type AllAuthActions =
   | LoginAction
   | SetLoginDataAction
+  | SetUserDataAction
   | SignUpAction
   | SetSignUpDataAction
   | ResetErrorMessageAction

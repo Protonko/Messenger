@@ -1,9 +1,14 @@
-import type {TStatusResponse} from './common/fetch'
 import type {IUser} from './user'
 
 export enum FormTypes {
   auth = 'auth',
   register = 'register',
+}
+
+export interface IAuthToken {
+  data: IUser
+  exp: number
+  iat: number
 }
 
 export interface IUserLoginBody {
@@ -16,7 +21,6 @@ export interface IUserSignupBody extends IUserLoginBody {
 }
 
 export interface IUserLoginResponse {
-  status: TStatusResponse
   token: string
   user: IUser
 }

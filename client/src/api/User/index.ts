@@ -5,6 +5,7 @@ import type {
 } from 'models/auth'
 import type {IUser} from 'models/user'
 import {api} from 'api'
+import {AxiosError} from 'axios'
 
 export class UserApi {
   static login(body: IUserLoginBody): Promise<IUserLoginResponse | string> {
@@ -17,7 +18,7 @@ export class UserApi {
             reject(response.statusText)
           }
         })
-        .catch(error => reject(error.message))
+        .catch((error: AxiosError) => reject(error.response))
     })
   }
 
@@ -31,7 +32,7 @@ export class UserApi {
             reject(response.statusText)
           }
         })
-        .catch(error => reject(error.message))
+        .catch((error: AxiosError) => reject(error.response))
     })
   }
 
@@ -45,7 +46,7 @@ export class UserApi {
             reject(response.statusText)
           }
         })
-        .catch(error => reject(error.message))
+        .catch((error: AxiosError) => reject(error.response))
     })
   }
 }

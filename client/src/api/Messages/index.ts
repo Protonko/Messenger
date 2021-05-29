@@ -1,5 +1,6 @@
 import type {ICreateMessageBody, ICreateMessageResponse} from 'models/message'
 import {api} from 'api'
+import {AxiosError} from 'axios'
 
 export class MessagesApi {
   static createMessage(body: ICreateMessageBody): Promise<ICreateMessageResponse | string> {
@@ -12,7 +13,7 @@ export class MessagesApi {
             reject(response.statusText)
           }
         })
-        .catch(error => reject(error.message))
+        .catch((error: AxiosError) => reject(error.response))
     })
   }
 }

@@ -4,6 +4,7 @@ import {call, put, select, takeEvery} from 'redux-saga/effects'
 import {CreateMessageAction, MessageActionsTypes} from 'models/store/actions/message'
 import {MessagesApi} from 'api/Messages'
 import {createMessageError, createMessageSuccess} from 'store/actions/message'
+import {errorHandler} from 'utils/errorHandler'
 import {selectors} from './selectors'
 
 export function* createMessageWorker({payload}: CreateMessageAction) {
@@ -21,8 +22,8 @@ export function* createMessageWorker({payload}: CreateMessageAction) {
     } else {
       yield put(createMessageError('ID not found!'))
     }
-  } catch (e) {
-    yield put(createMessageError(e))
+  } catch (error) {
+    yield put(errorHandler(error, createMessageError))
   }
 }
 

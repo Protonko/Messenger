@@ -7,6 +7,7 @@ import {
   SetErrorMessageAction,
   SetLoginDataAction,
   SetSignUpDataAction,
+  SetUserDataAction,
   SignUpAction,
 } from 'models/store/actions/auth'
 
@@ -16,6 +17,9 @@ export const login = (payload: IUserLoginBody): LoginAction =>
 
 export const setLoginData = (payload: Omit<IUserLoginResponse, 'status'>): SetLoginDataAction =>
   ({type: AuthActionTypes.SET_LOGIN_DATA, payload})
+
+export const setUserData = (payload: IUser): SetUserDataAction =>
+  ({type: AuthActionTypes.SET_USER_DATA, payload})
 
 // sign up
 export const signUp = (payload: IUserSignupBody): SignUpAction =>

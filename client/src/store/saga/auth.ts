@@ -3,21 +3,21 @@ import {put, takeEvery, call} from 'redux-saga/effects'
 import {AuthActionTypes, LoginAction, SignUpAction} from 'models/store/actions/auth'
 import {api} from 'api'
 import {UserApi} from 'api/User'
-import {setCookie} from 'utils/setCookie'
+import {CookieHandler} from 'utils/CookieHandler'
+import {errorHandler} from 'utils/errorHandler'
 import {setLoginData, setErrorMessage, setSignUpData} from 'store/actions/auth'
 import {SagaIterator} from 'redux-saga'
 
 // login
 export function* loginWorker({payload}: LoginAction): SagaIterator | Generator {
   try {
-    yield console.log(123)
     const {token, user}: {token: string, user: IUser} = yield call(UserApi.login, payload)
     yield api.defaults.headers.common['token'] = token
-    yield setCookie('token', token, {secure: true})
+    yield CookieHandler.setCookie('token', token, {secure: true})
     yield put(setLoginData({token, user}))
     return
-  } catch (e) {
-    yield put(setErrorMessage(e))
+  } catch (error) {
+    yield put(errorHandler(error, setErrorMessage))
     return
   }
 }
@@ -33,8 +33,8 @@ export function* signUpWorker({payload}: SignUpAction) {
   try {
     const data: IUser = yield call(UserApi.signUp, payload)
     yield put(setSignUpData(data))
-  } catch (e) {
-    yield put(setErrorMessage(e.message))
+  } catch (error) {
+    yield put(errorHandler(error, setErrorMessage))
   }
 }
 

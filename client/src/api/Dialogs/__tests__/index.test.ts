@@ -44,10 +44,10 @@ describe('DialogsApi', () => {
     })
 
     it('Should return error response', async () => {
-      (axios.get as jest.Mock).mockRejectedValue(new Error(RESPONSE_ERROR.message))
+      (axios.get as jest.Mock).mockRejectedValue(RESPONSE_ERROR)
 
       return DialogsApi.getDialogs('123').catch(err => {
-        expect(err).toEqual(RESPONSE_ERROR.message)
+        expect(err).toEqual(RESPONSE_ERROR.response)
       })
     })
   })
@@ -77,10 +77,10 @@ describe('DialogsApi', () => {
     })
 
     it('Should return error response', async () => {
-      (axios.post as jest.Mock).mockRejectedValue(new Error(RESPONSE_ERROR.message))
+      (axios.post as jest.Mock).mockRejectedValue(RESPONSE_ERROR)
 
       return DialogsApi.createDialog(body).catch(err => {
-        expect(err).toEqual(RESPONSE_ERROR.message)
+        expect(err).toEqual(RESPONSE_ERROR.response)
       })
     })
   })

@@ -4,7 +4,8 @@ import {
   setErrorMessage,
   resetErrorMessage,
   setSignUpData,
-  signUp
+  signUp,
+  setUserData,
 } from 'store/actions/auth'
 import {AuthActionTypes} from 'models/store/actions/auth'
 
@@ -48,6 +49,17 @@ describe('auth actions', () => {
     expect(setLoginData({
       token: 'string',
       user: USER_DATA,
+    })).toEqual(expectedAction)
+  })
+
+  it('should create setUserData', () => {
+    const expectedAction = {
+      type: AuthActionTypes.SET_USER_DATA,
+      payload: USER_DATA,
+    }
+
+    expect(setUserData({
+      ...USER_DATA,
     })).toEqual(expectedAction)
   })
 

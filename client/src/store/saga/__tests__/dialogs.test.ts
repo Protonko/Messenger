@@ -94,7 +94,7 @@ describe('dialogs sagas', () => {
           [select(selectors.getUsers), {selectedUserId: '321'}],
           [call.fn(DialogsApi.createDialog), throwError(new Error('error'))]
         ])
-        .put({type: DialogsActionTypes.CREATE_DIALOG_ERROR, payload: new Error('error')})
+        .put({type: DialogsActionTypes.CREATE_DIALOG_ERROR, payload: 'error'})
         .run();
     })
   })

@@ -32,7 +32,7 @@ export class ErrorBoundary extends Component<IProps, IState> {
     })
   }
 
-  _renderDetailInfo() {
+  private _renderDetailInfo() {
     if (process.env.NODE_ENV === 'development') {
       return (
         <div>

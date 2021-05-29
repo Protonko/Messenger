@@ -38,10 +38,10 @@ describe('MessagesApi', () => {
   })
 
   it('Should return error response', async () => {
-    (axios.post as jest.Mock).mockRejectedValue(new Error(RESPONSE_ERROR.message))
+    (axios.post as jest.Mock).mockRejectedValue(RESPONSE_ERROR)
 
     return MessagesApi.createMessage(BODY_CREATE).catch(err => {
-      expect(err).toEqual(RESPONSE_ERROR.message)
+      expect(err).toEqual(RESPONSE_ERROR.response)
     })
   })
 })
