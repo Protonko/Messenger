@@ -87,7 +87,7 @@ export class UserController {
       }
 
       if (compareSync(password, user.password)) {
-        const token = jwtCreate({email, password})
+        const token = jwtCreate(user)
 
         response.json({
           user: userMapper(user),

@@ -1,10 +1,5 @@
 import {Document} from 'mongoose'
 
-export interface ILoginUser {
-  email: string,
-  password: string,
-}
-
 export interface IUserMongoose extends Document {
   id: string,
   avatar: null | string,

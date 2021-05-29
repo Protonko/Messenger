@@ -1,6 +1,6 @@
 import {Request, Response, NextFunction} from 'express'
 import {PATHS} from '../static'
-import {DecodedData} from '../types/jwt'
+import {IDecodedData} from '../types/jwt'
 import {IError} from '../types/error'
 import {IUserMongoose} from '../types/user'
 import {User} from '../models/User'
@@ -20,7 +20,7 @@ export const checkAuth = async (
 
   if (token) {
     try {
-      const user: DecodedData | null = await jwtVerify(token)
+      const user: IDecodedData | null = await jwtVerify(token)
 
       if (user) {
         const {email} = user.data

@@ -1,4 +1,4 @@
-export interface DecodedData {
+export interface IDecodedData {
   data: {
     email: string
   }

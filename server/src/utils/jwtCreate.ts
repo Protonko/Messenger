@@ -1,33 +1,16 @@
 import {sign} from 'jsonwebtoken'
-import _ from 'lodash'
 import {config} from '../config'
-import {ILoginUser} from '../types/user';
+import {IUserMongoose} from '../types/user'
+import {userMapper} from './mappers/userMapper'
 
 const options = {
   expiresIn: config.JWT_MAX_AGE,
   algorithm: config.JWT_ALGORITHM,
 }
 
-const reduceData = (
-  acc: Record<string, string>,
-  value: string,
-  key: string
-) => {
-  if (key !== 'password') {
-    return {
-      ...acc,
-      [key]: value,
-    }
-  }
-
-  return acc
-}
-
-export const jwtCreate = (user: ILoginUser) => {
-  const userWithoutPassword = _.reduce(user, reduceData, {})
-
+export const jwtCreate = (user: IUserMongoose) => {
   return sign(
-    {data: userWithoutPassword},
+    {data: userMapper(user)},
     config.JWT_SECRET_KEY,
     options,
   )

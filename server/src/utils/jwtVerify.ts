@@ -1,8 +1,8 @@
 import {verify, VerifyErrors} from 'jsonwebtoken'
 import {config} from '../config'
-import {DecodedData} from '../types/jwt';
+import {IDecodedData} from '../types/jwt';
 
-export const jwtVerify = (token: string): Promise<DecodedData> => {
+export const jwtVerify = (token: string): Promise<IDecodedData> => {
   return new Promise((resolve, reject) => {
     const verifyCallback = (
       error: VerifyErrors | null,
@@ -12,7 +12,7 @@ export const jwtVerify = (token: string): Promise<DecodedData> => {
         return reject(error)
       }
 
-      resolve(decodedToken as DecodedData)
+      resolve(decodedToken as IDecodedData)
     }
 
     verify(token, config.JWT_SECRET_KEY, verifyCallback)
