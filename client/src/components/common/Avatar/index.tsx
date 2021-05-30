@@ -9,18 +9,21 @@ export interface IPropsAvatar {
   src: string
   name?: string
   size?: Sizes
+  customStyles?: string
 }
 
 export const Avatar: FC<IPropsAvatar> = ({
   src,
   name,
   size = Sizes.MEDIUM,
+  customStyles,
 }) => {
   const backgroundColor = useMemo(() => getRandomColor(), [src, name])
   const avatarClassname = classNames(
     'avatar',
     {'avatar--sm': size === Sizes.SMALL},
     {'avatar--lg': size === Sizes.LARGE},
+    {[customStyles ?? '']: customStyles},
   )
 
   if (!src && name) {

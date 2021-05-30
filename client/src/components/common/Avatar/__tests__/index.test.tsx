@@ -8,6 +8,7 @@ const ELEMENT_SELECTORS = {
   avatarSmall: 'avatar--sm',
   avatarLarge: 'avatar--lg',
   avatarText: 'avatar__text',
+  customClassName: 'custom',
 }
 
 const shallowComponent = (props: IPropsAvatar) => (
@@ -49,6 +50,13 @@ describe('Avatar', () => {
     component = shallowComponent(props)
 
     expect(component.find(`.${ELEMENT_SELECTORS.avatarSmall}`).length).toBe(1)
+  })
+
+  it('Should return small classname', () => {
+    props.customStyles = ELEMENT_SELECTORS.customClassName
+    component = shallowComponent(props)
+
+    expect(component.find(`.${ELEMENT_SELECTORS.customClassName}`).length).toBe(1)
   })
 
   it('Should return large classname', () => {

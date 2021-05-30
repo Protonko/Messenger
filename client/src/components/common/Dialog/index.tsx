@@ -41,7 +41,7 @@ export const Dialog: FC<IDialog> = ({
 
   return (
     <div className="dialog">
-      <Avatar src={avatar} name={name} />
+      <Avatar customStyles="dialog__avatar" src={avatar} name={name} />
 
       <div className="dialog__data">
         <div className="dialog__text">

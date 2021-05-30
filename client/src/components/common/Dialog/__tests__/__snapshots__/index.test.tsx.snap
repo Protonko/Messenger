@@ -5,6 +5,7 @@ exports[`Dialog Match snapshot 1`] = `
   className="dialog"
 >
   <Avatar
+    customStyles="dialog__avatar"
     name="string"
     src="string"
   />
@@ -47,6 +48,7 @@ exports[`Dialog Should render Check icon: Dialog with readStatus === SENT 1`] = 
   className="dialog"
 >
   <Avatar
+    customStyles="dialog__avatar"
     name="string"
     src="string"
   />
@@ -94,6 +96,7 @@ exports[`Dialog Should render Counter: Dialog with counter 1`] = `
   className="dialog"
 >
   <Avatar
+    customStyles="dialog__avatar"
     name="string"
     src="string"
   />
@@ -140,6 +143,7 @@ exports[`Dialog Should render DoubleCheck icon: Dialog with readStatus === READ 
   className="dialog"
 >
   <Avatar
+    customStyles="dialog__avatar"
     name="string"
     src="string"
   />
@@ -199,11 +203,12 @@ exports[`Dialog Should render updated date: Dialog with date 1`] = `
     className="dialog"
   >
     <Avatar
+      customStyles="dialog__avatar"
       name="string"
       src="string"
     >
       <div
-        className="avatar"
+        className="avatar dialog__avatar"
       >
         <img
           alt=""

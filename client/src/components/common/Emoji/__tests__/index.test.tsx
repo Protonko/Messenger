@@ -1,4 +1,5 @@
-import {shallow} from 'enzyme'
+import React from 'react'
+import {mount, shallow} from 'enzyme'
 import {Emoji, IPropsEmoji} from 'components/common/Emoji'
 
 const ELEMENT_SELECTORS = {

@@ -1,5 +1,6 @@
 import auth, {initialState} from 'store/reducers/auth'
 import {AllAuthActions, AuthActionTypes} from 'models/store/actions/auth'
+import {AllErrorActions, ErrorActionTypes} from 'models/store/actions/error'
 
 describe('auth reducer', () => {
   const USER = {
@@ -13,7 +14,7 @@ describe('auth reducer', () => {
     id: 'test_id',
   }
 
-  const ACTIONS: Record<string, AllAuthActions> = {
+  const ACTIONS: Record<string, AllAuthActions | AllErrorActions> = {
     SET_LOGIN_DATA: {
       type: AuthActionTypes.SET_LOGIN_DATA,
       payload: {
@@ -59,6 +60,10 @@ describe('auth reducer', () => {
         password: '123456',
       },
     },
+    INVALID_TOKEN_ERROR: {
+      type: ErrorActionTypes.INVALID_TOKEN_ERROR,
+      payload: 'error'
+    }
   }
 
   it('Should return the payload from SET_LOGIN_DATA action', () => {
@@ -106,6 +111,10 @@ describe('auth reducer', () => {
         account: ACTIONS.SET_SIGN_UP_DATA.payload,
       },
     )
+  })
+
+  it('Should return initialState on INVALID_TOKEN_ERROR', () => {
+    expect(auth(initialState, ACTIONS.INVALID_TOKEN_ERROR)).toEqual(initialState)
   })
 
   it('Should return state without changes', () => {
