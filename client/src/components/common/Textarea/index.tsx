@@ -16,7 +16,7 @@ export const Textarea: FC<IPropsTextarea> = ({
    name,
    className,
    onChange,
-    value,
+   value,
    ...textareaProps
  }) => {
   const inputClassNames = classNames([
