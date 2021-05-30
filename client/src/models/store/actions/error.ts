@@ -2,6 +2,7 @@ import type {AnyAction} from 'redux'
 
 export enum ErrorActionTypes {
   INVALID_TOKEN_ERROR = '[ERROR]INVALID_TOKEN_ERROR',
+  HIDE_ERROR_NOTIFICATION = '[ERROR]HIDE_ERROR_NOTIFICATION',
 }
 
 export interface InvalidTokenErrorAction extends AnyAction {
@@ -9,4 +10,10 @@ export interface InvalidTokenErrorAction extends AnyAction {
   payload: string
 }
 
-export type AllErrorActions = InvalidTokenErrorAction
+export interface HideErrorNotificationAction extends AnyAction {
+  type: ErrorActionTypes.HIDE_ERROR_NOTIFICATION
+}
+
+export type AllErrorActions =
+  | InvalidTokenErrorAction
+  | HideErrorNotificationAction
