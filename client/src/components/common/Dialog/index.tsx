@@ -1,5 +1,6 @@
 import type {FC} from 'react'
 import type {IDialog} from 'models/dialog'
+import classNames from 'classnames'
 import {ReadStatus} from 'models/common/status'
 import {TextSize, TextTypes} from 'models/common/text'
 import {ReactComponent as DoubleCheck} from 'assets/icons/double-check.svg'
@@ -9,7 +10,11 @@ import {Text} from 'components/common/Text'
 import {Counter} from 'components/common/Counter'
 import {Avatar} from 'components/common/Avatar'
 
-export const Dialog: FC<IDialog> = ({
+export interface IDialogProps extends IDialog {
+  selected: boolean
+}
+
+export const Dialog: FC<IDialogProps> = ({
   name,
   lastMessage,
   avatar,
@@ -19,7 +24,12 @@ export const Dialog: FC<IDialog> = ({
   messages,
   status,
   readStatus,
+  selected,
 }) => {
+  const classNameDialog = classNames(
+    'dialog',
+    {'dialog--selected': selected},
+  )
   const counter = messages.toString().length > 2 ? '99+' : messages
 
   const renderStatus = () => {
@@ -40,7 +50,7 @@ export const Dialog: FC<IDialog> = ({
   }
 
   return (
-    <div className="dialog">
+    <div className={classNameDialog}>
       <Avatar customStyles="dialog__avatar" src={avatar} name={name} />
 
       <div className="dialog__data">

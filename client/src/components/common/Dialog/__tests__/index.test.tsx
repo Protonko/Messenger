@@ -1,20 +1,20 @@
-import type {IDialog} from 'models/dialog'
-import {ReadStatus, Status} from 'models/common/status'
 import {shallow, mount, ShallowWrapper, ReactWrapper} from 'enzyme'
+import {ReadStatus, Status} from 'models/common/status'
 import {ReactComponent as DoubleCheck} from 'assets/icons/double-check.svg'
 import {ReactComponent as Check} from 'assets/icons/check.svg'
 import {Counter} from 'components/common/Counter'
-import {Dialog} from 'components/common/Dialog'
+import {Dialog, IDialogProps} from 'components/common/Dialog'
 
 const ELEMENT_SELECTORS = {
   dialog: 'dialog',
   date: 'dialog__info-date',
+  selected: 'dialog--selected',
 }
 
 describe('Dialog', () => {
-  let component: ShallowWrapper<IDialog>
-  let componentMount: ReactWrapper<IDialog>
-  let props: IDialog
+  let component: ShallowWrapper<IDialogProps>
+  let componentMount: ReactWrapper<IDialogProps>
+  let props: IDialogProps
 
   beforeEach(() => {
     props = {
@@ -28,6 +28,7 @@ describe('Dialog', () => {
       messages: 0,
       status: Status.ACTIVE,
       readStatus: null,
+      selected: false,
     }
   })
 
@@ -36,9 +37,15 @@ describe('Dialog', () => {
     expect(component.find(`.${ELEMENT_SELECTORS.dialog}`).length).toBe(1)
   })
 
+  it('Should render Dialog component with selected modifier', () => {
+    component = shallow(<Dialog {...{...props, selected: true}} />)
+    expect(component.find(`.${ELEMENT_SELECTORS.selected}`).length).toBe(1)
+    expect(component).toMatchSnapshot('Dialog with selected modifier')
+  })
+
   it('Match snapshot', () => {
     component = shallow(<Dialog {...props} />)
-    expect(component).toMatchSnapshot()
+    expect(component).toMatchSnapshot('Dialog')
   })
 
   it('Should render Counter', () => {

@@ -7,6 +7,7 @@
     padding-top: rem($vertical-gutter / 2);
     padding-left: rem($horizontal-gutter);
     transition: background-color $transition-duration;
+    cursor: pointer;
 
     &:hover {
         background-color: rgba($brand-color, .1);
@@ -14,6 +15,28 @@
 
     &--active {
         background-color: $brand-color;
+    }
+
+    &--selected {
+        background-color: $brand-color;
+
+        &:hover {
+            background-color: $brand-color;
+        }
+    }
+    &--selected & {
+        &__text {
+            &-title,
+            &-description {
+                color: $white;
+            }
+        }
+
+        &__info {
+            &-date {
+                color: $white;
+            }
+        }
     }
 
     &__avatar {
