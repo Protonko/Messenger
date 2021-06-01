@@ -33,7 +33,9 @@ export const getMessages = (payload: string): GetMessagesAction => ({
   payload,
 })
 
-export const getMessagesSuccess = (payload: IMessage[]): GetMessagesSuccessAction => ({
+export const getMessagesSuccess = (
+  payload: IMessage[],
+): GetMessagesSuccessAction => ({
   type: MessageActionsTypes.GET_MESSAGES_SUCCESS,
   payload,
 })

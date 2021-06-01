@@ -20,14 +20,16 @@ describe('message actions', () => {
   }
 
   // TODO: FIX
-  const messages = [{
-    read: false,
-    attachments: [],
-    id: 'id',
-    user: 'user',
-    createdAt: 'createdAt',
-    updatedAt: 'updatedAt',
-}]
+  const messages = [
+    {
+      read: false,
+      attachments: [],
+      id: 'id',
+      user: 'user',
+      createdAt: 'createdAt',
+      updatedAt: 'updatedAt',
+    },
+  ]
 
   it('should create createMessage', () => {
     const expectedAction = {
