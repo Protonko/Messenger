@@ -1,0 +1,191 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Notification Should render error notification: Error notification 1`] = `
+<Notification
+  onEntered={[MockFunction]}
+  text="Text"
+  type="ERROR"
+  visible={true}
+>
+  <Transition
+    appear={false}
+    enter={true}
+    exit={true}
+    in={true}
+    mountOnEnter={true}
+    nodeRef={
+      Object {
+        "current": <div
+          class="notification notification--error"
+        >
+          <div
+            class="notification__icon"
+          />
+          <span
+            class="notification__text"
+          >
+            Text
+          </span>
+        </div>,
+      }
+    }
+    onEnter={[Function]}
+    onEntered={[Function]}
+    onEntering={[Function]}
+    onExit={[Function]}
+    onExited={[Function]}
+    onExiting={[Function]}
+    timeout={400}
+    unmountOnExit={true}
+  >
+    <div
+      className="notification notification--error"
+    >
+      <div
+        className="notification__icon"
+      />
+      <span
+        className="notification__text"
+      >
+        Text
+      </span>
+    </div>
+  </Transition>
+</Notification>
+`;
+
+exports[`Notification Should render success notification: Success notification 1`] = `
+<Notification
+  onEntered={[MockFunction]}
+  text="Text"
+  type="SUCCESS"
+  visible={true}
+>
+  <Transition
+    appear={false}
+    enter={true}
+    exit={true}
+    in={true}
+    mountOnEnter={true}
+    nodeRef={
+      Object {
+        "current": <div
+          class="notification notification--success"
+        >
+          <div
+            class="notification__icon"
+          />
+          <span
+            class="notification__text"
+          >
+            Text
+          </span>
+        </div>,
+      }
+    }
+    onEnter={[Function]}
+    onEntered={[Function]}
+    onEntering={[Function]}
+    onExit={[Function]}
+    onExited={[Function]}
+    onExiting={[Function]}
+    timeout={400}
+    unmountOnExit={true}
+  >
+    <div
+      className="notification notification--success"
+    >
+      <div
+        className="notification__icon"
+      />
+      <span
+        className="notification__text"
+      >
+        Text
+      </span>
+    </div>
+  </Transition>
+</Notification>
+`;
+
+exports[`Notification Should render warning notification: Warning notification 1`] = `
+<Notification
+  onEntered={[MockFunction]}
+  text="Text"
+  visible={true}
+>
+  <Transition
+    appear={false}
+    enter={true}
+    exit={true}
+    in={true}
+    mountOnEnter={true}
+    nodeRef={
+      Object {
+        "current": <div
+          class="notification notification--warning"
+        >
+          <div
+            class="notification__icon"
+          />
+          <span
+            class="notification__text"
+          >
+            Text
+          </span>
+        </div>,
+      }
+    }
+    onEnter={[Function]}
+    onEntered={[Function]}
+    onEntering={[Function]}
+    onExit={[Function]}
+    onExited={[Function]}
+    onExiting={[Function]}
+    timeout={400}
+    unmountOnExit={true}
+  >
+    <div
+      className="notification notification--warning"
+    >
+      <div
+        className="notification__icon"
+      />
+      <span
+        className="notification__text"
+      >
+        Text
+      </span>
+    </div>
+  </Transition>
+</Notification>
+`;
+
+exports[`Notification Shouldn\`t render component: Hidden notification 1`] = `
+<Notification
+  onEntered={[MockFunction]}
+  text="Text"
+  visible={false}
+>
+  <Transition
+    appear={false}
+    enter={true}
+    exit={true}
+    in={false}
+    mountOnEnter={true}
+    nodeRef={
+      Object {
+        "current": null,
+      }
+    }
+    onEnter={[Function]}
+    onEntered={[Function]}
+    onEntering={[Function]}
+    onExit={[Function]}
+    onExited={[Function]}
+    onExiting={[Function]}
+    timeout={400}
+    unmountOnExit={true}
+  />
+</Notification>
+`;

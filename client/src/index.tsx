@@ -7,7 +7,7 @@ import 'assets/scss/style.scss'
 import store from 'store'
 import App from 'App'
 import {Loader} from 'components/common/Loader'
-import ErrorBoundary from 'components/common/ErrorBoundary'
+import ErrorBoundary from 'components/ErrorBoundary'
 
 render(
   <StrictMode>

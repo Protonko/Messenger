@@ -6,17 +6,17 @@ import {ReactComponent as CrossInCircle} from 'assets/icons/cross-in-circle.svg'
 import {ReactComponent as ExclamationMarkInTriangle} from 'assets/icons/exclamation-mark-in-triangle.svg'
 import {ReactComponent as Check} from 'assets/icons/check.svg'
 
-interface INotificationProps {
-  visible: boolean
-  onEntered: () => void
-  text: string
-  type?: NotificationType
-}
-
 export enum NotificationType {
   ERROR = 'ERROR',
   WARNING = 'WARNING',
   SUCCESS = 'SUCCESS',
+}
+
+export interface INotificationProps {
+  visible: boolean
+  onEntered: () => void
+  text: string
+  type?: NotificationType
 }
 
 const TRANSITION_CLASSNAMES = {
@@ -67,6 +67,7 @@ export const Notification: FC<INotificationProps> = ({
           {[TRANSITION_CLASSNAMES[state]]: !!TRANSITION_CLASSNAMES[state]},
           {'notification--success': type === NotificationType.SUCCESS},
           {'notification--error': type === NotificationType.ERROR},
+          {'notification--warning': type === NotificationType.WARNING},
         )
 
         return (
