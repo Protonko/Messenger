@@ -10,52 +10,58 @@ import {
 } from 'store/saga/dialogs'
 import {selectors} from 'store/saga/selectors'
 import {Status} from 'models/common/status'
-import {CreateDialogAction, DialogsActionTypes} from 'models/store/actions/dialogs'
+import {
+  CreateDialogAction,
+  DialogsActionTypes,
+} from 'models/store/actions/dialogs'
 import {DialogsApi} from 'api/Dialogs'
 
 describe('dialogs sagas', () => {
-  const dialogs = [{
-    id: '123',
-    name: 'name',
-    lastMessage: 'last message',
-    avatar: '',
-    edited: false,
-    createdAt: 'createdAt',
-    updatedAt: 'updatedAt',
-    messages: 1,
-    status: Status.MUTED,
-    readStatus: null,
-  }]
+  const dialogs = [
+    {
+      id: '123',
+      name: 'name',
+      lastMessage: 'last message',
+      avatar: '',
+      edited: false,
+      createdAt: 'createdAt',
+      updatedAt: 'updatedAt',
+      messages: 1,
+      status: Status.MUTED,
+      readStatus: null,
+    },
+  ]
 
   describe('get dialogs', () => {
     it('Should get error "ID not found!"', () => {
       return expectSaga(getDialogsWatcher)
-        .provide([
-          [select(selectors.getAuth), {account: null}],
-        ])
-        .put({type: DialogsActionTypes.GET_ERROR, payload: 'ID not found!'})
+        .provide([[select(selectors.getAuth), {account: null}]])
+        .put({
+          type: DialogsActionTypes.GET_ERROR,
+          payload: 'ID not found!',
+        })
         .dispatch({type: DialogsActionTypes.GET_START})
-        .run();
+        .run()
     })
 
     it('Should get success', () => {
       return expectSaga(getDialogsWorker)
         .provide([
           [select(selectors.getAuth), {account: {id: '123'}}],
-          [call.fn(DialogsApi.getDialogs), dialogs]
+          [call.fn(DialogsApi.getDialogs), dialogs],
         ])
         .put({type: DialogsActionTypes.GET_SUCCESS, payload: dialogs})
-        .run();
+        .run()
     })
 
     it('Should get error', () => {
       return expectSaga(getDialogsWorker)
         .provide([
           [select(selectors.getAuth), {account: {id: '123'}}],
-          [call.fn(DialogsApi.getDialogs), throwError(new Error('error'))]
+          [call.fn(DialogsApi.getDialogs), throwError(new Error('error'))],
         ])
         .put({type: DialogsActionTypes.GET_ERROR, payload: 'error'})
-        .run();
+        .run()
     })
   })
 
@@ -71,9 +77,12 @@ describe('dialogs sagas', () => {
           [select(selectors.getAuth), {account: null}],
           [select(selectors.getUsers), {selectedUserId: null}],
         ])
-        .put({type: DialogsActionTypes.CREATE_DIALOG_ERROR, payload: 'ID not found!'})
+        .put({
+          type: DialogsActionTypes.CREATE_DIALOG_ERROR,
+          payload: 'ID not found!',
+        })
         .dispatch({type: DialogsActionTypes.CREATE_DIALOG})
-        .run();
+        .run()
     })
 
     it('Should create dialog successfully', () => {
@@ -81,10 +90,13 @@ describe('dialogs sagas', () => {
         .provide([
           [select(selectors.getAuth), {account: {id: '123'}}],
           [select(selectors.getUsers), {selectedUserId: '321'}],
-          [call.fn(DialogsApi.createDialog), dialogs[0]]
+          [call.fn(DialogsApi.createDialog), dialogs[0]],
         ])
-        .put({type: DialogsActionTypes.CREATE_DIALOG_SUCCESS, payload: dialogs[0]})
-        .run();
+        .put({
+          type: DialogsActionTypes.CREATE_DIALOG_SUCCESS,
+          payload: dialogs[0],
+        })
+        .run()
     })
 
     it('Should get error', () => {
@@ -92,10 +104,13 @@ describe('dialogs sagas', () => {
         .provide([
           [select(selectors.getAuth), {account: {id: '123'}}],
           [select(selectors.getUsers), {selectedUserId: '321'}],
-          [call.fn(DialogsApi.createDialog), throwError(new Error('error'))]
+          [call.fn(DialogsApi.createDialog), throwError(new Error('error'))],
         ])
-        .put({type: DialogsActionTypes.CREATE_DIALOG_ERROR, payload: 'error'})
-        .run();
+        .put({
+          type: DialogsActionTypes.CREATE_DIALOG_ERROR,
+          payload: 'error',
+        })
+        .run()
     })
   })
 })

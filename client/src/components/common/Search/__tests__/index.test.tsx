@@ -49,7 +49,9 @@ describe('Search', () => {
   it('Search with custom placeholder', () => {
     props.placeholder = 'test'
     updateComponent(props)
-    expect(componentMount.find(`.${ELEMENT_SELECTORS.input}`).prop('placeholder')).toBe('test')
+    expect(
+      componentMount.find(`.${ELEMENT_SELECTORS.input}`).prop('placeholder'),
+    ).toBe('test')
     expect(componentMount).toMatchSnapshot('Search with custom placeholder')
   })
 

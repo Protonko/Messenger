@@ -17,10 +17,9 @@ export const User: FC<IPropsUser> = ({
   size,
   customStyles,
 }) => {
-  const classNamesUser = classNames(
-    'user',
-    {[customStyles ?? '']: !!customStyles},
-  )
+  const classNamesUser = classNames('user', {
+    [customStyles ?? '']: !!customStyles,
+  })
 
   return (
     <div className={classNamesUser}>

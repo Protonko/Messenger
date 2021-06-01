@@ -20,7 +20,7 @@ export const initialState = {
 
 const reducers = (
   state = initialState,
-  action: AllDialogsActions
+  action: AllDialogsActions,
 ): IInitialState => {
   switch (action.type) {
     case DialogsActionTypes.GET_START:
@@ -34,7 +34,7 @@ const reducers = (
         creating: state.creating,
         loading: false,
         errorMessage: null,
-        dialogs: action.payload
+        dialogs: action.payload,
       }
     case DialogsActionTypes.GET_ERROR:
       return {

@@ -21,5 +21,5 @@ render(
       </Router>
     </Provider>
   </StrictMode>,
-  document.getElementById('root')
+  document.getElementById('root'),
 )

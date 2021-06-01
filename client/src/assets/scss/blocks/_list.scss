@@ -1,8 +1,8 @@
 .list {
-    &--reset {
-        @include margin-vertical(0);
+  &--reset {
+    @include margin-vertical(0);
 
-        padding-left: 0;
-        list-style: none;
-    }
+    padding-left: 0;
+    list-style: none;
+  }
 }

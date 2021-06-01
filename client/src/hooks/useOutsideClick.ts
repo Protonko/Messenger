@@ -9,9 +9,9 @@ export const useOutsideClick = <T extends HTMLElement>(
     const target = event.target as HTMLElement
 
     if (
-      ref.current
-      && !ref.current.contains(target)
-      && !initiatorRef?.current?.contains(target)
+      ref.current &&
+      !ref.current.contains(target) &&
+      !initiatorRef?.current?.contains(target)
     ) {
       callback()
     }

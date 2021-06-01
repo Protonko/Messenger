@@ -1,18 +1,18 @@
 .user {
-    display: flex;
-    align-items: center;
-    flex-wrap: nowrap;
+  display: flex;
+  align-items: center;
+  flex-wrap: nowrap;
 
-    &__data {
-        margin-left: rem(10px);
+  &__data {
+    margin-left: rem(10px);
 
-        &-name {
-            margin-bottom: rem(5px);
-        }
-
-        &-description {
-            font-size: $font-size-small;
-            color: $grey;
-        }
+    &-name {
+      margin-bottom: rem(5px);
     }
+
+    &-description {
+      font-size: $font-size-small;
+      color: $grey;
+    }
+  }
 }

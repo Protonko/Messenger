@@ -1,10 +1,14 @@
 import {mount, ReactWrapper} from 'enzyme'
-import {INotificationProps, Notification, NotificationType} from 'components/common/Notification'
+import {
+  INotificationProps,
+  Notification,
+  NotificationType,
+} from 'components/common/Notification'
 
 const ELEMENT_SELECTORS = {
   success: 'notification--success',
   error: 'notification--error',
-  warning: 'notification--warning'
+  warning: 'notification--warning',
 }
 
 describe('Notification', () => {
@@ -18,9 +22,7 @@ describe('Notification', () => {
       text: 'Text',
     }
 
-    component = mount(
-      <Notification {...props} />
-    );
+    component = mount(<Notification {...props} />)
   })
 
   it('Shouldn`t render component', () => {
@@ -30,9 +32,7 @@ describe('Notification', () => {
   it('Should render warning notification', () => {
     props.visible = true
 
-    component = mount(
-      <Notification {...props} />
-    )
+    component = mount(<Notification {...props} />)
 
     expect(component.find(`.${ELEMENT_SELECTORS.warning}`).length).toBe(1)
     expect(component).toMatchSnapshot('Warning notification')
@@ -42,9 +42,7 @@ describe('Notification', () => {
     props.visible = true
     props.type = NotificationType.SUCCESS
 
-    component = mount(
-      <Notification {...props} />
-    )
+    component = mount(<Notification {...props} />)
 
     expect(component.find(`.${ELEMENT_SELECTORS.success}`).length).toBe(1)
     expect(component).toMatchSnapshot('Success notification')
@@ -54,9 +52,7 @@ describe('Notification', () => {
     props.visible = true
     props.type = NotificationType.ERROR
 
-    component = mount(
-      <Notification {...props} />
-    )
+    component = mount(<Notification {...props} />)
 
     expect(component.find(`.${ELEMENT_SELECTORS.error}`).length).toBe(1)
     expect(component).toMatchSnapshot('Error notification')

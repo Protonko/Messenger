@@ -62,59 +62,51 @@ describe('auth reducer', () => {
     },
     INVALID_TOKEN_ERROR: {
       type: ErrorActionTypes.INVALID_TOKEN_ERROR,
-      payload: 'error'
-    }
+      payload: 'error',
+    },
   }
 
   it('Should return the payload from SET_LOGIN_DATA action', () => {
-    expect(auth(initialState, ACTIONS.SET_LOGIN_DATA)).toEqual(
-      {
-        ...initialState,
-        token: ACTIONS.SET_LOGIN_DATA.payload.token,
-        account: ACTIONS.SET_LOGIN_DATA.payload.user,
-        errorMessage: false
-      },
-    )
+    expect(auth(initialState, ACTIONS.SET_LOGIN_DATA)).toEqual({
+      ...initialState,
+      token: ACTIONS.SET_LOGIN_DATA.payload.token,
+      account: ACTIONS.SET_LOGIN_DATA.payload.user,
+      errorMessage: false,
+    })
   })
 
   it('Should return the payload from SET_USER_DATA action', () => {
-    expect(auth(initialState, ACTIONS.SET_USER_DATA)).toEqual(
-      {
-        ...initialState,
-        account: ACTIONS.SET_USER_DATA.payload,
-      },
-    )
+    expect(auth(initialState, ACTIONS.SET_USER_DATA)).toEqual({
+      ...initialState,
+      account: ACTIONS.SET_USER_DATA.payload,
+    })
   })
 
   it('Should return the payload from SET_ERROR_MESSAGE action', () => {
-    expect(auth(initialState, ACTIONS.SET_ERROR_MESSAGE)).toEqual(
-      {
-        ...initialState,
-        errorMessage: ACTIONS.SET_ERROR_MESSAGE.payload,
-      },
-    )
+    expect(auth(initialState, ACTIONS.SET_ERROR_MESSAGE)).toEqual({
+      ...initialState,
+      errorMessage: ACTIONS.SET_ERROR_MESSAGE.payload,
+    })
   })
 
   it('Should return the payload from RESET_ERROR_MESSAGE action', () => {
-    expect(auth(initialState, ACTIONS.RESET_ERROR_MESSAGE)).toEqual(
-      {
-        ...initialState,
-        errorMessage: null,
-      },
-    )
+    expect(auth(initialState, ACTIONS.RESET_ERROR_MESSAGE)).toEqual({
+      ...initialState,
+      errorMessage: null,
+    })
   })
 
   it('Should return the payload from SET_SIGN_UP_DATA action', () => {
-    expect(auth(initialState, ACTIONS.SET_SIGN_UP_DATA)).toEqual(
-      {
-        ...initialState,
-        account: ACTIONS.SET_SIGN_UP_DATA.payload,
-      },
-    )
+    expect(auth(initialState, ACTIONS.SET_SIGN_UP_DATA)).toEqual({
+      ...initialState,
+      account: ACTIONS.SET_SIGN_UP_DATA.payload,
+    })
   })
 
   it('Should return initialState on INVALID_TOKEN_ERROR', () => {
-    expect(auth(initialState, ACTIONS.INVALID_TOKEN_ERROR)).toEqual(initialState)
+    expect(auth(initialState, ACTIONS.INVALID_TOKEN_ERROR)).toEqual(
+      initialState,
+    )
   })
 
   it('Should return state without changes', () => {

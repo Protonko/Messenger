@@ -9,7 +9,7 @@ import {WriteMessage} from './WriteMessage'
 import {SelectUsers} from './SelectUsers'
 
 export const CreateDialog = () => {
-  const {createErrorMessage} = useSelector((state: RootState) => (state.dialogs))
+  const {createErrorMessage} = useSelector((state: RootState) => state.dialogs)
   const dispatch = useDispatch()
   const [modalStepOneVisibility, setModalStepOneVisibility] = useState(false)
   const [modalStepTwoVisibility, setModalStepTwoVisibility] = useState(false)

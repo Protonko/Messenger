@@ -37,9 +37,10 @@ export const AuthForm: FC = () => {
         .min(6, 'The minimum password length is 6 characters')
         .required('Field is required'),
       isRegister: yup.boolean().default(false),
-      full_name: typeAuth === FormTypes.register
-        ? yup.string().required('Field is required')
-        : yup.string().notRequired()
+      full_name:
+        typeAuth === FormTypes.register
+          ? yup.string().required('Field is required')
+          : yup.string().notRequired(),
     }),
     onSubmit: ({email, password, full_name}) => {
       if (typeAuth === FormTypes.register) {
@@ -59,7 +60,7 @@ export const AuthForm: FC = () => {
 
   useEffect(() => {
     if (account?.id && typeAuth === FormTypes.register) {
-      setModalVisibility(true);
+      setModalVisibility(true)
     }
   }, [account?.id])
 
@@ -68,12 +69,11 @@ export const AuthForm: FC = () => {
     formik.resetForm()
 
     if (typeAuth === FormTypes.register) {
-      setInputsData(prev => ([
-        ...prev,
-        INPUT_NAME_DATA,
-      ]))
+      setInputsData((prev) => [...prev, INPUT_NAME_DATA])
     } else {
-      setInputsData(prev => prev.filter(input => input.name !== 'full_name'))
+      setInputsData((prev) =>
+        prev.filter((input) => input.name !== 'full_name'),
+      )
     }
   }, [typeAuth])
 
@@ -98,7 +98,10 @@ export const AuthForm: FC = () => {
           name={name}
           type={type}
           placeholder={placeholder}
-          error={((formik.touched[name] && formik.errors[name]) || errorMessage) ?? undefined}
+          error={
+            ((formik.touched[name] && formik.errors[name]) || errorMessage) ??
+            undefined
+          }
         />
       </li>
     )
@@ -112,9 +115,7 @@ export const AuthForm: FC = () => {
   return (
     <>
       <form className="auth-form" onSubmit={formik.handleSubmit}>
-        <Text type={TextTypes.h3}>
-          {FORM_DATA[typeAuth].title}
-        </Text>
+        <Text type={TextTypes.h3}>{FORM_DATA[typeAuth].title}</Text>
 
         <Text type={TextTypes.p} customStyles="auth-form__description">
           {FORM_DATA[typeAuth].description}
@@ -159,7 +160,8 @@ export const AuthForm: FC = () => {
             Success!
           </Text>
           <Text type={TextTypes.p} customStyles="auth-modal__description">
-            Registration successfully completed. Click on the "OK" button to enter the system
+            Registration successfully completed. Click on the "OK" button to
+            enter the system
           </Text>
         </div>
         <footer className="auth-modal__section auth-modal__section--footer">

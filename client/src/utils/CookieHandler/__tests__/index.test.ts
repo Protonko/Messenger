@@ -12,7 +12,9 @@ describe('CookieHandler', () => {
   })
 
   it('setCookie with expires options', () => {
-    CookieHandler.setCookie('key', 'value', {expires: new Date('2021-12-02')})
+    CookieHandler.setCookie('key', 'value', {
+      expires: new Date('2021-12-02'),
+    })
     expect(CookieHandler.getCookie('key')).toBe('value')
   })
 

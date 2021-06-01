@@ -13,7 +13,9 @@ export const Dialogs: FC = () => {
   const history = useHistory()
   const location = useLocation()
   const dispatch = useDispatch()
-  const {dialogs, loading, errorMessage} = useSelector((state: RootState) => state.dialogs)
+  const {dialogs, loading, errorMessage} = useSelector(
+    (state: RootState) => state.dialogs,
+  )
 
   useEffect(() => {
     dispatch(getDialogs())
@@ -24,7 +26,7 @@ export const Dialogs: FC = () => {
   }
 
   const renderItem = (dialog: IDialog) => {
-    const urlParams = new URLSearchParams(location.search);
+    const urlParams = new URLSearchParams(location.search)
 
     return (
       <li
@@ -46,7 +48,11 @@ export const Dialogs: FC = () => {
 
       <ContentContainer loading={loading} errorMessage={errorMessage}>
         <ul className="dialogs__list list list--reset">
-          {dialogs?.length ? dialogs.map(renderItem) : <li className="dialogs__item dialogs__item--empty">Empty</li>}
+          {dialogs?.length ? (
+            dialogs.map(renderItem)
+          ) : (
+            <li className="dialogs__item dialogs__item--empty">Empty</li>
+          )}
         </ul>
       </ContentContainer>
     </div>

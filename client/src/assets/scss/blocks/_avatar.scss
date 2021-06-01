@@ -1,47 +1,47 @@
 .avatar {
-    @include circle(50px);
+  @include circle(50px);
 
-    position: relative;
-    display: flex;
-    overflow: hidden;
-    align-items: center;
-    justify-content: center;
-    border: rem(1px) solid $wild-sand;
+  position: relative;
+  display: flex;
+  overflow: hidden;
+  align-items: center;
+  justify-content: center;
+  border: rem(1px) solid $wild-sand;
 
-    &--sm {
-        @include circle(30px);
-    }
-    &--sm & {
-        &__text {
-            font-size: $font-size-base;
-        }
-    }
-
-    &--lg {
-        @include circle(70px)
-    }
-    &--lg & {
-        &__text {
-            font-size: $font-size-large;
-        }
-    }
-
-    &__image {
-        z-index: 2;
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-    }
-
+  &--sm {
+    @include circle(30px);
+  }
+  &--sm & {
     &__text {
-        font-size: $font-size-big;
-
-        &--light {
-            color: $white;
-        }
-
-        &--black {
-            color: $black;
-        }
+      font-size: $font-size-base;
     }
+  }
+
+  &--lg {
+    @include circle(70px);
+  }
+  &--lg & {
+    &__text {
+      font-size: $font-size-large;
+    }
+  }
+
+  &__image {
+    z-index: 2;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  &__text {
+    font-size: $font-size-big;
+
+    &--light {
+      color: $white;
+    }
+
+    &--black {
+      color: $black;
+    }
+  }
 }

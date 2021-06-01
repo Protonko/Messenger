@@ -36,13 +36,13 @@ const reducers = (
     case AuthActionTypes.SET_ERROR_MESSAGE:
       return {
         ...state,
-        errorMessage: action.payload
+        errorMessage: action.payload,
       }
 
     case AuthActionTypes.RESET_ERROR_MESSAGE:
       return {
         ...state,
-        errorMessage: null
+        errorMessage: null,
       }
 
     case AuthActionTypes.SET_SIGN_UP_DATA:

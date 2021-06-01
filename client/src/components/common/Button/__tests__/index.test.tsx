@@ -12,9 +12,7 @@ const ELEMENT_SELECTORS = {
   additionalClassName: 'additional-class-name',
 }
 
-const shallowComponent = (props: IPropsButton) => (
-  shallow(<Button {...props} />)
-)
+const shallowComponent = (props: IPropsButton) => shallow(<Button {...props} />)
 
 describe('Button', () => {
   let props: IPropsButton = {}
@@ -91,8 +89,9 @@ describe('Button', () => {
     props.additionalClassName = ELEMENT_SELECTORS.additionalClassName
 
     const component = shallowComponent(props)
-    const additionalClassName =
-      component.find(`.${ELEMENT_SELECTORS.additionalClassName}`)
+    const additionalClassName = component.find(
+      `.${ELEMENT_SELECTORS.additionalClassName}`,
+    )
 
     expect(additionalClassName.length).toBe(1)
   })

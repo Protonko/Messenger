@@ -11,9 +11,7 @@ const ELEMENT_SELECTORS = {
   customClassName: 'custom',
 }
 
-const shallowComponent = (props: IPropsAvatar) => (
-  shallow(<Avatar {...props} />)
-)
+const shallowComponent = (props: IPropsAvatar) => shallow(<Avatar {...props} />)
 
 describe('Avatar', () => {
   let props: IPropsAvatar
@@ -23,7 +21,7 @@ describe('Avatar', () => {
     component = shallowComponent(props)
     props = {
       src: image,
-      size: Sizes.MEDIUM
+      size: Sizes.MEDIUM,
     }
   })
 
@@ -56,7 +54,9 @@ describe('Avatar', () => {
     props.customStyles = ELEMENT_SELECTORS.customClassName
     component = shallowComponent(props)
 
-    expect(component.find(`.${ELEMENT_SELECTORS.customClassName}`).length).toBe(1)
+    expect(component.find(`.${ELEMENT_SELECTORS.customClassName}`).length).toBe(
+      1,
+    )
   })
 
   it('Should return large classname', () => {
@@ -72,6 +72,8 @@ describe('Avatar', () => {
     component = shallowComponent(props)
 
     expect(component.find(`.${ELEMENT_SELECTORS.avatarText}`).length).toBe(1)
-    expect(component.find(`.${ELEMENT_SELECTORS.avatarText}`).text()).toBe(props.name.charAt(0))
+    expect(component.find(`.${ELEMENT_SELECTORS.avatarText}`).text()).toBe(
+      props.name.charAt(0),
+    )
   })
 })

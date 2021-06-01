@@ -1,30 +1,30 @@
 .textarea {
-    $padding: 8px;
-    $label-padding: $font-size-base + $padding;
+  $padding: 8px;
+  $label-padding: $font-size-base + $padding;
 
-    position: relative;
+  position: relative;
 
-    &__form {
-        width: 100%;
-        padding: rem($padding);
-        border-width: 0 0 rem(2px) 0;
-        border-color: $mercury;
-        outline: none;
-        resize: none;
+  &__form {
+    width: 100%;
+    padding: rem($padding);
+    border-width: 0 0 rem(2px) 0;
+    border-color: $mercury;
+    outline: none;
+    resize: none;
 
-        &:focus {
-            border-color: $brand-color;
-        }
-        &:focus ~ {
-            .input__label {
-                top: rem(-$label-padding);
-            }
-        }
-
-        &::placeholder {
-            font-size: rem($font-size-base);
-            font-weight: $font-weight-light;
-            color: $text-color-light;
-        }
+    &:focus {
+      border-color: $brand-color;
     }
+    &:focus ~ {
+      .input__label {
+        top: rem(-$label-padding);
+      }
+    }
+
+    &::placeholder {
+      font-size: rem($font-size-base);
+      font-weight: $font-weight-light;
+      color: $text-color-light;
+    }
+  }
 }

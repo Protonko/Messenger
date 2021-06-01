@@ -7,13 +7,10 @@ export interface IInitialState {
 
 export const initialState = {
   showErrorNotification: false,
-  errorMessage: ''
+  errorMessage: '',
 } as IInitialState
 
-const reducers = (
-  state = initialState,
-  action: AllErrorActions
-) => {
+const reducers = (state = initialState, action: AllErrorActions) => {
   switch (action.type) {
     case ErrorActionTypes.INVALID_TOKEN_ERROR:
       return {

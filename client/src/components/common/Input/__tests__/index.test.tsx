@@ -10,9 +10,7 @@ const ELEMENT_SELECTORS = {
   incorrect: 'input--incorrect',
 }
 
-const shallowComponent = (props: IPropsInput) => (
-  shallow(<Input {...props} />)
-)
+const shallowComponent = (props: IPropsInput) => shallow(<Input {...props} />)
 
 describe('Input', () => {
   let props: IPropsInput
@@ -21,7 +19,7 @@ describe('Input', () => {
   beforeEach(() => {
     props = {
       onChange: (event) => {
-        text = event.target.value;
+        text = event.target.value
       },
     }
   })
@@ -77,47 +75,39 @@ describe('Input', () => {
     expect(text).toBe('test changed')
   })
 
-  it(
-    `Input should contains className: ${ELEMENT_SELECTORS.inputWithValue}`,
-    () => {
-      props.value = 'test'
+  it(`Input should contains className: ${ELEMENT_SELECTORS.inputWithValue}`, () => {
+    props.value = 'test'
 
-      const component = shallowComponent(props)
-      const input = component.find(`.${ELEMENT_SELECTORS.inputWithValue}`)
+    const component = shallowComponent(props)
+    const input = component.find(`.${ELEMENT_SELECTORS.inputWithValue}`)
 
-      expect(input.length).toBe(1)
+    expect(input.length).toBe(1)
   })
 
-  it(
-    `Input should contains className: ${ELEMENT_SELECTORS.customClassName}`,
-    () => {
-      props.className = ELEMENT_SELECTORS.customClassName
+  it(`Input should contains className: ${ELEMENT_SELECTORS.customClassName}`, () => {
+    props.className = ELEMENT_SELECTORS.customClassName
 
-      const component = shallowComponent(props)
-      const input = component.find(`.${ELEMENT_SELECTORS.customClassName}`)
+    const component = shallowComponent(props)
+    const input = component.find(`.${ELEMENT_SELECTORS.customClassName}`)
 
-      expect(input.length).toBe(1)
-    })
+    expect(input.length).toBe(1)
+  })
 
-  it(
-    `Input should contains className: ${ELEMENT_SELECTORS.incorrect} on error`,
-    () => {
-      props.error = 'error message'
+  it(`Input should contains className: ${ELEMENT_SELECTORS.incorrect} on error`, () => {
+    props.error = 'error message'
 
-      const component = shallowComponent(props)
-      const input = component.find(`.${ELEMENT_SELECTORS.incorrect}`)
+    const component = shallowComponent(props)
+    const input = component.find(`.${ELEMENT_SELECTORS.incorrect}`)
 
-      expect(input.length).toBe(1)
-    })
+    expect(input.length).toBe(1)
+  })
 
-  it(
-    `Input should return error`,
-    () => {
-      props.error = 'error message'
+  it(`Input should return error`, () => {
+    props.error = 'error message'
 
-      const component = shallowComponent(props)
-      const label = component.find(`.${ELEMENT_SELECTORS.label}`)
+    const component = shallowComponent(props)
+    const label = component.find(`.${ELEMENT_SELECTORS.label}`)
 
-      expect(label.text()).toBe('error message')
-    })
+    expect(label.text()).toBe('error message')
+  })
 })

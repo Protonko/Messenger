@@ -40,7 +40,7 @@ class ErrorBoundary extends Component<IProps, IState> {
   componentDidCatch(error: Error, errorInfo: ErrorInfo) {
     this.setState({
       error: error,
-      errorInfo: errorInfo
+      errorInfo: errorInfo,
     })
   }
 
@@ -51,7 +51,7 @@ class ErrorBoundary extends Component<IProps, IState> {
           <h1>Something went wring.</h1>
 
           {process.env.NODE_ENV === 'development' && (
-            <details style={{ whiteSpace: 'pre-wrap' }}>
+            <details style={{whiteSpace: 'pre-wrap'}}>
               {this.state.error?.toString()}
               <br />
               {this.state.errorInfo?.componentStack}
@@ -81,11 +81,10 @@ const mapStateToProps = ({error}: {error: IInitialState}) => ({
   errorMessage: error.errorMessage,
 })
 
-const mapDispatchToProps = (dispatch: Dispatch<HideErrorNotificationAction>) => ({
-  hideErrorNotification: () => dispatch(hideErrorNotification())
+const mapDispatchToProps = (
+  dispatch: Dispatch<HideErrorNotificationAction>,
+) => ({
+  hideErrorNotification: () => dispatch(hideErrorNotification()),
 })
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(ErrorBoundary)
+export default connect(mapStateToProps, mapDispatchToProps)(ErrorBoundary)

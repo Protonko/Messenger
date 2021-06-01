@@ -11,7 +11,7 @@ export interface IPropsModal {
   initiatorRef?: RefObject<HTMLElement>
   modalVisibility: boolean
   toggleVisibilityModal: (visibility: boolean) => void
-  onClose?: () => void;
+  onClose?: () => void
   timeout?: number
   width?: number
   height?: number
@@ -38,10 +38,14 @@ export const ModalContent: FC<IPropsModal> = ({
   initiatorRef,
 }) => {
   const modal = useRef<HTMLElement>(null)
-  useOutsideClick<HTMLElement>(modal, () => {
-    onClose?.()
-    toggleVisibilityModal(false)
-  }, initiatorRef)
+  useOutsideClick<HTMLElement>(
+    modal,
+    () => {
+      onClose?.()
+      toggleVisibilityModal(false)
+    },
+    initiatorRef,
+  )
 
   return (
     <Transition
@@ -51,15 +55,13 @@ export const ModalContent: FC<IPropsModal> = ({
       mountOnEnter={true}
       unmountOnExit={true}
     >
-      {state => {
-        const classNamesModal = classNames(
-          'modal',
-          {[TRANSITION_CLASSNAMES[state]]: !!TRANSITION_CLASSNAMES[state]}
-        )
-        const classNamesModalContent = classNames(
-          'modal__popup',
-          {[customStyles ?? '']: !!customStyles}
-        )
+      {(state) => {
+        const classNamesModal = classNames('modal', {
+          [TRANSITION_CLASSNAMES[state]]: !!TRANSITION_CLASSNAMES[state],
+        })
+        const classNamesModalContent = classNames('modal__popup', {
+          [customStyles ?? '']: !!customStyles,
+        })
 
         return (
           <div className={classNamesModal}>
@@ -78,14 +80,12 @@ export const ModalContent: FC<IPropsModal> = ({
 }
 
 export const Modal = ({children, ...props}: IPropsModal): ReactPortal => {
-    const portalRoot = document.getElementById('portal-modal') as HTMLElement
-    const el = useRef(document.createElement('div'))
-    portalRoot.appendChild(el.current)
+  const portalRoot = document.getElementById('portal-modal') as HTMLElement
+  const el = useRef(document.createElement('div'))
+  portalRoot.appendChild(el.current)
 
-    return createPortal(
-      <ModalContent {...props}>
-        {children}
-      </ModalContent>,
-      el.current
-    )
+  return createPortal(
+    <ModalContent {...props}>{children}</ModalContent>,
+    el.current,
+  )
 }

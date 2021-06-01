@@ -1,45 +1,45 @@
 .notification {
-    position: absolute;
-    right: 0;
-    left: 0;
-    display: flex;
-    align-items: center;
-    width: rem(720px);
-    margin: rem(20px) auto;
-    padding: rem(20px);
-    border-radius: rem(5px);
-    background-color: $warning-color;
+  position: absolute;
+  right: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  width: rem(720px);
+  margin: rem(20px) auto;
+  padding: rem(20px);
+  border-radius: rem(5px);
+  background-color: $warning-color;
 
-    &--success {
-        background-color: $success-color;
+  &--success {
+    background-color: $success-color;
+  }
+
+  &--error {
+    background-color: $error-color;
+  }
+
+  &--slide-in-down {
+    animation-name: slideInDown;
+    animation-duration: $transition-duration-long;
+  }
+
+  &--slide-in-up {
+    animation-name: slideInUp;
+    animation-duration: $transition-duration-long;
+  }
+
+  &__icon {
+    @include square(20px);
+
+    color: $white;
+
+    &:not(:last-child) {
+      margin-right: rem(10px);
     }
+  }
 
-    &--error {
-        background-color: $error-color;
-    }
-
-    &--slide-in-down {
-        animation-name: slideInDown;
-        animation-duration: $transition-duration-long;
-    }
-
-    &--slide-in-up {
-        animation-name: slideInUp;
-        animation-duration: $transition-duration-long;
-    }
-
-    &__icon {
-        @include square(20px);
-
-        color: $white;
-
-        &:not(:last-child) {
-            margin-right: rem(10px);
-        }
-    }
-
-    &__text {
-        font-size: $font-size-big;
-        color: $white;
-    }
+  &__text {
+    font-size: $font-size-big;
+    color: $white;
+  }
 }

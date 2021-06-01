@@ -29,7 +29,7 @@ export const Search: FC<IPropsSearch> = ({
     'search',
     {'search--small': size === Sizes.SMALL},
     {'search--large': size === Sizes.LARGE},
-    {[customStyles ?? '']: !!customStyles}
+    {[customStyles ?? '']: !!customStyles},
   ])
 
   return (

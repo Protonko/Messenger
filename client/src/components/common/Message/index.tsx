@@ -15,10 +15,9 @@ export const Message: FC<IPropsMessage> = ({
   customStyles,
   ...avatarProps
 }) => {
-  const classNamesMessage = classNames(
-    'message',
-    {[customStyles ?? '']: !!customStyles},
-  )
+  const classNamesMessage = classNames('message', {
+    [customStyles ?? '']: !!customStyles,
+  })
 
   return (
     <div className={classNamesMessage}>
@@ -43,7 +42,11 @@ export const Message: FC<IPropsMessage> = ({
             >
               text
             </Text>
-            <img className="message__content-item message__content-item--image" src="" alt="#" />
+            <img
+              className="message__content-item message__content-item--image"
+              src=""
+              alt="#"
+            />
           </div>
         </div>
 

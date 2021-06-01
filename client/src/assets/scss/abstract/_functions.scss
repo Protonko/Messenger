@@ -1,15 +1,15 @@
 @function rem($pixels, $context: $font-size-base) {
-    @if (unitless($pixels)) {
-        $pixels: $pixels * 1px;
-    }
+  @if (unitless($pixels)) {
+    $pixels: $pixels * 1px;
+  }
 
-    @if (unitless($context)) {
-        $context: $context * 1px
-    }
+  @if (unitless($context)) {
+    $context: $context * 1px;
+  }
 
-    @return $pixels / $context * 1rem;
+  @return $pixels / $context * 1rem;
 }
 
 @function percentages($target, $context) {
-    @return $target / $context * 100%;
+  @return $target / $context * 100%;
 }

@@ -1,20 +1,20 @@
 .auth-modal {
-    &__description {
-        line-height: 21 / unitless($font-size-base);
-        padding-top: rem(15px);
-        color: $dusty-gray;
+  &__description {
+    line-height: 21 / unitless($font-size-base);
+    padding-top: rem(15px);
+    color: $dusty-gray;
+  }
+
+  &__section {
+    &--content {
+      flex-grow: 1;
     }
 
-    &__section {
-        &--content {
-            flex-grow: 1;
-        }
-
-        &--footer {
-            display: flex;
-            flex-shrink: 0;
-            justify-content: flex-end;
-            padding-top: rem(20px);
-        }
+    &--footer {
+      display: flex;
+      flex-shrink: 0;
+      justify-content: flex-end;
+      padding-top: rem(20px);
     }
+  }
 }

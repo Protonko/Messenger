@@ -21,7 +21,7 @@ const App = () => {
     api.defaults.headers.common['token'] = token
 
     if (tokenFromCookie && !tokenFromStore) {
-      dispatch((setUserData(parseJWT<IAuthToken>(tokenFromCookie).data)))
+      dispatch(setUserData(parseJWT<IAuthToken>(tokenFromCookie).data))
     }
   }, [token])
 

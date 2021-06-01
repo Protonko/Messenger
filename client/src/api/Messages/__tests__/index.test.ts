@@ -19,28 +19,28 @@ describe('MessagesApi', () => {
       createdAt: 'createdAt',
       updatedAt: 'updatedAt',
     },
-}
+  }
 
   it('Should return success response', async () => {
-    (axios.post as jest.Mock).mockResolvedValue(RESPONSE_CREATE_SUCCESS)
+    ;(axios.post as jest.Mock).mockResolvedValue(RESPONSE_CREATE_SUCCESS)
 
-    return MessagesApi.createMessage(BODY_CREATE).then(response => {
+    return MessagesApi.createMessage(BODY_CREATE).then((response) => {
       expect(response).toEqual(RESPONSE_CREATE_SUCCESS.data)
     })
   })
 
   it('Should return error response if status is 400', async () => {
-    (axios.post as jest.Mock).mockResolvedValue(mockRejectedJSON)
+    ;(axios.post as jest.Mock).mockResolvedValue(mockRejectedJSON)
 
-    return MessagesApi.createMessage(BODY_CREATE).catch(err => {
+    return MessagesApi.createMessage(BODY_CREATE).catch((err) => {
       expect(err).toEqual(RESPONSE_ERROR.statusText)
     })
   })
 
   it('Should return error response', async () => {
-    (axios.post as jest.Mock).mockRejectedValue(RESPONSE_ERROR)
+    ;(axios.post as jest.Mock).mockRejectedValue(RESPONSE_ERROR)
 
-    return MessagesApi.createMessage(BODY_CREATE).catch(err => {
+    return MessagesApi.createMessage(BODY_CREATE).catch((err) => {
       expect(err).toEqual(RESPONSE_ERROR.response)
     })
   })

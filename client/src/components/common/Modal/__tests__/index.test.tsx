@@ -13,7 +13,7 @@ describe('Modal component', () => {
   const Child = () => <div>Yolo</div>
   const portalRoot = document.createElement('div')
   const body = document.querySelector('body')
-  const fn = jest.fn();
+  const fn = jest.fn()
 
   portalRoot.setAttribute('id', 'portal-modal')
   body!.appendChild(portalRoot)
@@ -32,7 +32,7 @@ describe('Modal component', () => {
       <Modal {...props}>
         <Child />
       </Modal>,
-    );
+    )
   })
 
   it('Should create portal with ModalContent component', () => {
@@ -55,7 +55,7 @@ describe('Modal component', () => {
       <ModalContent {...props}>
         <Child />
       </ModalContent>,
-    );
+    )
     const popup = component.find(`.${ELEMENT_SELECTORS.popup}`)
 
     expect(popup.prop('style')).toHaveProperty('width', rem(props.width))
@@ -69,7 +69,7 @@ describe('Modal component', () => {
       <ModalContent {...props}>
         <Child />
       </ModalContent>,
-    );
+    )
 
     expect(component.find(Transition).prop('timeout')).toBe(160)
   })
@@ -81,7 +81,7 @@ describe('Modal component', () => {
       <ModalContent {...props}>
         <Child />
       </ModalContent>,
-    );
+    )
 
     expect(component.find(`.${ELEMENT_SELECTORS.customStyle}`).length).toBe(1)
   })

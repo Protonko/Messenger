@@ -1,16 +1,15 @@
 import {render} from 'enzyme'
 import {IPropsText, Text} from 'components/common/Text'
-import {withDot} from 'hoc/withDot';
+import {withDot} from 'hoc/withDot'
 
 const ELEMENT_SELECTORS = {
   text: 'text',
 }
 
-const DotComponent = withDot(Text);
+const DotComponent = withDot(Text)
 
-const renderComponent = (props: IPropsText) => (
+const renderComponent = (props: IPropsText) =>
   render(<DotComponent {...props} />)
-)
 
 describe('withDot', () => {
   let props: IPropsText

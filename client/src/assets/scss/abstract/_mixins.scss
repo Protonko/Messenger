@@ -1,41 +1,41 @@
 @mixin margin-horizontal($value) {
-    margin-right: rem($value);
-    margin-left: rem($value);
+  margin-right: rem($value);
+  margin-left: rem($value);
 }
 
 @mixin margin-vertical($value) {
-    margin-top: rem($value);
-    margin-bottom: rem($value);
+  margin-top: rem($value);
+  margin-bottom: rem($value);
 }
 
 @mixin padding-horizontal($value) {
-    padding-right: rem($value);
-    padding-left: rem($value);
+  padding-right: rem($value);
+  padding-left: rem($value);
 }
 
 @mixin padding-vertical($value) {
-    padding-top: rem($value);
-    padding-bottom: rem($value);
+  padding-top: rem($value);
+  padding-bottom: rem($value);
 }
 
 @mixin centering() {
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    margin: auto;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  margin: auto;
 }
 
 @mixin circle($value) {
-    width: rem($value);
-    min-width: rem($value);
-    height: rem($value);
-    border-radius: rem($value);
+  width: rem($value);
+  min-width: rem($value);
+  height: rem($value);
+  border-radius: rem($value);
 }
 
 @mixin square($value) {
-    width: rem($value);
-    height: rem($value);
+  width: rem($value);
+  height: rem($value);
 }
 
 /*
@@ -45,15 +45,15 @@
   @include object-fit(cover, top);
 */
 @mixin object-fit($fit: fill, $position: null) {
-    -o-object-fit: $fit;
-    object-fit: $fit;
+  -o-object-fit: $fit;
+  object-fit: $fit;
 
-    @if $position {
-        -o-object-position: $position;
-        object-position: $position;
+  @if $position {
+    -o-object-position: $position;
+    object-position: $position;
 
-        font-family: "object-fit: #{$fit}; object-position: #{$position}";
-    } @else {
-        font-family: "object-fit: #{$fit}";
-    }
+    font-family: 'object-fit: #{$fit}; object-position: #{$position}';
+  } @else {
+    font-family: 'object-fit: #{$fit}';
+  }
 }

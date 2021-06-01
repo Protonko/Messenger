@@ -6,21 +6,18 @@ import {rootWatcher} from './saga'
 
 declare global {
   interface Window {
-    __REDUX_DEVTOOLS_EXTENSION_COMPOSE__?: typeof compose;
+    __REDUX_DEVTOOLS_EXTENSION_COMPOSE__?: typeof compose
   }
 }
 
 const sagaMiddleware = createSagaMiddleware()
-const middleware = [sagaMiddleware, logger];
+const middleware = [sagaMiddleware, logger]
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
 
 export default createStore(
   rootReducer,
   {},
-  compose(applyMiddleware(
-    ...middleware),
-    composeEnhancers(),
-  )
-);
+  compose(applyMiddleware(...middleware), composeEnhancers()),
+)
 
 sagaMiddleware.run(rootWatcher)

@@ -15,16 +15,14 @@ const ELEMENT_SELECTORS = {
   custom: 'custom-style',
 }
 
-const renderComponent = (props: IPropsText) => (
-  render(<Text {...props} />)
-)
+const renderComponent = (props: IPropsText) => render(<Text {...props} />)
 
 describe('Text', () => {
   let props: IPropsText
 
   beforeEach(() => {
     props = {
-      children: 'Hello world'
+      children: 'Hello world',
     }
   })
 

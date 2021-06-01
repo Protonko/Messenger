@@ -26,15 +26,14 @@ export const Dialog: FC<IDialogProps> = ({
   readStatus,
   selected,
 }) => {
-  const classNameDialog = classNames(
-    'dialog',
-    {'dialog--selected': selected},
-  )
+  const classNameDialog = classNames('dialog', {
+    'dialog--selected': selected,
+  })
   const counter = messages.toString().length > 2 ? '99+' : messages
 
   const renderStatus = () => {
     if (!!counter) {
-      return <Counter count={counter} status={status}/>
+      return <Counter count={counter} status={status} />
     }
 
     if (readStatus) {
@@ -43,7 +42,11 @@ export const Dialog: FC<IDialogProps> = ({
         height: 15,
         color: COLORS.dustyGray,
       }
-      return readStatus === ReadStatus.READ ? <DoubleCheck {...props} /> : <Check {...props} />
+      return readStatus === ReadStatus.READ ? (
+        <DoubleCheck {...props} />
+      ) : (
+        <Check {...props} />
+      )
     }
 
     return null

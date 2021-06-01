@@ -7,9 +7,8 @@ const ELEMENT_SELECTORS = {
   counterMuted: 'counter--muted',
 }
 
-const shallowComponent = (props: IPropsCounter) => (
+const shallowComponent = (props: IPropsCounter) =>
   shallow(<Counter {...props} />)
-)
 
 describe('Counter', () => {
   let props: IPropsCounter

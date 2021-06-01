@@ -1,13 +1,18 @@
 export class CookieHandler {
   static getCookie(name: string) {
-    return document.cookie
+    return (
+      document.cookie
         .split('; ')
-        .find(row => row.startsWith(`${name}=`))
-        ?.split('=')[1]
-      ?? ''
+        .find((row) => row.startsWith(`${name}=`))
+        ?.split('=')[1] ?? ''
+    )
   }
 
-  static setCookie(name: string, value: string, options: Record<string, any> = {}) {
+  static setCookie(
+    name: string,
+    value: string,
+    options: Record<string, any> = {},
+  ) {
     options = {
       path: '/',
       ...options,
@@ -17,7 +22,9 @@ export class CookieHandler {
       options.expires = options.expires.toUTCString()
     }
 
-    let updatedCookie = `${encodeURIComponent(name)}=${encodeURIComponent(value)}`
+    let updatedCookie = `${encodeURIComponent(name)}=${encodeURIComponent(
+      value,
+    )}`
 
     for (let optionKey in options) {
       updatedCookie += '; ' + optionKey

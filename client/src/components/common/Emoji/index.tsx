@@ -1,6 +1,6 @@
 import 'emoji-mart/css/emoji-mart.css'
 import {FC, useState, useRef} from 'react'
-import {EmojiData, Picker, } from 'emoji-mart'
+import {EmojiData, Picker} from 'emoji-mart'
 import {ReactComponent as Smile} from 'assets/icons/smile.svg'
 import {useOutsideClick} from 'hooks/useOutsideClick'
 

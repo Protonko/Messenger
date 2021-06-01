@@ -9,14 +9,12 @@ const ELEMENT_SELECTORS = {
   loaderCenter: 'loader--center',
 }
 
-const shallowComponent = (props: IPropsLoader) => (
-  shallow(<Loader {...props} />)
-)
+const shallowComponent = (props: IPropsLoader) => shallow(<Loader {...props} />)
 
 describe('Loader', () => {
   let props: IPropsLoader
   beforeEach(() => {
-    props = {};
+    props = {}
   })
   it('Should render Loader component', () => {
     const component = shallowComponent(props)

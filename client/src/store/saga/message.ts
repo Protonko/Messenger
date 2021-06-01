@@ -1,7 +1,10 @@
 import type {ICreateMessageBody, IMessage} from 'models/message'
 import type {IInitialState as UsersState} from 'store/reducers/users'
 import {call, put, select, takeEvery} from 'redux-saga/effects'
-import {CreateMessageAction, MessageActionsTypes} from 'models/store/actions/message'
+import {
+  CreateMessageAction,
+  MessageActionsTypes,
+} from 'models/store/actions/message'
 import {MessagesApi} from 'api/Messages'
 import {createMessageError, createMessageSuccess} from 'store/actions/message'
 import {errorHandler} from 'utils/errorHandler'

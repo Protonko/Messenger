@@ -10,15 +10,15 @@ describe('UserApi', () => {
 
   const BODY_SIGN_UP = {
     ...BODY_LOGIN,
-    full_name: 'full name'
+    full_name: 'full name',
   }
 
   const RESPONSE_LOGIN_SUCCESS = {
     status: 200,
     statusText: 'Ok',
     data: {
-      token: 'testToken123'
-    }
+      token: 'testToken123',
+    },
   }
 
   const RESPONSE_SIGN_UP_SUCCESS = {
@@ -32,7 +32,7 @@ describe('UserApi', () => {
       full_name: 'full name',
       last_seen: new Date(),
       updatedAt: new Date(),
-      id: 'a32d'
+      id: 'a32d',
     },
   }
 
@@ -42,25 +42,25 @@ describe('UserApi', () => {
 
   describe('login', () => {
     it('Should return success response', async () => {
-      (axios.post as jest.Mock).mockResolvedValue(mockResolvedLoginJSON)
+      ;(axios.post as jest.Mock).mockResolvedValue(mockResolvedLoginJSON)
 
-      return UserApi.login(BODY_LOGIN).then(response => {
+      return UserApi.login(BODY_LOGIN).then((response) => {
         expect(response).toEqual(RESPONSE_LOGIN_SUCCESS.data)
       })
     })
 
     it('Should return error response if status is 400', async () => {
-      (axios.post as jest.Mock).mockResolvedValue(mockRejectedJSON)
+      ;(axios.post as jest.Mock).mockResolvedValue(mockRejectedJSON)
 
-      return UserApi.login(BODY_LOGIN).catch(err => {
+      return UserApi.login(BODY_LOGIN).catch((err) => {
         expect(err).toEqual(RESPONSE_ERROR.statusText)
       })
     })
 
     it('Should return error response', async () => {
-      (axios.post as jest.Mock).mockRejectedValue(RESPONSE_ERROR)
+      ;(axios.post as jest.Mock).mockRejectedValue(RESPONSE_ERROR)
 
-      return UserApi.login(BODY_LOGIN).catch(err => {
+      return UserApi.login(BODY_LOGIN).catch((err) => {
         expect(err).toEqual(RESPONSE_ERROR.response)
       })
     })
@@ -68,25 +68,25 @@ describe('UserApi', () => {
 
   describe('signUp', () => {
     it('Should return success response', async () => {
-      (axios.post as jest.Mock).mockResolvedValue(mockResolvedSignUpJSON)
+      ;(axios.post as jest.Mock).mockResolvedValue(mockResolvedSignUpJSON)
 
-      return UserApi.signUp(BODY_SIGN_UP).then(response => {
+      return UserApi.signUp(BODY_SIGN_UP).then((response) => {
         expect(response).toEqual(RESPONSE_SIGN_UP_SUCCESS.data)
       })
     })
 
     it('Should return error response if status is 400', async () => {
-      (axios.post as jest.Mock).mockResolvedValue(mockRejectedJSON)
+      ;(axios.post as jest.Mock).mockResolvedValue(mockRejectedJSON)
 
-      return UserApi.signUp(BODY_SIGN_UP).catch(err => {
+      return UserApi.signUp(BODY_SIGN_UP).catch((err) => {
         expect(err).toEqual(RESPONSE_ERROR.statusText)
       })
     })
 
     it('Should return error response', async () => {
-      (axios.post as jest.Mock).mockRejectedValue(RESPONSE_ERROR)
+      ;(axios.post as jest.Mock).mockRejectedValue(RESPONSE_ERROR)
 
-      return UserApi.signUp(BODY_SIGN_UP).catch(err => {
+      return UserApi.signUp(BODY_SIGN_UP).catch((err) => {
         expect(err).toEqual(RESPONSE_ERROR.response)
       })
     })
@@ -94,25 +94,25 @@ describe('UserApi', () => {
 
   describe('getUsers', () => {
     it('Should return success response', async () => {
-      (axios.get as jest.Mock).mockResolvedValue(mockResolvedSignUpJSON)
+      ;(axios.get as jest.Mock).mockResolvedValue(mockResolvedSignUpJSON)
 
-      return UserApi.getUsers().then(response => {
+      return UserApi.getUsers().then((response) => {
         expect(response).toEqual(RESPONSE_SIGN_UP_SUCCESS.data)
       })
     })
 
     it('Should return error response if status is 400', async () => {
-      (axios.get as jest.Mock).mockResolvedValue(mockRejectedJSON)
+      ;(axios.get as jest.Mock).mockResolvedValue(mockRejectedJSON)
 
-      return UserApi.getUsers().catch(err => {
+      return UserApi.getUsers().catch((err) => {
         expect(err).toEqual(RESPONSE_ERROR.statusText)
       })
     })
 
     it('Should return error response', async () => {
-      (axios.get as jest.Mock).mockRejectedValue(RESPONSE_ERROR)
+      ;(axios.get as jest.Mock).mockRejectedValue(RESPONSE_ERROR)
 
-      return UserApi.getUsers().catch(err => {
+      return UserApi.getUsers().catch((err) => {
         console.log('ALLO', err)
         expect(err).toEqual(RESPONSE_ERROR.response)
       })

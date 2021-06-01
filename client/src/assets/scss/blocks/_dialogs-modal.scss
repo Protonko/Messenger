@@ -1,36 +1,35 @@
 .dialogs-modal {
-    $padding: 20px;
+  $padding: 20px;
 
-    &__section {
-        margin: rem(-$padding);
+  &__section {
+    margin: rem(-$padding);
 
-        &--header {
-            padding: rem($padding);
-            background-color: $brand-color;
-        }
-
-        &--body {
-            flex-grow: 1;
-            margin-top: rem($padding);
-        }
-
-        &--footer {
-            text-align: right;
-            padding: rem($padding);
-        }
+    &--header {
+      padding: rem($padding);
+      background-color: $brand-color;
     }
 
-    &__error {
-        margin-top: rem(25px);
-        text-align: center;
-
+    &--body {
+      flex-grow: 1;
+      margin-top: rem($padding);
     }
 
-    &__title {
-        color: $white;
+    &--footer {
+      text-align: right;
+      padding: rem($padding);
     }
+  }
 
-    &__textarea {
-        padding: rem(10px);
-    }
+  &__error {
+    margin-top: rem(25px);
+    text-align: center;
+  }
+
+  &__title {
+    color: $white;
+  }
+
+  &__textarea {
+    padding: rem(10px);
+  }
 }

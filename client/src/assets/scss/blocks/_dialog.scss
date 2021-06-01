@@ -1,79 +1,79 @@
 .dialog {
-    $horizontal-gutter: 10px;
-    $vertical-gutter: 10px;
+  $horizontal-gutter: 10px;
+  $vertical-gutter: 10px;
 
-    display: flex;
-    align-items: center;
-    padding-top: rem($vertical-gutter / 2);
-    padding-left: rem($horizontal-gutter);
-    transition: background-color $transition-duration;
-    cursor: pointer;
+  display: flex;
+  align-items: center;
+  padding-top: rem($vertical-gutter / 2);
+  padding-left: rem($horizontal-gutter);
+  transition: background-color $transition-duration;
+  cursor: pointer;
+
+  &:hover {
+    background-color: rgba($brand-color, 0.1);
+  }
+
+  &--active {
+    background-color: $brand-color;
+  }
+
+  &--selected {
+    background-color: $brand-color;
 
     &:hover {
-        background-color: rgba($brand-color, .1);
+      background-color: $brand-color;
     }
-
-    &--active {
-        background-color: $brand-color;
-    }
-
-    &--selected {
-        background-color: $brand-color;
-
-        &:hover {
-            background-color: $brand-color;
-        }
-    }
-    &--selected & {
-        &__text {
-            &-title,
-            &-description {
-                color: $white;
-            }
-        }
-
-        &__info {
-            &-date {
-                color: $white;
-            }
-        }
-    }
-
-    &__avatar {
-        margin-bottom: rem($vertical-gutter / 2);
-    }
-
-    &__data {
-        @include padding-vertical($vertical-gutter);
-
-        flex: 1;
-        display: flex;
-        justify-content: space-between;
-        border-bottom: rem(1px) solid rgba($alto, .5);
-    }
-
+  }
+  &--selected & {
     &__text {
-        @include margin-horizontal($horizontal-gutter);
-
-        &-title {
-            margin-bottom: rem(5px);
-        }
-
-        &-description {
-            font-size: $font-size-small;
-            color: $grey;
-        }
+      &-title,
+      &-description {
+        color: $white;
+      }
     }
 
     &__info {
-        display: flex;
-        align-items: flex-end;
-        flex-direction: column;
-        padding-right: rem(10px);
-
-        &-date {
-            margin-bottom: rem(5px);
-            color: $text-color-light;
-        }
+      &-date {
+        color: $white;
+      }
     }
+  }
+
+  &__avatar {
+    margin-bottom: rem($vertical-gutter / 2);
+  }
+
+  &__data {
+    @include padding-vertical($vertical-gutter);
+
+    flex: 1;
+    display: flex;
+    justify-content: space-between;
+    border-bottom: rem(1px) solid rgba($alto, 0.5);
+  }
+
+  &__text {
+    @include margin-horizontal($horizontal-gutter);
+
+    &-title {
+      margin-bottom: rem(5px);
+    }
+
+    &-description {
+      font-size: $font-size-small;
+      color: $grey;
+    }
+  }
+
+  &__info {
+    display: flex;
+    align-items: flex-end;
+    flex-direction: column;
+    padding-right: rem(10px);
+
+    &-date {
+      margin-bottom: rem(5px);
+      color: $text-color-light;
+    }
+  }
 }

@@ -1,72 +1,72 @@
 .input {
-    $padding: 8px;
-    $label-padding: $font-size-base + $padding;
+  $padding: 8px;
+  $label-padding: $font-size-base + $padding;
 
-    position: relative;
-    margin-top: rem($label-padding * 1.5);
+  position: relative;
+  margin-top: rem($label-padding * 1.5);
 
-    &--without-label {
-        margin-top: 0;
+  &--without-label {
+    margin-top: 0;
+  }
+  &--without-label & {
+    &__form {
+      &:focus ~ {
+        .input__label {
+          top: rem($padding);
+        }
+      }
     }
-    &--without-label & {
-        &__form {
-            &:focus ~ {
-                .input__label {
-                    top: rem($padding);
-                }
-            }
-        }
+  }
+  &--has-value & {
+    &__label {
+      top: rem(-$label-padding);
     }
-    &--has-value & {
-        &__label {
-            top: rem(-$label-padding);
-        }
-    }
+  }
 
-    &--incorrect & {
-        &__form,
-        &__form:focus {
-            border-color: $error-color;
-        }
-
-        &__label {
-            color: $error-color;
-        }
+  &--incorrect & {
+    &__form,
+    &__form:focus {
+      border-color: $error-color;
     }
 
     &__label {
-        font-size: rem($font-size-base);
-        font-weight: $font-weight-light;
-        position: absolute;
-        top: rem($padding);
-        left: rem($padding);
-        transition-property: top;
-        transition-duration: $transition-duration-short;
-        transition-timing-function: cubic-bezier(.35, 0, .25, 1);
-        pointer-events: none;
-        color: $text-color-light;
+      color: $error-color;
+    }
+  }
+
+  &__label {
+    font-size: rem($font-size-base);
+    font-weight: $font-weight-light;
+    position: absolute;
+    top: rem($padding);
+    left: rem($padding);
+    transition-property: top;
+    transition-duration: $transition-duration-short;
+    transition-timing-function: cubic-bezier(0.35, 0, 0.25, 1);
+    pointer-events: none;
+    color: $text-color-light;
+  }
+
+  &__form {
+    width: 100%;
+    padding: rem($padding);
+    border-width: 0 0 rem(2px) 0;
+    border-color: $mercury;
+    outline: none;
+
+    &:focus {
+      border-color: $brand-color;
+    }
+    &:focus ~ {
+      .input__label {
+        top: rem(-$label-padding);
+      }
     }
 
-    &__form {
-        width: 100%;
-        padding: rem($padding);
-        border-width: 0 0 rem(2px) 0;
-        border-color: $mercury;
-        outline: none;
-
-        &:focus {
-            border-color: $brand-color;
-        }
-        &:focus ~ {
-            .input__label {
-                top: rem(-$label-padding);
-            }
-        }
-
-        &::placeholder {
-            font-size: rem($font-size-base);
-            font-weight: $font-weight-light;
-            color: $text-color-light;
-        }
+    &::placeholder {
+      font-size: rem($font-size-base);
+      font-weight: $font-weight-light;
+      color: $text-color-light;
     }
+  }
 }

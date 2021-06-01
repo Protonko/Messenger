@@ -1,85 +1,83 @@
 .text {
-    @include margin-vertical(0);
+  @include margin-vertical(0);
 
-    color: $text-color;
+  color: $text-color;
 
-    &--heading {
-        &-1 {
-            font-size: rem($font-size-extra-large);
-            font-weight: $font-weight-medium;
-        }
-
-        &-2 {
-            font-size: rem($font-size-large);
-            font-weight: $font-weight-medium;
-        }
-
-        &-3 {
-            font-size: rem($font-size-big);
-            font-weight: $font-weight-medium;
-        }
-
-        &-4 {
-            font-size: rem($font-size-base);
-            font-weight: $font-weight-medium;
-        }
-
-        &-5 {
-            font-size: rem($font-size-small);
-            font-weight: $font-weight-medium;
-        }
-
-        &-6 {
-            font-size: rem($font-size-extra-small);
-            font-weight: $font-weight-medium;
-        }
+  &--heading {
+    &-1 {
+      font-size: rem($font-size-extra-large);
+      font-weight: $font-weight-medium;
     }
 
-    &--description {
-        font-size: $font-size-base;
-        font-weight: $font-weight-normal;
-        color: $text-color-light;
+    &-2 {
+      font-size: rem($font-size-large);
+      font-weight: $font-weight-medium;
     }
 
-
-    &--light {
-        font-weight: $font-weight-light;
+    &-3 {
+      font-size: rem($font-size-big);
+      font-weight: $font-weight-medium;
     }
 
-    &--regular {
-        font-weight: $font-weight-normal;
+    &-4 {
+      font-size: rem($font-size-base);
+      font-weight: $font-weight-medium;
     }
 
-    &--medium {
-        font-weight: $font-weight-medium;
+    &-5 {
+      font-size: rem($font-size-small);
+      font-weight: $font-weight-medium;
     }
 
-    &--bold {
-        font-weight: $font-weight-bold;
+    &-6 {
+      font-size: rem($font-size-extra-small);
+      font-weight: $font-weight-medium;
     }
+  }
 
-    &--xs {
-        font-size: rem($font-size-extra-small);
-    }
+  &--description {
+    font-size: $font-size-base;
+    font-weight: $font-weight-normal;
+    color: $text-color-light;
+  }
 
-    &--sm {
-        font-size: rem($font-size-small);
-    }
+  &--light {
+    font-weight: $font-weight-light;
+  }
 
-    &--md {
-        font-size: rem($font-size-base);
-    }
+  &--regular {
+    font-weight: $font-weight-normal;
+  }
 
-    &--lg {
-        font-size: rem($font-size-big);
-    }
+  &--medium {
+    font-weight: $font-weight-medium;
+  }
 
+  &--bold {
+    font-weight: $font-weight-bold;
+  }
 
-    &--xl {
-        font-size: rem($font-size-large);
-    }
+  &--xs {
+    font-size: rem($font-size-extra-small);
+  }
 
-    &--xxl {
-        font-size: rem($font-size-extra-large);
-    }
+  &--sm {
+    font-size: rem($font-size-small);
+  }
+
+  &--md {
+    font-size: rem($font-size-base);
+  }
+
+  &--lg {
+    font-size: rem($font-size-big);
+  }
+
+  &--xl {
+    font-size: rem($font-size-large);
+  }
+
+  &--xxl {
+    font-size: rem($font-size-extra-large);
+  }
 }

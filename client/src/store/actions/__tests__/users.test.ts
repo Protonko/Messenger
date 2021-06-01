@@ -9,16 +9,18 @@ import {
 } from 'store/actions/users'
 
 describe('Auth actions', () => {
-  const users = [{
-    avatar: null,
-    confirmed: false,
-    createdAt: new Date(),
-    email: 'email',
-    full_name: 'full name',
-    last_seen: new Date(),
-    updatedAt: new Date(),
-    id: 'id',
-  }]
+  const users = [
+    {
+      avatar: null,
+      confirmed: false,
+      createdAt: new Date(),
+      email: 'email',
+      full_name: 'full name',
+      last_seen: new Date(),
+      updatedAt: new Date(),
+      id: 'id',
+    },
+  ]
 
   it('Should create getDialogs', () => {
     const expectedAction = {
@@ -40,7 +42,7 @@ describe('Auth actions', () => {
   it('Should create getError', () => {
     const expectedAction = {
       type: UsersActionTypes.GET_ERROR,
-      payload: 'errorMessage'
+      payload: 'errorMessage',
     }
 
     expect(getUsersError('errorMessage')).toEqual(expectedAction)

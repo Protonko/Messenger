@@ -1,36 +1,38 @@
 .chat {
-    $padding-horizontal: 17px;
+  $padding-horizontal: 17px;
 
-    width: 100%;
-    height: calc(100vh - #{$padding-horizontal});
-    background-color: $white;
+  width: 100%;
+  height: calc(100vh - #{$padding-horizontal});
+  background-color: $white;
 
-    &__section {
-        display: flex;
+  &__section {
+    display: flex;
 
-        &--header {
-            justify-content: center;
-            padding: rem($padding-horizontal) rem(20px);
-            background-color: $brand-color;
-        }
-
-        &--body {
-            height: calc(100% - #{rem($padding-horizontal)} * 2 - #{rem($font-size-base)});
-        }
+    &--header {
+      justify-content: center;
+      padding: rem($padding-horizontal) rem(20px);
+      background-color: $brand-color;
     }
 
-    &__title {
-        color: $white;
+    &--body {
+      height: calc(
+        100% - #{rem($padding-horizontal)} * 2 - #{rem($font-size-base)}
+      );
     }
+  }
 
-    &__dialogs {
-        width: 30%;
-        border-right: rem(1px) solid $mercury;
-    }
+  &__title {
+    color: $white;
+  }
 
-    &__messages {
-        display: flex;
-        flex-direction: column;
-        width: 70%;
-    }
+  &__dialogs {
+    width: 30%;
+    border-right: rem(1px) solid $mercury;
+  }
+
+  &__messages {
+    display: flex;
+    flex-direction: column;
+    width: 70%;
+  }
 }

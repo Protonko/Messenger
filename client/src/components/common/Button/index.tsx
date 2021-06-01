@@ -63,16 +63,8 @@ export const Button: FC<IPropsButton> = ({
   const renderButtonContent = () => {
     return (
       <>
-        {text && (
-          <span className="button__text">
-            {text}
-          </span>
-        )}
-        {icon && (
-          <span className="button__icon">
-            {icon}
-          </span>
-        )}
+        {text && <span className="button__text">{text}</span>}
+        {icon && <span className="button__icon">{icon}</span>}
       </>
     )
   }

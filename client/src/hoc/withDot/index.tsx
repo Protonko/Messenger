@@ -6,15 +6,14 @@ interface IWithDotsProps {
   numberOfLines?: TNumberOfLines
 }
 
-export const withDot = <P extends object>(
-  WrappedComponent: ComponentType<P>,
-): FC<P & IWithDotsProps> => ({
-  numberOfLines = Infinity,
-  ...props
-}) => {
-  return (
-    <Dotdotdot clamp={numberOfLines}>
-      <WrappedComponent {...props as P} />
-    </Dotdotdot>
-  )
-}
+export const withDot =
+  <P extends object>(
+    WrappedComponent: ComponentType<P>,
+  ): FC<P & IWithDotsProps> =>
+  ({numberOfLines = Infinity, ...props}) => {
+    return (
+      <Dotdotdot clamp={numberOfLines}>
+        <WrappedComponent {...(props as P)} />
+      </Dotdotdot>
+    )
+  }

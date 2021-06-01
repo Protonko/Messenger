@@ -1,8 +1,17 @@
 import {expectSaga} from 'redux-saga-test-plan'
 import {call} from 'redux-saga-test-plan/matchers'
 import {throwError} from 'redux-saga-test-plan/providers'
-import {signUpWatcher, signUpWorker, loginWorker, authWatcher} from 'store/saga/auth'
-import {AuthActionTypes, LoginAction, SignUpAction} from 'models/store/actions/auth'
+import {
+  signUpWatcher,
+  signUpWorker,
+  loginWorker,
+  authWatcher,
+} from 'store/saga/auth'
+import {
+  AuthActionTypes,
+  LoginAction,
+  SignUpAction,
+} from 'models/store/actions/auth'
 import {UserApi} from 'api/User'
 
 describe('auth sagas', () => {
@@ -19,7 +28,7 @@ describe('auth sagas', () => {
     payload: {
       email: 'login@test.test',
       password: '123456',
-    }
+    },
   }
   const user = {
     avatar: null,
@@ -36,15 +45,18 @@ describe('auth sagas', () => {
   it('Should sign up success', () => {
     return expectSaga(signUpWorker, signUpAction)
       .provide([[call.fn(UserApi.signUp), {token: '123', user}]])
-      .put({type: AuthActionTypes.SET_SIGN_UP_DATA, payload: {token: '123', user}})
-      .run();
+      .put({
+        type: AuthActionTypes.SET_SIGN_UP_DATA,
+        payload: {token: '123', user},
+      })
+      .run()
   })
 
   it('Should sign up error', () => {
     return expectSaga(signUpWorker, signUpAction)
       .provide([[call.fn(UserApi.signUp), throwError(new Error('error'))]])
       .put({type: AuthActionTypes.SET_ERROR_MESSAGE, payload: 'error'})
-      .run();
+      .run()
   })
 
   it('Should take SignUp action', () => {
@@ -52,22 +64,25 @@ describe('auth sagas', () => {
       .provide([[call.fn(UserApi.signUp), throwError(new Error('error'))]])
       .put({type: AuthActionTypes.SET_ERROR_MESSAGE, payload: 'error'})
       .dispatch(signUpAction)
-      .run();
+      .run()
   })
 
   // login
   it('Should login success', () => {
     return expectSaga(loginWorker, loginAction)
       .provide([[call.fn(UserApi.login), {token: '123', user}]])
-      .put({type: AuthActionTypes.SET_LOGIN_DATA, payload: {token: '123', user}})
-      .run();
+      .put({
+        type: AuthActionTypes.SET_LOGIN_DATA,
+        payload: {token: '123', user},
+      })
+      .run()
   })
 
   it('Should login error', () => {
     return expectSaga(loginWorker, loginAction)
       .provide([[call.fn(UserApi.login), throwError(new Error('error'))]])
       .put({type: AuthActionTypes.SET_ERROR_MESSAGE, payload: 'error'})
-      .run();
+      .run()
   })
 
   it('Should take Login action', () => {
@@ -75,6 +90,6 @@ describe('auth sagas', () => {
       .provide([[call.fn(UserApi.login), throwError(new Error('error'))]])
       .put({type: AuthActionTypes.SET_ERROR_MESSAGE, payload: 'error'})
       .dispatch(loginAction)
-      .run();
+      .run()
   })
 })

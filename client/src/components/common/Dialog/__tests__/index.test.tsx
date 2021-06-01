@@ -22,8 +22,10 @@ describe('Dialog', () => {
       name: 'string',
       lastMessage: 'string',
       avatar: 'string',
-      createdAt: 'Mon May 03 2021 16:47:32 GMT+0300 (Москва, стандартное время)',
-      updatedAt: 'Mon May 03 2021 16:47:32 GMT+0300 (Москва, стандартное время)',
+      createdAt:
+        'Mon May 03 2021 16:47:32 GMT+0300 (Москва, стандартное время)',
+      updatedAt:
+        'Mon May 03 2021 16:47:32 GMT+0300 (Москва, стандартное время)',
       edited: false,
       messages: 0,
       status: Status.ACTIVE,
@@ -70,9 +72,11 @@ describe('Dialog', () => {
   })
 
   it('Should render updated date', () => {
-    props.edited = true;
+    props.edited = true
     componentMount = mount(<Dialog {...props} />)
-    expect(componentMount.find(`.${ELEMENT_SELECTORS.date}`).text()).toBe(new Date(props.updatedAt).toLocaleDateString())
+    expect(componentMount.find(`.${ELEMENT_SELECTORS.date}`).text()).toBe(
+      new Date(props.updatedAt).toLocaleDateString(),
+    )
     expect(componentMount).toMatchSnapshot('Dialog with date')
   })
 })

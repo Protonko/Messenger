@@ -61,21 +61,25 @@ export const Notification: FC<INotificationProps> = ({
         }, 2000)
       }}
     >
-      {state => {
+      {(state) => {
         const classNamesNotification = classNames(
           'notification',
-          {[TRANSITION_CLASSNAMES[state]]: !!TRANSITION_CLASSNAMES[state]},
-          {'notification--success': type === NotificationType.SUCCESS},
+          {
+            [TRANSITION_CLASSNAMES[state]]: !!TRANSITION_CLASSNAMES[state],
+          },
+          {
+            'notification--success': type === NotificationType.SUCCESS,
+          },
           {'notification--error': type === NotificationType.ERROR},
-          {'notification--warning': type === NotificationType.WARNING},
+          {
+            'notification--warning': type === NotificationType.WARNING,
+          },
         )
 
         return (
           <div ref={notification} className={classNamesNotification}>
             {renderIcon()}
-            <span className="notification__text">
-              {text}
-            </span>
+            <span className="notification__text">{text}</span>
           </div>
         )
       }}

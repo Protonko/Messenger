@@ -1,20 +1,20 @@
 .counter {
-    $min-width: 24px;
+  $min-width: 24px;
 
-    display: inline-flex;
-    justify-content: center;
-    width: fit-content;
-    min-width: rem($min-width);
-    padding: rem(4px);
-    border-radius: rem($min-width / 2);
-    background-color: $brand-color;
+  display: inline-flex;
+  justify-content: center;
+  width: fit-content;
+  min-width: rem($min-width);
+  padding: rem(4px);
+  border-radius: rem($min-width / 2);
+  background-color: $brand-color;
 
-    &--muted {
-        background-color: $alto;
-    }
+  &--muted {
+    background-color: $alto;
+  }
 
-    &__text {
-        font-size: rem($font-size-small);
-        color: $white;
-    }
+  &__text {
+    font-size: rem($font-size-small);
+    color: $white;
+  }
 }

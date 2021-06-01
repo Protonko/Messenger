@@ -11,18 +11,20 @@ import {
 } from 'store/actions/dialogs'
 
 describe('Auth actions', () => {
-  const dialogs = [{
-    id: 'id',
-    name: 'name',
-    lastMessage: 'lastMessage',
-    avatar: 'avatar',
-    edited: true,
-    createdAt: 'createdAt',
-    updatedAt: 'updatedAt',
-    messages: 1,
-    status: Status.MUTED,
-    readStatus: null,
-  }]
+  const dialogs = [
+    {
+      id: 'id',
+      name: 'name',
+      lastMessage: 'lastMessage',
+      avatar: 'avatar',
+      edited: true,
+      createdAt: 'createdAt',
+      updatedAt: 'updatedAt',
+      messages: 1,
+      status: Status.MUTED,
+      readStatus: null,
+    },
+  ]
 
   it('Should create getDialogs', () => {
     const expectedAction = {
@@ -44,7 +46,7 @@ describe('Auth actions', () => {
   it('Should create getError', () => {
     const expectedAction = {
       type: DialogsActionTypes.GET_ERROR,
-      payload: 'errorMessage'
+      payload: 'errorMessage',
     }
 
     expect(getDialogsError('errorMessage')).toEqual(expectedAction)
@@ -53,7 +55,7 @@ describe('Auth actions', () => {
   it('Should create createDialog', () => {
     const expectedAction = {
       type: DialogsActionTypes.CREATE_DIALOG,
-      payload: 'message'
+      payload: 'message',
     }
 
     expect(createDialog('message')).toEqual(expectedAction)
@@ -71,7 +73,7 @@ describe('Auth actions', () => {
   it('Should create createDialogError', () => {
     const expectedAction = {
       type: DialogsActionTypes.CREATE_DIALOG_ERROR,
-      payload: 'message'
+      payload: 'message',
     }
 
     expect(createDialogError('message')).toEqual(expectedAction)

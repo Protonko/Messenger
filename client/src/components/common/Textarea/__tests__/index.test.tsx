@@ -7,9 +7,8 @@ const ELEMENT_SELECTORS = {
   form: 'textarea__form',
 }
 
-const shallowComponent = (props: IPropsTextarea) => (
+const shallowComponent = (props: IPropsTextarea) =>
   shallow(<Textarea {...props} />)
-)
 
 describe('Textarea', () => {
   let props: IPropsTextarea

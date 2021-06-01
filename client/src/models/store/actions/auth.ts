@@ -1,5 +1,9 @@
 import type {AnyAction} from 'redux'
-import type {IUserLoginBody, IUserLoginResponse, IUserSignupBody} from 'models/auth'
+import type {
+  IUserLoginBody,
+  IUserLoginResponse,
+  IUserSignupBody,
+} from 'models/auth'
 import type {IUser} from 'models/user'
 
 export enum AuthActionTypes {
@@ -42,7 +46,7 @@ export interface ResetErrorMessageAction extends AnyAction {
 }
 
 export interface SetErrorMessageAction extends AnyAction {
-  type: AuthActionTypes.SET_ERROR_MESSAGE,
+  type: AuthActionTypes.SET_ERROR_MESSAGE
   payload: string
 }
 

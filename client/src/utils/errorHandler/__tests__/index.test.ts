@@ -8,7 +8,10 @@ describe('errorHandler', () => {
   let axiosError: AxiosResponse<Error>
 
   const actionCreator = (payload: string) => ({type: 'test', payload})
-  const axiosErrorActionCreator = (payload: string) => ({type: ErrorActionTypes.INVALID_TOKEN_ERROR, payload})
+  const axiosErrorActionCreator = (payload: string) => ({
+    type: ErrorActionTypes.INVALID_TOKEN_ERROR,
+    payload,
+  })
 
   beforeEach(() => {
     error = {name: 'Error', message: 'error message'}
@@ -25,16 +28,21 @@ describe('errorHandler', () => {
   })
 
   it('Should return default action on Error', () => {
-    expect(errorHandler(error, actionCreator)).toEqual(actionCreator(error.message))
+    expect(errorHandler(error, actionCreator)).toEqual(
+      actionCreator(error.message),
+    )
   })
 
   it('Should return invalid token action', () => {
-    expect(errorHandler(axiosError, axiosErrorActionCreator)).toEqual(invalidToken(axiosError.data.message))
+    expect(errorHandler(axiosError, axiosErrorActionCreator)).toEqual(
+      invalidToken(axiosError.data.message),
+    )
   })
-
 
   it('Should return invalid token action on AxiosError', () => {
     axiosError.status = 400
-    expect(errorHandler(axiosError, axiosErrorActionCreator)).toEqual(invalidToken(axiosError.data.message))
+    expect(errorHandler(axiosError, axiosErrorActionCreator)).toEqual(
+      invalidToken(axiosError.data.message),
+    )
   })
 })

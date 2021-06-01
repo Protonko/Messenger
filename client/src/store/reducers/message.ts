@@ -1,5 +1,8 @@
 import type {IMessage} from 'models/message'
-import {AllMessageActions, MessageActionsTypes} from 'models/store/actions/message'
+import {
+  AllMessageActions,
+  MessageActionsTypes,
+} from 'models/store/actions/message'
 
 export interface IInitialState {
   messages: Record<string, IMessage> | null
@@ -17,10 +20,7 @@ export const initialState = {
   createErrorMessage: null,
 } as IInitialState
 
-const reducers = (
-  state = initialState,
-  action: AllMessageActions,
-) => {
+const reducers = (state = initialState, action: AllMessageActions) => {
   switch (action.type) {
     case MessageActionsTypes.CREATE_MESSAGE:
       return {
@@ -48,5 +48,3 @@ const reducers = (
 }
 
 export default reducers
-
-

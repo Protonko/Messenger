@@ -17,7 +17,7 @@ export const CreateMessageForm = () => {
 
   const onSelect = (data: EmojiData) => {
     if ('native' in data) {
-      setValue(prev => `${prev} ${data.native}`)
+      setValue((prev) => `${prev} ${data.native}`)
     }
   }
 

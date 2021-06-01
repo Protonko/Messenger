@@ -9,9 +9,7 @@ const ELEMENT_SELECTORS = {
   smile: 'emoji-mart-emoji',
 }
 
-const shallowComponent = (props: IPropsEmoji) => (
-  shallow(<Emoji {...props} />)
-)
+const shallowComponent = (props: IPropsEmoji) => shallow(<Emoji {...props} />)
 
 describe('Emoji', () => {
   let props: IPropsEmoji

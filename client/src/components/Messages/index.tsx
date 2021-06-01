@@ -4,7 +4,6 @@ import {EVENTS_SOCKET} from 'models/common/socket'
 import {socket} from 'utils/socket'
 import {Message} from 'components/common/Message'
 
-
 export const Messages = () => {
   const location = useLocation()
 
@@ -15,7 +14,7 @@ export const Messages = () => {
   }, [])
 
   useEffect(() => {
-    const urlParams = new URLSearchParams(location.search);
+    const urlParams = new URLSearchParams(location.search)
     console.log('User', urlParams.get('user'))
   }, [location])
 
@@ -28,8 +27,6 @@ export const Messages = () => {
   }
 
   return (
-    <ul className="messages list list--reset">
-      {[1, 2].map(renderMessages)}
-    </ul>
+    <ul className="messages list list--reset">{[1, 2].map(renderMessages)}</ul>
   )
 }

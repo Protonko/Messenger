@@ -15,13 +15,23 @@ interface ISelectUsersProps {
 
 export const SelectUsers = forwardRef<HTMLUListElement, ISelectUsersProps>(
   ({setModalStepOneVisibility, setModalStepTwoVisibility}, ref) => {
-    const {users, loading, errorMessage} = useSelector((state: RootState) => (state.users))
+    const {users, loading, errorMessage} = useSelector(
+      (state: RootState) => state.users,
+    )
     const dispatch = useDispatch()
 
     const renderUsers = (user: IUser) => {
       return (
-        <li className="users__item" key={user.id} onClick={() => onSelectUser(user.id)}>
-          <User name={user.full_name} src={user.avatar ?? ''} description={user.last_seen.toString()} />
+        <li
+          className="users__item"
+          key={user.id}
+          onClick={() => onSelectUser(user.id)}
+        >
+          <User
+            name={user.full_name}
+            src={user.avatar ?? ''}
+            description={user.last_seen.toString()}
+          />
         </li>
       )
     }
@@ -43,10 +53,15 @@ export const SelectUsers = forwardRef<HTMLUListElement, ISelectUsersProps>(
         <div className="dialogs-modal__section dialogs-modal__section--body">
           <ContentContainer loading={loading} errorMessage={errorMessage}>
             <ul className="users list list--reset" ref={ref}>
-              {users?.length ? users.map(renderUsers) : <li className="users__item users__item--empty">Empty</li>}
+              {users?.length ? (
+                users.map(renderUsers)
+              ) : (
+                <li className="users__item users__item--empty">Empty</li>
+              )}
             </ul>
           </ContentContainer>
         </div>
       </>
     )
-})
+  },
+)

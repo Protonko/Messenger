@@ -1,5 +1,8 @@
 import {Status} from 'models/common/status'
-import {AllDialogsActions, DialogsActionTypes} from 'models/store/actions/dialogs'
+import {
+  AllDialogsActions,
+  DialogsActionTypes,
+} from 'models/store/actions/dialogs'
 import dialogs, {initialState} from 'store/reducers/dialogs'
 
 describe('Dialogs reducer', () => {
@@ -41,69 +44,55 @@ describe('Dialogs reducer', () => {
     },
     RESET_CREATE_DIALOG_STATE: {
       type: DialogsActionTypes.RESET_CREATE_DIALOG_STATE,
-    }
+    },
   }
 
   it('Should return the payload from GET_START action', () => {
-    expect(dialogs(initialState, ACTIONS.GET_START)).toEqual(
-      {
-        ...initialState,
-        loading: true,
-      },
-    )
+    expect(dialogs(initialState, ACTIONS.GET_START)).toEqual({
+      ...initialState,
+      loading: true,
+    })
   })
 
   it('Should return the payload from GET_SUCCESS action', () => {
-    expect(dialogs(initialState, ACTIONS.GET_SUCCESS)).toEqual(
-      {
-        ...initialState,
-        dialogs: ACTIONS.GET_SUCCESS.payload,
-      },
-    )
+    expect(dialogs(initialState, ACTIONS.GET_SUCCESS)).toEqual({
+      ...initialState,
+      dialogs: ACTIONS.GET_SUCCESS.payload,
+    })
   })
 
   it('Should return the payload from GET_ERROR action', () => {
-    expect(dialogs(initialState, ACTIONS.GET_ERROR)).toEqual(
-      {
-        ...initialState,
-        errorMessage: ACTIONS.GET_ERROR.payload,
-      },
-    )
+    expect(dialogs(initialState, ACTIONS.GET_ERROR)).toEqual({
+      ...initialState,
+      errorMessage: ACTIONS.GET_ERROR.payload,
+    })
   })
 
   it('Should return the payload from CREATE_DIALOG action', () => {
-    expect(dialogs(initialState, ACTIONS.CREATE_DIALOG)).toEqual(
-      {
-        ...initialState,
-        creating: true,
-      },
-    )
+    expect(dialogs(initialState, ACTIONS.CREATE_DIALOG)).toEqual({
+      ...initialState,
+      creating: true,
+    })
   })
 
   it('Should return the payload from CREATE_DIALOG_SUCCESS action', () => {
-    expect(dialogs(initialState, ACTIONS.CREATE_DIALOG_SUCCESS)).toEqual(
-      {
-        ...initialState,
-        dialogs: [DIALOG],
-        createErrorMessage: false,
-      },
-    )
+    expect(dialogs(initialState, ACTIONS.CREATE_DIALOG_SUCCESS)).toEqual({
+      ...initialState,
+      dialogs: [DIALOG],
+      createErrorMessage: false,
+    })
   })
 
   it('Should return the payload from CREATE_DIALOG_ERROR action', () => {
-    expect(dialogs(initialState, ACTIONS.CREATE_DIALOG_ERROR)).toEqual(
-      {
-        ...initialState,
-        createErrorMessage: ACTIONS.CREATE_DIALOG_ERROR.payload,
-      },
-    )
+    expect(dialogs(initialState, ACTIONS.CREATE_DIALOG_ERROR)).toEqual({
+      ...initialState,
+      createErrorMessage: ACTIONS.CREATE_DIALOG_ERROR.payload,
+    })
   })
 
   it('Should reset state after RESET_CREATE_DIALOG_STATE action', () => {
-    expect(dialogs(initialState, ACTIONS.RESET_CREATE_DIALOG_STATE)).toEqual(
-      {
-        ...initialState,
-      },
-    )
+    expect(dialogs(initialState, ACTIONS.RESET_CREATE_DIALOG_STATE)).toEqual({
+      ...initialState,
+    })
   })
 })

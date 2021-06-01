@@ -5,11 +5,11 @@ describe('error reducer', () => {
   const ACTIONS: Record<string, AllErrorActions> = {
     INVALID_TOKEN_ERROR: {
       type: ErrorActionTypes.INVALID_TOKEN_ERROR,
-      payload: 'error message'
+      payload: 'error message',
     },
     HIDE_ERROR_NOTIFICATION: {
       type: ErrorActionTypes.HIDE_ERROR_NOTIFICATION,
-    }
+    },
   }
 
   it('Should change state on INVALID_TOKEN_ERROR', () => {
@@ -21,6 +21,8 @@ describe('error reducer', () => {
   })
 
   it('Should change state on HIDE_ERROR_NOTIFICATION', () => {
-    expect(error(initialState, ACTIONS.HIDE_ERROR_NOTIFICATION)).toEqual(initialState)
+    expect(error(initialState, ACTIONS.HIDE_ERROR_NOTIFICATION)).toEqual(
+      initialState,
+    )
   })
 })

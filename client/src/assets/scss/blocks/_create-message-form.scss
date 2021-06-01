@@ -1,58 +1,58 @@
 .create-message-form {
-    $horizontal-actions-gutter: 10px;
+  $horizontal-actions-gutter: 10px;
 
-    @include padding-vertical(10px);
+  @include padding-vertical(10px);
 
-    width: 100%;
-    max-width: rem($max-chat-content);
-    margin: auto;
+  width: 100%;
+  max-width: rem($max-chat-content);
+  margin: auto;
 
-    &__row {
-        display: flex;
-        flex-grow: 1;
+  &__row {
+    display: flex;
+    flex-grow: 1;
 
-        &:not(:first-child) {
-            margin-top: rem(10px);
-        }
+    &:not(:first-child) {
+      margin-top: rem(10px);
     }
+  }
 
-    &__actions {
-        @include margin-horizontal(-$horizontal-actions-gutter / 2);
+  &__actions {
+    @include margin-horizontal(-$horizontal-actions-gutter / 2);
 
-        align-items: center;
-        flex-grow: 1;
-        justify-content: space-between;
+    align-items: center;
+    flex-grow: 1;
+    justify-content: space-between;
+  }
+
+  &__col {
+    @include padding-horizontal($horizontal-actions-gutter / 2);
+  }
+
+  &__icons {
+    $horizontal-icons-gutter: 10px;
+
+    @include margin-horizontal(-$horizontal-icons-gutter / 2);
+
+    display: flex;
+
+    &-item {
+      @include padding-horizontal($horizontal-icons-gutter / 2);
+
+      display: flex;
+      align-items: center;
     }
+  }
 
-    &__col {
-        @include padding-horizontal($horizontal-actions-gutter / 2);
-    }
+  &__icon {
+    @include square(24px);
 
-    &__icons {
-        $horizontal-icons-gutter: 10px;
+    cursor: pointer;
+    color: $dusty-gray;
+  }
 
-        @include margin-horizontal(-$horizontal-icons-gutter / 2);
+  &__textarea {
+    @include margin-horizontal(10px);
 
-        display: flex;
-
-        &-item {
-            @include padding-horizontal($horizontal-icons-gutter / 2);
-
-            display: flex;
-            align-items: center;
-        }
-    }
-
-    &__icon {
-        @include square(24px);
-
-        cursor: pointer;
-        color: $dusty-gray;
-    }
-
-    &__textarea {
-        @include margin-horizontal(10px);
-
-        flex-grow: 1;
-    }
+    flex-grow: 1;
+  }
 }

@@ -1,14 +1,16 @@
 import {shallow} from 'enzyme'
-import {ContentContainer, IContentContainerProps} from 'components/common/ContentContainer'
+import {
+  ContentContainer,
+  IContentContainerProps,
+} from 'components/common/ContentContainer'
 import {Loader} from 'components/common/Loader'
 
 const ELEMENT_SELECTORS = {
   children: '[data-test="test"]',
 }
 
-const shallowComponent = (props: IContentContainerProps) => (
+const shallowComponent = (props: IContentContainerProps) =>
   shallow(<ContentContainer {...props} />)
-)
 
 describe('ContentContainer', () => {
   let props: IContentContainerProps

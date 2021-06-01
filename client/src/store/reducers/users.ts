@@ -18,7 +18,7 @@ export const initialState = {
 
 const reducers = (
   state = initialState,
-  action: AllUsersActions
+  action: AllUsersActions,
 ): IInitialState => {
   switch (action.type) {
     case UsersActionTypes.GET_START:
@@ -29,7 +29,7 @@ const reducers = (
     case UsersActionTypes.GET_SUCCESS:
       return {
         ...initialState,
-        users: action.payload
+        users: action.payload,
       }
     case UsersActionTypes.GET_ERROR:
       return {

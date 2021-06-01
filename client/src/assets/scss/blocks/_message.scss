@@ -1,53 +1,53 @@
 .message {
-    position: relative;
-    cursor: pointer;
-    transition: background-color $transition-duration;
+  position: relative;
+  cursor: pointer;
+  transition: background-color $transition-duration;
 
-    &:hover {
-        background-color: rgba($brand-color, .1);
+  &:hover {
+    background-color: rgba($brand-color, 0.1);
 
-        &::before {
-            $size: 24px;
+    &::before {
+      $size: 24px;
 
-            position: absolute;
-            top: 0;
-            bottom: 0;
-            left: calc((100% - #{$max-chat-content}) / 4);
-            width: rem($size);
-            height: rem($size);
-            margin: auto;
-            content: url("../../icons/check-in-circle.svg");
-            transform: translateX(-50%);
-            opacity: .5;
-        }
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: calc((100% - #{$max-chat-content}) / 4);
+      width: rem($size);
+      height: rem($size);
+      margin: auto;
+      content: url('../../icons/check-in-circle.svg');
+      transform: translateX(-50%);
+      opacity: 0.5;
     }
+  }
 
-    &__body {
-        display: flex;
-        max-width: rem(560px);
-        margin: auto;
-        padding-top: rem(10px);
-    }
+  &__body {
+    display: flex;
+    max-width: rem(560px);
+    margin: auto;
+    padding-top: rem(10px);
+  }
 
-    &__data {
-        flex-grow: 1;
-        margin-left: rem(15px);
-    }
+  &__data {
+    flex-grow: 1;
+    margin-left: rem(15px);
+  }
 
-    &__author {
-        margin-bottom: rem(5px);
-        color: $brand-color;
-    }
+  &__author {
+    margin-bottom: rem(5px);
+    color: $brand-color;
+  }
 
-    &__content {
-        &-item {
-            margin-bottom: rem(5px);
-        }
+  &__content {
+    &-item {
+      margin-bottom: rem(5px);
     }
+  }
 
-    &__date {
-        &-text {
-            color: $text-color-light;
-        }
+  &__date {
+    &-text {
+      color: $text-color-light;
     }
+  }
 }

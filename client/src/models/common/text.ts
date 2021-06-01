@@ -17,7 +17,7 @@ export enum TextWeight {
 }
 
 export enum TextSize {
-  EXTRA_SMALL= 'XS',
+  EXTRA_SMALL = 'XS',
   SMALL = 'SM',
   MEDIUM = 'MD',
   BIG = 'LG',

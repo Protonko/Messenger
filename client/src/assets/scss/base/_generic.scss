@@ -1,36 +1,36 @@
 html {
-    -ms-overflow-style: scrollbar;
-    background-color: $mystic;
+  -ms-overflow-style: scrollbar;
+  background-color: $mystic;
 }
 
 body {
-    overflow: hidden;
-    margin: 0;
+  overflow: hidden;
+  margin: 0;
 }
 
 #root {
-    position: relative;
+  position: relative;
 }
 
 html,
 body,
 #root,
 .container {
-    height: 100%;
+  height: 100%;
 }
 
 *,
 ::after,
 ::before {
-    box-sizing: border-box;
+  box-sizing: border-box;
 }
 
-img:-moz-broken{
-    opacity: 0;
+img:-moz-broken {
+  opacity: 0;
 }
 
 .container {
-    max-width: rem(1010px);
-    min-width: rem(300px);
-    margin: 0 auto;
+  max-width: rem(1010px);
+  min-width: rem(300px);
+  margin: 0 auto;
 }

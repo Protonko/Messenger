@@ -2,7 +2,10 @@ import type {ICreateDialogBody, IDialog} from 'models/dialog'
 import type {IInitialState as AuthState} from 'store/reducers/auth'
 import type {IInitialState as UsersState} from 'store/reducers/users'
 import {call, put, select, takeEvery} from 'redux-saga/effects'
-import {CreateDialogAction, DialogsActionTypes} from 'models/store/actions/dialogs'
+import {
+  CreateDialogAction,
+  DialogsActionTypes,
+} from 'models/store/actions/dialogs'
 import {DialogsApi} from 'api/Dialogs'
 import {selectors} from 'store/saga/selectors'
 import {

@@ -29,7 +29,9 @@ describe('User', () => {
     props.description = 'test description'
     component = mount(<User {...props} />)
 
-    expect(component.find(`.${ELEMENT_SELECTORS.description}`).text()).toBe(props.description)
+    expect(component.find(`.${ELEMENT_SELECTORS.description}`).text()).toBe(
+      props.description,
+    )
     expect(component).toMatchSnapshot('User with description')
   })
 

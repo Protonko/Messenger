@@ -8,8 +8,10 @@ import {ContentContainer} from 'components/common/ContentContainer'
 import {Textarea} from 'components/common/Textarea'
 import {Button} from 'components/common/Button'
 
-export const WriteMessage= () => {
-  const {creating, createErrorMessage} = useSelector((state: RootState) => (state.dialogs))
+export const WriteMessage = () => {
+  const {creating, createErrorMessage} = useSelector(
+    (state: RootState) => state.dialogs,
+  )
   const dispatch = useDispatch()
   const [message, setMessage] = useState('')
 
@@ -28,17 +30,16 @@ export const WriteMessage= () => {
           loading={creating}
         >
           <div className="dialogs-modal__textarea">
-            <Textarea
-              rows={10}
-              value={message}
-              onChange={setMessage}
-            />
+            <Textarea rows={10} value={message} onChange={setMessage} />
           </div>
         </ContentContainer>
       </div>
 
       <footer className="dialogs-modal__section dialogs-modal__section--footer">
-        <Button text="Create dialog" onClick={() => dispatch(createDialog(message))} />
+        <Button
+          text="Create dialog"
+          onClick={() => dispatch(createDialog(message))}
+        />
       </footer>
     </>
   )

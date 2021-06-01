@@ -46,10 +46,12 @@ describe('auth actions', () => {
       },
     }
 
-    expect(setLoginData({
-      token: 'string',
-      user: USER_DATA,
-    })).toEqual(expectedAction)
+    expect(
+      setLoginData({
+        token: 'string',
+        user: USER_DATA,
+      }),
+    ).toEqual(expectedAction)
   })
 
   it('should create setUserData', () => {
@@ -58,9 +60,11 @@ describe('auth actions', () => {
       payload: USER_DATA,
     }
 
-    expect(setUserData({
-      ...USER_DATA,
-    })).toEqual(expectedAction)
+    expect(
+      setUserData({
+        ...USER_DATA,
+      }),
+    ).toEqual(expectedAction)
   })
 
   it('should create signUp', () => {
