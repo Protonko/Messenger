@@ -2,6 +2,9 @@ import {
   createMessage,
   createMessageError,
   createMessageSuccess,
+  getMessages,
+  getMessagesError,
+  getMessagesSuccess,
 } from 'store/actions/message'
 import {MessageActionsTypes} from 'models/store/actions/message'
 
@@ -15,6 +18,16 @@ describe('message actions', () => {
     createdAt: 'createdAt',
     updatedAt: 'updatedAt',
   }
+
+  // TODO: FIX
+  const messages = [{
+    read: false,
+    attachments: [],
+    id: 'id',
+    user: 'user',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt',
+}]
 
   it('should create createMessage', () => {
     const expectedAction = {
@@ -41,5 +54,32 @@ describe('message actions', () => {
     }
 
     expect(createMessageError('error')).toEqual(expectedAction)
+  })
+
+  it('should create getMessages', () => {
+    const expectedAction = {
+      type: MessageActionsTypes.GET_MESSAGES,
+      payload: 'id',
+    }
+
+    expect(getMessages('id')).toEqual(expectedAction)
+  })
+
+  it('should create getMessagesError', () => {
+    const expectedAction = {
+      type: MessageActionsTypes.GET_MESSAGES_ERROR,
+      payload: 'Error message',
+    }
+
+    expect(getMessagesError('Error message')).toEqual(expectedAction)
+  })
+
+  it('should create getMessagesSuccess', () => {
+    const expectedAction = {
+      type: MessageActionsTypes.GET_MESSAGES_SUCCESS,
+      payload: messages,
+    }
+
+    expect(getMessagesSuccess(messages)).toEqual(expectedAction)
   })
 })

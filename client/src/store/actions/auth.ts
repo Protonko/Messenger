@@ -22,7 +22,7 @@ export const login = (payload: IUserLoginBody): LoginAction => ({
 })
 
 export const setLoginData = (
-  payload: Omit<IUserLoginResponse, 'status'>,
+  payload: IUserLoginResponse,
 ): SetLoginDataAction => ({type: AuthActionTypes.SET_LOGIN_DATA, payload})
 
 export const setUserData = (payload: IUser): SetUserDataAction => ({

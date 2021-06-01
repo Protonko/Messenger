@@ -23,7 +23,7 @@ export interface LoginAction extends AnyAction {
 
 export interface SetLoginDataAction extends AnyAction {
   type: AuthActionTypes.SET_LOGIN_DATA
-  payload: Omit<IUserLoginResponse, 'status'>
+  payload: IUserLoginResponse
 }
 
 export interface SetUserDataAction extends AnyAction {
