@@ -71,7 +71,7 @@ export class DialogController {
         user: author,
       })
       await message.save()
-      dialog.last_message = message._id
+      dialog.last_message = message
       await dialog.save()
 
       await Dialog

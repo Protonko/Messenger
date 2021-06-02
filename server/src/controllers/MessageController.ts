@@ -3,7 +3,8 @@ import {Server} from 'socket.io'
 import {EVENTS_SOCKET} from '../static';
 import {Message} from '../models/Message'
 import {IError} from '../types/error'
-import {IMessage} from '../types/message'
+import {IMessageMongoose} from '../types/message'
+import {messageMapper} from '../utils/mappers/messageMapper'
 
 export class MessageController {
   private io: Server
@@ -16,13 +17,17 @@ export class MessageController {
 
   find(request: Request, response: Response) {
     // dialog id
-    const {id} = request.query
+    const {dialog} = request.query
+
+    if (typeof dialog !== 'string') {
+      return response
+        .status(400)
+        .json({message: 'id should be string!'})
+    }
 
     Message
-      // @ts-ignore
-      .find({_id: id})
-      .populate(['dialog'])
-      .exec((error: IError, messages: Array<IMessage>) => {
+      .find({dialog})
+      .exec((error: IError, messages: Array<IMessageMongoose>) => {
         try {
           if (error) {
             return response
@@ -30,9 +35,10 @@ export class MessageController {
               .json({message: 'Messages not found'})
           }
 
-          return response.json(messages)
+          return response.json(messages.map(messageMapper))
         } catch {
           return response
+            .status(500)
             .json({message: 'undefined error'})
         }
       })
@@ -54,7 +60,7 @@ export class MessageController {
             return response.status(500).json({message: error})
           }
 
-          response.json(message)
+          response.json(messageMapper(message))
           this.io.emit(EVENTS_SOCKET.NEW_MESSAGE, message)
       })
     } catch (reason) {
@@ -65,7 +71,8 @@ export class MessageController {
   async delete(request: Request, response: Response) {
     // message id
     const {id} = request.query
-    const message = await Message.findOneAndRemove({_id: id})
+    const message: IMessageMongoose | void =
+      typeof id === 'string' ? await Message.findOneAndRemove({_id: id}) : undefined
 
     try {
       if (!message) {

@@ -1,6 +1,6 @@
 import {model, Schema} from 'mongoose'
 import {User} from './User'
-import {IMessage} from '../types/message';
+import {IMessageMongoose} from '../types/message';
 
 const MessageSchema = new Schema({
   text: String,
@@ -27,5 +27,5 @@ const MessageSchema = new Schema({
   usePushEach: true,
 })
 
-export const Message = model<IMessage>('Message', MessageSchema)
+export const Message = model<IMessageMongoose>('Message', MessageSchema)
 
