@@ -1,7 +1,7 @@
 import {all} from 'redux-saga/effects'
 import {authWatcher, signUpWatcher} from './auth'
 import {createDialogWatcher, getDialogsWatcher} from './dialogs'
-import {createMessageWatcher} from './message'
+import {createMessageWatcher, getMessagesWatcher} from './message'
 import {getUsersWatcher} from './users'
 
 export function* rootWatcher() {
@@ -12,5 +12,6 @@ export function* rootWatcher() {
     createDialogWatcher(),
     getUsersWatcher(),
     createMessageWatcher(),
+    getMessagesWatcher(),
   ])
 }

@@ -5,6 +5,24 @@ import {
 } from 'models/store/actions/message'
 
 describe('auth reducer', () => {
+  const ERROR_MESSAGE = 'error'
+  const DIALOG_ID = '123'
+  const MESSAGE = {
+    read: false,
+    attachments: [],
+    id: 'id',
+    text: 'text',
+    dialog: 'dialog_id',
+    user: 'user',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt',
+  }
+  const STATE_WITH_MESSAGES_DATA = {
+    ...initialState,
+    messages: {
+      [DIALOG_ID]: [MESSAGE],
+    },
+  }
   const ACTIONS: Record<string, AllMessageActions> = {
     CREATE_MESSAGE: {
       type: MessageActionsTypes.CREATE_MESSAGE,
@@ -12,18 +30,29 @@ describe('auth reducer', () => {
     },
     CREATE_MESSAGE_SUCCESS: {
       type: MessageActionsTypes.CREATE_MESSAGE_SUCCESS,
-      payload: {
-        read: false,
-        attachments: [],
-        id: 'id',
-        user: 'user',
-        createdAt: 'createdAt',
-        updatedAt: 'updatedAt',
-      },
+      payload: MESSAGE,
     },
     CREATE_MESSAGE_ERROR: {
       type: MessageActionsTypes.CREATE_MESSAGE_ERROR,
-      payload: 'error',
+      payload: ERROR_MESSAGE,
+    },
+    GET_MESSAGES: {
+      type: MessageActionsTypes.GET_MESSAGES,
+      payload: DIALOG_ID,
+    },
+    GET_MESSAGES_ERROR: {
+      type: MessageActionsTypes.GET_MESSAGES_ERROR,
+      payload: {
+        errorMessage: ERROR_MESSAGE,
+        dialogId: DIALOG_ID,
+      },
+    },
+    GET_MESSAGES_SUCCESS: {
+      type: MessageActionsTypes.GET_MESSAGES_SUCCESS,
+      payload: {
+        messages: [MESSAGE],
+        dialogId: DIALOG_ID,
+      },
     },
   }
 
@@ -37,13 +66,61 @@ describe('auth reducer', () => {
   it('Should change createErrorMessage prop on CREATE_MESSAGE_ERROR action', () => {
     expect(message(initialState, ACTIONS.CREATE_MESSAGE_ERROR)).toEqual({
       ...initialState,
-      createErrorMessage: ACTIONS.CREATE_MESSAGE_ERROR.payload,
+      createErrorMessage: ERROR_MESSAGE,
     })
   })
 
   it('Should change state on CREATE_MESSAGE_SUCCESS action', () => {
     expect(message(initialState, ACTIONS.CREATE_MESSAGE_SUCCESS)).toEqual({
       ...initialState,
+    })
+  })
+
+  it('Should change state on GET_MESSAGES action', () => {
+    expect(message(initialState, ACTIONS.GET_MESSAGES)).toEqual({
+      ...initialState,
+      loading: true,
+    })
+  })
+
+  it('Should change state on GET_MESSAGES_ERROR action', () => {
+    expect(message(initialState, ACTIONS.GET_MESSAGES_ERROR)).toEqual({
+      ...initialState,
+      loading: false,
+      errorMessage: ERROR_MESSAGE,
+    })
+  })
+
+  it('Should remove messages data on GET_MESSAGES_ERROR action', () => {
+    expect(
+      message(STATE_WITH_MESSAGES_DATA, ACTIONS.GET_MESSAGES_ERROR),
+    ).toEqual({
+      ...STATE_WITH_MESSAGES_DATA,
+      loading: false,
+      errorMessage: ERROR_MESSAGE,
+      messages: {},
+    })
+  })
+
+  it('Should change state on GET_MESSAGES_SUCCESS action', () => {
+    expect(message(initialState, ACTIONS.GET_MESSAGES_SUCCESS)).toEqual({
+      ...initialState,
+      loading: false,
+      messages: {
+        [DIALOG_ID]: [MESSAGE],
+      },
+    })
+  })
+
+  it('Should append messages data on GET_MESSAGES_SUCCESS action', () => {
+    expect(
+      message(STATE_WITH_MESSAGES_DATA, ACTIONS.GET_MESSAGES_SUCCESS),
+    ).toEqual({
+      ...STATE_WITH_MESSAGES_DATA,
+      loading: false,
+      messages: {
+        [DIALOG_ID]: [MESSAGE, MESSAGE],
+      },
     })
   })
 })

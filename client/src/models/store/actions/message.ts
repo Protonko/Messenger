@@ -1,5 +1,5 @@
 import type {AnyAction} from 'redux'
-import type {ICreateMessageResponse, IMessage} from 'models/message'
+import type {IMessage} from 'models/message'
 
 export enum MessageActionsTypes {
   CREATE_MESSAGE = '[MESSAGE]CREATE_MESSAGE',
@@ -10,6 +10,18 @@ export enum MessageActionsTypes {
   GET_MESSAGES_ERROR = '[MESSAGE]GET_MESSAGES_ERROR',
 }
 
+// payloads
+export interface IGetMessagesSuccessPayload {
+  messages: IMessage[]
+  dialogId: string
+}
+
+export interface IGetMessagesErrorPayload {
+  errorMessage: string
+  dialogId: string
+}
+
+// actions
 export interface CreateMessageAction extends AnyAction {
   type: MessageActionsTypes.CREATE_MESSAGE
   payload: string
@@ -17,7 +29,7 @@ export interface CreateMessageAction extends AnyAction {
 
 export interface CreateMessageSuccessAction extends AnyAction {
   type: MessageActionsTypes.CREATE_MESSAGE_SUCCESS
-  payload: ICreateMessageResponse
+  payload: IMessage
 }
 
 export interface CreateMessageErrorAction extends AnyAction {
@@ -32,12 +44,12 @@ export interface GetMessagesAction extends AnyAction {
 
 export interface GetMessagesSuccessAction extends AnyAction {
   type: MessageActionsTypes.GET_MESSAGES_SUCCESS
-  payload: IMessage[]
+  payload: IGetMessagesSuccessPayload
 }
 
 export interface GetMessagesErrorAction extends AnyAction {
   type: MessageActionsTypes.GET_MESSAGES_ERROR
-  payload: string
+  payload: IGetMessagesErrorPayload
 }
 
 export type AllMessageActions =

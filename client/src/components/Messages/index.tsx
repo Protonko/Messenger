@@ -1,11 +1,14 @@
 import {useEffect} from 'react'
 import {useLocation} from 'react-router-dom'
+import {useDispatch} from 'react-redux'
 import {EVENTS_SOCKET} from 'models/common/socket'
 import {socket} from 'utils/socket'
+import {getMessages} from 'store/actions/message'
 import {Message} from 'components/common/Message'
 
 export const Messages = () => {
   const location = useLocation()
+  const dispatch = useDispatch()
 
   useEffect(() => {
     socket.on(EVENTS_SOCKET.NEW_MESSAGE, () => {
@@ -14,8 +17,8 @@ export const Messages = () => {
   }, [])
 
   useEffect(() => {
-    const urlParams = new URLSearchParams(location.search)
-    console.log('User', urlParams.get('user'))
+    const dialogParam = new URLSearchParams(location.search).get('dialog')
+    dialogParam && dispatch(getMessages(dialogParam))
   }, [location])
 
   const renderMessages = () => {

@@ -9,27 +9,16 @@ import {
 import {MessageActionsTypes} from 'models/store/actions/message'
 
 describe('message actions', () => {
-  const createMessageResponse = {
-    status: 'success',
+  const message = {
     read: false,
     attachments: [],
     id: 'id',
+    dialog: 'dialog_id',
     user: 'user',
+    text: 'text',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt',
   }
-
-  // TODO: FIX
-  const messages = [
-    {
-      read: false,
-      attachments: [],
-      id: 'id',
-      user: 'user',
-      createdAt: 'createdAt',
-      updatedAt: 'updatedAt',
-    },
-  ]
 
   it('should create createMessage', () => {
     const expectedAction = {
@@ -43,10 +32,10 @@ describe('message actions', () => {
   it('should create createMessageSuccess', () => {
     const expectedAction = {
       type: MessageActionsTypes.CREATE_MESSAGE_SUCCESS,
-      payload: createMessageResponse,
+      payload: message,
     }
 
-    expect(createMessageSuccess(createMessageResponse)).toEqual(expectedAction)
+    expect(createMessageSuccess(message)).toEqual(expectedAction)
   })
 
   it('should create createMessageError', () => {
@@ -70,18 +59,34 @@ describe('message actions', () => {
   it('should create getMessagesError', () => {
     const expectedAction = {
       type: MessageActionsTypes.GET_MESSAGES_ERROR,
-      payload: 'Error message',
+      payload: {
+        errorMessage: 'Error message',
+        dialogId: '123',
+      },
     }
 
-    expect(getMessagesError('Error message')).toEqual(expectedAction)
+    expect(
+      getMessagesError({
+        errorMessage: 'Error message',
+        dialogId: '123',
+      }),
+    ).toEqual(expectedAction)
   })
 
   it('should create getMessagesSuccess', () => {
     const expectedAction = {
       type: MessageActionsTypes.GET_MESSAGES_SUCCESS,
-      payload: messages,
+      payload: {
+        messages: [message],
+        dialogId: '123',
+      },
     }
 
-    expect(getMessagesSuccess(messages)).toEqual(expectedAction)
+    expect(
+      getMessagesSuccess({
+        messages: [message],
+        dialogId: '123',
+      }),
+    ).toEqual(expectedAction)
   })
 })

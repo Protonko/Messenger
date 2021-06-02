@@ -1,4 +1,4 @@
-import type {ICreateMessageResponse, IMessage} from 'models/message'
+import type {IMessage} from 'models/message'
 import {
   MessageActionsTypes,
   CreateMessageAction,
@@ -7,6 +7,8 @@ import {
   GetMessagesAction,
   GetMessagesSuccessAction,
   GetMessagesErrorAction,
+  IGetMessagesSuccessPayload,
+  IGetMessagesErrorPayload,
 } from 'models/store/actions/message'
 
 export const createMessage = (payload: string): CreateMessageAction => ({
@@ -15,7 +17,7 @@ export const createMessage = (payload: string): CreateMessageAction => ({
 })
 
 export const createMessageSuccess = (
-  payload: ICreateMessageResponse,
+  payload: IMessage,
 ): CreateMessageSuccessAction => ({
   type: MessageActionsTypes.CREATE_MESSAGE_SUCCESS,
   payload,
@@ -34,13 +36,15 @@ export const getMessages = (payload: string): GetMessagesAction => ({
 })
 
 export const getMessagesSuccess = (
-  payload: IMessage[],
+  payload: IGetMessagesSuccessPayload,
 ): GetMessagesSuccessAction => ({
   type: MessageActionsTypes.GET_MESSAGES_SUCCESS,
   payload,
 })
 
-export const getMessagesError = (payload: string): GetMessagesErrorAction => ({
+export const getMessagesError = (
+  payload: IGetMessagesErrorPayload,
+): GetMessagesErrorAction => ({
   type: MessageActionsTypes.GET_MESSAGES_ERROR,
   payload,
 })

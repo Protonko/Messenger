@@ -22,7 +22,7 @@ export const Dialogs: FC = () => {
   }, [])
 
   const selectDialog = (id: string) => {
-    history.push(`?user=${id}`)
+    history.push(`?dialog=${id}`)
   }
 
   const renderItem = (dialog: IDialog) => {
