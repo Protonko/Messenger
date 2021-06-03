@@ -80,7 +80,7 @@ export class UserController {
     const {email, password} = request.body
 
     User.findOne({email}, (error: IError, user: IUserMongoose) => {
-      if (error) {
+      if (error || !user) {
         return response.status(404).json({
           message: 'User not found.',
         })

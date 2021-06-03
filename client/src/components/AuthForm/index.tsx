@@ -10,7 +10,7 @@ import {login, resetErrorMessage, signUp} from 'store/actions/auth'
 import {FORM_DATA, IInputForm, INPUT_NAME_DATA, INPUTS_DATA} from './static'
 import {Text} from 'components/common/Text'
 import {Input} from 'components/common/Input'
-import {Button} from 'components/common/Button'
+import {Button, ButtonModifier} from 'components/common/Button'
 import {Modal} from 'components/common/Modal'
 
 export const AuthForm: FC = () => {
@@ -139,7 +139,7 @@ export const AuthForm: FC = () => {
             <li className="auth-form__buttons-item">
               <Button
                 text={FORM_DATA[typeAuth].linkingButtonTitle}
-                modifier="linking"
+                modifier={ButtonModifier.LINKING}
                 additionalClassName="auth-form__button"
                 onClick={handleClickLinkingButton}
               />
@@ -165,7 +165,7 @@ export const AuthForm: FC = () => {
           </Text>
         </div>
         <footer className="auth-modal__section auth-modal__section--footer">
-          <Button modifier="linking" text="OK" onClick={redirectToAuthScreen} />
+          <Button modifier={ButtonModifier.LINKING} text="OK" onClick={redirectToAuthScreen} />
         </footer>
       </Modal>
     </>

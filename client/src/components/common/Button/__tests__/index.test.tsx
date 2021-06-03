@@ -1,5 +1,5 @@
 import {shallow} from 'enzyme'
-import {Button, IPropsButton} from 'components/common/Button'
+import {Button, ButtonModifier, IPropsButton} from 'components/common/Button'
 
 const ELEMENT_SELECTORS = {
   button: 'button',
@@ -77,7 +77,7 @@ describe('Button', () => {
   })
 
   it(`Should add ${ELEMENT_SELECTORS.bordered} className for button`, () => {
-    props.modifier = 'bordered'
+    props.modifier = ButtonModifier.BORDERED
 
     const component = shallowComponent(props)
     const bordered = component.find(`.${ELEMENT_SELECTORS.bordered}`)

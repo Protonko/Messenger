@@ -1,5 +1,5 @@
-import type {FC} from 'react'
 import type {IMessage} from 'models/message'
+import {memo, FC} from 'react'
 import classNames from 'classnames'
 import {TextSize, TextTypes} from 'models/common/text'
 import {Sizes} from 'models/common/sizes'
@@ -11,7 +11,7 @@ export interface IPropsMessage extends IMessage {
   avatarSize?: Sizes
 }
 
-export const Message: FC<IPropsMessage> = ({
+export const Message: FC<IPropsMessage> = memo(({
   customStyles,
   text,
   author,
@@ -83,4 +83,4 @@ export const Message: FC<IPropsMessage> = ({
       </div>
     </div>
   )
-}
+})

@@ -14,14 +14,16 @@ import {Emoji} from 'components/common/Emoji'
 
 export const CreateMessageForm = () => {
   const dialogParam = useSearchParams('dialog')
-  const {dialogs} = useSelector((state: RootState) => state.dialogs)
+  const {dialogs, account} = useSelector((state: RootState) => ({
+    ...state.dialogs,
+    ...state.auth
+  }))
   const dispatch = useDispatch()
   const [value, setValue] = useState('')
+  const {interlocutor} = dialogs?.find(dialog => dialog.id === dialogParam) ?? {}
 
   const onSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault()
-
-    const interlocutor = dialogs?.find(dialog => dialog.id === dialogParam)
 
     if (!interlocutor) {
       return dispatch(commonError('ID not found!'))
@@ -39,14 +41,14 @@ export const CreateMessageForm = () => {
   return (
     <form className="create-message-form" onSubmit={onSubmit}>
       <div className="create-message-form__row">
-        <Avatar name="qwe" src="" />
+        <Avatar name={account?.full_name} src={account?.avatar ?? ''} />
         <Textarea
           placeholder="Write a message..."
           className="create-message-form__textarea"
           value={value}
           onChange={setValue}
         />
-        <Avatar name="qwe" src="" />
+        <Avatar name={interlocutor?.full_name} src={interlocutor?.avatar ?? ''} />
       </div>
 
       <div className="create-message-form__row create-message-form__actions">

@@ -1,4 +1,4 @@
-import {shallow, mount, ShallowWrapper, ReactWrapper} from 'enzyme'
+import {mount, ReactWrapper} from 'enzyme'
 import {ReadStatus, Status} from 'models/common/status'
 import {ReactComponent as DoubleCheck} from 'assets/icons/double-check.svg'
 import {ReactComponent as Check} from 'assets/icons/check.svg'
@@ -12,7 +12,6 @@ const ELEMENT_SELECTORS = {
 }
 
 describe('Dialog', () => {
-  let component: ShallowWrapper<IDialogProps>
   let componentMount: ReactWrapper<IDialogProps>
   let props: IDialogProps
 
@@ -42,40 +41,40 @@ describe('Dialog', () => {
   })
 
   it('Should render Dialog component', () => {
-    component = shallow(<Dialog {...props} />)
-    expect(component.find(`.${ELEMENT_SELECTORS.dialog}`).length).toBe(1)
+    componentMount = mount(<Dialog {...props} />)
+    expect(componentMount.find(`.${ELEMENT_SELECTORS.dialog}`).length).toBe(1)
   })
 
   it('Should render Dialog component with selected modifier', () => {
-    component = shallow(<Dialog {...{...props, selected: true}} />)
-    expect(component.find(`.${ELEMENT_SELECTORS.selected}`).length).toBe(1)
-    expect(component).toMatchSnapshot('Dialog with selected modifier')
+    componentMount = mount(<Dialog {...{...props, selected: true}} />)
+    expect(componentMount.find(`.${ELEMENT_SELECTORS.selected}`).length).toBe(1)
+    expect(componentMount).toMatchSnapshot('Dialog with selected modifier')
   })
 
   it('Match snapshot', () => {
-    component = shallow(<Dialog {...props} />)
-    expect(component).toMatchSnapshot('Dialog')
+    componentMount = mount(<Dialog {...props} />)
+    expect(componentMount).toMatchSnapshot('Dialog')
   })
 
   it('Should render Counter', () => {
     props.messages = 123
-    component = shallow(<Dialog {...props} />)
-    expect(component.find(Counter).length).toBe(1)
-    expect(component).toMatchSnapshot('Dialog with counter')
+    componentMount = mount(<Dialog {...props} />)
+    expect(componentMount.find(Counter).length).toBe(1)
+    expect(componentMount).toMatchSnapshot('Dialog with counter')
   })
 
   it('Should render DoubleCheck icon', () => {
     props.readStatus = ReadStatus.READ
-    component = shallow(<Dialog {...props} />)
-    expect(component.find(DoubleCheck).length).toBeGreaterThan(0)
-    expect(component).toMatchSnapshot('Dialog with readStatus === READ')
+    componentMount = mount(<Dialog {...props} />)
+    expect(componentMount.find(DoubleCheck).length).toBeGreaterThan(0)
+    expect(componentMount).toMatchSnapshot('Dialog with readStatus === READ')
   })
 
   it('Should render Check icon', () => {
     props.readStatus = ReadStatus.SENT
-    component = shallow(<Dialog {...props} />)
-    expect(component.find(Check).length).toBeGreaterThan(0)
-    expect(component).toMatchSnapshot('Dialog with readStatus === SENT')
+    componentMount = mount(<Dialog {...props} />)
+    expect(componentMount.find(Check).length).toBeGreaterThan(0)
+    expect(componentMount).toMatchSnapshot('Dialog with readStatus === SENT')
   })
 
   it('Should render updated date', () => {

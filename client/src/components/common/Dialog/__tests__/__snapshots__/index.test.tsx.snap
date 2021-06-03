@@ -1,236 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Dialog Match snapshot: Dialog 1`] = `
-<div
-  className="dialog"
->
-  <Avatar
-    customStyles="dialog__avatar"
-    name="name"
-    src=""
-  />
-  <div
-    className="dialog__data"
-  >
-    <div
-      className="dialog__text"
-    >
-      <Component
-        customStyles="dialog__text-title"
-        numberOfLines={1}
-        type="h4"
-      >
-        name
-      </Component>
-      <Component
-        customStyles="dialog__text-description"
-      >
-        string
-      </Component>
-    </div>
-    <div
-      className="dialog__info"
-    >
-      <Component
-        customStyles="dialog__info-date"
-        size="XS"
-        type="mixed"
-      >
-        5/3/2021
-      </Component>
-    </div>
-  </div>
-</div>
-`;
-
-exports[`Dialog Should render Check icon: Dialog with readStatus === SENT 1`] = `
-<div
-  className="dialog"
->
-  <Avatar
-    customStyles="dialog__avatar"
-    name="name"
-    src=""
-  />
-  <div
-    className="dialog__data"
-  >
-    <div
-      className="dialog__text"
-    >
-      <Component
-        customStyles="dialog__text-title"
-        numberOfLines={1}
-        type="h4"
-      >
-        name
-      </Component>
-      <Component
-        customStyles="dialog__text-description"
-      >
-        string
-      </Component>
-    </div>
-    <div
-      className="dialog__info"
-    >
-      <Component
-        customStyles="dialog__info-date"
-        size="XS"
-        type="mixed"
-      >
-        5/3/2021
-      </Component>
-      <div
-        color="#999999"
-        height={15}
-        width={15}
-      />
-    </div>
-  </div>
-</div>
-`;
-
-exports[`Dialog Should render Counter: Dialog with counter 1`] = `
-<div
-  className="dialog"
->
-  <Avatar
-    customStyles="dialog__avatar"
-    name="name"
-    src=""
-  />
-  <div
-    className="dialog__data"
-  >
-    <div
-      className="dialog__text"
-    >
-      <Component
-        customStyles="dialog__text-title"
-        numberOfLines={1}
-        type="h4"
-      >
-        name
-      </Component>
-      <Component
-        customStyles="dialog__text-description"
-      >
-        string
-      </Component>
-    </div>
-    <div
-      className="dialog__info"
-    >
-      <Component
-        customStyles="dialog__info-date"
-        size="XS"
-        type="mixed"
-      >
-        5/3/2021
-      </Component>
-      <Counter
-        count="99+"
-        status="ACTIVE"
-      />
-    </div>
-  </div>
-</div>
-`;
-
-exports[`Dialog Should render Dialog component with selected modifier: Dialog with selected modifier 1`] = `
-<div
-  className="dialog dialog--selected"
->
-  <Avatar
-    customStyles="dialog__avatar"
-    name="name"
-    src=""
-  />
-  <div
-    className="dialog__data"
-  >
-    <div
-      className="dialog__text"
-    >
-      <Component
-        customStyles="dialog__text-title"
-        numberOfLines={1}
-        type="h4"
-      >
-        name
-      </Component>
-      <Component
-        customStyles="dialog__text-description"
-      >
-        string
-      </Component>
-    </div>
-    <div
-      className="dialog__info"
-    >
-      <Component
-        customStyles="dialog__info-date"
-        size="XS"
-        type="mixed"
-      >
-        5/3/2021
-      </Component>
-    </div>
-  </div>
-</div>
-`;
-
-exports[`Dialog Should render DoubleCheck icon: Dialog with readStatus === READ 1`] = `
-<div
-  className="dialog"
->
-  <Avatar
-    customStyles="dialog__avatar"
-    name="name"
-    src=""
-  />
-  <div
-    className="dialog__data"
-  >
-    <div
-      className="dialog__text"
-    >
-      <Component
-        customStyles="dialog__text-title"
-        numberOfLines={1}
-        type="h4"
-      >
-        name
-      </Component>
-      <Component
-        customStyles="dialog__text-description"
-      >
-        string
-      </Component>
-    </div>
-    <div
-      className="dialog__info"
-    >
-      <Component
-        customStyles="dialog__info-date"
-        size="XS"
-        type="mixed"
-      >
-        5/3/2021
-      </Component>
-      <div
-        color="#999999"
-        height={15}
-        width={15}
-      />
-    </div>
-  </div>
-</div>
-`;
-
-exports[`Dialog Should render updated date: Dialog with date 1`] = `
-<Dialog
+<Memo()
   createdAt="Mon May 03 2021 16:47:32 GMT+0300 (Москва, стандартное время)"
   id="123"
   interlocutor={
@@ -250,7 +21,7 @@ exports[`Dialog Should render updated date: Dialog with date 1`] = `
   readStatus={null}
   selected={false}
   status="ACTIVE"
-  updatedAt="Mon May 03 2021 16:49:32 GMT+0300 (Москва, стандартное время)"
+  updatedAt="Mon May 03 2021 16:47:32 GMT+0300 (Москва, стандартное время)"
 >
   <div
     className="dialog"
@@ -264,7 +35,7 @@ exports[`Dialog Should render updated date: Dialog with date 1`] = `
         className="avatar dialog__avatar"
         style={
           Object {
-            "backgroundColor": "#b05e63",
+            "backgroundColor": "#717428",
           }
         }
       >
@@ -361,5 +132,704 @@ exports[`Dialog Should render updated date: Dialog with date 1`] = `
       </div>
     </div>
   </div>
-</Dialog>
+</Memo()>
+`;
+
+exports[`Dialog Should render Check icon: Dialog with readStatus === SENT 1`] = `
+<Memo()
+  createdAt="Mon May 03 2021 16:47:32 GMT+0300 (Москва, стандартное время)"
+  id="123"
+  interlocutor={
+    Object {
+      "avatar": null,
+      "confirmed": false,
+      "createdAt": 2000-12-31T21:00:00.000Z,
+      "email": "foo@bar.baz",
+      "full_name": "name",
+      "id": "123",
+      "last_seen": 2000-12-31T21:00:00.000Z,
+      "updatedAt": 2000-12-31T21:00:00.000Z,
+    }
+  }
+  lastMessage="string"
+  messages={0}
+  readStatus="SENT"
+  selected={false}
+  status="ACTIVE"
+  updatedAt="Mon May 03 2021 16:47:32 GMT+0300 (Москва, стандартное время)"
+>
+  <div
+    className="dialog"
+  >
+    <Avatar
+      customStyles="dialog__avatar"
+      name="name"
+      src=""
+    >
+      <div
+        className="avatar dialog__avatar"
+        style={
+          Object {
+            "backgroundColor": "#df071d",
+          }
+        }
+      >
+        <span
+          className="avatar__text avatar__text--light"
+        >
+          n
+        </span>
+      </div>
+    </Avatar>
+    <div
+      className="dialog__data"
+    >
+      <div
+        className="dialog__text"
+      >
+        <Component
+          customStyles="dialog__text-title"
+          numberOfLines={1}
+          type="h4"
+        >
+          <Dotdotdot
+            clamp={1}
+            tagName="div"
+            truncationChar="…"
+            useNativeClamp={false}
+          >
+            <div>
+              <Component
+                customStyles="dialog__text-title"
+                type="h4"
+              >
+                <h4
+                  className="text text--heading-4 dialog__text-title"
+                >
+                  name
+                </h4>
+              </Component>
+            </div>
+          </Dotdotdot>
+        </Component>
+        <Component
+          customStyles="dialog__text-description"
+        >
+          <Dotdotdot
+            clamp={Infinity}
+            tagName="div"
+            truncationChar="…"
+            useNativeClamp={false}
+          >
+            <div>
+              <Component
+                customStyles="dialog__text-description"
+              >
+                <p
+                  className="text text--description dialog__text-description"
+                >
+                  string
+                </p>
+              </Component>
+            </div>
+          </Dotdotdot>
+        </Component>
+      </div>
+      <div
+        className="dialog__info"
+      >
+        <Component
+          customStyles="dialog__info-date"
+          size="XS"
+          type="mixed"
+        >
+          <Dotdotdot
+            clamp={Infinity}
+            tagName="div"
+            truncationChar="…"
+            useNativeClamp={false}
+          >
+            <div>
+              <Component
+                customStyles="dialog__info-date"
+                size="XS"
+                type="mixed"
+              >
+                <p
+                  className="text text--xs dialog__info-date"
+                >
+                  5/3/2021
+                </p>
+              </Component>
+            </div>
+          </Dotdotdot>
+        </Component>
+        <div
+          color="#999999"
+          height={15}
+          width={15}
+        />
+      </div>
+    </div>
+  </div>
+</Memo()>
+`;
+
+exports[`Dialog Should render Counter: Dialog with counter 1`] = `
+<Memo()
+  createdAt="Mon May 03 2021 16:47:32 GMT+0300 (Москва, стандартное время)"
+  id="123"
+  interlocutor={
+    Object {
+      "avatar": null,
+      "confirmed": false,
+      "createdAt": 2000-12-31T21:00:00.000Z,
+      "email": "foo@bar.baz",
+      "full_name": "name",
+      "id": "123",
+      "last_seen": 2000-12-31T21:00:00.000Z,
+      "updatedAt": 2000-12-31T21:00:00.000Z,
+    }
+  }
+  lastMessage="string"
+  messages={123}
+  readStatus={null}
+  selected={false}
+  status="ACTIVE"
+  updatedAt="Mon May 03 2021 16:47:32 GMT+0300 (Москва, стандартное время)"
+>
+  <div
+    className="dialog"
+  >
+    <Avatar
+      customStyles="dialog__avatar"
+      name="name"
+      src=""
+    >
+      <div
+        className="avatar dialog__avatar"
+        style={
+          Object {
+            "backgroundColor": "#31729b",
+          }
+        }
+      >
+        <span
+          className="avatar__text avatar__text--light"
+        >
+          n
+        </span>
+      </div>
+    </Avatar>
+    <div
+      className="dialog__data"
+    >
+      <div
+        className="dialog__text"
+      >
+        <Component
+          customStyles="dialog__text-title"
+          numberOfLines={1}
+          type="h4"
+        >
+          <Dotdotdot
+            clamp={1}
+            tagName="div"
+            truncationChar="…"
+            useNativeClamp={false}
+          >
+            <div>
+              <Component
+                customStyles="dialog__text-title"
+                type="h4"
+              >
+                <h4
+                  className="text text--heading-4 dialog__text-title"
+                >
+                  name
+                </h4>
+              </Component>
+            </div>
+          </Dotdotdot>
+        </Component>
+        <Component
+          customStyles="dialog__text-description"
+        >
+          <Dotdotdot
+            clamp={Infinity}
+            tagName="div"
+            truncationChar="…"
+            useNativeClamp={false}
+          >
+            <div>
+              <Component
+                customStyles="dialog__text-description"
+              >
+                <p
+                  className="text text--description dialog__text-description"
+                >
+                  string
+                </p>
+              </Component>
+            </div>
+          </Dotdotdot>
+        </Component>
+      </div>
+      <div
+        className="dialog__info"
+      >
+        <Component
+          customStyles="dialog__info-date"
+          size="XS"
+          type="mixed"
+        >
+          <Dotdotdot
+            clamp={Infinity}
+            tagName="div"
+            truncationChar="…"
+            useNativeClamp={false}
+          >
+            <div>
+              <Component
+                customStyles="dialog__info-date"
+                size="XS"
+                type="mixed"
+              >
+                <p
+                  className="text text--xs dialog__info-date"
+                >
+                  5/3/2021
+                </p>
+              </Component>
+            </div>
+          </Dotdotdot>
+        </Component>
+        <Counter
+          count="99+"
+          status="ACTIVE"
+        >
+          <div
+            className="counter"
+          >
+            <span
+              className="counter__text"
+            >
+              99+
+            </span>
+          </div>
+        </Counter>
+      </div>
+    </div>
+  </div>
+</Memo()>
+`;
+
+exports[`Dialog Should render Dialog component with selected modifier: Dialog with selected modifier 1`] = `
+<Memo()
+  createdAt="Mon May 03 2021 16:47:32 GMT+0300 (Москва, стандартное время)"
+  id="123"
+  interlocutor={
+    Object {
+      "avatar": null,
+      "confirmed": false,
+      "createdAt": 2000-12-31T21:00:00.000Z,
+      "email": "foo@bar.baz",
+      "full_name": "name",
+      "id": "123",
+      "last_seen": 2000-12-31T21:00:00.000Z,
+      "updatedAt": 2000-12-31T21:00:00.000Z,
+    }
+  }
+  lastMessage="string"
+  messages={0}
+  readStatus={null}
+  selected={true}
+  status="ACTIVE"
+  updatedAt="Mon May 03 2021 16:47:32 GMT+0300 (Москва, стандартное время)"
+>
+  <div
+    className="dialog dialog--selected"
+  >
+    <Avatar
+      customStyles="dialog__avatar"
+      name="name"
+      src=""
+    >
+      <div
+        className="avatar dialog__avatar"
+        style={
+          Object {
+            "backgroundColor": "#8fa151",
+          }
+        }
+      >
+        <span
+          className="avatar__text avatar__text--dark"
+        >
+          n
+        </span>
+      </div>
+    </Avatar>
+    <div
+      className="dialog__data"
+    >
+      <div
+        className="dialog__text"
+      >
+        <Component
+          customStyles="dialog__text-title"
+          numberOfLines={1}
+          type="h4"
+        >
+          <Dotdotdot
+            clamp={1}
+            tagName="div"
+            truncationChar="…"
+            useNativeClamp={false}
+          >
+            <div>
+              <Component
+                customStyles="dialog__text-title"
+                type="h4"
+              >
+                <h4
+                  className="text text--heading-4 dialog__text-title"
+                >
+                  name
+                </h4>
+              </Component>
+            </div>
+          </Dotdotdot>
+        </Component>
+        <Component
+          customStyles="dialog__text-description"
+        >
+          <Dotdotdot
+            clamp={Infinity}
+            tagName="div"
+            truncationChar="…"
+            useNativeClamp={false}
+          >
+            <div>
+              <Component
+                customStyles="dialog__text-description"
+              >
+                <p
+                  className="text text--description dialog__text-description"
+                >
+                  string
+                </p>
+              </Component>
+            </div>
+          </Dotdotdot>
+        </Component>
+      </div>
+      <div
+        className="dialog__info"
+      >
+        <Component
+          customStyles="dialog__info-date"
+          size="XS"
+          type="mixed"
+        >
+          <Dotdotdot
+            clamp={Infinity}
+            tagName="div"
+            truncationChar="…"
+            useNativeClamp={false}
+          >
+            <div>
+              <Component
+                customStyles="dialog__info-date"
+                size="XS"
+                type="mixed"
+              >
+                <p
+                  className="text text--xs dialog__info-date"
+                >
+                  5/3/2021
+                </p>
+              </Component>
+            </div>
+          </Dotdotdot>
+        </Component>
+      </div>
+    </div>
+  </div>
+</Memo()>
+`;
+
+exports[`Dialog Should render DoubleCheck icon: Dialog with readStatus === READ 1`] = `
+<Memo()
+  createdAt="Mon May 03 2021 16:47:32 GMT+0300 (Москва, стандартное время)"
+  id="123"
+  interlocutor={
+    Object {
+      "avatar": null,
+      "confirmed": false,
+      "createdAt": 2000-12-31T21:00:00.000Z,
+      "email": "foo@bar.baz",
+      "full_name": "name",
+      "id": "123",
+      "last_seen": 2000-12-31T21:00:00.000Z,
+      "updatedAt": 2000-12-31T21:00:00.000Z,
+    }
+  }
+  lastMessage="string"
+  messages={0}
+  readStatus="READ"
+  selected={false}
+  status="ACTIVE"
+  updatedAt="Mon May 03 2021 16:47:32 GMT+0300 (Москва, стандартное время)"
+>
+  <div
+    className="dialog"
+  >
+    <Avatar
+      customStyles="dialog__avatar"
+      name="name"
+      src=""
+    >
+      <div
+        className="avatar dialog__avatar"
+        style={
+          Object {
+            "backgroundColor": "#ed52ea",
+          }
+        }
+      >
+        <span
+          className="avatar__text avatar__text--dark"
+        >
+          n
+        </span>
+      </div>
+    </Avatar>
+    <div
+      className="dialog__data"
+    >
+      <div
+        className="dialog__text"
+      >
+        <Component
+          customStyles="dialog__text-title"
+          numberOfLines={1}
+          type="h4"
+        >
+          <Dotdotdot
+            clamp={1}
+            tagName="div"
+            truncationChar="…"
+            useNativeClamp={false}
+          >
+            <div>
+              <Component
+                customStyles="dialog__text-title"
+                type="h4"
+              >
+                <h4
+                  className="text text--heading-4 dialog__text-title"
+                >
+                  name
+                </h4>
+              </Component>
+            </div>
+          </Dotdotdot>
+        </Component>
+        <Component
+          customStyles="dialog__text-description"
+        >
+          <Dotdotdot
+            clamp={Infinity}
+            tagName="div"
+            truncationChar="…"
+            useNativeClamp={false}
+          >
+            <div>
+              <Component
+                customStyles="dialog__text-description"
+              >
+                <p
+                  className="text text--description dialog__text-description"
+                >
+                  string
+                </p>
+              </Component>
+            </div>
+          </Dotdotdot>
+        </Component>
+      </div>
+      <div
+        className="dialog__info"
+      >
+        <Component
+          customStyles="dialog__info-date"
+          size="XS"
+          type="mixed"
+        >
+          <Dotdotdot
+            clamp={Infinity}
+            tagName="div"
+            truncationChar="…"
+            useNativeClamp={false}
+          >
+            <div>
+              <Component
+                customStyles="dialog__info-date"
+                size="XS"
+                type="mixed"
+              >
+                <p
+                  className="text text--xs dialog__info-date"
+                >
+                  5/3/2021
+                </p>
+              </Component>
+            </div>
+          </Dotdotdot>
+        </Component>
+        <div
+          color="#999999"
+          height={15}
+          width={15}
+        />
+      </div>
+    </div>
+  </div>
+</Memo()>
+`;
+
+exports[`Dialog Should render updated date: Dialog with date 1`] = `
+<Memo()
+  createdAt="Mon May 03 2021 16:47:32 GMT+0300 (Москва, стандартное время)"
+  id="123"
+  interlocutor={
+    Object {
+      "avatar": null,
+      "confirmed": false,
+      "createdAt": 2000-12-31T21:00:00.000Z,
+      "email": "foo@bar.baz",
+      "full_name": "name",
+      "id": "123",
+      "last_seen": 2000-12-31T21:00:00.000Z,
+      "updatedAt": 2000-12-31T21:00:00.000Z,
+    }
+  }
+  lastMessage="string"
+  messages={0}
+  readStatus={null}
+  selected={false}
+  status="ACTIVE"
+  updatedAt="Mon May 03 2021 16:49:32 GMT+0300 (Москва, стандартное время)"
+>
+  <div
+    className="dialog"
+  >
+    <Avatar
+      customStyles="dialog__avatar"
+      name="name"
+      src=""
+    >
+      <div
+        className="avatar dialog__avatar"
+        style={
+          Object {
+            "backgroundColor": "#4eb366",
+          }
+        }
+      >
+        <span
+          className="avatar__text avatar__text--dark"
+        >
+          n
+        </span>
+      </div>
+    </Avatar>
+    <div
+      className="dialog__data"
+    >
+      <div
+        className="dialog__text"
+      >
+        <Component
+          customStyles="dialog__text-title"
+          numberOfLines={1}
+          type="h4"
+        >
+          <Dotdotdot
+            clamp={1}
+            tagName="div"
+            truncationChar="…"
+            useNativeClamp={false}
+          >
+            <div>
+              <Component
+                customStyles="dialog__text-title"
+                type="h4"
+              >
+                <h4
+                  className="text text--heading-4 dialog__text-title"
+                >
+                  name
+                </h4>
+              </Component>
+            </div>
+          </Dotdotdot>
+        </Component>
+        <Component
+          customStyles="dialog__text-description"
+        >
+          <Dotdotdot
+            clamp={Infinity}
+            tagName="div"
+            truncationChar="…"
+            useNativeClamp={false}
+          >
+            <div>
+              <Component
+                customStyles="dialog__text-description"
+              >
+                <p
+                  className="text text--description dialog__text-description"
+                >
+                  string
+                </p>
+              </Component>
+            </div>
+          </Dotdotdot>
+        </Component>
+      </div>
+      <div
+        className="dialog__info"
+      >
+        <Component
+          customStyles="dialog__info-date"
+          size="XS"
+          type="mixed"
+        >
+          <Dotdotdot
+            clamp={Infinity}
+            tagName="div"
+            truncationChar="…"
+            useNativeClamp={false}
+          >
+            <div>
+              <Component
+                customStyles="dialog__info-date"
+                size="XS"
+                type="mixed"
+              >
+                <p
+                  className="text text--xs dialog__info-date"
+                >
+                  5/3/2021
+                </p>
+              </Component>
+            </div>
+          </Dotdotdot>
+        </Component>
+      </div>
+    </div>
+  </div>
+</Memo()>
 `;

@@ -1,5 +1,5 @@
-import type {FC} from 'react'
 import type {IDialog} from 'models/dialog'
+import {memo, FC} from 'react'
 import classNames from 'classnames'
 import {ReadStatus} from 'models/common/status'
 import {TextSize, TextTypes} from 'models/common/text'
@@ -14,7 +14,7 @@ export interface IDialogProps extends IDialog {
   selected: boolean
 }
 
-export const Dialog: FC<IDialogProps> = ({
+export const Dialog: FC<IDialogProps> = memo(({
   lastMessage,
   interlocutor,
   createdAt,
@@ -84,4 +84,4 @@ export const Dialog: FC<IDialogProps> = ({
       </div>
     </div>
   )
-}
+})

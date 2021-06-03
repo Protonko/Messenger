@@ -1,6 +1,12 @@
 import type {FC, HTMLProps, ReactNode} from 'react'
 import classNames from 'classnames'
 
+export enum ButtonModifier {
+  BORDERED = 'bordered',
+  CIRCLE = 'circle',
+  LINKING = 'linking',
+}
+
 export interface IPropsButton extends HTMLProps<HTMLButtonElement> {
   /*
    * button text
@@ -30,7 +36,7 @@ export interface IPropsButton extends HTMLProps<HTMLButtonElement> {
   /*
    * button modifier
    */
-  modifier?: 'bordered' | 'circle' | 'linking'
+  modifier?: ButtonModifier
 
   /*
    * button additional className
