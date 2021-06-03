@@ -1,13 +1,12 @@
 import {IDialogMongoose, IDialog} from '../../types/dialog'
+import {userMapper} from './userMapper'
 
 export const dialogMapper = (dialog: IDialogMongoose): IDialog => {
   return ({
     id: dialog._id,
-    name: dialog.interlocutor.full_name,
-    avatar: dialog.interlocutor.avatar ?? '',
-    edited: dialog.createdAt !== dialog.updatedAt,
+    interlocutor: userMapper(dialog.interlocutor),
     createdAt: dialog.createdAt,
-    updatedAt: dialog.updatedAt,
+    updatedAt: dialog.updatedAt === dialog.updatedAt ? '' : dialog.updatedAt,
     messages: dialog.messages ?? 0,
     muted: dialog.muted,
     read: !!dialog.last_message?.read,

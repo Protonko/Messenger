@@ -55,7 +55,7 @@ export class DialogController {
             if (dialog) {
               shouldContinue = false
               return response
-                .status(403)
+                .status(409)
                 .json({message: 'Dialog already exist'})
             }
           }

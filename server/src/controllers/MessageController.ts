@@ -27,6 +27,7 @@ export class MessageController {
 
     Message
       .find({dialog})
+      .populate(['user'])
       .exec((error: IError, messages: Array<IMessageMongoose>) => {
         try {
           if (error) {
@@ -50,19 +51,19 @@ export class MessageController {
     const {text, id} = request.body
 
     try {
-      const message = new Message({text, user: userId, id})
-      const createdMessage = await message.save()
+      const message = await new Message({text, user: userId, dialog: id}).save()
 
-      createdMessage.populate(
-        'dialog',
-        (error, message) => {
+      await Message
+        .findOne({_id: message.id})
+        .populate(['user'])
+        .exec((error: IError, message: IMessageMongoose) => {
           if (error) {
             return response.status(500).json({message: error})
           }
 
           response.json(messageMapper(message))
           this.io.emit(EVENTS_SOCKET.NEW_MESSAGE, message)
-      })
+        })
     } catch (reason) {
       response.json(reason)
     }
