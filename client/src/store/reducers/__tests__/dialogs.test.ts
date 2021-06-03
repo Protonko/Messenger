@@ -1,3 +1,4 @@
+import type {IDialog} from 'models/dialog'
 import {Status} from 'models/common/status'
 import {
   AllDialogsActions,
@@ -6,12 +7,19 @@ import {
 import dialogs, {initialState} from 'store/reducers/dialogs'
 
 describe('Dialogs reducer', () => {
-  const DIALOG = {
+  const DIALOG: IDialog = {
     id: 'id',
-    name: 'name',
+    interlocutor: {
+      avatar: null,
+      confirmed: false,
+      email: 'foo@bar.baz',
+      id: '123',
+      full_name: 'name',
+      createdAt: new Date('01-01-01'),
+      updatedAt: new Date('01-01-01'),
+      last_seen: new Date('01-01-01'),
+    },
     lastMessage: 'lastMessage',
-    avatar: '',
-    edited: false,
     createdAt: 'createdAt',
     updatedAt: 'updatedAt',
     messages: 1,

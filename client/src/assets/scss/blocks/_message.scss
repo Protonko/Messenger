@@ -42,6 +42,10 @@
   &__content {
     &-item {
       margin-bottom: rem(5px);
+
+      &:last-child {
+        margin-bottom: 0;
+      }
     }
   }
 

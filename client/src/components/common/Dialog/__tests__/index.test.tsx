@@ -19,14 +19,21 @@ describe('Dialog', () => {
   beforeEach(() => {
     props = {
       id: '123',
-      name: 'string',
+      interlocutor: {
+        avatar: null,
+        confirmed: false,
+        email: 'foo@bar.baz',
+        id: '123',
+        full_name: 'name',
+        createdAt: new Date('01-01-01'),
+        updatedAt: new Date('01-01-01'),
+        last_seen: new Date('01-01-01'),
+      },
       lastMessage: 'string',
-      avatar: 'string',
       createdAt:
         'Mon May 03 2021 16:47:32 GMT+0300 (Москва, стандартное время)',
       updatedAt:
         'Mon May 03 2021 16:47:32 GMT+0300 (Москва, стандартное время)',
-      edited: false,
       messages: 0,
       status: Status.ACTIVE,
       readStatus: null,
@@ -72,7 +79,7 @@ describe('Dialog', () => {
   })
 
   it('Should render updated date', () => {
-    props.edited = true
+    props.updatedAt = 'Mon May 03 2021 16:49:32 GMT+0300 (Москва, стандартное время)'
     componentMount = mount(<Dialog {...props} />)
     expect(componentMount.find(`.${ELEMENT_SELECTORS.date}`).text()).toBe(
       new Date(props.updatedAt).toLocaleDateString(),

@@ -19,6 +19,13 @@ const reducers = (state = initialState, action: AllErrorActions) => {
         errorMessage: action.payload,
       }
 
+    case ErrorActionTypes.COMMON_ERROR:
+      return {
+        ...state,
+        showErrorNotification: true,
+        errorMessage: action.payload,
+      }
+
     case ErrorActionTypes.HIDE_ERROR_NOTIFICATION:
       return {
         ...state,

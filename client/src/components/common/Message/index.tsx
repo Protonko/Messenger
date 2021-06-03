@@ -1,28 +1,59 @@
 import type {FC} from 'react'
+import type {IMessage} from 'models/message'
 import classNames from 'classnames'
 import {TextSize, TextTypes} from 'models/common/text'
-import {Avatar, IPropsAvatar} from 'components/common/Avatar'
+import {Sizes} from 'models/common/sizes'
+import {Avatar} from 'components/common/Avatar'
 import {Text} from 'components/common/Text'
 
-export interface IPropsMessage extends IPropsAvatar {
-  name: string
+export interface IPropsMessage extends IMessage {
   customStyles?: string
-  description?: string
+  avatarSize?: Sizes
 }
 
 export const Message: FC<IPropsMessage> = ({
-  name,
   customStyles,
-  ...avatarProps
+  text,
+  author,
+  createdAt,
+  updatedAt,
+  attachments,
 }) => {
   const classNamesMessage = classNames('message', {
     [customStyles ?? '']: !!customStyles,
   })
 
+  const renderText = () => {
+    if (text) {
+      return (
+        <Text
+          type={TextTypes.mixed}
+          size={TextSize.EXTRA_SMALL}
+          customStyles="message__content-item message__content-item--text"
+          numberOfLines={1}
+        >
+          {text}
+        </Text>
+      )
+    }
+  }
+
+  const renderAttachments = () => {
+    if (attachments.length) {
+      return (
+        <img
+          className="message__content-item message__content-item--image"
+          src=""
+          alt="#"
+        />
+      )
+    }
+  }
+
   return (
     <div className={classNamesMessage}>
       <div className="message__body">
-        <Avatar {...avatarProps} name={name} />
+        <Avatar name={author.full_name} src={author.avatar ?? ''} />
 
         <div className="message__data">
           <Text
@@ -30,23 +61,12 @@ export const Message: FC<IPropsMessage> = ({
             customStyles="message__author"
             numberOfLines={1}
           >
-            {name}
+            {author.full_name}
           </Text>
 
           <div className="message__content">
-            <Text
-              type={TextTypes.mixed}
-              size={TextSize.EXTRA_SMALL}
-              customStyles="message__content-item message__content-item--text"
-              numberOfLines={1}
-            >
-              text
-            </Text>
-            <img
-              className="message__content-item message__content-item--image"
-              src=""
-              alt="#"
-            />
+            {renderText()}
+            {renderAttachments()}
           </div>
         </div>
 
@@ -57,7 +77,7 @@ export const Message: FC<IPropsMessage> = ({
             customStyles="message__date-text"
             numberOfLines={1}
           >
-            22.05.2021
+            {new Date(updatedAt || createdAt).toLocaleString()}
           </Text>
         </div>
       </div>

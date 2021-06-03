@@ -1,10 +1,13 @@
 import {TextTypes} from 'models/common/text'
+import {useSearchParams} from 'hooks/useSearchParams'
 import {Text} from 'components/common/Text'
 import {Dialogs} from 'components/Dialogs'
 import {Messages} from 'components/Messages'
 import {CreateMessageForm} from 'components/CreateMessageForm'
 
 const Chat = () => {
+  const dialogParam = useSearchParams('dialog')
+
   return (
     <div className="container">
       <div className="chat">
@@ -19,7 +22,7 @@ const Chat = () => {
           </div>
           <div className="chat__messages">
             <Messages />
-            <CreateMessageForm />
+            {dialogParam && <CreateMessageForm />}
           </div>
         </div>
       </div>

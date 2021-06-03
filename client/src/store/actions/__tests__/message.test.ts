@@ -1,3 +1,4 @@
+import type {IMessage} from 'models/message'
 import {
   createMessage,
   createMessageError,
@@ -9,24 +10,38 @@ import {
 import {MessageActionsTypes} from 'models/store/actions/message'
 
 describe('message actions', () => {
-  const message = {
+  const message: IMessage = {
     read: false,
     attachments: [],
     id: 'id',
     dialog: 'dialog_id',
-    user: 'user',
+    author: {
+      avatar: '',
+      confirmed: false,
+      email: 'foo@bar.baz',
+      id: '123',
+      full_name: 'name',
+      createdAt: new Date('01-01-01'),
+      updatedAt: new Date('01-01-01'),
+      last_seen: new Date('01-01-01'),
+    },
     text: 'text',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt',
   }
 
   it('should create createMessage', () => {
-    const expectedAction = {
-      type: MessageActionsTypes.CREATE_MESSAGE,
-      payload: 'text',
+    const payload = {
+      text: 'text',
+      userId: 'userId',
     }
 
-    expect(createMessage('text')).toEqual(expectedAction)
+    const expectedAction = {
+      type: MessageActionsTypes.CREATE_MESSAGE,
+      payload,
+    }
+
+    expect(createMessage(payload)).toEqual(expectedAction)
   })
 
   it('should create createMessageSuccess', () => {

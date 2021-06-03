@@ -1,5 +1,5 @@
 import {ErrorActionTypes} from 'models/store/actions/error'
-import {invalidToken, hideErrorNotification} from 'store/actions/error'
+import {invalidToken, hideErrorNotification, commonError} from 'store/actions/error'
 
 describe('Error actions', () => {
   it('Should create invalidToken', () => {
@@ -9,6 +9,15 @@ describe('Error actions', () => {
     }
 
     expect(invalidToken('error')).toEqual(exceptedAction)
+  })
+
+  it('Should create commonError', () => {
+    const exceptedAction = {
+      type: ErrorActionTypes.COMMON_ERROR,
+      payload: 'error',
+    }
+
+    expect(commonError('error')).toEqual(exceptedAction)
   })
 
   it('Should create hideErrorNotification', () => {

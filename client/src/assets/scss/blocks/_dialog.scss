@@ -60,7 +60,8 @@
     }
 
     &-description {
-      font-size: $font-size-small;
+      font-size: rem($font-size-small);
+      height: rem($font-size-small);
       color: $grey;
     }
   }

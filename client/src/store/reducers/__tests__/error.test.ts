@@ -7,6 +7,10 @@ describe('error reducer', () => {
       type: ErrorActionTypes.INVALID_TOKEN_ERROR,
       payload: 'error message',
     },
+    COMMON_ERROR: {
+      type: ErrorActionTypes.COMMON_ERROR,
+      payload: 'common error message',
+    },
     HIDE_ERROR_NOTIFICATION: {
       type: ErrorActionTypes.HIDE_ERROR_NOTIFICATION,
     },
@@ -17,6 +21,14 @@ describe('error reducer', () => {
       ...initialState,
       showErrorNotification: true,
       errorMessage: ACTIONS.INVALID_TOKEN_ERROR.payload,
+    })
+  })
+
+  it('Should change state on COMMON_ERROR', () => {
+    expect(error(initialState, ACTIONS.COMMON_ERROR)).toEqual({
+      ...initialState,
+      showErrorNotification: true,
+      errorMessage: ACTIONS.COMMON_ERROR.payload,
     })
   })
 

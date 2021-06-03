@@ -1,14 +1,13 @@
+import type {IMessage} from 'models/message'
 import {expectSaga} from 'redux-saga-test-plan'
 import {call} from 'redux-saga-test-plan/matchers'
 import {throwError} from 'redux-saga-test-plan/providers'
-import {select} from 'redux-saga/effects'
 import {
   CreateMessageAction,
-  GetMessagesAction,
+  GetMessagesAction, ICreateMessagePayload,
   MessageActionsTypes,
 } from 'models/store/actions/message'
 import {MessagesApi} from 'api/Messages'
-import {selectors} from 'store/saga/selectors'
 import {
   createMessageWatcher,
   createMessageWorker,
@@ -17,11 +16,26 @@ import {
 } from 'store/saga/message'
 
 describe('message sagas', () => {
-  const message = {
+  const createMessagePayload: ICreateMessagePayload = {
+    userId: 'userId',
+    text: 'text',
+  }
+  const message: IMessage = {
     read: false,
     attachments: [],
     id: 'id',
-    user: 'user',
+    dialog: 'foo',
+    author: {
+      avatar: null,
+      confirmed: true,
+      createdAt: new Date('01.01.01'),
+      updatedAt: new Date('01.01.01'),
+      last_seen: new Date('01.01.01'),
+      email: 'string',
+      full_name: 'string',
+      id: 'bar',
+    },
+    text: 'baz',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt',
   }
@@ -29,15 +43,17 @@ describe('message sagas', () => {
   describe('create message', () => {
     const createMessageAction: CreateMessageAction = {
       type: MessageActionsTypes.CREATE_MESSAGE,
-      payload: 'text',
+      payload: createMessagePayload,
     }
 
-    it('Should get error "ID not found!"', () => {
+    it('Should create message', () => {
       return expectSaga(createMessageWatcher)
-        .provide([[select(selectors.getUsers), {selectedUserId: null}]])
+        .provide([
+          [call.fn(MessagesApi.createMessage), message],
+        ])
         .put({
-          type: MessageActionsTypes.CREATE_MESSAGE_ERROR,
-          payload: 'ID not found!',
+          type: MessageActionsTypes.CREATE_MESSAGE_SUCCESS,
+          payload: message,
         })
         .dispatch(createMessageAction)
         .run()
@@ -46,7 +62,6 @@ describe('message sagas', () => {
     it('Should create message successfully', () => {
       return expectSaga(createMessageWorker, createMessageAction)
         .provide([
-          [select(selectors.getUsers), {selectedUserId: '1'}],
           [call.fn(MessagesApi.createMessage), message],
         ])
         .put({
@@ -59,7 +74,6 @@ describe('message sagas', () => {
     it('Should get error', () => {
       return expectSaga(createMessageWorker, createMessageAction)
         .provide([
-          [select(selectors.getUsers), {selectedUserId: '1'}],
           [call.fn(MessagesApi.createMessage), throwError(new Error('error'))],
         ])
         .put({

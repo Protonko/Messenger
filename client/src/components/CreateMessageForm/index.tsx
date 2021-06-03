@@ -1,18 +1,33 @@
 import type {EmojiData} from 'emoji-mart'
+import type {RootState} from 'store/reducers'
 import {useState, FormEvent} from 'react'
+import {useDispatch, useSelector} from 'react-redux'
 import {ReactComponent as Clip} from 'assets/icons/clip.svg'
 import {ReactComponent as Microphone} from 'assets/icons/microphone.svg'
+import {useSearchParams} from 'hooks/useSearchParams'
+import {createMessage} from 'store/actions/message'
+import {commonError} from 'store/actions/error'
 import {Textarea} from 'components/common/Textarea'
 import {Avatar} from 'components/common/Avatar'
 import {Button} from 'components/common/Button'
 import {Emoji} from 'components/common/Emoji'
 
 export const CreateMessageForm = () => {
+  const dialogParam = useSearchParams('dialog')
+  const {dialogs} = useSelector((state: RootState) => state.dialogs)
+  const dispatch = useDispatch()
   const [value, setValue] = useState('')
 
   const onSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault()
-    console.log('created')
+
+    const interlocutor = dialogs?.find(dialog => dialog.id === dialogParam)
+
+    if (!interlocutor) {
+      return dispatch(commonError('ID not found!'))
+    }
+
+    dispatch(createMessage({text: value, userId: interlocutor.id}))
   }
 
   const onSelect = (data: EmojiData) => {

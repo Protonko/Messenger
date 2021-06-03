@@ -36,12 +36,21 @@ const reducers = (state = initialState, action: AllMessageActions) => {
         createErrorMessage: action.payload,
       }
 
-    case MessageActionsTypes.CREATE_MESSAGE_SUCCESS:
+    case MessageActionsTypes.CREATE_MESSAGE_SUCCESS: {
+      const dialogId = action.payload.dialog
       return {
         ...state,
         creating: false,
         createErrorMessage: null,
+        messages: {
+          ...state.messages,
+          [dialogId]: [
+            ...(state.messages?.[dialogId] ?? []),
+            action.payload,
+          ]
+        }
       }
+    }
 
     case MessageActionsTypes.GET_MESSAGES:
       return {
@@ -59,7 +68,7 @@ const reducers = (state = initialState, action: AllMessageActions) => {
           state.messages && omit(action.payload.dialogId, state.messages),
       }
 
-    case MessageActionsTypes.GET_MESSAGES_SUCCESS:
+    case MessageActionsTypes.GET_MESSAGES_SUCCESS: {
       const {dialogId, messages} = action.payload
       return {
         ...state,
@@ -70,6 +79,7 @@ const reducers = (state = initialState, action: AllMessageActions) => {
           [dialogId]: [...(state.messages?.[dialogId] ?? []), ...messages],
         },
       }
+    }
 
     default:
       return state

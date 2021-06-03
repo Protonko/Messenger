@@ -1,3 +1,4 @@
+import type  {IDialog} from 'models/dialog'
 import {DialogsActionTypes} from 'models/store/actions/dialogs'
 import {Status} from 'models/common/status'
 import {
@@ -11,13 +12,20 @@ import {
 } from 'store/actions/dialogs'
 
 describe('Auth actions', () => {
-  const dialogs = [
+  const dialogs: IDialog[] = [
     {
       id: 'id',
-      name: 'name',
+      interlocutor: {
+        avatar: '',
+        confirmed: false,
+        email: 'foo@bar.baz',
+        id: '123',
+        full_name: 'name',
+        createdAt: new Date('01-01-01'),
+        updatedAt: new Date('01-01-01'),
+        last_seen: new Date('01-01-01'),
+      },
       lastMessage: 'lastMessage',
-      avatar: 'avatar',
-      edited: true,
       createdAt: 'createdAt',
       updatedAt: 'updatedAt',
       messages: 1,

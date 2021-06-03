@@ -1,3 +1,4 @@
+import type {IMessage} from 'models/message'
 import message, {initialState} from 'store/reducers/message'
 import {
   AllMessageActions,
@@ -7,13 +8,22 @@ import {
 describe('auth reducer', () => {
   const ERROR_MESSAGE = 'error'
   const DIALOG_ID = '123'
-  const MESSAGE = {
+  const MESSAGE: IMessage = {
     read: false,
     attachments: [],
     id: 'id',
     text: 'text',
     dialog: 'dialog_id',
-    user: 'user',
+    author: {
+      avatar: null,
+      confirmed: false,
+      email: 'foo@bar.baz',
+      id: '123',
+      full_name: 'name',
+      createdAt: new Date('01-01-01'),
+      updatedAt: new Date('01-01-01'),
+      last_seen: new Date('01-01-01'),
+    },
     createdAt: 'createdAt',
     updatedAt: 'updatedAt',
   }
@@ -26,7 +36,10 @@ describe('auth reducer', () => {
   const ACTIONS: Record<string, AllMessageActions> = {
     CREATE_MESSAGE: {
       type: MessageActionsTypes.CREATE_MESSAGE,
-      payload: 'text',
+      payload: {
+        text: 'foo',
+        userId: 'bar',
+      },
     },
     CREATE_MESSAGE_SUCCESS: {
       type: MessageActionsTypes.CREATE_MESSAGE_SUCCESS,
@@ -73,6 +86,9 @@ describe('auth reducer', () => {
   it('Should change state on CREATE_MESSAGE_SUCCESS action', () => {
     expect(message(initialState, ACTIONS.CREATE_MESSAGE_SUCCESS)).toEqual({
       ...initialState,
+      messages: {
+        [MESSAGE.dialog]: [MESSAGE],
+      }
     })
   })
 

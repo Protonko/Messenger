@@ -9,9 +9,10 @@ import {
   GetMessagesErrorAction,
   IGetMessagesSuccessPayload,
   IGetMessagesErrorPayload,
+  ICreateMessagePayload,
 } from 'models/store/actions/message'
 
-export const createMessage = (payload: string): CreateMessageAction => ({
+export const createMessage = (payload: ICreateMessagePayload): CreateMessageAction => ({
   type: MessageActionsTypes.CREATE_MESSAGE,
   payload,
 })

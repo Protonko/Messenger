@@ -1,11 +1,10 @@
+import type {IUser} from './user'
 import {Status, ReadStatus} from './common/status'
 
 export interface IDialog {
   id: string
-  name: string
+  interlocutor: IUser,
   lastMessage: string
-  avatar: string
-  edited: boolean
   createdAt: string
   updatedAt: string
   messages: number

@@ -1,0 +1,29 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Tag Should render Tag component with custom styles: Tag with custom styles 1`] = `
+<div
+  className="tag custom"
+>
+  <Component
+    customStyles="tag__text"
+    numberOfLines={1}
+    type="mixed"
+  >
+    test text
+  </Component>
+</div>
+`;
+
+exports[`Tag Should render Tag component: Tag 1`] = `
+<div
+  className="tag"
+>
+  <Component
+    customStyles="tag__text"
+    numberOfLines={1}
+    type="mixed"
+  >
+    test text
+  </Component>
+</div>
+`;

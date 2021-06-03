@@ -21,10 +21,15 @@ export interface IGetMessagesErrorPayload {
   dialogId: string
 }
 
+export interface ICreateMessagePayload {
+  text: string
+  userId: string
+}
+
 // actions
 export interface CreateMessageAction extends AnyAction {
   type: MessageActionsTypes.CREATE_MESSAGE
-  payload: string
+  payload: ICreateMessagePayload
 }
 
 export interface CreateMessageSuccessAction extends AnyAction {
