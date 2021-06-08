@@ -49,6 +49,12 @@ export class MessageController {
     const userId: string | null = request.user?._id ?? null
     const {text, dialog, interlocutor} = request.body
 
+    if (!userId) {
+      return response
+        .status(400)
+        .json({message: 'User id is not defined!'})
+    }
+
     try {
       const message = await new Message({text, user: userId, dialog}).save()
 
@@ -63,7 +69,7 @@ export class MessageController {
           }
 
           response.json(messageMapper(message))
-          this.io.to(interlocutor).emit(EVENTS_SOCKET.NEW_MESSAGE, message)
+          this.io.to(interlocutor).emit(EVENTS_SOCKET.NEW_MESSAGE, messageMapper(message))
         })
     } catch (error) {
       return response
