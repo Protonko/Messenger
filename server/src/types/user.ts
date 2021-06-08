@@ -1,7 +1,7 @@
 import {Document} from 'mongoose'
 
 export interface IUserMongoose extends Document {
-  id: string,
+  _id: string,
   avatar: null | string,
   last_seen: Date,
   password: string,

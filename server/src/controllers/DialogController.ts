@@ -15,10 +15,11 @@ export class DialogController {
 
   async find(request: Request, response: Response) {
     // @ts-ignore
-    const authorId = request.user?._id ?? null;
+    const authorId = request.user?._id ?? null
 
     await Dialog
-      .find({author: authorId})
+      .find()
+      .or([{author: authorId}, {interlocutor: authorId}])
       .populate(['author', 'interlocutor', 'last_message'])
       .exec((error: IError, dialogs: Array<IDialogMongoose>) => {
         try {
@@ -28,16 +29,18 @@ export class DialogController {
               .json({message: 'Chat not found'})
           }
 
-          return response.json(dialogs.map(dialogMapper))
-        } catch {
+          return response.json(dialogs.map(dialog => dialogMapper(dialog, authorId)))
+        } catch (error) {
           return response
-            .json({message: 'undefined error'})
+            .json({error: error.message})
         }
       })
   }
 
   async create(request: Request, response: Response) {
     let shouldContinue = true
+    // @ts-ignore
+    const authorId = request.user?._id ?? null
     const {author, text, interlocutor} = request.body
 
     try {
@@ -85,14 +88,14 @@ export class DialogController {
                 .json({message: 'Chat not found'})
             }
 
-            return response.json(dialogMapper(dialog))
-          } catch {
+            return response.json(dialogMapper(dialog, authorId))
+          } catch (error) {
             return response
-              .json({message: 'undefined error'})
+              .json(error)
           }
         })
-    } catch (reason) {
-      response.json(reason)
+    } catch (error) {
+      response.json({error: error.message})
     }
   }
 
@@ -109,9 +112,9 @@ export class DialogController {
       }
 
       return response.json({message: 'Dialog deleted'})
-    } catch {
+    } catch (error) {
       return response
-        .json({message: 'undefined error'})
+        .json({message: error.message})
     }
   }
 }

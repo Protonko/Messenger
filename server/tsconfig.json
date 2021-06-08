@@ -13,7 +13,7 @@
   },
   "files": [
     "./src/types.d.ts",
-    "./node_modules/@types/node/index.d.ts"
+    "./node_modules/@types/node/index.d.ts",
   ],
   "include": ["src/**/*.ts"],
   "exclude": ["node_modules"],

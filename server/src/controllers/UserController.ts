@@ -27,10 +27,10 @@ export class UserController {
         }
 
         return response.json(userMapper(user))
-      } catch {
+      } catch (error) {
         return response
           .status(500)
-          .json({message: 'Undefined error.'})
+          .json({error: error.message})
       }
     })
   }
@@ -41,7 +41,7 @@ export class UserController {
         if (error) {
           return response
             .status(404)
-            .json({message: 'Users not found.'})
+            .json({message: error.value})
         }
 
         return response.json(users.map(userMapper))
@@ -61,7 +61,7 @@ export class UserController {
       if (error) {
         return response
           .status(404)
-          .json({message: 'User not found.'})
+          .json({message: error.value})
       }
 
       response.json(userMapper(user))
@@ -116,8 +116,10 @@ export class UserController {
       const createdUser = await user.save()
 
       response.json(userMapper(createdUser))
-    } catch (reason) {
-      response.json(reason)
+    } catch (error) {
+      response
+        .status(500)
+        .json({message: error.message})
     }
   }
 
@@ -133,10 +135,10 @@ export class UserController {
       }
 
       return response.json({message: 'User deleted.'})
-    } catch {
+    } catch (error) {
       return response
         .status(500)
-        .json({message: 'Undefined error.'})
+        .json({message: error.message})
     }
   }
 }

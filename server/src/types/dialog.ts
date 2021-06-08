@@ -8,6 +8,7 @@ export enum ReadStatus {
 }
 
 export interface IDialogMongoose extends Document {
+  _id: string,
   author: IUserMongoose,
   interlocutor: IUserMongoose,
   last_message?: IMessageMongoose,

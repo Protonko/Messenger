@@ -16,7 +16,6 @@ export class MessageController {
   }
 
   find(request: Request, response: Response) {
-    // dialog id
     const {dialog} = request.query
 
     if (typeof dialog !== 'string') {
@@ -33,39 +32,43 @@ export class MessageController {
           if (error) {
             return response
               .status(404)
-              .json({message: 'Messages not found'})
+              .json({message: error.value})
           }
 
           return response.json(messages.map(messageMapper))
-        } catch {
+        } catch (error) {
           return response
             .status(500)
-            .json({message: 'undefined error'})
+            .json({message: error.message})
         }
       })
   }
 
   async create(request: Request, response: Response) {
     // @ts-ignore
-    const userId = request.user?._id ?? null
-    const {text, id} = request.body
+    const userId: string | null = request.user?._id ?? null
+    const {text, dialog, interlocutor} = request.body
 
     try {
-      const message = await new Message({text, user: userId, dialog: id}).save()
+      const message = await new Message({text, user: userId, dialog}).save()
 
       await Message
         .findOne({_id: message.id})
         .populate(['user'])
         .exec((error: IError, message: IMessageMongoose) => {
           if (error) {
-            return response.status(500).json({message: error})
+            return response
+              .status(500)
+              .json({message: error.value})
           }
 
           response.json(messageMapper(message))
-          this.io.emit(EVENTS_SOCKET.NEW_MESSAGE, message)
+          this.io.to(interlocutor).emit(EVENTS_SOCKET.NEW_MESSAGE, message)
         })
-    } catch (reason) {
-      response.json(reason)
+    } catch (error) {
+      return response
+        .status(500)
+        .json({message: error.message})
     }
   }
 
@@ -83,9 +86,10 @@ export class MessageController {
       }
 
       return response.json({message: 'Message deleted'})
-    } catch {
+    } catch (error) {
       return response
-        .json({message: 'undefined error'})
+        .status(500)
+        .json({message: error.message})
     }
   }
 }

@@ -32,6 +32,7 @@ export const checkAuth = async (
               .json({message: 'User not found.'})
           }
 
+          // @ts-ignore
           request.user = user
         })
       }
