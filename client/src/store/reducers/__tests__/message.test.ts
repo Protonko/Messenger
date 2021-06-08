@@ -38,7 +38,8 @@ describe('auth reducer', () => {
       type: MessageActionsTypes.CREATE_MESSAGE,
       payload: {
         text: 'foo',
-        userId: 'bar',
+        dialogId: 'bar',
+        interlocutorId: 'baz',
       },
     },
     CREATE_MESSAGE_SUCCESS: {
@@ -88,7 +89,7 @@ describe('auth reducer', () => {
       ...initialState,
       messages: {
         [MESSAGE.dialog]: [MESSAGE],
-      }
+      },
     })
   })
 

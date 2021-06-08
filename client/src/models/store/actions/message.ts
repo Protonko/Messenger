@@ -8,6 +8,7 @@ export enum MessageActionsTypes {
   GET_MESSAGES = '[MESSAGE]GET_MESSAGES',
   GET_MESSAGES_SUCCESS = '[MESSAGE]GET_MESSAGES_SUCCESS',
   GET_MESSAGES_ERROR = '[MESSAGE]GET_MESSAGES_ERROR',
+  APPEND_MESSAGE = '[MESSAGE]APPEND_MESSAGE',
 }
 
 // payloads
@@ -23,7 +24,8 @@ export interface IGetMessagesErrorPayload {
 
 export interface ICreateMessagePayload {
   text: string
-  userId: string
+  dialogId: string
+  interlocutorId: string
 }
 
 // actions
@@ -57,6 +59,11 @@ export interface GetMessagesErrorAction extends AnyAction {
   payload: IGetMessagesErrorPayload
 }
 
+export interface AppendMessageAction extends AnyAction {
+  type: MessageActionsTypes.APPEND_MESSAGE
+  payload: IMessage
+}
+
 export type AllMessageActions =
   | CreateMessageAction
   | CreateMessageSuccessAction
@@ -64,3 +71,4 @@ export type AllMessageActions =
   | GetMessagesAction
   | GetMessagesSuccessAction
   | GetMessagesErrorAction
+  | AppendMessageAction

@@ -165,7 +165,11 @@ export const AuthForm: FC = () => {
           </Text>
         </div>
         <footer className="auth-modal__section auth-modal__section--footer">
-          <Button modifier={ButtonModifier.LINKING} text="OK" onClick={redirectToAuthScreen} />
+          <Button
+            modifier={ButtonModifier.LINKING}
+            text="OK"
+            onClick={redirectToAuthScreen}
+          />
         </footer>
       </Modal>
     </>

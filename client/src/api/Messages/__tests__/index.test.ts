@@ -4,7 +4,8 @@ import {RESPONSE_ERROR} from 'static/constants'
 
 describe('MessagesApi', () => {
   const BODY_CREATE = {
-    id: '123',
+    dialog: '123',
+    interlocutor: '321',
     text: 'text',
   }
   const mockRejectedJSON = Promise.resolve(RESPONSE_ERROR)

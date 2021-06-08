@@ -5,7 +5,7 @@ import {useDispatch, useSelector} from 'react-redux'
 import {EVENTS_SOCKET} from 'models/common/socket'
 import {socket} from 'utils/socket'
 import {useSearchParams} from 'hooks/useSearchParams'
-import {getMessages} from 'store/actions/message'
+import {appendMessage, getMessages} from 'store/actions/message'
 import {Message} from 'components/common/Message'
 import {ContentContainer} from 'components/common/ContentContainer'
 import {Tag} from 'components/common/Tag'
@@ -16,8 +16,8 @@ export const Messages = () => {
   const {messages} = useSelector((state: RootState) => state.message)
 
   useEffect(() => {
-    socket.on(EVENTS_SOCKET.NEW_MESSAGE, () => {
-      console.log('created')
+    socket.on(EVENTS_SOCKET.NEW_MESSAGE, (message: IMessage) => {
+      dispatch(appendMessage(message))
     })
   }, [])
 
@@ -53,9 +53,7 @@ export const Messages = () => {
 
   return (
     <ContentContainer loading={false} errorMessage={null}>
-      <ul className="messages list list--reset">
-        {renderContent()}
-      </ul>
+      <ul className="messages list list--reset">{renderContent()}</ul>
     </ContentContainer>
   )
 }

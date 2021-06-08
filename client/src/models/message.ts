@@ -2,8 +2,9 @@ import type {IFile} from 'models/file'
 import type {IUser} from 'models/user'
 
 export interface ICreateMessageBody {
-  id: string
+  dialog: string
   text: string
+  interlocutor: string
 }
 
 export interface IMessage {

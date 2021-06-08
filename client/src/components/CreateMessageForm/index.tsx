@@ -16,20 +16,27 @@ export const CreateMessageForm = () => {
   const dialogParam = useSearchParams('dialog')
   const {dialogs, account} = useSelector((state: RootState) => ({
     ...state.dialogs,
-    ...state.auth
+    ...state.auth,
   }))
   const dispatch = useDispatch()
   const [value, setValue] = useState('')
-  const {interlocutor} = dialogs?.find(dialog => dialog.id === dialogParam) ?? {}
+  const {interlocutor} =
+    dialogs?.find((dialog) => dialog.id === dialogParam) ?? {}
 
   const onSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault()
 
-    if (!interlocutor) {
+    if (!interlocutor || !dialogParam) {
       return dispatch(commonError('ID not found!'))
     }
 
-    dispatch(createMessage({text: value, userId: interlocutor.id}))
+    dispatch(
+      createMessage({
+        text: value,
+        dialogId: dialogParam,
+        interlocutorId: interlocutor.id,
+      }),
+    )
   }
 
   const onSelect = (data: EmojiData) => {
@@ -48,7 +55,10 @@ export const CreateMessageForm = () => {
           value={value}
           onChange={setValue}
         />
-        <Avatar name={interlocutor?.full_name} src={interlocutor?.avatar ?? ''} />
+        <Avatar
+          name={interlocutor?.full_name}
+          src={interlocutor?.avatar ?? ''}
+        />
       </div>
 
       <div className="create-message-form__row create-message-form__actions">

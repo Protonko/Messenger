@@ -78,7 +78,8 @@ describe('Dialog', () => {
   })
 
   it('Should render updated date', () => {
-    props.updatedAt = 'Mon May 03 2021 16:49:32 GMT+0300 (Москва, стандартное время)'
+    props.updatedAt =
+      'Mon May 03 2021 16:49:32 GMT+0300 (Москва, стандартное время)'
     componentMount = mount(<Dialog {...props} />)
     expect(componentMount.find(`.${ELEMENT_SELECTORS.date}`).text()).toBe(
       new Date(props.updatedAt).toLocaleDateString(),

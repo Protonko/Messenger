@@ -33,7 +33,8 @@ describe('message actions', () => {
   it('should create createMessage', () => {
     const payload = {
       text: 'text',
-      userId: 'userId',
+      dialogId: 'dialog',
+      interlocutorId: 'interlocutor',
     }
 
     const expectedAction = {

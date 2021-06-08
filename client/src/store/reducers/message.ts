@@ -44,11 +44,8 @@ const reducers = (state = initialState, action: AllMessageActions) => {
         createErrorMessage: null,
         messages: {
           ...state.messages,
-          [dialogId]: [
-            ...(state.messages?.[dialogId] ?? []),
-            action.payload,
-          ]
-        }
+          [dialogId]: [...(state.messages?.[dialogId] ?? []), action.payload],
+        },
       }
     }
 
@@ -79,6 +76,23 @@ const reducers = (state = initialState, action: AllMessageActions) => {
           [dialogId]: [...(state.messages?.[dialogId] ?? []), ...messages],
         },
       }
+    }
+
+    case MessageActionsTypes.APPEND_MESSAGE: {
+      if (state.messages?.[action.payload.dialog]) {
+        return {
+          ...state,
+          messages: {
+            ...state.messages,
+            [action.payload.dialog]: [
+              ...state.messages[action.payload.dialog],
+              action.payload,
+            ],
+          },
+        }
+      }
+
+      return state
     }
 
     default:

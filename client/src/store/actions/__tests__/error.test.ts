@@ -1,5 +1,9 @@
 import {ErrorActionTypes} from 'models/store/actions/error'
-import {invalidToken, hideErrorNotification, commonError} from 'store/actions/error'
+import {
+  invalidToken,
+  hideErrorNotification,
+  commonError,
+} from 'store/actions/error'
 
 describe('Error actions', () => {
   it('Should create invalidToken', () => {

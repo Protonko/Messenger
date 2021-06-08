@@ -3,7 +3,7 @@ import {Status, ReadStatus} from './common/status'
 
 export interface IDialog {
   id: string
-  interlocutor: IUser,
+  interlocutor: IUser
   lastMessage: string
   createdAt: string
   updatedAt: string

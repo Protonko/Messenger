@@ -31,13 +31,14 @@ export function* getMessagesWatcher() {
 // post
 export function* createMessageWorker({payload}: CreateMessageAction) {
   try {
-      const body: ICreateMessageBody = {
-        id: payload.userId,
-        text: payload.text,
-      }
+    const body: ICreateMessageBody = {
+      dialog: payload.dialogId,
+      text: payload.text,
+      interlocutor: payload.interlocutorId,
+    }
 
-      const message: IMessage = yield call(MessagesApi.createMessage, body)
-      yield put(createMessageSuccess(message))
+    const message: IMessage = yield call(MessagesApi.createMessage, body)
+    yield put(createMessageSuccess(message))
   } catch (error) {
     yield put(errorHandler(error, createMessageError))
   }

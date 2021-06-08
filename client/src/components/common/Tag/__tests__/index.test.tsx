@@ -12,7 +12,7 @@ describe('Tag', () => {
 
   beforeEach(() => {
     props = {
-      text: 'test text'
+      text: 'test text',
     }
   })
 

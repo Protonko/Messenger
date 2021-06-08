@@ -4,7 +4,8 @@ import {call} from 'redux-saga-test-plan/matchers'
 import {throwError} from 'redux-saga-test-plan/providers'
 import {
   CreateMessageAction,
-  GetMessagesAction, ICreateMessagePayload,
+  GetMessagesAction,
+  ICreateMessagePayload,
   MessageActionsTypes,
 } from 'models/store/actions/message'
 import {MessagesApi} from 'api/Messages'
@@ -17,7 +18,8 @@ import {
 
 describe('message sagas', () => {
   const createMessagePayload: ICreateMessagePayload = {
-    userId: 'userId',
+    dialogId: 'userId',
+    interlocutorId: 'interlocutorId',
     text: 'text',
   }
   const message: IMessage = {
@@ -48,9 +50,7 @@ describe('message sagas', () => {
 
     it('Should create message', () => {
       return expectSaga(createMessageWatcher)
-        .provide([
-          [call.fn(MessagesApi.createMessage), message],
-        ])
+        .provide([[call.fn(MessagesApi.createMessage), message]])
         .put({
           type: MessageActionsTypes.CREATE_MESSAGE_SUCCESS,
           payload: message,
@@ -61,9 +61,7 @@ describe('message sagas', () => {
 
     it('Should create message successfully', () => {
       return expectSaga(createMessageWorker, createMessageAction)
-        .provide([
-          [call.fn(MessagesApi.createMessage), message],
-        ])
+        .provide([[call.fn(MessagesApi.createMessage), message]])
         .put({
           type: MessageActionsTypes.CREATE_MESSAGE_SUCCESS,
           payload: message,

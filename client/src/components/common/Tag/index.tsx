@@ -9,18 +9,13 @@ export interface ITagProps {
 }
 
 export const Tag: FC<ITagProps> = ({text, customStyles}) => {
-  const tagClassNames = classNames(
-    'tag',
-    {[customStyles ?? '']: !!customStyles}
-  )
+  const tagClassNames = classNames('tag', {
+    [customStyles ?? '']: !!customStyles,
+  })
 
   return (
     <div className={tagClassNames}>
-      <Text
-        customStyles='tag__text'
-        numberOfLines={1}
-        type={TextTypes.mixed}
-      >
+      <Text customStyles="tag__text" numberOfLines={1} type={TextTypes.mixed}>
         {text}
       </Text>
     </div>

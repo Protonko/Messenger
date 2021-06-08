@@ -1,4 +1,4 @@
-import type  {IDialog} from 'models/dialog'
+import type {IDialog} from 'models/dialog'
 import {DialogsActionTypes} from 'models/store/actions/dialogs'
 import {Status} from 'models/common/status'
 import {

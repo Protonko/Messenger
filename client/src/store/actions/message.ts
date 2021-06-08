@@ -10,9 +10,12 @@ import {
   IGetMessagesSuccessPayload,
   IGetMessagesErrorPayload,
   ICreateMessagePayload,
+  AppendMessageAction,
 } from 'models/store/actions/message'
 
-export const createMessage = (payload: ICreateMessagePayload): CreateMessageAction => ({
+export const createMessage = (
+  payload: ICreateMessagePayload,
+): CreateMessageAction => ({
   type: MessageActionsTypes.CREATE_MESSAGE,
   payload,
 })
@@ -47,5 +50,10 @@ export const getMessagesError = (
   payload: IGetMessagesErrorPayload,
 ): GetMessagesErrorAction => ({
   type: MessageActionsTypes.GET_MESSAGES_ERROR,
+  payload,
+})
+
+export const appendMessage = (payload: IMessage): AppendMessageAction => ({
+  type: MessageActionsTypes.APPEND_MESSAGE,
   payload,
 })

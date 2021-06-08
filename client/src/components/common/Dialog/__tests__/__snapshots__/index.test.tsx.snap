@@ -35,12 +35,12 @@ exports[`Dialog Match snapshot: Dialog 1`] = `
         className="avatar dialog__avatar"
         style={
           Object {
-            "backgroundColor": "#717428",
+            "backgroundColor": "#7fffff",
           }
         }
       >
         <span
-          className="avatar__text avatar__text--light"
+          className="avatar__text avatar__text--dark"
         >
           n
         </span>
@@ -170,12 +170,12 @@ exports[`Dialog Should render Check icon: Dialog with readStatus === SENT 1`] = 
         className="avatar dialog__avatar"
         style={
           Object {
-            "backgroundColor": "#df071d",
+            "backgroundColor": "#7fffff",
           }
         }
       >
         <span
-          className="avatar__text avatar__text--light"
+          className="avatar__text avatar__text--dark"
         >
           n
         </span>
@@ -310,12 +310,12 @@ exports[`Dialog Should render Counter: Dialog with counter 1`] = `
         className="avatar dialog__avatar"
         style={
           Object {
-            "backgroundColor": "#31729b",
+            "backgroundColor": "#7fffff",
           }
         }
       >
         <span
-          className="avatar__text avatar__text--light"
+          className="avatar__text avatar__text--dark"
         >
           n
         </span>
@@ -459,7 +459,7 @@ exports[`Dialog Should render Dialog component with selected modifier: Dialog wi
         className="avatar dialog__avatar"
         style={
           Object {
-            "backgroundColor": "#8fa151",
+            "backgroundColor": "#7fffff",
           }
         }
       >
@@ -594,7 +594,7 @@ exports[`Dialog Should render DoubleCheck icon: Dialog with readStatus === READ 
         className="avatar dialog__avatar"
         style={
           Object {
-            "backgroundColor": "#ed52ea",
+            "backgroundColor": "#7fffff",
           }
         }
       >
@@ -734,7 +734,7 @@ exports[`Dialog Should render updated date: Dialog with date 1`] = `
         className="avatar dialog__avatar"
         style={
           Object {
-            "backgroundColor": "#4eb366",
+            "backgroundColor": "#7fffff",
           }
         }
       >
