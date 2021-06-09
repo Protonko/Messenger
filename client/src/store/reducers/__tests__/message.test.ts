@@ -131,8 +131,8 @@ describe('auth reducer', () => {
     expect(message(STATE_WITH_MESSAGES_DATA, ACTIONS.APPEND_MESSAGE)).toEqual({
       ...STATE_WITH_MESSAGES_DATA,
       messages: {
-        [DIALOG_ID]: [MESSAGE, APPENDED_MESSAGE]
-      }
+        [DIALOG_ID]: [MESSAGE, APPENDED_MESSAGE],
+      },
     })
   })
 

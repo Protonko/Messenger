@@ -9,29 +9,14 @@ import {
   getDialogsWorker,
 } from 'store/saga/dialogs'
 import {selectors} from 'store/saga/selectors'
-import {Status} from 'models/common/status'
 import {
   CreateDialogAction,
   DialogsActionTypes,
 } from 'models/store/actions/dialogs'
 import {DialogsApi} from 'api/Dialogs'
+import {DIALOG} from 'static/test-mocks'
 
 describe('dialogs sagas', () => {
-  const dialogs = [
-    {
-      id: '123',
-      name: 'name',
-      lastMessage: 'last message',
-      avatar: '',
-      edited: false,
-      createdAt: 'createdAt',
-      updatedAt: 'updatedAt',
-      messages: 1,
-      status: Status.MUTED,
-      readStatus: null,
-    },
-  ]
-
   describe('get dialogs', () => {
     it('Should get error "ID not found!"', () => {
       return expectSaga(getDialogsWatcher)
@@ -48,9 +33,9 @@ describe('dialogs sagas', () => {
       return expectSaga(getDialogsWorker)
         .provide([
           [select(selectors.getAuth), {account: {id: '123'}}],
-          [call.fn(DialogsApi.getDialogs), dialogs],
+          [call.fn(DialogsApi.getDialogs), [DIALOG]],
         ])
-        .put({type: DialogsActionTypes.GET_SUCCESS, payload: dialogs})
+        .put({type: DialogsActionTypes.GET_SUCCESS, payload: [DIALOG]})
         .run()
     })
 
@@ -90,11 +75,11 @@ describe('dialogs sagas', () => {
         .provide([
           [select(selectors.getAuth), {account: {id: '123'}}],
           [select(selectors.getUsers), {selectedUserId: '321'}],
-          [call.fn(DialogsApi.createDialog), dialogs[0]],
+          [call.fn(DialogsApi.createDialog), DIALOG],
         ])
         .put({
           type: DialogsActionTypes.CREATE_DIALOG_SUCCESS,
-          payload: dialogs[0],
+          payload: DIALOG,
         })
         .run()
     })

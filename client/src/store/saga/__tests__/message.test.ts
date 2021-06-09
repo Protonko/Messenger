@@ -1,4 +1,3 @@
-import type {IMessage} from 'models/message'
 import {expectSaga} from 'redux-saga-test-plan'
 import {call} from 'redux-saga-test-plan/matchers'
 import {throwError} from 'redux-saga-test-plan/providers'
@@ -15,31 +14,13 @@ import {
   getMessagesWatcher,
   getMessagesWorker,
 } from 'store/saga/message'
+import {MESSAGE} from 'static/test-mocks'
 
 describe('message sagas', () => {
   const createMessagePayload: ICreateMessagePayload = {
     dialogId: 'userId',
     interlocutorId: 'interlocutorId',
     text: 'text',
-  }
-  const message: IMessage = {
-    read: false,
-    attachments: [],
-    id: 'id',
-    dialog: 'foo',
-    author: {
-      avatar: null,
-      confirmed: true,
-      createdAt: new Date('01.01.01'),
-      updatedAt: new Date('01.01.01'),
-      last_seen: new Date('01.01.01'),
-      email: 'string',
-      full_name: 'string',
-      id: 'bar',
-    },
-    text: 'baz',
-    createdAt: 'createdAt',
-    updatedAt: 'updatedAt',
   }
 
   describe('create message', () => {
@@ -50,10 +31,10 @@ describe('message sagas', () => {
 
     it('Should create message', () => {
       return expectSaga(createMessageWatcher)
-        .provide([[call.fn(MessagesApi.createMessage), message]])
+        .provide([[call.fn(MessagesApi.createMessage), MESSAGE]])
         .put({
           type: MessageActionsTypes.CREATE_MESSAGE_SUCCESS,
-          payload: message,
+          payload: MESSAGE,
         })
         .dispatch(createMessageAction)
         .run()
@@ -61,10 +42,10 @@ describe('message sagas', () => {
 
     it('Should create message successfully', () => {
       return expectSaga(createMessageWorker, createMessageAction)
-        .provide([[call.fn(MessagesApi.createMessage), message]])
+        .provide([[call.fn(MessagesApi.createMessage), MESSAGE]])
         .put({
           type: MessageActionsTypes.CREATE_MESSAGE_SUCCESS,
-          payload: message,
+          payload: MESSAGE,
         })
         .run()
     })
@@ -90,11 +71,11 @@ describe('message sagas', () => {
 
     it('Should get success', () => {
       return expectSaga(getMessagesWatcher)
-        .provide([[call.fn(MessagesApi.getMessages), [message]]])
+        .provide([[call.fn(MessagesApi.getMessages), [MESSAGE]]])
         .put({
           type: MessageActionsTypes.GET_MESSAGES_SUCCESS,
           payload: {
-            messages: [message],
+            messages: [MESSAGE],
             dialogId: getMessagesAction.payload,
           },
         })

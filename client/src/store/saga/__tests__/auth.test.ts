@@ -13,6 +13,7 @@ import {
   SignUpAction,
 } from 'models/store/actions/auth'
 import {UserApi} from 'api/User'
+import {USER} from 'static/test-mocks'
 
 describe('auth sagas', () => {
   const signUpAction: SignUpAction = {
@@ -30,24 +31,14 @@ describe('auth sagas', () => {
       password: '123456',
     },
   }
-  const user = {
-    avatar: null,
-    confirmed: false,
-    createdAt: 'now',
-    email: 'string',
-    full_name: 'full name',
-    last_seen: 'Date',
-    updatedAt: 'Date',
-    id: 'stringID',
-  }
 
   // sign up
   it('Should sign up success', () => {
     return expectSaga(signUpWorker, signUpAction)
-      .provide([[call.fn(UserApi.signUp), {token: '123', user}]])
+      .provide([[call.fn(UserApi.signUp), {token: '123', USER}]])
       .put({
         type: AuthActionTypes.SET_SIGN_UP_DATA,
-        payload: {token: '123', user},
+        payload: {token: '123', USER},
       })
       .run()
   })
@@ -70,10 +61,10 @@ describe('auth sagas', () => {
   // login
   it('Should login success', () => {
     return expectSaga(loginWorker, loginAction)
-      .provide([[call.fn(UserApi.login), {token: '123', user}]])
+      .provide([[call.fn(UserApi.login), {token: '123', user: USER}]])
       .put({
         type: AuthActionTypes.SET_LOGIN_DATA,
-        payload: {token: '123', user},
+        payload: {token: '123', user: USER},
       })
       .run()
   })

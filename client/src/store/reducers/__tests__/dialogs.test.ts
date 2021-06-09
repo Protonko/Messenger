@@ -3,7 +3,10 @@ import {
   DialogsActionTypes,
 } from 'models/store/actions/dialogs'
 import dialogs, {initialState} from 'store/reducers/dialogs'
-import {MessageActionsTypes, AppendMessageAction} from 'models/store/actions/message'
+import {
+  MessageActionsTypes,
+  AppendMessageAction,
+} from 'models/store/actions/message'
 import {MESSAGE, DIALOG} from 'static/test-mocks'
 
 describe('Dialogs reducer', () => {
@@ -37,7 +40,7 @@ describe('Dialogs reducer', () => {
     APPEND_MESSAGE: {
       type: MessageActionsTypes.APPEND_MESSAGE,
       payload: MESSAGE,
-    }
+    },
   }
 
   it('Should return the payload from GET_START action', () => {
@@ -101,7 +104,7 @@ describe('Dialogs reducer', () => {
 
     expect(dialogs(state, ACTIONS.APPEND_MESSAGE)).toEqual({
       ...initialState,
-      dialogs: [{...dialog, lastMessage: MESSAGE.text}, DIALOG]
+      dialogs: [{...dialog, lastMessage: MESSAGE.text}, DIALOG],
     })
   })
 })

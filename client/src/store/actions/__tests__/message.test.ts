@@ -93,8 +93,6 @@ describe('message actions', () => {
       payload: MESSAGE,
     }
 
-    expect(
-      appendMessage(MESSAGE),
-    ).toEqual(expectedAction)
+    expect(appendMessage(MESSAGE)).toEqual(expectedAction)
   })
 })
