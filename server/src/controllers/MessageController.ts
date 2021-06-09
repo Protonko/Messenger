@@ -1,10 +1,12 @@
 import {Request, Response} from 'express'
 import {Server} from 'socket.io'
-import {EVENTS_SOCKET} from '../static';
+import {EVENTS_SOCKET} from '../static'
 import {Message} from '../models/Message'
+import {Dialog} from '../models/Dialog'
 import {IError} from '../types/error'
 import {IMessageMongoose} from '../types/message'
 import {messageMapper} from '../utils/mappers/messageMapper'
+import {log} from 'util'
 
 export class MessageController {
   private io: Server
@@ -71,6 +73,11 @@ export class MessageController {
           response.json(messageMapper(message))
           this.io.to(interlocutor).emit(EVENTS_SOCKET.NEW_MESSAGE, messageMapper(message))
         })
+
+      await Dialog.findOneAndUpdate(
+        {_id: dialog},
+        {last_message: message.id},
+        )
     } catch (error) {
       return response
         .status(500)
