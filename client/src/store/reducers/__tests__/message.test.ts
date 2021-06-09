@@ -1,38 +1,20 @@
-import type {IMessage} from 'models/message'
 import message, {initialState} from 'store/reducers/message'
 import {
   AllMessageActions,
   MessageActionsTypes,
 } from 'models/store/actions/message'
+import {MESSAGE} from 'static/test-mocks'
 
 describe('auth reducer', () => {
   const ERROR_MESSAGE = 'error'
   const DIALOG_ID = '123'
-  const MESSAGE: IMessage = {
-    read: false,
-    attachments: [],
-    id: 'id',
-    text: 'text',
-    dialog: 'dialog_id',
-    author: {
-      avatar: null,
-      confirmed: false,
-      email: 'foo@bar.baz',
-      id: '123',
-      full_name: 'name',
-      createdAt: new Date('01-01-01'),
-      updatedAt: new Date('01-01-01'),
-      last_seen: new Date('01-01-01'),
-    },
-    createdAt: 'createdAt',
-    updatedAt: 'updatedAt',
-  }
   const STATE_WITH_MESSAGES_DATA = {
     ...initialState,
     messages: {
       [DIALOG_ID]: [MESSAGE],
     },
   }
+  const APPENDED_MESSAGE = {...MESSAGE, dialog: DIALOG_ID}
   const ACTIONS: Record<string, AllMessageActions> = {
     CREATE_MESSAGE: {
       type: MessageActionsTypes.CREATE_MESSAGE,
@@ -67,6 +49,10 @@ describe('auth reducer', () => {
         messages: [MESSAGE],
         dialogId: DIALOG_ID,
       },
+    },
+    APPEND_MESSAGE: {
+      type: MessageActionsTypes.APPEND_MESSAGE,
+      payload: APPENDED_MESSAGE,
     },
   }
 
@@ -138,6 +124,21 @@ describe('auth reducer', () => {
       messages: {
         [DIALOG_ID]: [MESSAGE, MESSAGE],
       },
+    })
+  })
+
+  it('Should append message on APPEND_MESSAGE action', () => {
+    expect(message(STATE_WITH_MESSAGES_DATA, ACTIONS.APPEND_MESSAGE)).toEqual({
+      ...STATE_WITH_MESSAGES_DATA,
+      messages: {
+        [DIALOG_ID]: [MESSAGE, APPENDED_MESSAGE]
+      }
+    })
+  })
+
+  it('Shouldn`t change state on APPEND_MESSAGE action', () => {
+    expect(message(initialState, ACTIONS.APPEND_MESSAGE)).toEqual({
+      ...initialState,
     })
   })
 })

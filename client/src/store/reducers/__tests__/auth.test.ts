@@ -1,19 +1,9 @@
 import auth, {initialState} from 'store/reducers/auth'
 import {AllAuthActions, AuthActionTypes} from 'models/store/actions/auth'
 import {AllErrorActions, ErrorActionTypes} from 'models/store/actions/error'
+import {USER} from 'static/test-mocks'
 
 describe('auth reducer', () => {
-  const USER = {
-    avatar: null,
-    confirmed: false,
-    createdAt: new Date(),
-    email: 'email',
-    full_name: 'full_name',
-    last_seen: new Date(),
-    updatedAt: new Date(),
-    id: 'test_id',
-  }
-
   const ACTIONS: Record<string, AllAuthActions | AllErrorActions> = {
     SET_LOGIN_DATA: {
       type: AuthActionTypes.SET_LOGIN_DATA,

@@ -1,6 +1,7 @@
 import type {IDialog} from 'models/dialog'
 import type {AllDialogsActions} from 'models/store/actions/dialogs'
 import {DialogsActionTypes} from 'models/store/actions/dialogs'
+import {AppendMessageAction, MessageActionsTypes} from 'models/store/actions/message'
 
 export interface IInitialState {
   loading: boolean
@@ -20,7 +21,7 @@ export const initialState = {
 
 const reducers = (
   state = initialState,
-  action: AllDialogsActions,
+  action: AllDialogsActions | AppendMessageAction,
 ): IInitialState => {
   switch (action.type) {
     case DialogsActionTypes.GET_START:
@@ -68,6 +69,28 @@ const reducers = (
         creating: initialState.creating,
         createErrorMessage: initialState.createErrorMessage,
       }
+
+    case MessageActionsTypes.APPEND_MESSAGE: {
+      if (!state.dialogs) {
+        return state
+      }
+
+      const dialogs = state.dialogs.map((dialog) => {
+        if (dialog.id !== action.payload.dialog) {
+          return dialog
+        }
+
+        return {
+          ...dialog,
+          lastMessage: action.payload.text,
+        }
+      })
+
+      return {
+        ...state,
+        dialogs,
+      }
+    }
     default:
       return state
   }

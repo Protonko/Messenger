@@ -1,4 +1,5 @@
 import type {IDialog} from 'models/dialog'
+import type {IMessage} from 'models/message'
 import type {RootState} from 'store/reducers'
 import {useEffect, FC} from 'react'
 import {useHistory} from 'react-router-dom'
@@ -11,6 +12,7 @@ import {Dialog} from 'components/common/Dialog'
 import {Search} from 'components/common/Search'
 import {ContentContainer} from 'components/common/ContentContainer'
 import {CreateDialog} from 'components/CreateDialog'
+import {appendMessage} from 'store/actions/message'
 
 export const Dialogs: FC = () => {
   const history = useHistory()

@@ -1,32 +1,13 @@
-import type {IDialog} from 'models/dialog'
-import {Status} from 'models/common/status'
 import {
   AllDialogsActions,
   DialogsActionTypes,
 } from 'models/store/actions/dialogs'
 import dialogs, {initialState} from 'store/reducers/dialogs'
+import {MessageActionsTypes, AppendMessageAction} from 'models/store/actions/message'
+import {MESSAGE, DIALOG} from 'static/test-mocks'
 
 describe('Dialogs reducer', () => {
-  const DIALOG: IDialog = {
-    id: 'id',
-    interlocutor: {
-      avatar: null,
-      confirmed: false,
-      email: 'foo@bar.baz',
-      id: '123',
-      full_name: 'name',
-      createdAt: new Date('01-01-01'),
-      updatedAt: new Date('01-01-01'),
-      last_seen: new Date('01-01-01'),
-    },
-    lastMessage: 'lastMessage',
-    createdAt: 'createdAt',
-    updatedAt: 'updatedAt',
-    messages: 1,
-    status: Status.ACTIVE,
-    readStatus: null,
-  }
-  const ACTIONS: Record<string, AllDialogsActions> = {
+  const ACTIONS: Record<string, AllDialogsActions | AppendMessageAction> = {
     GET_START: {
       type: DialogsActionTypes.GET_START,
     },
@@ -53,6 +34,10 @@ describe('Dialogs reducer', () => {
     RESET_CREATE_DIALOG_STATE: {
       type: DialogsActionTypes.RESET_CREATE_DIALOG_STATE,
     },
+    APPEND_MESSAGE: {
+      type: MessageActionsTypes.APPEND_MESSAGE,
+      payload: MESSAGE,
+    }
   }
 
   it('Should return the payload from GET_START action', () => {
@@ -101,6 +86,22 @@ describe('Dialogs reducer', () => {
   it('Should reset state after RESET_CREATE_DIALOG_STATE action', () => {
     expect(dialogs(initialState, ACTIONS.RESET_CREATE_DIALOG_STATE)).toEqual({
       ...initialState,
+    })
+  })
+
+  it('Shouldn`t change state on APPEND_MESSAGE action', () => {
+    expect(dialogs(initialState, ACTIONS.APPEND_MESSAGE)).toEqual({
+      ...initialState,
+    })
+  })
+
+  it('Shouldn update lastMessage on APPEND_MESSAGE action', () => {
+    const dialog = {...DIALOG, id: MESSAGE.dialog}
+    const state = {...initialState, dialogs: [dialog, DIALOG]}
+
+    expect(dialogs(state, ACTIONS.APPEND_MESSAGE)).toEqual({
+      ...initialState,
+      dialogs: [{...dialog, lastMessage: MESSAGE.text}, DIALOG]
     })
   })
 })

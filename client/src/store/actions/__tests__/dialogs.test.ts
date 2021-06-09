@@ -1,6 +1,4 @@
-import type {IDialog} from 'models/dialog'
 import {DialogsActionTypes} from 'models/store/actions/dialogs'
-import {Status} from 'models/common/status'
 import {
   getDialogs,
   getDialogsSuccess,
@@ -10,30 +8,9 @@ import {
   createDialogSuccess,
   resetCreateDialogState,
 } from 'store/actions/dialogs'
+import {DIALOG} from 'static/test-mocks'
 
 describe('Auth actions', () => {
-  const dialogs: IDialog[] = [
-    {
-      id: 'id',
-      interlocutor: {
-        avatar: '',
-        confirmed: false,
-        email: 'foo@bar.baz',
-        id: '123',
-        full_name: 'name',
-        createdAt: new Date('01-01-01'),
-        updatedAt: new Date('01-01-01'),
-        last_seen: new Date('01-01-01'),
-      },
-      lastMessage: 'lastMessage',
-      createdAt: 'createdAt',
-      updatedAt: 'updatedAt',
-      messages: 1,
-      status: Status.MUTED,
-      readStatus: null,
-    },
-  ]
-
   it('Should create getDialogs', () => {
     const expectedAction = {
       type: DialogsActionTypes.GET_START,
@@ -45,10 +22,10 @@ describe('Auth actions', () => {
   it('Should create getSuccess', () => {
     const expectedAction = {
       type: DialogsActionTypes.GET_SUCCESS,
-      payload: dialogs,
+      payload: [DIALOG],
     }
 
-    expect(getDialogsSuccess(dialogs)).toEqual(expectedAction)
+    expect(getDialogsSuccess([DIALOG])).toEqual(expectedAction)
   })
 
   it('Should create getError', () => {
@@ -72,10 +49,10 @@ describe('Auth actions', () => {
   it('Should create createDialogSuccess', () => {
     const expectedAction = {
       type: DialogsActionTypes.CREATE_DIALOG_SUCCESS,
-      payload: dialogs[0],
+      payload: DIALOG,
     }
 
-    expect(createDialogSuccess(dialogs[0])).toEqual(expectedAction)
+    expect(createDialogSuccess(DIALOG)).toEqual(expectedAction)
   })
 
   it('Should create createDialogError', () => {

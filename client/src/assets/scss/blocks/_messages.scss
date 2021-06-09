@@ -1,6 +1,8 @@
 .messages {
   position: relative;
   flex-grow: 1;
+  overflow-y: auto;
+  max-height: rem(540px);
 
   &__item {
     &--empty {

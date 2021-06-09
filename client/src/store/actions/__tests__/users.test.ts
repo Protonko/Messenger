@@ -7,21 +7,9 @@ import {
   setSelectedUserId,
   resetSelectedUserId,
 } from 'store/actions/users'
+import {USER} from 'static/test-mocks'
 
 describe('Auth actions', () => {
-  const users = [
-    {
-      avatar: null,
-      confirmed: false,
-      createdAt: new Date(),
-      email: 'email',
-      full_name: 'full name',
-      last_seen: new Date(),
-      updatedAt: new Date(),
-      id: 'id',
-    },
-  ]
-
   it('Should create getDialogs', () => {
     const expectedAction = {
       type: UsersActionTypes.GET_START,
@@ -33,10 +21,10 @@ describe('Auth actions', () => {
   it('Should create getSuccess', () => {
     const expectedAction = {
       type: UsersActionTypes.GET_SUCCESS,
-      payload: users,
+      payload: [USER],
     }
 
-    expect(getUsersSuccess(users)).toEqual(expectedAction)
+    expect(getUsersSuccess([USER])).toEqual(expectedAction)
   })
 
   it('Should create getError', () => {

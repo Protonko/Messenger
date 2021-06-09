@@ -1,5 +1,5 @@
-import type {IMessage} from 'models/message'
 import {
+  appendMessage,
   createMessage,
   createMessageError,
   createMessageSuccess,
@@ -8,28 +8,9 @@ import {
   getMessagesSuccess,
 } from 'store/actions/message'
 import {MessageActionsTypes} from 'models/store/actions/message'
+import {MESSAGE} from 'static/test-mocks'
 
 describe('message actions', () => {
-  const message: IMessage = {
-    read: false,
-    attachments: [],
-    id: 'id',
-    dialog: 'dialog_id',
-    author: {
-      avatar: '',
-      confirmed: false,
-      email: 'foo@bar.baz',
-      id: '123',
-      full_name: 'name',
-      createdAt: new Date('01-01-01'),
-      updatedAt: new Date('01-01-01'),
-      last_seen: new Date('01-01-01'),
-    },
-    text: 'text',
-    createdAt: 'createdAt',
-    updatedAt: 'updatedAt',
-  }
-
   it('should create createMessage', () => {
     const payload = {
       text: 'text',
@@ -48,10 +29,10 @@ describe('message actions', () => {
   it('should create createMessageSuccess', () => {
     const expectedAction = {
       type: MessageActionsTypes.CREATE_MESSAGE_SUCCESS,
-      payload: message,
+      payload: MESSAGE,
     }
 
-    expect(createMessageSuccess(message)).toEqual(expectedAction)
+    expect(createMessageSuccess(MESSAGE)).toEqual(expectedAction)
   })
 
   it('should create createMessageError', () => {
@@ -93,16 +74,27 @@ describe('message actions', () => {
     const expectedAction = {
       type: MessageActionsTypes.GET_MESSAGES_SUCCESS,
       payload: {
-        messages: [message],
+        messages: [MESSAGE],
         dialogId: '123',
       },
     }
 
     expect(
       getMessagesSuccess({
-        messages: [message],
+        messages: [MESSAGE],
         dialogId: '123',
       }),
+    ).toEqual(expectedAction)
+  })
+
+  it('should create appendMessage', () => {
+    const expectedAction = {
+      type: MessageActionsTypes.APPEND_MESSAGE,
+      payload: MESSAGE,
+    }
+
+    expect(
+      appendMessage(MESSAGE),
     ).toEqual(expectedAction)
   })
 })
