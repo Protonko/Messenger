@@ -1,4 +1,5 @@
 import type {IDialog} from 'models/dialog'
+import type {IMessage} from 'models/message'
 import type {AllDialogsActions} from 'models/store/actions/dialogs'
 import {DialogsActionTypes} from 'models/store/actions/dialogs'
 import {
@@ -22,6 +23,33 @@ export const initialState = {
   errorMessage: null,
   createErrorMessage: null,
 } as IInitialState
+
+const updateLastMessage = (state: IInitialState, message: IMessage) => {
+  if (!state.dialogs) {
+    return state
+  }
+
+  const dialogs = state.dialogs.map((dialog) => {
+    if (dialog.id !== message.dialog || !dialog.lastMessage) {
+      return dialog
+    }
+
+    return {
+      ...dialog,
+      messages: ++dialog.messages,
+      lastMessage: {
+        ...dialog.lastMessage,
+        text: message.text,
+        read: message.read,
+      },
+    }
+  })
+
+  return {
+    ...state,
+    dialogs,
+  }
+}
 
 const reducers = (
   state = initialState,
@@ -75,53 +103,11 @@ const reducers = (
       }
 
     case MessageActionsTypes.APPEND_MESSAGE: {
-      if (!state.dialogs) {
-        return state
-      }
-
-      const dialogs = state.dialogs.map((dialog): IDialog => {
-        if (dialog.id !== action.payload.dialog || !dialog.lastMessage) {
-          return dialog
-        }
-
-        return {
-          ...dialog,
-          lastMessage: {
-            ...dialog.lastMessage,
-            text: action.payload.text,
-          },
-        }
-      })
-
-      return {
-        ...state,
-        dialogs,
-      }
+      return updateLastMessage(state, action.payload)
     }
 
     case MessageActionsTypes.CREATE_MESSAGE_SUCCESS: {
-      if (!state.dialogs) {
-        return state
-      }
-
-      const dialogs = state.dialogs.map((dialog) => {
-        if (dialog.id !== action.payload.dialog || !dialog.lastMessage) {
-          return dialog
-        }
-
-        return {
-          ...dialog,
-          lastMessage: {
-            ...dialog.lastMessage,
-            text: action.payload.text,
-          },
-        }
-      })
-
-      return {
-        ...state,
-        dialogs,
-      }
+      return updateLastMessage(state, action.payload)
     }
 
     default:
