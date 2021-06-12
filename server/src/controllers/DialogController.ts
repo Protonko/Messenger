@@ -66,7 +66,7 @@ export class DialogController {
 
       if (!shouldContinue) return
 
-      const dialog = new Dialog({author, interlocutor, mute: false, status: null})
+      const dialog = new Dialog({author, interlocutor, mute: false, status: null, messages: 0})
       await dialog.save()
       const message = new Message({
         text,

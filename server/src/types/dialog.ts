@@ -1,10 +1,17 @@
 import {Document} from 'mongoose'
 import {IUser, IUserMongoose} from './user'
 import {IMessageMongoose} from './message'
+import {READ_STATUS} from '../static'
 
-export enum ReadStatus {
-  SENT = 'SENT',
-  READ = 'READ',
+export interface IDialogUnpopulated {
+  _id: string,
+  author: string,
+  interlocutor: string,
+  last_message?: string,
+  messages?: number,
+  createdAt: string,
+  updatedAt: string,
+  muted: boolean,
 }
 
 export interface IDialogMongoose extends Document {
@@ -26,5 +33,5 @@ export interface IDialog {
   updatedAt: string,
   messages: number,
   muted: boolean,
-  read: boolean,
+  readStatus: READ_STATUS,
 }

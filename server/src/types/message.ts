@@ -7,6 +7,7 @@ export interface IMessageMongoose extends Document {
   user: IUserMongoose,
   text: string,
   dialog: string,
+  last_message: IMessageMongoose,
   createdAt: string,
   updatedAt: string,
   read: boolean,

@@ -5,8 +5,8 @@ import {Message} from '../models/Message'
 import {Dialog} from '../models/Dialog'
 import {IError} from '../types/error'
 import {IMessageMongoose} from '../types/message'
+import {IDialogMongoose, IDialogUnpopulated} from '../types/dialog'
 import {messageMapper} from '../utils/mappers/messageMapper'
-import {log} from 'util'
 
 export class MessageController {
   private io: Server
@@ -15,9 +15,10 @@ export class MessageController {
     this.io = io
 
     this.create = this.create.bind(this)
+    this.find = this.find.bind(this)
   }
 
-  find(request: Request, response: Response) {
+  async find(request: Request, response: Response) {
     const {dialog} = request.query
 
     if (typeof dialog !== 'string') {
@@ -26,7 +27,28 @@ export class MessageController {
         .json({message: 'id should be string!'})
     }
 
-    Message
+    await Dialog
+      .findOne({_id: dialog})
+      .exec((error: IError, result: IDialogUnpopulated) => {
+        try {
+          if (error) {
+            return response
+              .status(500)
+              .json({message: error.value})
+          }
+
+          if (result.interlocutor) {
+            this.clearUnreadMessages(dialog)
+            this.updateReadStatus(dialog, response, result.interlocutor)
+          }
+        } catch (error) {
+          return response
+            .status(500)
+            .json({message: error.value})
+        }
+      })
+
+    await Message
       .find({dialog})
       .populate(['user'])
       .exec((error: IError, messages: Array<IMessageMongoose>) => {
@@ -70,19 +92,40 @@ export class MessageController {
               .json({message: error.value})
           }
 
-          response.json(messageMapper(message))
-          this.io.to(interlocutor).emit(EVENTS_SOCKET.NEW_MESSAGE, messageMapper(message))
-        })
+          this.updateDialog(response, dialog, message)
 
-      await Dialog.findOneAndUpdate(
-        {_id: dialog},
-        {last_message: message.id},
-        )
+          this.io.to(interlocutor).emit(EVENTS_SOCKET.NEW_MESSAGE, messageMapper(message))
+          return response.json(messageMapper(message))
+        })
     } catch (error) {
       return response
         .status(500)
         .json({message: error.message})
     }
+  }
+
+  async updateDialog(response: Response, dialog: string, message: IMessageMongoose) {
+    let unreadMessagesCount = 0
+
+    await Dialog
+      .findOne({_id: dialog})
+      .exec((error: IError, result: IDialogMongoose) => {
+        if (error) {
+          return response
+            .status(500)
+            .json({message: error.value})
+        }
+
+        unreadMessagesCount = result.messages ?? 0
+      })
+
+    await Dialog.findOneAndUpdate(
+      {_id: dialog},
+      {
+        last_message: message,
+        messages: unreadMessagesCount + 1,
+      },
+    )
   }
 
   async delete(request: Request, response: Response) {
@@ -104,5 +147,34 @@ export class MessageController {
         .status(500)
         .json({message: error.message})
     }
+  }
+
+  clearUnreadMessages(dialog: string) {
+    Dialog.findOneAndUpdate(
+      {_id: dialog},
+      {
+        messages: 0,
+      },
+    )
+  }
+
+  updateReadStatus(dialog: string, response: Response, interlocutor: string) {
+    Message
+      .updateMany({dialog},
+        {$set: {read: true}},
+      )
+      .exec((error: IError) => {
+        try {
+          if (error) {
+            response.status(500).json({message: error.value})
+          } else {
+            this.io.to(interlocutor).emit(EVENTS_SOCKET.READ_MESSAGE, dialog)
+          }
+        } catch (error) {
+          return response
+            .status(500)
+            .json({message: error.message})
+        }
+      })
   }
 }
