@@ -2,7 +2,8 @@ import type {IDialog} from 'models/dialog'
 import type {AllDialogsActions} from 'models/store/actions/dialogs'
 import {DialogsActionTypes} from 'models/store/actions/dialogs'
 import {
-  AppendMessageAction, CreateMessageSuccessAction,
+  AppendMessageAction,
+  CreateMessageSuccessAction,
   MessageActionsTypes,
 } from 'models/store/actions/message'
 

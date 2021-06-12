@@ -16,21 +16,23 @@ export interface IDialogProps extends IDialog {
 
 export const Dialog: FC<IDialogProps> = memo(
   ({
-     lastMessage,
-     interlocutor,
-     createdAt,
-     updatedAt,
-     messages,
-     status,
-     selected,
-     isOwnMessage,
-   }) => {
+    lastMessage,
+    interlocutor,
+    createdAt,
+    updatedAt,
+    messages,
+    status,
+    selected,
+    isOwnMessage,
+  }) => {
     const classNameDialog = classNames('dialog', {
       'dialog--selected': selected,
     })
     const counter = messages.toString().length > 2 ? '99+' : messages
     const messageText = lastMessage
-      ? (isOwnMessage ? `You: ${lastMessage.text}` : lastMessage.text)
+      ? isOwnMessage
+        ? `You: ${lastMessage.text}`
+        : lastMessage.text
       : ''
 
     const renderStatus = () => {
@@ -60,30 +62,28 @@ export const Dialog: FC<IDialogProps> = memo(
     return (
       <div className={classNameDialog}>
         <Avatar
-          customStyles='dialog__avatar'
+          customStyles="dialog__avatar"
           src={interlocutor.avatar ?? ''}
           name={interlocutor.full_name}
         />
 
-        <div className='dialog__data'>
-          <div className='dialog__text'>
+        <div className="dialog__data">
+          <div className="dialog__text">
             <Text
               type={TextTypes.h4}
-              customStyles='dialog__text-title'
+              customStyles="dialog__text-title"
               numberOfLines={1}
             >
               {interlocutor.full_name}
             </Text>
-            <Text customStyles='dialog__text-description'>
-              {messageText}
-            </Text>
+            <Text customStyles="dialog__text-description">{messageText}</Text>
           </div>
 
-          <div className='dialog__info'>
+          <div className="dialog__info">
             <Text
               type={TextTypes.mixed}
               size={TextSize.EXTRA_SMALL}
-              customStyles='dialog__info-date'
+              customStyles="dialog__info-date"
             >
               {new Date(updatedAt || createdAt).toLocaleDateString()}
             </Text>

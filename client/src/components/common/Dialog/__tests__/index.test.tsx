@@ -100,7 +100,7 @@ describe('Dialog', () => {
     componentMount = mount(<Dialog {...props} />)
 
     expect(componentMount.find(`.${ELEMENT_SELECTORS.date}`).text()).toBe(
-      new Date(props.createdAt).toLocaleDateString()
+      new Date(props.createdAt).toLocaleDateString(),
     )
     expect(componentMount).toMatchSnapshot('Dialog with created date')
   })

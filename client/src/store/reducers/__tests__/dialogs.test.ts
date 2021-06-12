@@ -11,7 +11,10 @@ import {
 import {MESSAGE, DIALOG} from 'static/test-mocks'
 
 describe('Dialogs reducer', () => {
-  const ACTIONS: Record<string, AllDialogsActions | AppendMessageAction | CreateMessageSuccessAction> = {
+  const ACTIONS: Record<
+    string,
+    AllDialogsActions | AppendMessageAction | CreateMessageSuccessAction
+  > = {
     GET_START: {
       type: DialogsActionTypes.GET_START,
     },
