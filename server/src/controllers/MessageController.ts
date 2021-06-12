@@ -105,27 +105,23 @@ export class MessageController {
   }
 
   async updateDialog(response: Response, dialog: string, message: IMessageMongoose) {
-    let unreadMessagesCount = 0
-
     await Dialog
       .findOne({_id: dialog})
-      .exec((error: IError, result: IDialogMongoose) => {
+      .exec(async (error: IError, result: IDialogMongoose) => {
         if (error) {
           return response
             .status(500)
             .json({message: error.value})
         }
 
-        unreadMessagesCount = result.messages ?? 0
+        await Dialog.findOneAndUpdate(
+          {_id: dialog},
+          {
+            last_message: message,
+            messages: (result.messages ?? 0) + 1,
+          },
+        )
       })
-
-    await Dialog.findOneAndUpdate(
-      {_id: dialog},
-      {
-        last_message: message,
-        messages: unreadMessagesCount + 1,
-      },
-    )
   }
 
   async delete(request: Request, response: Response) {
