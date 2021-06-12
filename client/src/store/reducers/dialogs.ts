@@ -2,7 +2,7 @@ import type {IDialog} from 'models/dialog'
 import type {AllDialogsActions} from 'models/store/actions/dialogs'
 import {DialogsActionTypes} from 'models/store/actions/dialogs'
 import {
-  AppendMessageAction,
+  AppendMessageAction, CreateMessageSuccessAction,
   MessageActionsTypes,
 } from 'models/store/actions/message'
 
@@ -24,7 +24,7 @@ export const initialState = {
 
 const reducers = (
   state = initialState,
-  action: AllDialogsActions | AppendMessageAction,
+  action: AllDialogsActions | AppendMessageAction | CreateMessageSuccessAction,
 ): IInitialState => {
   switch (action.type) {
     case DialogsActionTypes.GET_START:
@@ -78,14 +78,17 @@ const reducers = (
         return state
       }
 
-      const dialogs = state.dialogs.map((dialog) => {
-        if (dialog.id !== action.payload.dialog) {
+      const dialogs = state.dialogs.map((dialog): IDialog => {
+        if (dialog.id !== action.payload.dialog || !dialog.lastMessage) {
           return dialog
         }
 
         return {
           ...dialog,
-          lastMessage: action.payload.text,
+          lastMessage: {
+            ...dialog.lastMessage,
+            text: action.payload.text,
+          },
         }
       })
 
@@ -94,6 +97,32 @@ const reducers = (
         dialogs,
       }
     }
+
+    case MessageActionsTypes.CREATE_MESSAGE_SUCCESS: {
+      if (!state.dialogs) {
+        return state
+      }
+
+      const dialogs = state.dialogs.map((dialog) => {
+        if (dialog.id !== action.payload.dialog || !dialog.lastMessage) {
+          return dialog
+        }
+
+        return {
+          ...dialog,
+          lastMessage: {
+            ...dialog.lastMessage,
+            text: action.payload.text,
+          },
+        }
+      })
+
+      return {
+        ...state,
+        dialogs,
+      }
+    }
+
     default:
       return state
   }

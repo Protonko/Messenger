@@ -2,8 +2,8 @@
 
 exports[`Dialog Match snapshot: Dialog 1`] = `
 <Memo()
-  createdAt="Mon May 03 2021 16:47:32 GMT+0300 (Москва, стандартное время)"
-  id="123"
+  createdAt="createdAt"
+  id="id"
   interlocutor={
     Object {
       "avatar": null,
@@ -16,12 +16,32 @@ exports[`Dialog Match snapshot: Dialog 1`] = `
       "updatedAt": 2000-12-31T21:00:00.000Z,
     }
   }
-  lastMessage="string"
+  isOwnMessage={false}
+  lastMessage={
+    Object {
+      "attachments": Array [],
+      "author": Object {
+        "avatar": "",
+        "confirmed": false,
+        "createdAt": 2000-12-31T21:00:00.000Z,
+        "email": "foo@bar.baz",
+        "full_name": "name",
+        "id": "123",
+        "last_seen": 2000-12-31T21:00:00.000Z,
+        "updatedAt": 2000-12-31T21:00:00.000Z,
+      },
+      "createdAt": "createdAt",
+      "dialog": "dialog_id",
+      "id": "id",
+      "read": false,
+      "text": "text",
+      "updatedAt": "updatedAt",
+    }
+  }
   messages={0}
-  readStatus={null}
   selected={false}
   status="ACTIVE"
-  updatedAt="Mon May 03 2021 16:47:32 GMT+0300 (Москва, стандартное время)"
+  updatedAt="updatedAt"
 >
   <div
     className="dialog"
@@ -93,7 +113,7 @@ exports[`Dialog Match snapshot: Dialog 1`] = `
                 <p
                   className="text text--description dialog__text-description"
                 >
-                  string
+                  text
                 </p>
               </Component>
             </div>
@@ -123,7 +143,7 @@ exports[`Dialog Match snapshot: Dialog 1`] = `
                 <p
                   className="text text--xs dialog__info-date"
                 >
-                  5/3/2021
+                  Invalid Date
                 </p>
               </Component>
             </div>
@@ -135,10 +155,10 @@ exports[`Dialog Match snapshot: Dialog 1`] = `
 </Memo()>
 `;
 
-exports[`Dialog Should render Check icon: Dialog with readStatus === SENT 1`] = `
+exports[`Dialog Should render Check icon: Dialog with sent message 1`] = `
 <Memo()
-  createdAt="Mon May 03 2021 16:47:32 GMT+0300 (Москва, стандартное время)"
-  id="123"
+  createdAt="createdAt"
+  id="id"
   interlocutor={
     Object {
       "avatar": null,
@@ -151,12 +171,32 @@ exports[`Dialog Should render Check icon: Dialog with readStatus === SENT 1`] = 
       "updatedAt": 2000-12-31T21:00:00.000Z,
     }
   }
-  lastMessage="string"
+  isOwnMessage={true}
+  lastMessage={
+    Object {
+      "attachments": Array [],
+      "author": Object {
+        "avatar": "",
+        "confirmed": false,
+        "createdAt": 2000-12-31T21:00:00.000Z,
+        "email": "foo@bar.baz",
+        "full_name": "name",
+        "id": "123",
+        "last_seen": 2000-12-31T21:00:00.000Z,
+        "updatedAt": 2000-12-31T21:00:00.000Z,
+      },
+      "createdAt": "createdAt",
+      "dialog": "dialog_id",
+      "id": "id",
+      "read": false,
+      "text": "text",
+      "updatedAt": "updatedAt",
+    }
+  }
   messages={0}
-  readStatus="SENT"
   selected={false}
   status="ACTIVE"
-  updatedAt="Mon May 03 2021 16:47:32 GMT+0300 (Москва, стандартное время)"
+  updatedAt="updatedAt"
 >
   <div
     className="dialog"
@@ -228,7 +268,7 @@ exports[`Dialog Should render Check icon: Dialog with readStatus === SENT 1`] = 
                 <p
                   className="text text--description dialog__text-description"
                 >
-                  string
+                  You: text
                 </p>
               </Component>
             </div>
@@ -258,7 +298,7 @@ exports[`Dialog Should render Check icon: Dialog with readStatus === SENT 1`] = 
                 <p
                   className="text text--xs dialog__info-date"
                 >
-                  5/3/2021
+                  Invalid Date
                 </p>
               </Component>
             </div>
@@ -277,8 +317,8 @@ exports[`Dialog Should render Check icon: Dialog with readStatus === SENT 1`] = 
 
 exports[`Dialog Should render Counter: Dialog with counter 1`] = `
 <Memo()
-  createdAt="Mon May 03 2021 16:47:32 GMT+0300 (Москва, стандартное время)"
-  id="123"
+  createdAt="createdAt"
+  id="id"
   interlocutor={
     Object {
       "avatar": null,
@@ -291,12 +331,32 @@ exports[`Dialog Should render Counter: Dialog with counter 1`] = `
       "updatedAt": 2000-12-31T21:00:00.000Z,
     }
   }
-  lastMessage="string"
+  isOwnMessage={false}
+  lastMessage={
+    Object {
+      "attachments": Array [],
+      "author": Object {
+        "avatar": "",
+        "confirmed": false,
+        "createdAt": 2000-12-31T21:00:00.000Z,
+        "email": "foo@bar.baz",
+        "full_name": "name",
+        "id": "123",
+        "last_seen": 2000-12-31T21:00:00.000Z,
+        "updatedAt": 2000-12-31T21:00:00.000Z,
+      },
+      "createdAt": "createdAt",
+      "dialog": "dialog_id",
+      "id": "id",
+      "read": false,
+      "text": "text",
+      "updatedAt": "updatedAt",
+    }
+  }
   messages={123}
-  readStatus={null}
   selected={false}
   status="ACTIVE"
-  updatedAt="Mon May 03 2021 16:47:32 GMT+0300 (Москва, стандартное время)"
+  updatedAt="updatedAt"
 >
   <div
     className="dialog"
@@ -368,7 +428,7 @@ exports[`Dialog Should render Counter: Dialog with counter 1`] = `
                 <p
                   className="text text--description dialog__text-description"
                 >
-                  string
+                  text
                 </p>
               </Component>
             </div>
@@ -398,7 +458,7 @@ exports[`Dialog Should render Counter: Dialog with counter 1`] = `
                 <p
                   className="text text--xs dialog__info-date"
                 >
-                  5/3/2021
+                  Invalid Date
                 </p>
               </Component>
             </div>
@@ -426,8 +486,8 @@ exports[`Dialog Should render Counter: Dialog with counter 1`] = `
 
 exports[`Dialog Should render Dialog component with selected modifier: Dialog with selected modifier 1`] = `
 <Memo()
-  createdAt="Mon May 03 2021 16:47:32 GMT+0300 (Москва, стандартное время)"
-  id="123"
+  createdAt="createdAt"
+  id="id"
   interlocutor={
     Object {
       "avatar": null,
@@ -440,12 +500,32 @@ exports[`Dialog Should render Dialog component with selected modifier: Dialog wi
       "updatedAt": 2000-12-31T21:00:00.000Z,
     }
   }
-  lastMessage="string"
+  isOwnMessage={false}
+  lastMessage={
+    Object {
+      "attachments": Array [],
+      "author": Object {
+        "avatar": "",
+        "confirmed": false,
+        "createdAt": 2000-12-31T21:00:00.000Z,
+        "email": "foo@bar.baz",
+        "full_name": "name",
+        "id": "123",
+        "last_seen": 2000-12-31T21:00:00.000Z,
+        "updatedAt": 2000-12-31T21:00:00.000Z,
+      },
+      "createdAt": "createdAt",
+      "dialog": "dialog_id",
+      "id": "id",
+      "read": false,
+      "text": "text",
+      "updatedAt": "updatedAt",
+    }
+  }
   messages={0}
-  readStatus={null}
   selected={true}
   status="ACTIVE"
-  updatedAt="Mon May 03 2021 16:47:32 GMT+0300 (Москва, стандартное время)"
+  updatedAt="updatedAt"
 >
   <div
     className="dialog dialog--selected"
@@ -517,7 +597,7 @@ exports[`Dialog Should render Dialog component with selected modifier: Dialog wi
                 <p
                   className="text text--description dialog__text-description"
                 >
-                  string
+                  text
                 </p>
               </Component>
             </div>
@@ -547,7 +627,7 @@ exports[`Dialog Should render Dialog component with selected modifier: Dialog wi
                 <p
                   className="text text--xs dialog__info-date"
                 >
-                  5/3/2021
+                  Invalid Date
                 </p>
               </Component>
             </div>
@@ -559,10 +639,10 @@ exports[`Dialog Should render Dialog component with selected modifier: Dialog wi
 </Memo()>
 `;
 
-exports[`Dialog Should render DoubleCheck icon: Dialog with readStatus === READ 1`] = `
+exports[`Dialog Should render DoubleCheck icon: Dialog with read message 1`] = `
 <Memo()
-  createdAt="Mon May 03 2021 16:47:32 GMT+0300 (Москва, стандартное время)"
-  id="123"
+  createdAt="createdAt"
+  id="id"
   interlocutor={
     Object {
       "avatar": null,
@@ -575,12 +655,32 @@ exports[`Dialog Should render DoubleCheck icon: Dialog with readStatus === READ 
       "updatedAt": 2000-12-31T21:00:00.000Z,
     }
   }
-  lastMessage="string"
+  isOwnMessage={false}
+  lastMessage={
+    Object {
+      "attachments": Array [],
+      "author": Object {
+        "avatar": "",
+        "confirmed": false,
+        "createdAt": 2000-12-31T21:00:00.000Z,
+        "email": "foo@bar.baz",
+        "full_name": "name",
+        "id": "123",
+        "last_seen": 2000-12-31T21:00:00.000Z,
+        "updatedAt": 2000-12-31T21:00:00.000Z,
+      },
+      "createdAt": "createdAt",
+      "dialog": "dialog_id",
+      "id": "id",
+      "read": true,
+      "text": "text",
+      "updatedAt": "updatedAt",
+    }
+  }
   messages={0}
-  readStatus="READ"
   selected={false}
   status="ACTIVE"
-  updatedAt="Mon May 03 2021 16:47:32 GMT+0300 (Москва, стандартное время)"
+  updatedAt="updatedAt"
 >
   <div
     className="dialog"
@@ -652,7 +752,7 @@ exports[`Dialog Should render DoubleCheck icon: Dialog with readStatus === READ 
                 <p
                   className="text text--description dialog__text-description"
                 >
-                  string
+                  text
                 </p>
               </Component>
             </div>
@@ -682,7 +782,7 @@ exports[`Dialog Should render DoubleCheck icon: Dialog with readStatus === READ 
                 <p
                   className="text text--xs dialog__info-date"
                 >
-                  5/3/2021
+                  Invalid Date
                 </p>
               </Component>
             </div>
@@ -699,10 +799,418 @@ exports[`Dialog Should render DoubleCheck icon: Dialog with readStatus === READ 
 </Memo()>
 `;
 
+exports[`Dialog Should render component with avatar: Dialog with avatar 1`] = `
+<Memo()
+  createdAt="createdAt"
+  id="id"
+  interlocutor={
+    Object {
+      "avatar": "avatar/src",
+      "confirmed": false,
+      "createdAt": 2000-12-31T21:00:00.000Z,
+      "email": "foo@bar.baz",
+      "full_name": "name",
+      "id": "123",
+      "last_seen": 2000-12-31T21:00:00.000Z,
+      "updatedAt": 2000-12-31T21:00:00.000Z,
+    }
+  }
+  isOwnMessage={false}
+  lastMessage={
+    Object {
+      "attachments": Array [],
+      "author": Object {
+        "avatar": "",
+        "confirmed": false,
+        "createdAt": 2000-12-31T21:00:00.000Z,
+        "email": "foo@bar.baz",
+        "full_name": "name",
+        "id": "123",
+        "last_seen": 2000-12-31T21:00:00.000Z,
+        "updatedAt": 2000-12-31T21:00:00.000Z,
+      },
+      "createdAt": "createdAt",
+      "dialog": "dialog_id",
+      "id": "id",
+      "read": false,
+      "text": "text",
+      "updatedAt": "updatedAt",
+    }
+  }
+  messages={0}
+  selected={false}
+  status="ACTIVE"
+  updatedAt="updatedAt"
+>
+  <div
+    className="dialog"
+  >
+    <Avatar
+      customStyles="dialog__avatar"
+      name="name"
+      src="avatar/src"
+    >
+      <div
+        className="avatar dialog__avatar"
+      >
+        <img
+          alt=""
+          className="avatar__image"
+          src="avatar/src"
+        />
+        <Loader>
+          <div
+            className="loader"
+          >
+            <div
+              className="loader__line"
+              key="0"
+            />
+            <div
+              className="loader__line"
+              key="1"
+            />
+            <div
+              className="loader__line"
+              key="2"
+            />
+            <div
+              className="loader__line"
+              key="3"
+            />
+            <div
+              className="loader__line"
+              key="4"
+            />
+            <div
+              className="loader__line"
+              key="5"
+            />
+            <div
+              className="loader__line"
+              key="6"
+            />
+            <div
+              className="loader__line"
+              key="7"
+            />
+            <div
+              className="loader__line"
+              key="8"
+            />
+            <div
+              className="loader__line"
+              key="9"
+            />
+            <div
+              className="loader__line"
+              key="10"
+            />
+            <div
+              className="loader__line"
+              key="11"
+            />
+          </div>
+        </Loader>
+      </div>
+    </Avatar>
+    <div
+      className="dialog__data"
+    >
+      <div
+        className="dialog__text"
+      >
+        <Component
+          customStyles="dialog__text-title"
+          numberOfLines={1}
+          type="h4"
+        >
+          <Dotdotdot
+            clamp={1}
+            tagName="div"
+            truncationChar="…"
+            useNativeClamp={false}
+          >
+            <div>
+              <Component
+                customStyles="dialog__text-title"
+                type="h4"
+              >
+                <h4
+                  className="text text--heading-4 dialog__text-title"
+                >
+                  name
+                </h4>
+              </Component>
+            </div>
+          </Dotdotdot>
+        </Component>
+        <Component
+          customStyles="dialog__text-description"
+        >
+          <Dotdotdot
+            clamp={Infinity}
+            tagName="div"
+            truncationChar="…"
+            useNativeClamp={false}
+          >
+            <div>
+              <Component
+                customStyles="dialog__text-description"
+              >
+                <p
+                  className="text text--description dialog__text-description"
+                >
+                  text
+                </p>
+              </Component>
+            </div>
+          </Dotdotdot>
+        </Component>
+      </div>
+      <div
+        className="dialog__info"
+      >
+        <Component
+          customStyles="dialog__info-date"
+          size="XS"
+          type="mixed"
+        >
+          <Dotdotdot
+            clamp={Infinity}
+            tagName="div"
+            truncationChar="…"
+            useNativeClamp={false}
+          >
+            <div>
+              <Component
+                customStyles="dialog__info-date"
+                size="XS"
+                type="mixed"
+              >
+                <p
+                  className="text text--xs dialog__info-date"
+                >
+                  Invalid Date
+                </p>
+              </Component>
+            </div>
+          </Dotdotdot>
+        </Component>
+      </div>
+    </div>
+  </div>
+</Memo()>
+`;
+
+exports[`Dialog Should render component with created date: Dialog with created date 1`] = `
+<Memo()
+  createdAt="Mon May 12 2021 16:39:32 GMT+0300 (Москва, стандартное время)"
+  id="id"
+  interlocutor={
+    Object {
+      "avatar": "avatar/src",
+      "confirmed": false,
+      "createdAt": 2000-12-31T21:00:00.000Z,
+      "email": "foo@bar.baz",
+      "full_name": "name",
+      "id": "123",
+      "last_seen": 2000-12-31T21:00:00.000Z,
+      "updatedAt": 2000-12-31T21:00:00.000Z,
+    }
+  }
+  isOwnMessage={false}
+  lastMessage={
+    Object {
+      "attachments": Array [],
+      "author": Object {
+        "avatar": "",
+        "confirmed": false,
+        "createdAt": 2000-12-31T21:00:00.000Z,
+        "email": "foo@bar.baz",
+        "full_name": "name",
+        "id": "123",
+        "last_seen": 2000-12-31T21:00:00.000Z,
+        "updatedAt": 2000-12-31T21:00:00.000Z,
+      },
+      "createdAt": "createdAt",
+      "dialog": "dialog_id",
+      "id": "id",
+      "read": false,
+      "text": "text",
+      "updatedAt": "updatedAt",
+    }
+  }
+  messages={0}
+  selected={false}
+  status="ACTIVE"
+  updatedAt=""
+>
+  <div
+    className="dialog"
+  >
+    <Avatar
+      customStyles="dialog__avatar"
+      name="name"
+      src="avatar/src"
+    >
+      <div
+        className="avatar dialog__avatar"
+      >
+        <img
+          alt=""
+          className="avatar__image"
+          src="avatar/src"
+        />
+        <Loader>
+          <div
+            className="loader"
+          >
+            <div
+              className="loader__line"
+              key="0"
+            />
+            <div
+              className="loader__line"
+              key="1"
+            />
+            <div
+              className="loader__line"
+              key="2"
+            />
+            <div
+              className="loader__line"
+              key="3"
+            />
+            <div
+              className="loader__line"
+              key="4"
+            />
+            <div
+              className="loader__line"
+              key="5"
+            />
+            <div
+              className="loader__line"
+              key="6"
+            />
+            <div
+              className="loader__line"
+              key="7"
+            />
+            <div
+              className="loader__line"
+              key="8"
+            />
+            <div
+              className="loader__line"
+              key="9"
+            />
+            <div
+              className="loader__line"
+              key="10"
+            />
+            <div
+              className="loader__line"
+              key="11"
+            />
+          </div>
+        </Loader>
+      </div>
+    </Avatar>
+    <div
+      className="dialog__data"
+    >
+      <div
+        className="dialog__text"
+      >
+        <Component
+          customStyles="dialog__text-title"
+          numberOfLines={1}
+          type="h4"
+        >
+          <Dotdotdot
+            clamp={1}
+            tagName="div"
+            truncationChar="…"
+            useNativeClamp={false}
+          >
+            <div>
+              <Component
+                customStyles="dialog__text-title"
+                type="h4"
+              >
+                <h4
+                  className="text text--heading-4 dialog__text-title"
+                >
+                  name
+                </h4>
+              </Component>
+            </div>
+          </Dotdotdot>
+        </Component>
+        <Component
+          customStyles="dialog__text-description"
+        >
+          <Dotdotdot
+            clamp={Infinity}
+            tagName="div"
+            truncationChar="…"
+            useNativeClamp={false}
+          >
+            <div>
+              <Component
+                customStyles="dialog__text-description"
+              >
+                <p
+                  className="text text--description dialog__text-description"
+                >
+                  text
+                </p>
+              </Component>
+            </div>
+          </Dotdotdot>
+        </Component>
+      </div>
+      <div
+        className="dialog__info"
+      >
+        <Component
+          customStyles="dialog__info-date"
+          size="XS"
+          type="mixed"
+        >
+          <Dotdotdot
+            clamp={Infinity}
+            tagName="div"
+            truncationChar="…"
+            useNativeClamp={false}
+          >
+            <div>
+              <Component
+                customStyles="dialog__info-date"
+                size="XS"
+                type="mixed"
+              >
+                <p
+                  className="text text--xs dialog__info-date"
+                >
+                  5/12/2021
+                </p>
+              </Component>
+            </div>
+          </Dotdotdot>
+        </Component>
+      </div>
+    </div>
+  </div>
+</Memo()>
+`;
+
 exports[`Dialog Should render updated date: Dialog with date 1`] = `
 <Memo()
-  createdAt="Mon May 03 2021 16:47:32 GMT+0300 (Москва, стандартное время)"
-  id="123"
+  createdAt="createdAt"
+  id="id"
   interlocutor={
     Object {
       "avatar": null,
@@ -715,9 +1223,29 @@ exports[`Dialog Should render updated date: Dialog with date 1`] = `
       "updatedAt": 2000-12-31T21:00:00.000Z,
     }
   }
-  lastMessage="string"
+  isOwnMessage={false}
+  lastMessage={
+    Object {
+      "attachments": Array [],
+      "author": Object {
+        "avatar": "",
+        "confirmed": false,
+        "createdAt": 2000-12-31T21:00:00.000Z,
+        "email": "foo@bar.baz",
+        "full_name": "name",
+        "id": "123",
+        "last_seen": 2000-12-31T21:00:00.000Z,
+        "updatedAt": 2000-12-31T21:00:00.000Z,
+      },
+      "createdAt": "createdAt",
+      "dialog": "dialog_id",
+      "id": "id",
+      "read": false,
+      "text": "text",
+      "updatedAt": "updatedAt",
+    }
+  }
   messages={0}
-  readStatus={null}
   selected={false}
   status="ACTIVE"
   updatedAt="Mon May 03 2021 16:49:32 GMT+0300 (Москва, стандартное время)"
@@ -792,7 +1320,7 @@ exports[`Dialog Should render updated date: Dialog with date 1`] = `
                 <p
                   className="text text--description dialog__text-description"
                 >
-                  string
+                  text
                 </p>
               </Component>
             </div>
@@ -823,6 +1351,138 @@ exports[`Dialog Should render updated date: Dialog with date 1`] = `
                   className="text text--xs dialog__info-date"
                 >
                   5/3/2021
+                </p>
+              </Component>
+            </div>
+          </Dotdotdot>
+        </Component>
+      </div>
+    </div>
+  </div>
+</Memo()>
+`;
+
+exports[`Dialog Shouldn\`t render status: Dialog without status 1`] = `
+<Memo()
+  createdAt="createdAt"
+  id="id"
+  interlocutor={
+    Object {
+      "avatar": null,
+      "confirmed": false,
+      "createdAt": 2000-12-31T21:00:00.000Z,
+      "email": "foo@bar.baz",
+      "full_name": "name",
+      "id": "123",
+      "last_seen": 2000-12-31T21:00:00.000Z,
+      "updatedAt": 2000-12-31T21:00:00.000Z,
+    }
+  }
+  isOwnMessage={false}
+  messages={0}
+  selected={false}
+  status="ACTIVE"
+  updatedAt="updatedAt"
+>
+  <div
+    className="dialog"
+  >
+    <Avatar
+      customStyles="dialog__avatar"
+      name="name"
+      src=""
+    >
+      <div
+        className="avatar dialog__avatar"
+        style={
+          Object {
+            "backgroundColor": "#7fffff",
+          }
+        }
+      >
+        <span
+          className="avatar__text avatar__text--dark"
+        >
+          n
+        </span>
+      </div>
+    </Avatar>
+    <div
+      className="dialog__data"
+    >
+      <div
+        className="dialog__text"
+      >
+        <Component
+          customStyles="dialog__text-title"
+          numberOfLines={1}
+          type="h4"
+        >
+          <Dotdotdot
+            clamp={1}
+            tagName="div"
+            truncationChar="…"
+            useNativeClamp={false}
+          >
+            <div>
+              <Component
+                customStyles="dialog__text-title"
+                type="h4"
+              >
+                <h4
+                  className="text text--heading-4 dialog__text-title"
+                >
+                  name
+                </h4>
+              </Component>
+            </div>
+          </Dotdotdot>
+        </Component>
+        <Component
+          customStyles="dialog__text-description"
+        >
+          <Dotdotdot
+            clamp={Infinity}
+            tagName="div"
+            truncationChar="…"
+            useNativeClamp={false}
+          >
+            <div>
+              <Component
+                customStyles="dialog__text-description"
+              >
+                <p
+                  className="text text--description dialog__text-description"
+                />
+              </Component>
+            </div>
+          </Dotdotdot>
+        </Component>
+      </div>
+      <div
+        className="dialog__info"
+      >
+        <Component
+          customStyles="dialog__info-date"
+          size="XS"
+          type="mixed"
+        >
+          <Dotdotdot
+            clamp={Infinity}
+            tagName="div"
+            truncationChar="…"
+            useNativeClamp={false}
+          >
+            <div>
+              <Component
+                customStyles="dialog__info-date"
+                size="XS"
+                type="mixed"
+              >
+                <p
+                  className="text text--xs dialog__info-date"
+                >
+                  Invalid Date
                 </p>
               </Component>
             </div>

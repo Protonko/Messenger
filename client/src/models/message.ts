@@ -15,5 +15,5 @@ export interface IMessage {
   createdAt: string
   updatedAt: string
   read: boolean
-  attachments: Array<IFile>
+  attachments: IFile[]
 }

@@ -1,16 +1,17 @@
 import {
-  AllDialogsActions,
   DialogsActionTypes,
+  AllDialogsActions,
 } from 'models/store/actions/dialogs'
 import dialogs, {initialState} from 'store/reducers/dialogs'
 import {
   MessageActionsTypes,
   AppendMessageAction,
+  CreateMessageSuccessAction,
 } from 'models/store/actions/message'
 import {MESSAGE, DIALOG} from 'static/test-mocks'
 
 describe('Dialogs reducer', () => {
-  const ACTIONS: Record<string, AllDialogsActions | AppendMessageAction> = {
+  const ACTIONS: Record<string, AllDialogsActions | AppendMessageAction | CreateMessageSuccessAction> = {
     GET_START: {
       type: DialogsActionTypes.GET_START,
     },
@@ -39,6 +40,10 @@ describe('Dialogs reducer', () => {
     },
     APPEND_MESSAGE: {
       type: MessageActionsTypes.APPEND_MESSAGE,
+      payload: MESSAGE,
+    },
+    CREATE_MESSAGE_SUCCESS: {
+      type: MessageActionsTypes.CREATE_MESSAGE_SUCCESS,
       payload: MESSAGE,
     },
   }
@@ -104,7 +109,23 @@ describe('Dialogs reducer', () => {
 
     expect(dialogs(state, ACTIONS.APPEND_MESSAGE)).toEqual({
       ...initialState,
-      dialogs: [{...dialog, lastMessage: MESSAGE.text}, DIALOG],
+      dialogs: [{...dialog, lastMessage: MESSAGE}, DIALOG],
+    })
+  })
+
+  it('Shouldn`t change state on CREATE_MESSAGE_SUCCESS action', () => {
+    expect(dialogs(initialState, ACTIONS.CREATE_MESSAGE_SUCCESS)).toEqual({
+      ...initialState,
+    })
+  })
+
+  it('Shouldn update lastMessage on CREATE_MESSAGE_SUCCESS action', () => {
+    const dialog = {...DIALOG, id: MESSAGE.dialog}
+    const state = {...initialState, dialogs: [dialog, DIALOG]}
+
+    expect(dialogs(state, ACTIONS.CREATE_MESSAGE_SUCCESS)).toEqual({
+      ...initialState,
+      dialogs: [{...dialog, lastMessage: MESSAGE}, DIALOG],
     })
   })
 })

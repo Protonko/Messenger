@@ -1,5 +1,4 @@
 import type {IDialog} from 'models/dialog'
-import type {IMessage} from 'models/message'
 import type {RootState} from 'store/reducers'
 import {useEffect, FC} from 'react'
 import {useHistory} from 'react-router-dom'
@@ -12,7 +11,6 @@ import {Dialog} from 'components/common/Dialog'
 import {Search} from 'components/common/Search'
 import {ContentContainer} from 'components/common/ContentContainer'
 import {CreateDialog} from 'components/CreateDialog'
-import {appendMessage} from 'store/actions/message'
 
 export const Dialogs: FC = () => {
   const history = useHistory()
@@ -21,6 +19,7 @@ export const Dialogs: FC = () => {
   const {dialogs, loading, errorMessage} = useSelector(
     (state: RootState) => state.dialogs,
   )
+  const {account} = useSelector((state: RootState) => state.auth)
 
   useEffect(() => {
     socket.on(EVENTS_SOCKET.NEW_DIALOG, (dialog: IDialog) => {
@@ -43,7 +42,11 @@ export const Dialogs: FC = () => {
         key={dialog.id}
         onClick={() => selectDialog(dialog.id)}
       >
-        <Dialog {...dialog} selected={dialogParam === dialog.id} />
+        <Dialog
+          {...dialog}
+          isOwnMessage={account?.id === dialog.lastMessage?.author?.id}
+          selected={dialogParam === dialog.id}
+        />
       </li>
     )
   }

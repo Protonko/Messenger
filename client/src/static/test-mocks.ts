@@ -35,12 +35,11 @@ export const DIALOG: IDialog = {
     updatedAt: new Date('01-01-01'),
     last_seen: new Date('01-01-01'),
   },
-  lastMessage: 'lastMessage',
+  lastMessage: MESSAGE,
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
   messages: 1,
   status: Status.ACTIVE,
-  readStatus: null,
 }
 
 export const USER: IUser = {

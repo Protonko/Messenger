@@ -12,7 +12,14 @@ export interface IPropsMessage extends IMessage {
 }
 
 export const Message: FC<IPropsMessage> = memo(
-  ({customStyles, text, author, createdAt, updatedAt, attachments}) => {
+  ({
+     customStyles,
+     text,
+     author,
+     createdAt,
+     updatedAt,
+     attachments,
+   }) => {
     const classNamesMessage = classNames('message', {
       [customStyles ?? '']: !!customStyles,
     })

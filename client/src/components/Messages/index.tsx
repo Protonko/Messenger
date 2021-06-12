@@ -13,7 +13,7 @@ import {Tag} from 'components/common/Tag'
 export const Messages = () => {
   const dialogParam = useSearchParams('dialog')
   const dispatch = useDispatch()
-  const {messages} = useSelector((state: RootState) => state.message)
+  const {messages, loading, errorMessage} = useSelector((state: RootState) => state.message)
 
   useEffect(() => {
     socket.on(EVENTS_SOCKET.NEW_MESSAGE, (message: IMessage) => {
@@ -52,7 +52,7 @@ export const Messages = () => {
   }
 
   return (
-    <ContentContainer loading={false} errorMessage={null}>
+    <ContentContainer loading={loading} errorMessage={errorMessage}>
       <ul className="messages list list--reset">{renderContent()}</ul>
     </ContentContainer>
   )

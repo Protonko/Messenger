@@ -113,7 +113,6 @@ describe('UserApi', () => {
       ;(axios.get as jest.Mock).mockRejectedValue(RESPONSE_ERROR)
 
       return UserApi.getUsers().catch((err) => {
-        console.log('ALLO', err)
         expect(err).toEqual(RESPONSE_ERROR.response)
       })
     })

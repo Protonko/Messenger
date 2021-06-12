@@ -1,22 +1,10 @@
 import axios from 'axios'
 import {DialogsApi} from 'api/Dialogs'
-import {Status} from 'models/common/status'
 import {RESPONSE_ERROR} from 'static/constants'
+import {DIALOG} from 'static/test-mocks'
 
 describe('DialogsApi', () => {
   const mockRejectedJSON = Promise.resolve(RESPONSE_ERROR)
-  const DIALOG = {
-    id: 'id',
-    name: 'name',
-    lastMessage: 'lastMessage',
-    avatar: 'avatar',
-    edited: false,
-    createdAt: 'createdAt',
-    updatedAt: 'updatedAt',
-    messages: 1,
-    status: Status.MUTED,
-    readStatus: null,
-  }
 
   const SEND_SUCCESS = {
     status: 200,
