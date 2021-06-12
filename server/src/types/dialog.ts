@@ -1,7 +1,6 @@
 import {Document} from 'mongoose'
 import {IUser, IUserMongoose} from './user'
-import {IMessageMongoose} from './message'
-import {READ_STATUS} from '../static'
+import {IMessage, IMessageMongoose} from './message'
 
 export interface IDialogUnpopulated {
   _id: string,
@@ -28,10 +27,9 @@ export interface IDialogMongoose extends Document {
 export interface IDialog {
   id: string,
   interlocutor: IUser,
-  lastMessage: string | null,
+  lastMessage?: IMessage
   createdAt: string,
   updatedAt: string,
   messages: number,
   muted: boolean,
-  readStatus: READ_STATUS,
 }

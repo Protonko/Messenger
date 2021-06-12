@@ -5,9 +5,3 @@ export enum EVENTS_SOCKET {
   READ_MESSAGE = 'MESSAGE:READ',
   CONNECTION_ERROR = 'CONNECTION_ERROR',
 }
-
-export enum READ_STATUS {
-  READ = 'READ',
-  SENT = 'SENT',
-  NEW = 'NEW',
-}
