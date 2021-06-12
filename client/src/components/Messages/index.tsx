@@ -1,6 +1,6 @@
 import type {RootState} from 'store/reducers'
 import type {IMessage} from 'models/message'
-import {useEffect} from 'react'
+import {useEffect, useRef} from 'react'
 import {useDispatch, useSelector} from 'react-redux'
 import {EVENTS_SOCKET} from 'models/common/socket'
 import {socket} from 'utils/socket'
@@ -11,6 +11,7 @@ import {ContentContainer} from 'components/common/ContentContainer'
 import {Tag} from 'components/common/Tag'
 
 export const Messages = () => {
+  const listRef = useRef<HTMLUListElement>(null)
   const dialogParam = useSearchParams('dialog')
   const dispatch = useDispatch()
   const {messages, loading, errorMessage} = useSelector(
@@ -22,6 +23,10 @@ export const Messages = () => {
       dispatch(appendMessage(message))
     })
   }, [])
+
+  useEffect(() => {
+    listRef.current?.scrollTo(0, listRef.current.scrollHeight)
+  }, [messages])
 
   useEffect(() => {
     if (dialogParam && !messages?.[dialogParam]?.length) {
@@ -55,7 +60,7 @@ export const Messages = () => {
 
   return (
     <ContentContainer loading={loading} errorMessage={errorMessage}>
-      <ul className="messages list list--reset">{renderContent()}</ul>
+      <ul ref={listRef} className="messages list list--reset">{renderContent()}</ul>
     </ContentContainer>
   )
 }

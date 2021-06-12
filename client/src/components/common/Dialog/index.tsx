@@ -39,7 +39,7 @@ export const Dialog: FC<IDialogProps> = memo(
       const props = {
         width: 15,
         height: 15,
-        color: COLORS.dustyGray,
+        color: selected ? COLORS.white : COLORS.dustyGray,
       }
 
       if (!lastMessage) {
