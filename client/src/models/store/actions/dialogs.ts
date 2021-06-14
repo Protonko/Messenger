@@ -9,6 +9,7 @@ export enum DialogsActionTypes {
   CREATE_DIALOG_SUCCESS = '[DIALOGS]CREATE_DIALOG_SUCCESS',
   CREATE_DIALOG_ERROR = '[DIALOGS]CREATE_DIALOG_ERROR',
   RESET_CREATE_DIALOG_STATE = '[DIALOGS]RESET_CREATE_DIALOG_STATE',
+  CHANGE_READ_STATUS = '[DIALOGS]CHANGE_READ_STATUS',
 }
 
 export interface GetDialogsStartAction extends AnyAction {
@@ -40,8 +41,13 @@ export interface CreateDialogErrorAction extends AnyAction {
   payload: string
 }
 
-export interface ResetCreateDialogState extends AnyAction {
+export interface ResetCreateDialogStateAction extends AnyAction {
   type: DialogsActionTypes.RESET_CREATE_DIALOG_STATE
+}
+
+export interface ChangeReadStatusAction extends AnyAction {
+  type: DialogsActionTypes.CHANGE_READ_STATUS
+  payload: string
 }
 
 export type AllDialogsActions =
@@ -51,4 +57,5 @@ export type AllDialogsActions =
   | CreateDialogAction
   | CreateDialogSuccessAction
   | CreateDialogErrorAction
-  | ResetCreateDialogState
+  | ResetCreateDialogStateAction
+  | ChangeReadStatusAction

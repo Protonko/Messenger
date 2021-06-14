@@ -7,6 +7,7 @@ import {
   createDialogError,
   createDialogSuccess,
   resetCreateDialogState,
+  changeReadStatus,
 } from 'store/actions/dialogs'
 import {DIALOG} from 'static/test-mocks'
 
@@ -70,5 +71,14 @@ describe('Auth actions', () => {
     }
 
     expect(resetCreateDialogState()).toEqual(expectedAction)
+  })
+
+  it('Should create changeReadStatus', () => {
+    const expectedAction = {
+      type: DialogsActionTypes.CHANGE_READ_STATUS,
+      payload: 'dialog_id'
+    }
+
+    expect(changeReadStatus('dialog_id')).toEqual(expectedAction)
   })
 })

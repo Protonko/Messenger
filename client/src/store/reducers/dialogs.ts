@@ -5,6 +5,7 @@ import {DialogsActionTypes} from 'models/store/actions/dialogs'
 import {
   AppendMessageAction,
   CreateMessageSuccessAction,
+  GetMessagesSuccessAction,
   MessageActionsTypes,
 } from 'models/store/actions/message'
 
@@ -15,6 +16,12 @@ export interface IInitialState {
   errorMessage: null | string
   createErrorMessage: null | false | string
 }
+
+export type TDialogsReducerActions =
+  | AllDialogsActions
+  | AppendMessageAction
+  | CreateMessageSuccessAction
+  | GetMessagesSuccessAction
 
 export const initialState = {
   loading: false,
@@ -53,7 +60,7 @@ const updateLastMessage = (state: IInitialState, message: IMessage) => {
 
 const reducers = (
   state = initialState,
-  action: AllDialogsActions | AppendMessageAction | CreateMessageSuccessAction,
+  action: TDialogsReducerActions,
 ): IInitialState => {
   switch (action.type) {
     case DialogsActionTypes.GET_START:
@@ -102,12 +109,32 @@ const reducers = (
         createErrorMessage: initialState.createErrorMessage,
       }
 
+    case DialogsActionTypes.CHANGE_READ_STATUS: {
+      const message = state.dialogs?.find(({id}) => id === action.payload)?.lastMessage
+
+      if (!message) {
+        return state
+      }
+
+      return updateLastMessage(state, {...message, read: true})
+    }
+
     case MessageActionsTypes.APPEND_MESSAGE: {
       return updateLastMessage(state, action.payload)
     }
 
     case MessageActionsTypes.CREATE_MESSAGE_SUCCESS: {
       return updateLastMessage(state, action.payload)
+    }
+
+    case MessageActionsTypes.GET_MESSAGES_SUCCESS: {
+      const message = state.dialogs?.find(({id}) => id === action.payload.dialogId)?.lastMessage
+
+      if (!message) {
+        return state
+      }
+
+      return updateLastMessage(state, {...message, read: true})
     }
 
     default:

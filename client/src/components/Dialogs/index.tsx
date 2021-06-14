@@ -25,6 +25,9 @@ export const Dialogs: FC = () => {
     socket.on(EVENTS_SOCKET.NEW_DIALOG, (dialog: IDialog) => {
       console.log(dialog)
     })
+    socket.on(EVENTS_SOCKET.READ_MESSAGE, (dialogId: string) => {
+      console.log(dialogId)
+    })
   }, [])
 
   useEffect(() => {

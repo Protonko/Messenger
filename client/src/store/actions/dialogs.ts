@@ -1,13 +1,14 @@
 import type {IDialog} from 'models/dialog'
 import {
   DialogsActionTypes,
+  ChangeReadStatusAction,
+  CreateDialogAction,
+  CreateDialogErrorAction,
+  CreateDialogSuccessAction,
+  GetDialogsErrorAction,
   GetDialogsStartAction,
   GetDialogsSuccessAction,
-  GetDialogsErrorAction,
-  CreateDialogAction,
-  CreateDialogSuccessAction,
-  CreateDialogErrorAction,
-  ResetCreateDialogState,
+  ResetCreateDialogStateAction,
 } from 'models/store/actions/dialogs'
 
 export const getDialogs = (): GetDialogsStartAction => ({
@@ -45,6 +46,12 @@ export const createDialogError = (
   payload,
 })
 
-export const resetCreateDialogState = (): ResetCreateDialogState => ({
+export const resetCreateDialogState = (): ResetCreateDialogStateAction => ({
   type: DialogsActionTypes.RESET_CREATE_DIALOG_STATE,
+})
+
+
+export const changeReadStatus = (payload: string): ChangeReadStatusAction => ({
+  type: DialogsActionTypes.CHANGE_READ_STATUS,
+  payload,
 })
