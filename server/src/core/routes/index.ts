@@ -1,5 +1,5 @@
 import {Express} from 'express'
-import {Server} from 'socket.io'
+import {Server, Socket} from 'socket.io'
 import bodyParser from 'body-parser'
 import cors from 'cors'
 import {CORS_OPTIONS} from '../../config'
