@@ -28,6 +28,9 @@ export const Dialogs: FC = () => {
     socket.on(EVENTS_SOCKET.READ_MESSAGE, (dialogId: string) => {
       console.log(dialogId)
     })
+    socket.on(EVENTS_SOCKET.TYPING_MESSAGE, () => {
+      console.log(123)
+    })
   }, [])
 
   useEffect(() => {
@@ -47,6 +50,8 @@ export const Dialogs: FC = () => {
       >
         <Dialog
           {...dialog}
+          // TODO: fix
+          isTyping={false}
           isOwnMessage={account?.id === dialog.lastMessage?.author?.id}
           selected={dialogParam === dialog.id}
         />

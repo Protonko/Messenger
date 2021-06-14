@@ -1,10 +1,14 @@
 import type {EmojiData} from 'emoji-mart'
 import type {RootState} from 'store/reducers'
-import {useState, FormEvent} from 'react'
+import {useState, useCallback, FormEvent} from 'react'
 import {useDispatch, useSelector} from 'react-redux'
 import {ReactComponent as Clip} from 'assets/icons/clip.svg'
 import {ReactComponent as Microphone} from 'assets/icons/microphone.svg'
+import {EVENTS_SOCKET} from 'models/common/socket'
+import {socket} from 'utils/socket'
+import throttle from 'utils/throttle'
 import {useSearchParams} from 'hooks/useSearchParams'
+import {TYPING_TIMEOUT} from 'static/constants'
 import {createMessage} from 'store/actions/message'
 import {commonError} from 'store/actions/error'
 import {Textarea} from 'components/common/Textarea'
@@ -22,6 +26,15 @@ export const CreateMessageForm = () => {
   const [value, setValue] = useState('')
   const {interlocutor} =
     dialogs?.find((dialog) => dialog.id === dialogParam) ?? {}
+
+  const emitWriteMessage = useCallback(throttle(() => {
+    interlocutor && socket.emit(EVENTS_SOCKET.TYPING_MESSAGE, interlocutor.id)
+  }, TYPING_TIMEOUT), [])
+
+  const onChange = (value: string) => {
+    emitWriteMessage()
+    setValue(value)
+  }
 
   const onSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault()
@@ -53,7 +66,7 @@ export const CreateMessageForm = () => {
           placeholder="Write a message..."
           className="create-message-form__textarea"
           value={value}
-          onChange={setValue}
+          onChange={onChange}
         />
         <Avatar
           name={interlocutor?.full_name}
