@@ -2,11 +2,11 @@ import {Document} from 'mongoose'
 import {IUser, IUserMongoose} from './user'
 import {IMessage, IMessageMongoose} from './message'
 
-export interface IDialogUnpopulated {
+export interface IDialogUnpopulatedUsers {
   _id: string,
   author: string,
   interlocutor: string,
-  last_message?: string,
+  last_message?: IMessageMongoose,
   messages?: number,
   createdAt: string,
   updatedAt: string,

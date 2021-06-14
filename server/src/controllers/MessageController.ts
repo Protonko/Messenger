@@ -5,7 +5,7 @@ import {Message} from '../models/Message'
 import {Dialog} from '../models/Dialog'
 import {IError} from '../types/error'
 import {IMessageMongoose} from '../types/message'
-import {IDialogMongoose, IDialogUnpopulated} from '../types/dialog'
+import {IDialogMongoose, IDialogUnpopulatedUsers} from '../types/dialog'
 import {messageMapper} from '../utils/mappers/messageMapper'
 
 export class MessageController {
@@ -16,9 +16,12 @@ export class MessageController {
 
     this.create = this.create.bind(this)
     this.find = this.find.bind(this)
+    this.updateReadStatus = this.updateReadStatus.bind(this)
   }
 
   async find(request: Request, response: Response) {
+    // @ts-ignore
+    const userId: string | null = request.user?._id ?? null
     const {dialog} = request.query
 
     if (typeof dialog !== 'string') {
@@ -29,7 +32,8 @@ export class MessageController {
 
     await Dialog
       .findOne({_id: dialog})
-      .exec((error: IError, result: IDialogUnpopulated) => {
+      .populate(['last_message'])
+      .exec((error: IError, result: IDialogUnpopulatedUsers) => {
         try {
           if (error) {
             return response
@@ -37,9 +41,13 @@ export class MessageController {
               .json({message: error.value})
           }
 
-          if (result.interlocutor) {
+          const interlocutor = userId?.toString() === result.author.toString()
+            ? result.interlocutor
+            : result.author
+
+          if (!result.last_message?.read && interlocutor) {
             this.clearUnreadMessages(dialog)
-            this.updateReadStatus(dialog, response, result.interlocutor)
+            this.updateReadStatus(dialog, response, interlocutor.toString())
           }
         } catch (error) {
           return response
@@ -145,8 +153,8 @@ export class MessageController {
     }
   }
 
-  clearUnreadMessages(dialog: string) {
-    Dialog.findOneAndUpdate(
+  async clearUnreadMessages(dialog: string) {
+    await Dialog.findOneAndUpdate(
       {_id: dialog},
       {
         messages: 0,
@@ -162,7 +170,7 @@ export class MessageController {
       .exec((error: IError) => {
         try {
           if (error) {
-            response.status(500).json({message: error.value})
+            return response.status(500).json({message: error.value})
           } else {
             this.io.to(interlocutor).emit(EVENTS_SOCKET.READ_MESSAGE, dialog)
           }
