@@ -1,11 +1,11 @@
 import type {RootState} from 'store/reducers'
 import type {IMessage} from 'models/message'
-import {useEffect, useRef, useState} from 'react'
+import {useEffect, useRef} from 'react'
 import {useDispatch, useSelector} from 'react-redux'
 import {EVENTS_SOCKET} from 'models/common/socket'
 import {socket} from 'utils/socket'
 import {useSearchParams} from 'hooks/useSearchParams'
-import {TYPING_TIMEOUT} from 'static/constants'
+import {useTyping} from 'hooks/useTyping'
 import {appendMessage, getMessages} from 'store/actions/message'
 import {Message} from 'components/common/Message'
 import {ContentContainer} from 'components/common/ContentContainer'
@@ -13,11 +13,10 @@ import {Tag} from 'components/common/Tag'
 import {Typing} from 'components/common/Typing'
 
 export const Messages = () => {
-  let typingTimeoutLabel: NodeJS.Timeout;
   const listRef = useRef<HTMLUListElement>(null)
   const dialogParam = useSearchParams('dialog')
+  const [typing, typingHandler] = useTyping()
   const dispatch = useDispatch()
-  const [typing, setTyping] = useState(false)
   const {messages, loading, errorMessage} = useSelector(
     (state: RootState) => state.message,
   )
@@ -27,11 +26,7 @@ export const Messages = () => {
       dispatch(appendMessage(message))
     })
     socket.on(EVENTS_SOCKET.TYPING_MESSAGE, () => {
-      setTyping(true);
-      clearInterval(typingTimeoutLabel);
-      typingTimeoutLabel = setTimeout(() => {
-        setTyping(false);
-      }, TYPING_TIMEOUT);
+      typingHandler()
     })
   }, [])
 

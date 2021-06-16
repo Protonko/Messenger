@@ -1,14 +1,15 @@
 import type {IDialog} from 'models/dialog'
-import {memo, FC} from 'react'
-import classNames from 'classnames'
-import {TextSize, TextTypes} from 'models/common/text'
+import {FC, memo} from 'react'
 import {ReactComponent as DoubleCheck} from 'assets/icons/double-check.svg'
 import {ReactComponent as Check} from 'assets/icons/check.svg'
+import classNames from 'classnames'
+import {TextSize, TextTypes} from 'models/common/text'
+import {Sizes} from 'models/common/sizes'
 import {COLORS} from 'static/colors'
 import {Text} from 'components/common/Text'
 import {Counter} from 'components/common/Counter'
 import {Avatar} from 'components/common/Avatar'
-import {Typing} from '../Typing'
+import {Typing} from 'components/common/Typing'
 
 export interface IDialogProps extends IDialog {
   selected: boolean
@@ -35,7 +36,7 @@ export const Dialog: FC<IDialogProps> = memo(
 
     const renderMessageText = () => {
       if (isTyping) {
-        return <Typing />
+        return <Typing customStyles="dialog__typing" size={Sizes.SMALL} />
       }
 
       if (!lastMessage) {

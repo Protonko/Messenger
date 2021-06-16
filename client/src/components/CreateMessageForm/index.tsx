@@ -1,6 +1,6 @@
 import type {EmojiData} from 'emoji-mart'
 import type {RootState} from 'store/reducers'
-import {useState, useCallback, FormEvent} from 'react'
+import {useState, useCallback, useMemo, FormEvent} from 'react'
 import {useDispatch, useSelector} from 'react-redux'
 import {ReactComponent as Clip} from 'assets/icons/clip.svg'
 import {ReactComponent as Microphone} from 'assets/icons/microphone.svg'
@@ -24,12 +24,14 @@ export const CreateMessageForm = () => {
   }))
   const dispatch = useDispatch()
   const [value, setValue] = useState('')
-  const {interlocutor} =
-    dialogs?.find((dialog) => dialog.id === dialogParam) ?? {}
+  const interlocutor = useMemo(
+    () => dialogs?.find((dialog) => dialog.id === dialogParam)?.interlocutor,
+    [dialogs, dialogParam]
+  )
 
   const emitWriteMessage = useCallback(throttle(() => {
     interlocutor && socket.emit(EVENTS_SOCKET.TYPING_MESSAGE, interlocutor.id)
-  }, TYPING_TIMEOUT), [])
+  }, TYPING_TIMEOUT), [dialogs])
 
   const onChange = (value: string) => {
     emitWriteMessage()
