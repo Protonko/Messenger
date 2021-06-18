@@ -15,7 +15,7 @@ const io = new Server(http, {
 });
 
 createRoutes(app, io)
-createSocket(http, io)
+createSocket(http, io, app)
 
 http.listen(config.PORT, () => {
   console.log(`App has been started on port ${config.PORT}`)

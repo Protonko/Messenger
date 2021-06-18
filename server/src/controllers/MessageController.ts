@@ -153,8 +153,8 @@ export class MessageController {
     }
   }
 
-  async clearUnreadMessages(dialog: string) {
-    await Dialog.findOneAndUpdate(
+  clearUnreadMessages(dialog: string) {
+    Dialog.findOneAndUpdate(
       {_id: dialog},
       {
         messages: 0,
