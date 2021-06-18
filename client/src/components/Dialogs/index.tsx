@@ -5,14 +5,13 @@ import {useHistory} from 'react-router-dom'
 import {useDispatch, useSelector} from 'react-redux'
 import {useSearchParams} from 'hooks/useSearchParams'
 import {useTyping} from 'hooks/useTyping'
-import {getDialogs} from 'store/actions/dialogs'
+import {changeReadStatus, getDialogs} from 'store/actions/dialogs'
 import {socket} from 'utils/socket'
 import {EVENTS_SOCKET} from 'models/common/socket'
 import {Dialog} from 'components/common/Dialog'
 import {Search} from 'components/common/Search'
 import {ContentContainer} from 'components/common/ContentContainer'
 import {CreateDialog} from 'components/CreateDialog'
-import {Typing} from '../common/Typing'
 
 export const Dialogs: FC = () => {
   const history = useHistory()
@@ -28,9 +27,11 @@ export const Dialogs: FC = () => {
     socket.on(EVENTS_SOCKET.NEW_DIALOG, (dialog: IDialog) => {
       console.log(dialog)
     })
+
     socket.on(EVENTS_SOCKET.READ_MESSAGE, (dialogId: string) => {
-      console.log(dialogId)
+      dispatch(changeReadStatus(dialogId))
     })
+
     socket.on(EVENTS_SOCKET.TYPING_MESSAGE, () => {
       typingHandler()
     })

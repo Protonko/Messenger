@@ -79,14 +79,16 @@ const reducers = (state = initialState, action: AllMessageActions) => {
     }
 
     case MessageActionsTypes.APPEND_MESSAGE: {
-      if (state.messages?.[action.payload.dialog]) {
+      const {dialog} = action.payload.message
+
+      if (state.messages?.[dialog]) {
         return {
           ...state,
           messages: {
             ...state.messages,
-            [action.payload.dialog]: [
-              ...state.messages[action.payload.dialog],
-              action.payload,
+            [dialog]: [
+              ...state.messages[dialog],
+              action.payload.message,
             ],
           },
         }

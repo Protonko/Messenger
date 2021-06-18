@@ -120,7 +120,11 @@ const reducers = (
     }
 
     case MessageActionsTypes.APPEND_MESSAGE: {
-      return updateLastMessage(state, action.payload)
+      if (action.payload.isCurrentDialog) {
+        return updateLastMessage(state, {...action.payload.message, read: true})
+      }
+
+      return updateLastMessage(state, action.payload.message)
     }
 
     case MessageActionsTypes.CREATE_MESSAGE_SUCCESS: {

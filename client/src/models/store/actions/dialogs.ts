@@ -1,5 +1,6 @@
 import type {AnyAction} from 'redux'
 import type {IDialog} from 'models/dialog'
+import {MessageActionsTypes} from './message'
 
 export enum DialogsActionTypes {
   GET_START = '[DIALOGS]GET_START',
@@ -10,6 +11,7 @@ export enum DialogsActionTypes {
   CREATE_DIALOG_ERROR = '[DIALOGS]CREATE_DIALOG_ERROR',
   RESET_CREATE_DIALOG_STATE = '[DIALOGS]RESET_CREATE_DIALOG_STATE',
   CHANGE_READ_STATUS = '[DIALOGS]CHANGE_READ_STATUS',
+  READ_MESSAGE = '[DIALOGS]CHANGE_READ_STATUS',
 }
 
 export interface GetDialogsStartAction extends AnyAction {

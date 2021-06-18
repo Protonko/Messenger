@@ -28,6 +28,11 @@ export interface ICreateMessagePayload {
   interlocutorId: string
 }
 
+export interface IAppendMessagePayload {
+  message: IMessage
+  isCurrentDialog: boolean
+}
+
 // actions
 export interface CreateMessageAction extends AnyAction {
   type: MessageActionsTypes.CREATE_MESSAGE
@@ -61,7 +66,7 @@ export interface GetMessagesErrorAction extends AnyAction {
 
 export interface AppendMessageAction extends AnyAction {
   type: MessageActionsTypes.APPEND_MESSAGE
-  payload: IMessage
+  payload: IAppendMessagePayload
 }
 
 export type AllMessageActions =
