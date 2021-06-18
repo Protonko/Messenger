@@ -23,6 +23,7 @@
 
     &__text {
         margin: 0;
+        color: $grey;
     }
 
     &__loader {
@@ -40,7 +41,7 @@
             bottom: 0;
             animation-timing-function: cubic-bezier(0, 1, 1, 0);
             border-radius: 50%;
-            background-color: $white;
+            background-color: $grey;
 
             &:nth-child(1) {
                 left: rem($size);

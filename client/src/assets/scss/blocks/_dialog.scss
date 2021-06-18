@@ -34,7 +34,15 @@
     }
 
     &__typing {
-      color: $white;
+      .typing {
+        &__text {
+          color: $white;
+        }
+
+        &__loader-ellipse {
+          background-color: $white;
+        }
+      }
     }
 
     &__info {

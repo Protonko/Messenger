@@ -13,5 +13,10 @@
       margin: 0;
       transform: translate(-50%, -50%);
     }
+
+    &--typing {
+      max-width: rem(560px);
+      margin: rem(10px) auto;
+    }
   }
 }

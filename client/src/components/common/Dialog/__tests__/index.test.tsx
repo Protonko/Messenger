@@ -18,6 +18,7 @@ describe('Dialog', () => {
   beforeEach(() => {
     props = {
       ...DIALOG,
+      isTyping: false,
       messages: 0,
       isOwnMessage: false,
       selected: false,
@@ -91,6 +92,13 @@ describe('Dialog', () => {
     componentMount = mount(<Dialog {...props} />)
 
     expect(componentMount).toMatchSnapshot('Dialog with avatar')
+  })
+
+  it('Should render component with typing', () => {
+    props.isTyping = true
+    componentMount = mount(<Dialog {...props} />)
+
+    expect(componentMount).toMatchSnapshot('Dialog with typing')
   })
 
   it('Should render component with created date', () => {

@@ -2,7 +2,7 @@ import type {FC} from 'react'
 import classNames from 'classnames'
 import {Sizes} from 'models/common/sizes'
 
-interface IPropsTyping {
+export interface IPropsTyping {
   customStyles?: string
   size?: Sizes
 }

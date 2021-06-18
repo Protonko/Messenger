@@ -23,10 +23,11 @@
   }
 
   &__body {
+    @include padding-vertical(5px);
+
     display: flex;
     max-width: rem(560px);
     margin: auto;
-    padding-top: rem(10px);
   }
 
   &__data {

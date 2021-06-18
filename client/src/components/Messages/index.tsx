@@ -70,7 +70,7 @@ export const Messages = () => {
         {renderContent()}
 
         {typing && (
-          <li className="messages__item">
+          <li className="messages__item messages__item--typing">
             <Typing />
           </li>
         )}

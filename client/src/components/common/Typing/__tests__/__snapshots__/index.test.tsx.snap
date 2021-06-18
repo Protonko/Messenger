@@ -1,0 +1,113 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Typing Should render Typing component with custom styles: Typing with custom styles 1`] = `
+<div
+  className="typing custom"
+>
+  <p
+    className="typing__text"
+  >
+    Typing
+  </p>
+  <div
+    className="typing__loader"
+  >
+    <div
+      className="typing__loader-ellipse"
+    />
+    <div
+      className="typing__loader-ellipse"
+    />
+    <div
+      className="typing__loader-ellipse"
+    />
+    <div
+      className="typing__loader-ellipse"
+    />
+  </div>
+</div>
+`;
+
+exports[`Typing Should render Typing component: Typing 1`] = `
+<div
+  className="typing"
+>
+  <p
+    className="typing__text"
+  >
+    Typing
+  </p>
+  <div
+    className="typing__loader"
+  >
+    <div
+      className="typing__loader-ellipse"
+    />
+    <div
+      className="typing__loader-ellipse"
+    />
+    <div
+      className="typing__loader-ellipse"
+    />
+    <div
+      className="typing__loader-ellipse"
+    />
+  </div>
+</div>
+`;
+
+exports[`Typing Should render large Typing component: Typing large 1`] = `
+<div
+  className="typing typing--large"
+>
+  <p
+    className="typing__text"
+  >
+    Typing
+  </p>
+  <div
+    className="typing__loader"
+  >
+    <div
+      className="typing__loader-ellipse"
+    />
+    <div
+      className="typing__loader-ellipse"
+    />
+    <div
+      className="typing__loader-ellipse"
+    />
+    <div
+      className="typing__loader-ellipse"
+    />
+  </div>
+</div>
+`;
+
+exports[`Typing Should render small Typing component: Typing small 1`] = `
+<div
+  className="typing typing--small"
+>
+  <p
+    className="typing__text"
+  >
+    Typing
+  </p>
+  <div
+    className="typing__loader"
+  >
+    <div
+      className="typing__loader-ellipse"
+    />
+    <div
+      className="typing__loader-ellipse"
+    />
+    <div
+      className="typing__loader-ellipse"
+    />
+    <div
+      className="typing__loader-ellipse"
+    />
+  </div>
+</div>
+`;

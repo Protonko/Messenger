@@ -53,7 +53,7 @@ export const Dialogs: FC = () => {
       >
         <Dialog
           {...dialog}
-          isTyping={!typing}
+          isTyping={typing}
           isOwnMessage={account?.id === dialog.lastMessage?.author?.id}
           selected={dialogParam === dialog.id}
         />
