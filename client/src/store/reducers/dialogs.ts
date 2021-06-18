@@ -110,7 +110,9 @@ const reducers = (
       }
 
     case DialogsActionTypes.CHANGE_READ_STATUS: {
-      const message = state.dialogs?.find(({id}) => id === action.payload)?.lastMessage
+      const message = state.dialogs?.find(
+        ({id}) => id === action.payload,
+      )?.lastMessage
 
       if (!message) {
         return state
@@ -132,7 +134,9 @@ const reducers = (
     }
 
     case MessageActionsTypes.GET_MESSAGES_SUCCESS: {
-      const message = state.dialogs?.find(({id}) => id === action.payload.dialogId)?.lastMessage
+      const message = state.dialogs?.find(
+        ({id}) => id === action.payload.dialogId,
+      )?.lastMessage
 
       if (!message) {
         return state

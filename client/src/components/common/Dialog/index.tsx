@@ -19,16 +19,16 @@ export interface IDialogProps extends IDialog {
 
 export const Dialog: FC<IDialogProps> = memo(
   ({
-     lastMessage,
-     interlocutor,
-     createdAt,
-     updatedAt,
-     messages,
-     status,
-     selected,
-     isOwnMessage,
-     isTyping,
-   }) => {
+    lastMessage,
+    interlocutor,
+    createdAt,
+    updatedAt,
+    messages,
+    status,
+    selected,
+    isOwnMessage,
+    isTyping,
+  }) => {
     const classNameDialog = classNames('dialog', {
       'dialog--selected': selected,
     })
@@ -40,25 +40,19 @@ export const Dialog: FC<IDialogProps> = memo(
       }
 
       if (!lastMessage) {
-        return (
-          <Text customStyles='dialog__text-description'>
-            {''}
-          </Text>
-        )
+        return <Text customStyles="dialog__text-description">{''}</Text>
       }
 
       if (isOwnMessage) {
         return (
-          <Text customStyles='dialog__text-description'>
+          <Text customStyles="dialog__text-description">
             {`You: ${lastMessage.text}`}
           </Text>
         )
       }
 
       return (
-        <Text customStyles='dialog__text-description'>
-          {lastMessage.text}
-        </Text>
+        <Text customStyles="dialog__text-description">{lastMessage.text}</Text>
       )
     }
 
@@ -89,16 +83,16 @@ export const Dialog: FC<IDialogProps> = memo(
     return (
       <div className={classNameDialog}>
         <Avatar
-          customStyles='dialog__avatar'
+          customStyles="dialog__avatar"
           src={interlocutor.avatar ?? ''}
           name={interlocutor.full_name}
         />
 
-        <div className='dialog__data'>
-          <div className='dialog__text'>
+        <div className="dialog__data">
+          <div className="dialog__text">
             <Text
               type={TextTypes.h4}
-              customStyles='dialog__text-title'
+              customStyles="dialog__text-title"
               numberOfLines={1}
             >
               {interlocutor.full_name}
@@ -106,11 +100,11 @@ export const Dialog: FC<IDialogProps> = memo(
             {renderMessageText()}
           </div>
 
-          <div className='dialog__info'>
+          <div className="dialog__info">
             <Text
               type={TextTypes.mixed}
               size={TextSize.EXTRA_SMALL}
-              customStyles='dialog__info-date'
+              customStyles="dialog__info-date"
             >
               {new Date(updatedAt || createdAt).toLocaleDateString()}
             </Text>

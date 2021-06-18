@@ -26,12 +26,15 @@ export const CreateMessageForm = () => {
   const [value, setValue] = useState('')
   const interlocutor = useMemo(
     () => dialogs?.find((dialog) => dialog.id === dialogParam)?.interlocutor,
-    [dialogs, dialogParam]
+    [dialogs, dialogParam],
   )
 
-  const emitWriteMessage = useCallback(throttle(() => {
-    interlocutor && socket.emit(EVENTS_SOCKET.TYPING_MESSAGE, interlocutor.id)
-  }, TYPING_TIMEOUT), [dialogs])
+  const emitWriteMessage = useCallback(
+    throttle(() => {
+      interlocutor && socket.emit(EVENTS_SOCKET.TYPING_MESSAGE, interlocutor.id)
+    }, TYPING_TIMEOUT),
+    [dialogs],
+  )
 
   const onChange = (value: string) => {
     emitWriteMessage()

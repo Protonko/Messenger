@@ -76,7 +76,7 @@ describe('Auth actions', () => {
   it('Should create changeReadStatus', () => {
     const expectedAction = {
       type: DialogsActionTypes.CHANGE_READ_STATUS,
-      payload: 'dialog_id'
+      payload: 'dialog_id',
     }
 
     expect(changeReadStatus('dialog_id')).toEqual(expectedAction)

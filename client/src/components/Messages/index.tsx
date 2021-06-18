@@ -26,7 +26,8 @@ export const Messages = () => {
       const isCurrentDialog = dialogParam === message.dialog
 
       dispatch(appendMessage({message, isCurrentDialog}))
-      isCurrentDialog && socket.emit(EVENTS_SOCKET.READ_MESSAGE, message.author.id, dialogParam)
+      isCurrentDialog &&
+        socket.emit(EVENTS_SOCKET.READ_MESSAGE, message.author.id, dialogParam)
     })
 
     socket.on(EVENTS_SOCKET.TYPING_MESSAGE, () => {

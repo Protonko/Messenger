@@ -50,7 +50,6 @@ export const resetCreateDialogState = (): ResetCreateDialogStateAction => ({
   type: DialogsActionTypes.RESET_CREATE_DIALOG_STATE,
 })
 
-
 export const changeReadStatus = (payload: string): ChangeReadStatusAction => ({
   type: DialogsActionTypes.CHANGE_READ_STATUS,
   payload,

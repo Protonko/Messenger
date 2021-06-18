@@ -54,7 +54,9 @@ export const getMessagesError = (
   payload,
 })
 
-export const appendMessage = (payload: IAppendMessagePayload): AppendMessageAction => ({
+export const appendMessage = (
+  payload: IAppendMessagePayload,
+): AppendMessageAction => ({
   type: MessageActionsTypes.APPEND_MESSAGE,
   payload,
 })

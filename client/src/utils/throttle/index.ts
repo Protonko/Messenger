@@ -10,7 +10,11 @@ const defaultOptions: IOptions = {
   trailing: true,
 }
 
-export const throttle = (func: (...args: any[]) => void, wait: number, options = defaultOptions) => {
+export const throttle = (
+  func: (...args: any[]) => void,
+  wait: number,
+  options = defaultOptions,
+) => {
   return debounce(func, wait, {
     leading: options.leading,
     trailing: options.trailing,

@@ -86,10 +86,7 @@ const reducers = (state = initialState, action: AllMessageActions) => {
           ...state,
           messages: {
             ...state.messages,
-            [dialog]: [
-              ...state.messages[dialog],
-              action.payload.message,
-            ],
+            [dialog]: [...state.messages[dialog], action.payload.message],
           },
         }
       }

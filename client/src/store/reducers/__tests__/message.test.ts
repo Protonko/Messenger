@@ -52,7 +52,10 @@ describe('auth reducer', () => {
     },
     APPEND_MESSAGE: {
       type: MessageActionsTypes.APPEND_MESSAGE,
-      payload: APPENDED_MESSAGE,
+      payload: {
+        message: APPENDED_MESSAGE,
+        isCurrentDialog: false,
+      },
     },
   }
 

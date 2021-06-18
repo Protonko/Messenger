@@ -1,5 +1,8 @@
 import {DialogsActionTypes} from 'models/store/actions/dialogs'
-import dialogs, {initialState, TDialogsReducerActions} from 'store/reducers/dialogs'
+import dialogs, {
+  initialState,
+  TDialogsReducerActions,
+} from 'store/reducers/dialogs'
 import {MessageActionsTypes} from 'models/store/actions/message'
 import {DIALOG, MESSAGE} from 'static/test-mocks'
 
@@ -37,7 +40,10 @@ describe('Dialogs reducer', () => {
     },
     APPEND_MESSAGE: {
       type: MessageActionsTypes.APPEND_MESSAGE,
-      payload: MESSAGE,
+      payload: {
+        message: MESSAGE,
+        isCurrentDialog: false,
+      },
     },
     CREATE_MESSAGE_SUCCESS: {
       type: MessageActionsTypes.CREATE_MESSAGE_SUCCESS,
@@ -49,7 +55,7 @@ describe('Dialogs reducer', () => {
         messages: [MESSAGE],
         dialogId: MESSAGE.dialog,
       },
-    }
+    },
   }
 
   it('Should return the payload from GET_START action', () => {
@@ -114,6 +120,23 @@ describe('Dialogs reducer', () => {
     expect(dialogs(state, ACTIONS.APPEND_MESSAGE)).toEqual({
       ...initialState,
       dialogs: [{...dialog, lastMessage: MESSAGE}, DIALOG],
+    })
+  })
+
+  it('Shouldn read lastMessage on APPEND_MESSAGE action', () => {
+    const dialog = {...DIALOG, id: MESSAGE.dialog}
+    const state = {...initialState, dialogs: [dialog, DIALOG]}
+    const action = {
+      ...ACTIONS.APPEND_MESSAGE,
+      payload: {
+        ...ACTIONS.APPEND_MESSAGE.payload,
+        isCurrentDialog: true,
+      },
+    }
+
+    expect(dialogs(state, action)).toEqual({
+      ...initialState,
+      dialogs: [{...dialog, lastMessage: {...MESSAGE, read: true}}, DIALOG],
     })
   })
 
