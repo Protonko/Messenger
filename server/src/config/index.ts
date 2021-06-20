@@ -6,7 +6,7 @@ type TConfig = {
   PORT: number,
   JWT_SECRET_KEY: string,
   URL_DB: string,
-  JWT_MAX_AGE: string,
+  ACCESS_TOKEN_MAX_AGE: string,
   JWT_ALGORITHM: Algorithm,
 }
 
@@ -15,7 +15,7 @@ const {
   PORT,
   JWT_SECRET_KEY,
   URL_DB,
-  JWT_MAX_AGE,
+  ACCESS_TOKEN_MAX_AGE,
   JWT_ALGORITHM,
 } = configEnv().parsed ?? {}
 
@@ -24,7 +24,7 @@ export const config: TConfig = {
   PORT: +PORT ?? 3000,
   JWT_SECRET_KEY,
   URL_DB,
-  JWT_MAX_AGE,
+  ACCESS_TOKEN_MAX_AGE,
   // @ts-ignore
   JWT_ALGORITHM,
 }

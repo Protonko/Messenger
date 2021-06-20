@@ -87,11 +87,11 @@ export class UserController {
       }
 
       if (compareSync(password, user.password)) {
-        const token = jwtCreate(user)
+        const {accessToken} = jwtCreate(user)
 
         response.json({
           user: userMapper(user),
-          token,
+          accessToken,
         })
       } else {
         response.status(535).json({

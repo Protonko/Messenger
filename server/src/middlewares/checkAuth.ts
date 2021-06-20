@@ -15,12 +15,11 @@ export const checkAuth = async (
     return next()
   }
 
-  const token: string | null =
-    'token' in request.headers ? (request.headers.token as string) : null
+  const accessToken = request.headers.authorization?.split(' ')[1]
 
-  if (token) {
+  if (accessToken) {
     try {
-      const user: IDecodedData | null = await jwtVerify(token)
+      const user: IDecodedData | null = await jwtVerify(accessToken)
 
       if (user) {
         const {email} = user.data
