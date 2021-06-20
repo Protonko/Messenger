@@ -1,7 +1,7 @@
 import {useMemo, FC} from 'react'
 import classNames from 'classnames'
 import {Sizes} from 'models/common/sizes'
-import {getRandomColor} from 'utils/getRandomColor'
+import {ColorGeneratorByName} from 'utils/ColorGeneratorByName'
 import {isDarkColor} from 'utils/isDarkColor'
 import {Loader} from 'components/common/Loader'
 
@@ -18,7 +18,10 @@ export const Avatar: FC<IPropsAvatar> = ({
   size = Sizes.MEDIUM,
   customStyles,
 }) => {
-  const backgroundColor = useMemo(() => getRandomColor(), [src, name])
+  const backgroundColor = useMemo(
+    () => new ColorGeneratorByName(name ?? '').generate(),
+    [src, name],
+  )
   const avatarClassname = classNames(
     'avatar',
     {'avatar--sm': size === Sizes.SMALL},

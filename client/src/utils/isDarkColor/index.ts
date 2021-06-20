@@ -23,5 +23,5 @@ export function isDarkColor(color: RGB | string) {
       100
     : 0
 
-  return brightness < 50
+  return brightness < 60
 }

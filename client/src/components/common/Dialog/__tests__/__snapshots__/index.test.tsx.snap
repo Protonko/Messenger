@@ -56,12 +56,12 @@ exports[`Dialog Match snapshot: Dialog 1`] = `
         className="avatar dialog__avatar"
         style={
           Object {
-            "backgroundColor": "#7fffff",
+            "backgroundColor": "#69B046",
           }
         }
       >
         <span
-          className="avatar__text avatar__text--dark"
+          className="avatar__text avatar__text--light"
         >
           n
         </span>
@@ -212,12 +212,12 @@ exports[`Dialog Should render Check icon: Dialog with sent message 1`] = `
         className="avatar dialog__avatar"
         style={
           Object {
-            "backgroundColor": "#7fffff",
+            "backgroundColor": "#69B046",
           }
         }
       >
         <span
-          className="avatar__text avatar__text--dark"
+          className="avatar__text avatar__text--light"
         >
           n
         </span>
@@ -373,12 +373,12 @@ exports[`Dialog Should render Counter: Dialog with counter 1`] = `
         className="avatar dialog__avatar"
         style={
           Object {
-            "backgroundColor": "#7fffff",
+            "backgroundColor": "#69B046",
           }
         }
       >
         <span
-          className="avatar__text avatar__text--dark"
+          className="avatar__text avatar__text--light"
         >
           n
         </span>
@@ -543,12 +543,12 @@ exports[`Dialog Should render Dialog component with selected modifier: Dialog wi
         className="avatar dialog__avatar"
         style={
           Object {
-            "backgroundColor": "#7fffff",
+            "backgroundColor": "#69B046",
           }
         }
       >
         <span
-          className="avatar__text avatar__text--dark"
+          className="avatar__text avatar__text--light"
         >
           n
         </span>
@@ -699,12 +699,12 @@ exports[`Dialog Should render DoubleCheck icon: Dialog with read message 1`] = `
         className="avatar dialog__avatar"
         style={
           Object {
-            "backgroundColor": "#7fffff",
+            "backgroundColor": "#69B046",
           }
         }
       >
         <span
-          className="avatar__text avatar__text--dark"
+          className="avatar__text avatar__text--light"
         >
           n
         </span>
@@ -1483,12 +1483,12 @@ exports[`Dialog Should render updated date: Dialog with date 1`] = `
         className="avatar dialog__avatar"
         style={
           Object {
-            "backgroundColor": "#7fffff",
+            "backgroundColor": "#69B046",
           }
         }
       >
         <span
-          className="avatar__text avatar__text--dark"
+          className="avatar__text avatar__text--light"
         >
           n
         </span>
@@ -1618,12 +1618,12 @@ exports[`Dialog Shouldn\`t render status: Dialog without status 1`] = `
         className="avatar dialog__avatar"
         style={
           Object {
-            "backgroundColor": "#7fffff",
+            "backgroundColor": "#69B046",
           }
         }
       >
         <span
-          className="avatar__text avatar__text--dark"
+          className="avatar__text avatar__text--light"
         >
           n
         </span>
