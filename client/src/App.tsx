@@ -13,25 +13,27 @@ const Chat = lazy(() => import('./pages/Chat'))
 
 const App = () => {
   const dispatch = useDispatch()
-  const {token: tokenFromStore} = useSelector((state: RootState) => state.auth)
-  const tokenFromCookie = CookieHandler.getCookie('token')
-  const token = tokenFromCookie || tokenFromStore
+  const {accessToken: tokenFromStore} = useSelector(
+    (state: RootState) => state.auth,
+  )
+  const accessTokenFromCookie = CookieHandler.getCookie('accessToken')
+  const accessToken = accessTokenFromCookie || tokenFromStore
 
   useEffect(() => {
-    api.defaults.headers.common['token'] = token
+    api.defaults.headers.authorization = `Bearer ${accessToken}`
 
-    if (tokenFromCookie && !tokenFromStore) {
-      dispatch(setUserData(parseJWT<IAuthToken>(tokenFromCookie).data))
+    if (accessTokenFromCookie && !tokenFromStore) {
+      dispatch(setUserData(parseJWT<IAuthToken>(accessTokenFromCookie).data))
     }
-  }, [token])
+  }, [accessToken])
 
   return (
     <Switch>
       <Route exact path="/">
-        {token ? <Redirect to="dialogs" /> : <Auth />}
+        {accessToken ? <Redirect to="dialogs" /> : <Auth />}
       </Route>
       <Route exact path="/dialogs">
-        {token ? <Chat /> : <Redirect to="/" />}
+        {accessToken ? <Chat /> : <Redirect to="/" />}
       </Route>
     </Switch>
   )

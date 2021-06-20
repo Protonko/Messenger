@@ -5,6 +5,6 @@ import {parseJWT} from 'utils/parseJWT'
 
 export const socket = io(window.location.origin.replace('3000', '3001'), {
   extraHeaders: {
-    id: parseJWT<IAuthToken>(CookieHandler.getCookie('token')).data.id,
+    id: parseJWT<IAuthToken>(CookieHandler.getCookie('accessToken')).data.id,
   },
 })

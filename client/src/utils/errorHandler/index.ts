@@ -33,7 +33,7 @@ export function errorHandler<T extends object>(
   if ('status' in error) {
     switch (error.status) {
       case 403:
-        CookieHandler.deleteCookie('token')
+        CookieHandler.deleteCookie('accessToken')
         return invalidToken(error.data.message)
 
       default:

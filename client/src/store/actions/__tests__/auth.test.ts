@@ -41,14 +41,14 @@ describe('auth actions', () => {
     const expectedAction = {
       type: AuthActionTypes.SET_LOGIN_DATA,
       payload: {
-        token: 'string',
+        accessToken: 'string',
         user: USER_DATA,
       },
     }
 
     expect(
       setLoginData({
-        token: 'string',
+        accessToken: 'string',
         user: USER_DATA,
       }),
     ).toEqual(expectedAction)

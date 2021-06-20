@@ -21,6 +21,6 @@ export interface IUserSignupBody extends IUserLoginBody {
 }
 
 export interface IUserLoginResponse {
-  token: string
+  accessToken: string
   user: IUser
 }

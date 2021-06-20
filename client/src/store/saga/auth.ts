@@ -1,4 +1,6 @@
+import type {SagaIterator} from 'redux-saga'
 import type {IUser} from 'models/user'
+import type {IUserLoginResponse} from 'models/auth'
 import {put, takeEvery, call} from 'redux-saga/effects'
 import {
   AuthActionTypes,
@@ -10,22 +12,19 @@ import {UserApi} from 'api/User'
 import {CookieHandler} from 'utils/CookieHandler'
 import {errorHandler} from 'utils/errorHandler'
 import {setLoginData, setErrorMessage, setSignUpData} from 'store/actions/auth'
-import {SagaIterator} from 'redux-saga'
 
 // login
 export function* loginWorker({payload}: LoginAction): SagaIterator | Generator {
   try {
-    const {token, user}: {token: string; user: IUser} = yield call(
+    const {accessToken, user}: IUserLoginResponse = yield call(
       UserApi.login,
       payload,
     )
-    yield (api.defaults.headers.common['token'] = token)
-    yield CookieHandler.setCookie('token', token, {secure: true})
-    yield put(setLoginData({token, user}))
-    return
+    yield (api.defaults.headers.authorization = `Bearer ${accessToken}`)
+    yield CookieHandler.setCookie('accessToken', accessToken, {secure: true})
+    yield put(setLoginData({accessToken, user}))
   } catch (error) {
     yield put(errorHandler(error, setErrorMessage))
-    return
   }
 }
 

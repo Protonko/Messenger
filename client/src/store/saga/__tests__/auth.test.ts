@@ -35,10 +35,10 @@ describe('auth sagas', () => {
   // sign up
   it('Should sign up success', () => {
     return expectSaga(signUpWorker, signUpAction)
-      .provide([[call.fn(UserApi.signUp), {token: '123', USER}]])
+      .provide([[call.fn(UserApi.signUp), {accessToken: '123', USER}]])
       .put({
         type: AuthActionTypes.SET_SIGN_UP_DATA,
-        payload: {token: '123', USER},
+        payload: {accessToken: '123', USER},
       })
       .run()
   })
@@ -61,10 +61,10 @@ describe('auth sagas', () => {
   // login
   it('Should login success', () => {
     return expectSaga(loginWorker, loginAction)
-      .provide([[call.fn(UserApi.login), {token: '123', user: USER}]])
+      .provide([[call.fn(UserApi.login), {accessToken: '123', user: USER}]])
       .put({
         type: AuthActionTypes.SET_LOGIN_DATA,
-        payload: {token: '123', user: USER},
+        payload: {accessToken: '123', user: USER},
       })
       .run()
   })

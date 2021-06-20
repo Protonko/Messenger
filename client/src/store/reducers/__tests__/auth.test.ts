@@ -8,7 +8,7 @@ describe('auth reducer', () => {
     SET_LOGIN_DATA: {
       type: AuthActionTypes.SET_LOGIN_DATA,
       payload: {
-        token: 'token123',
+        accessToken: 'token123',
         user: USER,
       },
       meta: undefined,
@@ -59,7 +59,7 @@ describe('auth reducer', () => {
   it('Should return the payload from SET_LOGIN_DATA action', () => {
     expect(auth(initialState, ACTIONS.SET_LOGIN_DATA)).toEqual({
       ...initialState,
-      token: ACTIONS.SET_LOGIN_DATA.payload.token,
+      accessToken: ACTIONS.SET_LOGIN_DATA.payload.accessToken,
       account: ACTIONS.SET_LOGIN_DATA.payload.user,
       errorMessage: false,
     })

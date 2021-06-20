@@ -3,13 +3,13 @@ import {AllAuthActions, AuthActionTypes} from 'models/store/actions/auth'
 import {AllErrorActions, ErrorActionTypes} from 'models/store/actions/error'
 
 export interface IInitialState {
-  token: null | string
+  accessToken: null | string
   errorMessage: null | string | boolean
   account: null | IUser
 }
 
 export const initialState = {
-  token: null,
+  accessToken: null,
   errorMessage: null,
   account: null,
 } as IInitialState
@@ -22,7 +22,7 @@ const reducers = (
     case AuthActionTypes.SET_LOGIN_DATA:
       return {
         ...state,
-        token: action.payload.token,
+        accessToken: action.payload.accessToken,
         account: action.payload.user,
         errorMessage: false,
       }

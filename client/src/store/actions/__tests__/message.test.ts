@@ -90,9 +90,14 @@ describe('message actions', () => {
   it('should create appendMessage', () => {
     const expectedAction = {
       type: MessageActionsTypes.APPEND_MESSAGE,
-      payload: MESSAGE,
+      payload: {
+        message: MESSAGE,
+        isCurrentDialog: false,
+      },
     }
 
-    expect(appendMessage(MESSAGE)).toEqual(expectedAction)
+    expect(appendMessage({message: MESSAGE, isCurrentDialog: false})).toEqual(
+      expectedAction,
+    )
   })
 })
