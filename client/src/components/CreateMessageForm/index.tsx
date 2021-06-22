@@ -48,6 +48,8 @@ export const CreateMessageForm = () => {
       return dispatch(commonError('ID not found!'))
     }
 
+    setValue('')
+
     dispatch(
       createMessage({
         text: value,
