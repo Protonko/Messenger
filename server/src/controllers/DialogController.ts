@@ -15,7 +15,7 @@ export class DialogController {
 
   async find(request: Request, response: Response) {
     // @ts-ignore
-    const authorId = request.user?._id ?? null
+    const authorId = request.user?.id ?? null
 
     await Dialog
       .find()
@@ -40,7 +40,7 @@ export class DialogController {
   async create(request: Request, response: Response) {
     let shouldContinue = true
     // @ts-ignore
-    const authorId = request.user?._id ?? null
+    const authorId = request.user?.id ?? null
     const {author, text, interlocutor} = request.body
 
     try {

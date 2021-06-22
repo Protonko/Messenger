@@ -55,7 +55,7 @@ export class UserController {
 
   getOwnProfile(request: Request, response: Response) {
     // @ts-ignore
-    const id = request.user?._id ?? null
+    const id = request.user?.id ?? null
 
     User.findById(id, (error: IError, user: IUserMongoose) => {
       if (error) {

@@ -1,9 +1,6 @@
 import {Request, Response, NextFunction} from 'express'
 import {PATHS} from '../static'
 import {IDecodedData} from '../types/jwt'
-import {IError} from '../types/error'
-import {IUserMongoose} from '../types/user'
-import {User} from '../models/User'
 import {jwtVerify} from '../utils/jwtVerify'
 
 export const checkAuth = async (
@@ -22,17 +19,7 @@ export const checkAuth = async (
       const user: IDecodedData | null = await jwtVerify(accessToken)
 
       if (user) {
-        const {email} = user.data
-
-        await User.findOne({email}, (error: IError, user: IUserMongoose) => {
-          if (error) {
-            return response
-              .status(404)
-              .json({message: 'User not found.'})
-          }
-
-          request.user = user
-        })
+        request.user = user.data
       }
 
       next()

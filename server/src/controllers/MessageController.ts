@@ -21,7 +21,7 @@ export class MessageController {
 
   async find(request: Request, response: Response) {
     // @ts-ignore
-    const userId: string | null = request.user?._id ?? null
+    const userId: string | null = request.user?.id ?? null
     const {dialog} = request.query
 
     if (typeof dialog !== 'string') {
@@ -45,8 +45,8 @@ export class MessageController {
             ? result.interlocutor
             : result.author
 
-          if (!result.last_message?.read && interlocutor) {
-            this.clearUnreadMessages(dialog)
+          if (interlocutor) {
+            this.clearUnreadMessages(dialog, response)
             this.updateReadStatus(dialog, response, interlocutor.toString())
           }
         } catch (error) {
@@ -78,7 +78,7 @@ export class MessageController {
 
   async create(request: Request, response: Response) {
     // @ts-ignore
-    const userId: string | null = request.user?._id ?? null
+    const userId: string | null = request.user?.id ?? null
     const {text, dialog, interlocutor} = request.body
 
     if (!userId) {
@@ -122,13 +122,9 @@ export class MessageController {
             .json({message: error.value})
         }
 
-        await Dialog.findOneAndUpdate(
-          {_id: dialog},
-          {
-            last_message: message,
-            messages: (result.messages ?? 0) + 1,
-          },
-        )
+        result.last_message = message
+        result.messages = (result.messages ?? 0) + 1
+        await result.save()
       })
   }
 
@@ -153,13 +149,21 @@ export class MessageController {
     }
   }
 
-  clearUnreadMessages(dialog: string) {
-    Dialog.findOneAndUpdate(
-      {_id: dialog},
-      {
-        messages: 0,
-      },
-    )
+  clearUnreadMessages(dialog: string, response: Response) {
+    Dialog
+      .findOneAndUpdate(
+        {_id: dialog},
+        {
+          messages: 0,
+        }
+      )
+      .exec((error: IError) => {
+          if (error) {
+            return response
+              .status(500)
+              .json({message: error.value})
+          }
+      })
   }
 
   updateReadStatus(dialog: string, response: Response, interlocutor: string) {
