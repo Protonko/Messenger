@@ -1,0 +1,31 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Progressbar Should render Progressbar component with custom styles: Progressbar with custom styles 1`] = `
+<div
+  className="progressbar custom"
+>
+  <div
+    className="progressbar__indicator"
+    style={
+      Object {
+        "width": "1.25rem",
+      }
+    }
+  />
+</div>
+`;
+
+exports[`Progressbar Should render Progressbar component: Progressbar 1`] = `
+<div
+  className="progressbar"
+>
+  <div
+    className="progressbar__indicator"
+    style={
+      Object {
+        "width": "1.25rem",
+      }
+    }
+  />
+</div>
+`;

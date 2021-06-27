@@ -1,0 +1,18 @@
+.progressbar {
+  $height: 10px;
+
+  position: relative;
+  overflow: hidden;
+  width: rem(200px);
+  height: rem($height);
+  background-color: rgba($geyser, 0.45);
+
+  &__indicator {
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: rem($height);
+    transition: width $transition-duration-short;
+    background-color: $brand-color;
+  }
+}

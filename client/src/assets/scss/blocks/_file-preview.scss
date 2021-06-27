@@ -1,0 +1,65 @@
+.file-preview {
+  $size: 40px;
+
+  position: relative;
+
+  &--image {
+    @include square($size);
+
+    border: rem(0.5px) solid $silver;
+    border-radius: rem(8px);
+    background: center / cover no-repeat
+      url('../../images/placeholder-image.png');
+  }
+
+  &--file {
+    display: flex;
+    align-items: center;
+  }
+
+  &__icon {
+    width: rem(0.75 * $size);
+    height: rem($size);
+    color: $grey;
+  }
+
+  &__info {
+    &:not(:first-child) {
+      margin-left: rem(5px);
+    }
+
+    &-name {
+      font-size: rem($font-size-extra-small);
+      display: block;
+      cursor: default;
+      color: $text-color;
+
+      &:not(:last-child) {
+        margin-bottom: rem(1px);
+      }
+    }
+
+    &-size {
+      font-size: rem($font-size-extra-small);
+      display: block;
+      cursor: default;
+      color: $text-color-light;
+    }
+  }
+
+  &__remove {
+    $size: 18px;
+
+    @include circle($size);
+
+    font-size: rem($font-size-extra-small);
+    line-height: 15px / $font-size-extra-small;
+    position: absolute;
+    right: -$size / 2;
+    top: -$size / 2;
+    text-align: center;
+    cursor: pointer;
+    border: rem(0.5px) solid $silver;
+    background-color: $white;
+  }
+}

@@ -7,9 +7,12 @@ import {FilesActionTypes, UploadFilesAction} from 'models/store/actions/files'
 import {errorHandler} from 'utils/errorHandler'
 import {UploadApi} from 'api/Upload'
 
-const createUploaderChannel = (formData: FormData, uploadFiles: IUploadFile[]) => {
-  return eventChannel<Error | IUploadFile>(emit => {
-    uploadFiles.forEach(uploadFile => {
+const createUploaderChannel = (
+  formData: FormData,
+  uploadFiles: IUploadFile[],
+) => {
+  return eventChannel<Error | IUploadFile>((emit) => {
+    uploadFiles.forEach((uploadFile) => {
       const onProgress = ({total, loaded}: ProgressEvent) => {
         uploadFile.progress = Math.round((loaded * 100) / total)
         emit(uploadFile)
@@ -19,7 +22,7 @@ const createUploaderChannel = (formData: FormData, uploadFiles: IUploadFile[]) =
         .then(() => {
           emit(END)
         })
-        .catch(error => {
+        .catch((error) => {
           emit(new Error(error.message))
           emit(END)
         })
@@ -35,11 +38,9 @@ function* uploadProgressWatcher(channel: EventChannel<Error | IUploadFile>) {
     try {
       const uploadFile = yield take(channel)
       yield put(changeUploadProgress(uploadFile))
-    }
-    catch (error) {
+    } catch (error) {
       yield put(errorHandler(error, uploadFilesError))
-    }
-    finally {
+    } finally {
       if (yield cancelled()) channel.close()
     }
   }
@@ -56,10 +57,18 @@ export function* uploadWorker({payload}: UploadFilesAction) {
       if (!file) return
 
       formData.append('file', file)
-      uploadFiles.push({name: file.name, progress: 0, id: Date.now().toString()})
+      uploadFiles.push({
+        name: file.name,
+        progress: 0,
+        id: Date.now().toString(),
+      })
     }
 
-    const uploadChannel: EventChannel<Error | IUploadFile> = yield call(createUploaderChannel, formData, uploadFiles)
+    const uploadChannel: EventChannel<Error | IUploadFile> = yield call(
+      createUploaderChannel,
+      formData,
+      uploadFiles,
+    )
 
     yield fork(uploadProgressWatcher, uploadChannel)
   } catch (error) {

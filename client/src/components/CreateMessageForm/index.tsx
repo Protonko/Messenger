@@ -15,6 +15,7 @@ import {Avatar} from 'components/common/Avatar'
 import {Button} from 'components/common/Button'
 import {Emoji} from 'components/common/Emoji'
 import {FileUploader} from 'components/common/FileUploader'
+import {File} from 'components/common/File'
 
 export const CreateMessageForm = () => {
   const dialogParam = useSearchParams('dialog')

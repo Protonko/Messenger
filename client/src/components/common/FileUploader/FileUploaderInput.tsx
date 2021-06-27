@@ -16,23 +16,23 @@ export const FileUploader: FC<FileUploaderProps> = ({
   disabled,
 }) => {
   const dispatch = useDispatch()
-  const uploaderClassNames = classNames(
-    'file-uploader',
-    {'file-uploader--disabled': disabled}
-  )
+  const uploaderClassNames = classNames('file-uploader', {
+    'file-uploader--disabled': disabled,
+  })
 
   const onUpload = (event: ChangeEvent<HTMLInputElement>) => {
     onChange?.()
+    console.log(event.target.files)
     dispatch(uploadFile(event.target.files))
   }
 
   return (
     <div className={uploaderClassNames}>
-      <label className='file-uploader__label'>
-        <Clip className='file-uploader__icon' />
+      <label className="file-uploader__label">
+        <Clip className="file-uploader__icon" />
         <input
-          className='file-uploader__input'
-          type='file'
+          className="file-uploader__input"
+          type="file"
           onChange={onUpload}
           multiple={multiple}
           disabled={disabled}

@@ -3,16 +3,17 @@ import {AllFilesActions, FilesActionTypes} from 'models/store/actions/files'
 
 export interface IInitialState {
   files?: File[]
-  filesInUploading: IUploadFile[]
+  filesInUploading?: IUploadFile[]
 }
 
-const initialState = {
+export const initialState = {
   files: undefined,
+  filesInUploading: undefined,
 } as IInitialState
 
 const reducer = (
   state = initialState,
-  action: AllFilesActions
+  action: AllFilesActions,
 ): IInitialState => {
   switch (action.type) {
     case FilesActionTypes.UPLOAD:
@@ -27,6 +28,6 @@ const reducer = (
     default:
       return state
   }
-};
+}
 
 export default reducer

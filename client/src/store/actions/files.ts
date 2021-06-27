@@ -16,7 +16,9 @@ export const uploadFilesError = (payload: string): UploadFilesErrorAction => ({
   payload,
 })
 
-export const changeUploadProgress = (payload: IUploadFile[]): ChangeUploadProgressAction => ({
+export const changeUploadProgress = (
+  payload: IUploadFile[],
+): ChangeUploadProgressAction => ({
   type: FilesActionTypes.CHANGE_UPLOAD_PROGRESS,
   payload,
 })
