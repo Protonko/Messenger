@@ -8,6 +8,7 @@ import {checkAuth} from '../../middlewares/checkAuth'
 import {usersRoute} from './users.routes'
 import {dialogsRoutes} from './dialogs.routes'
 import {messagesRoutes} from './messages.routes'
+import {uploadRoutes} from './upload.routes'
 
 export const createRoutes = (app: Express, io: Server) => {
   app.use(cors(CORS_OPTIONS));
@@ -18,4 +19,5 @@ export const createRoutes = (app: Express, io: Server) => {
   usersRoute(app, io)
   dialogsRoutes(app, io)
   messagesRoutes(app, io)
+  uploadRoutes(app)
 }
