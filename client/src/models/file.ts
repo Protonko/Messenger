@@ -4,3 +4,9 @@ export interface IFile {
   ext: string
   url: string
 }
+
+export interface IUploadFile {
+  name: string
+  progress: number
+  id: string
+}

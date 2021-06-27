@@ -1,0 +1,20 @@
+.file-uploader {
+    &--disabled & {
+        &__icon {
+            cursor: not-allowed;
+        }
+    }
+
+    &__icon {
+        @include square(24px);
+
+        cursor: pointer;
+        color: $dusty-gray;
+    }
+
+    &__input {
+        position: absolute;
+        z-index: -1;
+        opacity: 0;
+    }
+}

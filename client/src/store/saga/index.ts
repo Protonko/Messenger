@@ -3,6 +3,7 @@ import {authWatcher, signUpWatcher} from './auth'
 import {createDialogWatcher, getDialogsWatcher} from './dialogs'
 import {createMessageWatcher, getMessagesWatcher} from './message'
 import {getUsersWatcher} from './users'
+import {uploadWatcher} from './files'
 
 export function* rootWatcher() {
   yield all([
@@ -13,5 +14,6 @@ export function* rootWatcher() {
     getUsersWatcher(),
     createMessageWatcher(),
     getMessagesWatcher(),
+    uploadWatcher(),
   ])
 }

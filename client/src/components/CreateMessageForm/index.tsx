@@ -2,7 +2,6 @@ import type {EmojiData} from 'emoji-mart'
 import type {RootState} from 'store/reducers'
 import {useState, useCallback, useMemo, FormEvent} from 'react'
 import {useDispatch, useSelector} from 'react-redux'
-import {ReactComponent as Clip} from 'assets/icons/clip.svg'
 import {ReactComponent as Microphone} from 'assets/icons/microphone.svg'
 import {EVENTS_SOCKET} from 'models/common/socket'
 import {socket} from 'utils/socket'
@@ -15,6 +14,7 @@ import {Textarea} from 'components/common/Textarea'
 import {Avatar} from 'components/common/Avatar'
 import {Button} from 'components/common/Button'
 import {Emoji} from 'components/common/Emoji'
+import {FileUploader} from 'components/common/FileUploader'
 
 export const CreateMessageForm = () => {
   const dialogParam = useSearchParams('dialog')
@@ -85,7 +85,7 @@ export const CreateMessageForm = () => {
         <div className="create-message-form__col">
           <ul className="create-message-form__icons list list--reset">
             <li className="create-message-form__icons-item">
-              <Clip className="create-message-form__icon" />
+              <FileUploader multiple={true} />
             </li>
             <li className="create-message-form__icons-item">
               <Microphone className="create-message-form__icon" />

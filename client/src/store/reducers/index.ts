@@ -4,6 +4,7 @@ import dialogs from './dialogs'
 import users from './users'
 import message from './message'
 import error from './error'
+import files from './files'
 
 const rootReducer = combineReducers({
   auth,
@@ -11,6 +12,7 @@ const rootReducer = combineReducers({
   users,
   message,
   error,
+  files,
 })
 
 export default rootReducer
