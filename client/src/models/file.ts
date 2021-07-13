@@ -5,8 +5,7 @@ export interface IFile {
   url: string
 }
 
-export interface IUploadFile {
-  name: string
+export interface IUploadFile extends File {
   progress: number
   id: string
 }

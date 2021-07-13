@@ -70,12 +70,22 @@ export const CreateMessageForm = () => {
     <form className="create-message-form" onSubmit={onSubmit}>
       <div className="create-message-form__row">
         <Avatar name={account?.full_name} src={account?.avatar ?? ''} />
-        <Textarea
-          placeholder="Write a message..."
-          className="create-message-form__textarea"
-          value={value}
-          onChange={onChange}
-        />
+        <div className="create-message-form__fields">
+          <Textarea
+            placeholder="Write a message..."
+            className="create-message-form__textarea"
+            value={value}
+            onChange={onChange}
+          />
+          <ul className="create-message-form__files list list--reset">
+            <li className="create-message-form__file">
+              <File value={100} />
+            </li>
+            <li className="create-message-form__file">
+              <File value={99} />
+            </li>
+          </ul>
+        </div>
         <Avatar
           name={interlocutor?.full_name}
           src={interlocutor?.avatar ?? ''}

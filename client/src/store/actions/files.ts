@@ -6,7 +6,7 @@ import {
   UploadFilesErrorAction,
 } from 'models/store/actions/files'
 
-export const uploadFile = (payload: FileList | null): UploadFilesAction => ({
+export const uploadFile = (payload: IUploadFile[]): UploadFilesAction => ({
   type: FilesActionTypes.UPLOAD,
   payload,
 })
@@ -17,7 +17,7 @@ export const uploadFilesError = (payload: string): UploadFilesErrorAction => ({
 })
 
 export const changeUploadProgress = (
-  payload: IUploadFile[],
+  payload: IUploadFile,
 ): ChangeUploadProgressAction => ({
   type: FilesActionTypes.CHANGE_UPLOAD_PROGRESS,
   payload,

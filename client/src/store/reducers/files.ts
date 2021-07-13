@@ -2,13 +2,11 @@ import type {IUploadFile} from 'models/file'
 import {AllFilesActions, FilesActionTypes} from 'models/store/actions/files'
 
 export interface IInitialState {
-  files?: File[]
-  filesInUploading?: IUploadFile[]
+  files?: IUploadFile[]
 }
 
 export const initialState = {
   files: undefined,
-  filesInUploading: undefined,
 } as IInitialState
 
 const reducer = (
@@ -17,13 +15,28 @@ const reducer = (
 ): IInitialState => {
   switch (action.type) {
     case FilesActionTypes.UPLOAD:
-      return state
+      return {
+        ...state,
+        files: action.payload ?? undefined,
+      }
 
     case FilesActionTypes.UPLOAD_ERROR:
       return state
 
-    case FilesActionTypes.CHANGE_UPLOAD_PROGRESS:
-      return state
+    case FilesActionTypes.CHANGE_UPLOAD_PROGRESS: {
+      const updatedFiles = state.files?.map(file => {
+        if (file.id === action.payload.id) {
+          return action.payload
+        }
+
+        return file
+      })
+
+      return {
+        ...state,
+        files: updatedFiles,
+      }
+    }
 
     default:
       return state

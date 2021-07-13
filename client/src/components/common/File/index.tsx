@@ -1,11 +1,11 @@
 import type {FC} from 'react'
 import {ReactComponent as FileIcon} from 'assets/icons/file.svg'
 import {Progressbar} from 'components/common/Progressbar'
-import img from '../../../assets/images/placeholder-image.png'
+import img from 'assets/images/placeholder-image.png'
 
 interface IFileProps {
   value: number
-  file: File
+  file?: File
 }
 
 export const File: FC<IFileProps> = ({value, file}) => {
@@ -13,7 +13,7 @@ export const File: FC<IFileProps> = ({value, file}) => {
     return <Progressbar value={value} />
   }
 
-  if (file.type.startsWith('image')) {
+  if (file?.type.startsWith('image')) {
     return (
       <div
         className="file-preview file-preview--image"

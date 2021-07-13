@@ -3,6 +3,7 @@ import {useDispatch} from 'react-redux'
 import classNames from 'classnames'
 import {ReactComponent as Clip} from 'assets/icons/clip.svg'
 import {uploadFile} from 'store/actions/files'
+import {generateUuid} from 'utils/generateUuid'
 
 interface FileUploaderProps {
   onChange?: () => void
@@ -21,9 +22,19 @@ export const FileUploader: FC<FileUploaderProps> = ({
   })
 
   const onUpload = (event: ChangeEvent<HTMLInputElement>) => {
+    const files = Array.from(event.target.files ?? [])
+      .map(file => ({
+        ...file,
+        lastModified: file.lastModified,
+        name: file.name,
+        size: file.size,
+        type: file.type,
+        id: generateUuid(),
+        progress: 0,
+      }))
+
     onChange?.()
-    console.log(event.target.files)
-    dispatch(uploadFile(event.target.files))
+    dispatch(uploadFile(files))
   }
 
   return (

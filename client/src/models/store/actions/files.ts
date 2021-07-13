@@ -12,7 +12,7 @@ export enum FilesActionTypes {
 
 export interface UploadFilesAction extends AnyAction {
   type: FilesActionTypes.UPLOAD
-  payload: FileList | null
+  payload: IUploadFile[]
 }
 
 export interface UploadFilesErrorAction extends AnyAction {
@@ -22,7 +22,7 @@ export interface UploadFilesErrorAction extends AnyAction {
 
 export interface ChangeUploadProgressAction extends AnyAction {
   type: FilesActionTypes.CHANGE_UPLOAD_PROGRESS
-  payload: IUploadFile[]
+  payload: IUploadFile
 }
 
 export interface RemoveFileAction extends AnyAction {

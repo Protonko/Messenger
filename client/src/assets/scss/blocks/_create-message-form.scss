@@ -1,5 +1,6 @@
 .create-message-form {
   $horizontal-actions-gutter: 10px;
+  $horizontal-files-gutter: 20px;
 
   @include padding-vertical(10px);
 
@@ -14,6 +15,28 @@
     &:not(:first-child) {
       margin-top: rem(10px);
     }
+  }
+
+  &__fields {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+  }
+
+  &__files {
+    @include margin-horizontal(-$horizontal-files-gutter / 2);
+
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: rem(15px);
+  }
+
+  &__file {
+    @include padding-horizontal($horizontal-files-gutter / 2);
+
+    display: flex;
+    align-self: center;
+    margin-top: rem(15px);
   }
 
   &__actions {

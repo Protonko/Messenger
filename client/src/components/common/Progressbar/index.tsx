@@ -1,6 +1,5 @@
 import type {FC} from 'react'
 import classNames from 'classnames'
-import {rem} from 'utils/rem'
 
 export interface IProgressBarProps {
   value: number
@@ -14,7 +13,7 @@ export const Progressbar: FC<IProgressBarProps> = ({value, customStyles}) => {
 
   return (
     <div className={progressbarClassnames}>
-      <div className="progressbar__indicator" style={{width: rem(value)}} />
+      <div className="progressbar__indicator" style={{width: `${value}%`}} />
     </div>
   )
 }

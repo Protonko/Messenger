@@ -48,26 +48,20 @@ function* uploadProgressWatcher(channel: EventChannel<Error | IUploadFile>) {
 
 export function* uploadWorker({payload}: UploadFilesAction) {
   try {
-    let uploadFiles: IUploadFile[] = []
     const formData = new FormData()
 
     for (const key in payload) {
-      const file = payload.item(+key)
+      const file = payload[key]
 
       if (!file) return
 
       formData.append('file', file)
-      uploadFiles.push({
-        name: file.name,
-        progress: 0,
-        id: Date.now().toString(),
-      })
     }
 
     const uploadChannel: EventChannel<Error | IUploadFile> = yield call(
       createUploaderChannel,
       formData,
-      uploadFiles,
+      payload,
     )
 
     yield fork(uploadProgressWatcher, uploadChannel)
