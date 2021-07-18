@@ -22,16 +22,11 @@ export const FileUploader: FC<FileUploaderProps> = ({
   })
 
   const onUpload = (event: ChangeEvent<HTMLInputElement>) => {
-    const files = Array.from(event.target.files ?? [])
-      .map(file => ({
-        ...file,
-        lastModified: file.lastModified,
-        name: file.name,
-        size: file.size,
-        type: file.type,
-        id: generateUuid(),
-        progress: 0,
-      }))
+    const files = Array.from(event.target.files ?? []).map((file) => ({
+      file: file,
+      id: generateUuid(),
+      progress: 0,
+    }))
 
     onChange?.()
     dispatch(uploadFile(files))

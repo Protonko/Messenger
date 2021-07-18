@@ -55,7 +55,7 @@ export function* uploadWorker({payload}: UploadFilesAction) {
 
       if (!file) return
 
-      formData.append('file', file)
+      formData.append('file', file.file)
     }
 
     const uploadChannel: EventChannel<Error | IUploadFile> = yield call(

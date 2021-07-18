@@ -1,5 +1,6 @@
 import type {EmojiData} from 'emoji-mart'
 import type {RootState} from 'store/reducers'
+import type {IUploadFile} from 'models/file'
 import {useState, useCallback, useMemo, FormEvent} from 'react'
 import {useDispatch, useSelector} from 'react-redux'
 import {ReactComponent as Microphone} from 'assets/icons/microphone.svg'
@@ -19,9 +20,10 @@ import {File} from 'components/common/File'
 
 export const CreateMessageForm = () => {
   const dialogParam = useSearchParams('dialog')
-  const {dialogs, account} = useSelector((state: RootState) => ({
+  const {dialogs, account, files} = useSelector((state: RootState) => ({
     ...state.dialogs,
     ...state.auth,
+    ...state.files,
   }))
   const dispatch = useDispatch()
   const [value, setValue] = useState('')
@@ -66,6 +68,12 @@ export const CreateMessageForm = () => {
     }
   }
 
+  const renderItem = (file: IUploadFile) => (
+    <li className="create-message-form__file" key={file.id}>
+      <File file={file.file} value={file.progress} />
+    </li>
+  )
+
   return (
     <form className="create-message-form" onSubmit={onSubmit}>
       <div className="create-message-form__row">
@@ -78,12 +86,7 @@ export const CreateMessageForm = () => {
             onChange={onChange}
           />
           <ul className="create-message-form__files list list--reset">
-            <li className="create-message-form__file">
-              <File value={100} />
-            </li>
-            <li className="create-message-form__file">
-              <File value={99} />
-            </li>
+            {files?.length ? files.map(renderItem) : null}
           </ul>
         </div>
         <Avatar
