@@ -5,7 +5,7 @@ export class UploadApi {
   static uploadFiles(
     body: FormData,
     onUploadProgress: (progressEvent: ProgressEvent) => void,
-  ): Promise<any | string> {
+  ): Promise<void | string> {
     return new Promise((resolve, reject) => {
       api
         .post('/upload', body, {onUploadProgress})
