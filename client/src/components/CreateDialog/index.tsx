@@ -37,11 +37,12 @@ export const CreateDialog = () => {
 
       {/* Step one - select users modal */}
       <Modal
-        customStyles="dialogs-modal"
+        additionalClassName="dialogs-modal"
         initiatorRef={buttonRef}
         modalVisibility={modalStepOneVisibility}
         toggleVisibilityModal={setModalStepOneVisibility}
         width={420}
+        withModalTemplate={true}
       >
         <SelectUsers
           ref={usersRef}
@@ -52,7 +53,7 @@ export const CreateDialog = () => {
 
       {/* Step two - write a message modal */}
       <Modal
-        customStyles="dialogs-modal"
+        additionalClassName="dialogs-modal"
         initiatorRef={usersRef}
         modalVisibility={modalStepTwoVisibility}
         toggleVisibilityModal={setModalStepTwoVisibility}
@@ -62,6 +63,7 @@ export const CreateDialog = () => {
         }}
         width={420}
         height={300}
+        withModalTemplate={true}
       >
         <WriteMessage />
       </Modal>

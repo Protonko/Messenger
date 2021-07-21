@@ -148,12 +148,13 @@ export const AuthForm: FC = () => {
         </div>
       </form>
       <Modal
-        customStyles="auth-modal"
+        additionalClassName="auth-modal"
         width={350}
         height={170}
         modalVisibility={modalVisibility}
         toggleVisibilityModal={setModalVisibility}
         onClose={redirectToAuthScreen}
+        withModalTemplate={true}
       >
         <div className="auth-modal__section auth-modal__section--content">
           <Text type={TextTypes.h3} customStyles="auth__modal-title">

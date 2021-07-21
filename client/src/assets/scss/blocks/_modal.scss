@@ -10,6 +10,10 @@
   height: 100%;
   background-color: rgba($black, 0.4);
 
+  &--blur {
+    backdrop-filter: blur(4px);
+  }
+
   &--fade-in {
     animation-name: fade-in;
     animation-duration: $transition-duration-long;

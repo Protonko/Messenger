@@ -39,3 +39,41 @@
     transform: translate3d(0, -100%, 0);
   }
 }
+
+@keyframes bounceIncrease {
+  0% {
+    transform: scale(1.025);
+  }
+
+  10% {
+    transform: scale(1.05);
+  }
+
+  20% {
+    transform: scale(1.02);
+  }
+
+  30% {
+    transform: scale(1.05);
+  }
+
+  40% {
+    transform: scale(1.1);
+  }
+
+  50% {
+    transform: scale(1.125);
+  }
+
+  60% {
+    transform: scale(1.05);
+  }
+
+  80% {
+    transform: scale(1.1);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}

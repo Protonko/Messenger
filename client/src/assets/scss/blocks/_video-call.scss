@@ -1,0 +1,39 @@
+.video-call {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  width: rem(600px);
+  height: 100%;
+  margin: auto;
+
+  &__area {
+    position: relative;
+
+    &-circle {
+      &--subsidiary {
+        position: absolute;
+        right: 0;
+        bottom: 0;
+      }
+    }
+  }
+
+  &__button {
+    @include square(65px);
+
+    margin-top: rem(50px);
+    border-color: $sunglo;
+    background-color: $sunglo;
+
+    &:hover {
+      border-color: $white;
+    }
+
+    &-icon {
+      @include square(28px);
+
+      transform: rotate(135deg) translate(10%, -10%);
+    }
+  }
+}

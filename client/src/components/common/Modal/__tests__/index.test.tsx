@@ -26,6 +26,7 @@ describe('Modal component', () => {
       children: Child,
       modalVisibility: true,
       toggleVisibilityModal: fn,
+      withModalTemplate: true,
     }
 
     component = mount(
@@ -44,7 +45,7 @@ describe('Modal component', () => {
   })
 
   it('Match snapshot', () => {
-    expect(component).toMatchSnapshot()
+    expect(component).toMatchSnapshot('Modal')
   })
 
   it('Should style properties be 10rem', () => {
@@ -62,6 +63,18 @@ describe('Modal component', () => {
     expect(popup.prop('style')).toHaveProperty('height', rem(props.height))
   })
 
+  it('Should render modal without template', () => {
+    props.withModalTemplate = false
+
+    component = mount(
+      <ModalContent {...props}>
+        <Child />
+      </ModalContent>,
+    )
+
+    expect(component).toMatchSnapshot('Modal without template')
+  })
+
   it('Should change timeout from default value to 160', () => {
     props.timeout = 160
 
@@ -75,7 +88,7 @@ describe('Modal component', () => {
   })
 
   it('Modal with customStyles', () => {
-    props.customStyles = ELEMENT_SELECTORS.customStyle
+    props.additionalClassName = ELEMENT_SELECTORS.customStyle
 
     component = mount(
       <ModalContent {...props}>

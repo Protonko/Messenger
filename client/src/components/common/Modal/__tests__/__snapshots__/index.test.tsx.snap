@@ -1,9 +1,10 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Modal component Match snapshot 1`] = `
+exports[`Modal component Match snapshot: Modal 1`] = `
 <Modal
   modalVisibility={true}
   toggleVisibilityModal={[MockFunction]}
+  withModalTemplate={true}
 >
   <Portal
     containerInfo={
@@ -26,6 +27,7 @@ exports[`Modal component Match snapshot 1`] = `
     <ModalContent
       modalVisibility={true}
       toggleVisibilityModal={[MockFunction]}
+      withModalTemplate={true}
     >
       <Transition
         appear={false}
@@ -77,4 +79,43 @@ exports[`Modal component Match snapshot 1`] = `
     </ModalContent>
   </Portal>
 </Modal>
+`;
+
+exports[`Modal component Should render modal without template: Modal without template 1`] = `
+<ModalContent
+  modalVisibility={true}
+  toggleVisibilityModal={[MockFunction]}
+  withModalTemplate={false}
+>
+  <Transition
+    appear={false}
+    enter={true}
+    exit={true}
+    in={true}
+    mountOnEnter={true}
+    nodeRef={
+      Object {
+        "current": null,
+      }
+    }
+    onEnter={[Function]}
+    onEntered={[Function]}
+    onEntering={[Function]}
+    onExit={[Function]}
+    onExited={[Function]}
+    onExiting={[Function]}
+    timeout={400}
+    unmountOnExit={true}
+  >
+    <div
+      className="modal modal--blur"
+    >
+      <Child>
+        <div>
+          Yolo
+        </div>
+      </Child>
+    </div>
+  </Transition>
+</ModalContent>
 `;

@@ -23,7 +23,7 @@ export const FileUploader: FC<FileUploaderProps> = ({
   })
 
   const onUpload = (event: ChangeEvent<HTMLInputElement>) => {
-    const files: IUploadFile[] = [];
+    const files: IUploadFile[] = []
     for (let i = 0; i < (event.target.files?.length ?? 0); i++) {
       files.push({
         file: event.target.files![i],

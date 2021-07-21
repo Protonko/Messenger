@@ -1,6 +1,6 @@
 import {useRef, FC, ReactPortal, ReactNode, RefObject} from 'react'
 import {createPortal} from 'react-dom'
-import {Transition} from 'react-transition-group'
+import {Transition, TransitionStatus} from 'react-transition-group'
 import classNames from 'classnames'
 import {useOutsideClick} from 'hooks/useOutsideClick'
 import {HEIGHT_MODAL, WIDTH_MODAL, TOGGLE_MODAL_TIMEOUT} from 'static/constants'
@@ -10,12 +10,13 @@ export interface IPropsModal {
   children: ReactNode
   initiatorRef?: RefObject<HTMLElement>
   modalVisibility: boolean
-  toggleVisibilityModal: (visibility: boolean) => void
+  toggleVisibilityModal?: (visibility: boolean) => void
   onClose?: () => void
   timeout?: number
   width?: number
   height?: number
-  customStyles?: string
+  additionalClassName?: string
+  withModalTemplate?: boolean
 }
 
 const TRANSITION_CLASSNAMES = {
@@ -34,18 +35,46 @@ export const ModalContent: FC<IPropsModal> = ({
   timeout = TOGGLE_MODAL_TIMEOUT,
   width = WIDTH_MODAL,
   height = HEIGHT_MODAL,
-  customStyles,
+  additionalClassName,
   initiatorRef,
+  withModalTemplate,
 }) => {
   const modal = useRef<HTMLElement>(null)
   useOutsideClick<HTMLElement>(
     modal,
     () => {
       onClose?.()
-      toggleVisibilityModal(false)
+      toggleVisibilityModal?.(false)
     },
     initiatorRef,
   )
+
+  const renderContent = (state: TransitionStatus) => {
+    const classNamesModal = classNames(
+      'modal',
+      {[TRANSITION_CLASSNAMES[state]]: !!TRANSITION_CLASSNAMES[state]},
+      {'modal--blur': !withModalTemplate},
+    )
+    const classNamesModalContent = classNames('modal__popup', {
+      [additionalClassName ?? '']: !!additionalClassName,
+    })
+
+    if (withModalTemplate) {
+      return (
+        <div className={classNamesModal}>
+          <article
+            className={classNamesModalContent}
+            style={{width: rem(width), height: rem(height)}}
+            ref={modal}
+          >
+            {children}
+          </article>
+        </div>
+      )
+    }
+
+    return <div className={classNamesModal}>{children}</div>
+  }
 
   return (
     <Transition
@@ -55,26 +84,7 @@ export const ModalContent: FC<IPropsModal> = ({
       mountOnEnter={true}
       unmountOnExit={true}
     >
-      {(state) => {
-        const classNamesModal = classNames('modal', {
-          [TRANSITION_CLASSNAMES[state]]: !!TRANSITION_CLASSNAMES[state],
-        })
-        const classNamesModalContent = classNames('modal__popup', {
-          [customStyles ?? '']: !!customStyles,
-        })
-
-        return (
-          <div className={classNamesModal}>
-            <article
-              className={classNamesModalContent}
-              style={{width: rem(width), height: rem(height)}}
-              ref={modal}
-            >
-              {children}
-            </article>
-          </div>
-        )
-      }}
+      {renderContent}
     </Transition>
   )
 }

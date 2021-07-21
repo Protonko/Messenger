@@ -3,7 +3,6 @@
 
   position: relative;
   display: flex;
-  overflow: hidden;
   align-items: center;
   justify-content: center;
   border: rem(1px) solid $wild-sand;
@@ -25,6 +24,10 @@
       font-size: $font-size-large;
     }
   }
+  &--arbitrary {
+    width: attr(data-size px);
+    height: attr(data-size px);
+  }
 
   &__image {
     z-index: 2;
@@ -35,6 +38,7 @@
 
   &__text {
     font-size: $font-size-big;
+    user-select: none;
 
     &--light {
       color: $white;

@@ -9,7 +9,6 @@
     display: flex;
 
     &--header {
-      justify-content: center;
       padding: rem($padding-horizontal) rem(20px);
       background-color: $brand-color;
     }
@@ -21,8 +20,34 @@
     }
   }
 
+  &__col {
+    display: flex;
+    align-items: center;
+
+    &--sm {
+      width: 30%;
+    }
+
+    &--lg {
+      width: 70%;
+    }
+
+    &--space-between {
+      justify-content: space-between;
+    }
+  }
+
   &__title {
     color: $white;
+  }
+
+  &__call {
+    &-icon {
+      @include square(24px);
+
+      color: $white;
+      cursor: pointer;
+    }
   }
 
   &__dialogs {

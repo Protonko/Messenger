@@ -42,10 +42,12 @@ $font-weight-bold: 700;
 $transition-duration-short: 150ms;
 $transition-duration: 200ms;
 $transition-duration-long: 400ms;
+$transition-duration-extra-long: 1000ms;
 
 // z-index
 $z-index-overlay: 10;
 $z-index-notify: 11;
+$z-index-substrate: -1;
 
 // sizes
 $max-chat-content: 560px;
