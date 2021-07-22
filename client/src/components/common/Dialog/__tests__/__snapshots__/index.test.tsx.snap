@@ -48,7 +48,7 @@ exports[`Dialog Match snapshot: Dialog 1`] = `
     className="dialog"
   >
     <Avatar
-      customStyles="dialog__avatar"
+      additionalClassName="dialog__avatar"
       name="name"
       src=""
     >
@@ -204,7 +204,7 @@ exports[`Dialog Should render Check icon: Dialog with sent message 1`] = `
     className="dialog"
   >
     <Avatar
-      customStyles="dialog__avatar"
+      additionalClassName="dialog__avatar"
       name="name"
       src=""
     >
@@ -365,7 +365,7 @@ exports[`Dialog Should render Counter: Dialog with counter 1`] = `
     className="dialog"
   >
     <Avatar
-      customStyles="dialog__avatar"
+      additionalClassName="dialog__avatar"
       name="name"
       src=""
     >
@@ -535,7 +535,7 @@ exports[`Dialog Should render Dialog component with selected modifier: Dialog wi
     className="dialog dialog--selected"
   >
     <Avatar
-      customStyles="dialog__avatar"
+      additionalClassName="dialog__avatar"
       name="name"
       src=""
     >
@@ -691,7 +691,7 @@ exports[`Dialog Should render DoubleCheck icon: Dialog with read message 1`] = `
     className="dialog"
   >
     <Avatar
-      customStyles="dialog__avatar"
+      additionalClassName="dialog__avatar"
       name="name"
       src=""
     >
@@ -852,7 +852,7 @@ exports[`Dialog Should render component with avatar: Dialog with avatar 1`] = `
     className="dialog"
   >
     <Avatar
-      customStyles="dialog__avatar"
+      additionalClassName="dialog__avatar"
       name="name"
       src="avatar/src"
     >
@@ -1057,7 +1057,7 @@ exports[`Dialog Should render component with created date: Dialog with created d
     className="dialog"
   >
     <Avatar
-      customStyles="dialog__avatar"
+      additionalClassName="dialog__avatar"
       name="name"
       src="avatar/src"
     >
@@ -1262,7 +1262,7 @@ exports[`Dialog Should render component with typing: Dialog with typing 1`] = `
     className="dialog"
   >
     <Avatar
-      customStyles="dialog__avatar"
+      additionalClassName="dialog__avatar"
       name="name"
       src="avatar/src"
     >
@@ -1475,7 +1475,7 @@ exports[`Dialog Should render updated date: Dialog with date 1`] = `
     className="dialog"
   >
     <Avatar
-      customStyles="dialog__avatar"
+      additionalClassName="dialog__avatar"
       name="name"
       src=""
     >
@@ -1610,7 +1610,7 @@ exports[`Dialog Shouldn\`t render status: Dialog without status 1`] = `
     className="dialog"
   >
     <Avatar
-      customStyles="dialog__avatar"
+      additionalClassName="dialog__avatar"
       name="name"
       src=""
     >

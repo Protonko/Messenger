@@ -83,7 +83,7 @@ export const Dialog: FC<IDialogProps> = memo(
     return (
       <div className={classNameDialog}>
         <Avatar
-          customStyles="dialog__avatar"
+          additionalClassName="dialog__avatar"
           src={interlocutor.avatar ?? ''}
           name={interlocutor.full_name}
         />

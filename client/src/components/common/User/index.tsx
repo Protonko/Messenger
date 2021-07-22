@@ -6,7 +6,7 @@ import {Text} from 'components/common/Text'
 
 export interface IPropsUser extends IPropsAvatar {
   name: string
-  customStyles?: string
+  additionalClassName?: string
   description?: string
 }
 
@@ -15,10 +15,10 @@ export const User: FC<IPropsUser> = ({
   src,
   description,
   size,
-  customStyles,
+  additionalClassName,
 }) => {
   const classNamesUser = classNames('user', {
-    [customStyles ?? '']: !!customStyles,
+    [additionalClassName ?? '']: !!additionalClassName,
   })
 
   return (

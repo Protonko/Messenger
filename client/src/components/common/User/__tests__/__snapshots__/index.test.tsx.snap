@@ -2,7 +2,7 @@
 
 exports[`User Should render User component with custom styles: User with custom styles 1`] = `
 <User
-  customStyles="custom"
+  additionalClassName="custom"
   name="Test Name"
   src="test/src"
 >

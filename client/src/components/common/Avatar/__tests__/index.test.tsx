@@ -51,7 +51,7 @@ describe('Avatar', () => {
   })
 
   it('Should return small classname', () => {
-    props.customStyles = ELEMENT_SELECTORS.customClassName
+    props.additionalClassName = ELEMENT_SELECTORS.customClassName
     component = shallowComponent(props)
 
     expect(component.find(`.${ELEMENT_SELECTORS.customClassName}`).length).toBe(

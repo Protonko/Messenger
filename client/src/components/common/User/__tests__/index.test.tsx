@@ -36,7 +36,7 @@ describe('User', () => {
   })
 
   it('Should render User component with custom styles', () => {
-    props.customStyles = ELEMENT_SELECTORS.custom
+    props.additionalClassName = ELEMENT_SELECTORS.custom
     component = mount(<User {...props} />)
 
     expect(component.find(`.${ELEMENT_SELECTORS.custom}`).length).toBe(1)

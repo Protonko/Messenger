@@ -1,15 +1,20 @@
-.video-circle {
+.media-circle {
+  $large-size: 500px;
+  $small-size: 200px;
+
   &--lg & {
-    &__avatar {
-      @include circle(500px);
+    &__avatar,
+    &__video {
+      @include circle($large-size);
     }
     &__avatar .avatar__text {
       font-size: rem(120px);
     }
   }
   &--sm & {
-    &__avatar {
-      @include circle(200px);
+    &__avatar,
+    &__video {
+      @include circle($small-size);
     }
     &__avatar .avatar__text {
       font-size: rem(80px);
@@ -28,6 +33,19 @@
       border-radius: 50%;
       background-color: rgba($white, 0.4);
       animation: bounceIncrease $transition-duration-extra-long infinite;
+    }
+  }
+
+  &__video {
+    position: relative;
+    transform: rotateY(180deg);
+    border: rem(1px) solid $wild-sand;
+    background-color: rgba($white, .8);
+    backdrop-filter: blur(4px);
+
+    &--connecting {
+      position: absolute;
+      opacity: 0;
     }
   }
 }
