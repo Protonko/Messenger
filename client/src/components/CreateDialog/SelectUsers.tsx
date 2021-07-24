@@ -1,6 +1,6 @@
 import type {RootState} from 'store/reducers'
 import type {IUser} from 'models/user'
-import {forwardRef} from 'react'
+import {forwardRef, MouseEvent as ReactMouseEvent} from 'react'
 import {useDispatch, useSelector} from 'react-redux'
 import {TextTypes} from 'models/common/text'
 import {setSelectedUserId} from 'store/actions/users'
@@ -25,7 +25,7 @@ export const SelectUsers = forwardRef<HTMLUListElement, ISelectUsersProps>(
         <li
           className="users__item"
           key={user.id}
-          onClick={() => onSelectUser(user.id)}
+          id={user.id}
         >
           <User
             name={user.full_name}
@@ -36,10 +36,14 @@ export const SelectUsers = forwardRef<HTMLUListElement, ISelectUsersProps>(
       )
     }
 
-    const onSelectUser = (id: string) => {
+    const onSelectUser = (event: ReactMouseEvent<HTMLUListElement, MouseEvent>) => {
+      const element = (event.target as HTMLUListElement).closest('.users__item')
+
+      if (!element) return
+
       setModalStepOneVisibility(false)
       setModalStepTwoVisibility(true)
-      dispatch(setSelectedUserId(id))
+      dispatch(setSelectedUserId(element.id))
     }
 
     return (
@@ -52,7 +56,7 @@ export const SelectUsers = forwardRef<HTMLUListElement, ISelectUsersProps>(
 
         <div className="dialogs-modal__section dialogs-modal__section--body">
           <ContentContainer loading={loading} errorMessage={errorMessage}>
-            <ul className="users list list--reset" ref={ref}>
+            <ul className="users list list--reset" ref={ref} onClick={onSelectUser}>
               {users?.length ? (
                 users.map(renderUsers)
               ) : (

@@ -1,6 +1,6 @@
 import type {IDialog} from 'models/dialog'
 import type {RootState} from 'store/reducers'
-import {useEffect, FC} from 'react'
+import {useEffect, FC, MouseEvent as ReactMouseEvent} from 'react'
 import {useHistory} from 'react-router-dom'
 import {useDispatch, useSelector} from 'react-redux'
 import {useSearchParams} from 'hooks/useSearchParams'
@@ -41,8 +41,12 @@ export const Dialogs: FC = () => {
     dispatch(getDialogs())
   }, [])
 
-  const selectDialog = (id: string) => {
-    history.push(`?dialog=${id}`)
+  const selectDialog = (event: ReactMouseEvent<HTMLUListElement, MouseEvent>) => {
+    const element = (event.target as HTMLUListElement).closest('.dialogs__item')
+
+    if (!element) return
+
+    history.push(`?dialog=${element.id}`)
   }
 
   const renderItem = (dialog: IDialog) => {
@@ -50,7 +54,7 @@ export const Dialogs: FC = () => {
       <li
         className="dialogs__item"
         key={dialog.id}
-        onClick={() => selectDialog(dialog.id)}
+        id={dialog.id}
       >
         <Dialog
           {...dialog}
@@ -70,7 +74,7 @@ export const Dialogs: FC = () => {
       </div>
 
       <ContentContainer loading={loading} errorMessage={errorMessage}>
-        <ul className="dialogs__list list list--reset">
+        <ul className="dialogs__list list list--reset" onClick={selectDialog}>
           {dialogs?.length ? (
             dialogs.map(renderItem)
           ) : (
