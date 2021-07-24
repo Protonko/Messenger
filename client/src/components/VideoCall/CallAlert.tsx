@@ -10,12 +10,17 @@ interface ICallAlertProps {
   interlocutor: IUser
   toggleVisibilityModal: (visibility: boolean) => void
   showVideoCallModal: () => void
+  declineCall: () => void
 }
 
 const audio = new Audio(callSound)
 
-export const CallAlert: FC<ICallAlertProps> = ({interlocutor, toggleVisibilityModal, showVideoCallModal}) => {
-  console.log(callSound)
+export const CallAlert: FC<ICallAlertProps> = (
+  {interlocutor,
+    toggleVisibilityModal,
+    showVideoCallModal,
+    declineCall,
+  }) => {
   useEffect(() => {
     audio.play()
 
@@ -29,8 +34,6 @@ export const CallAlert: FC<ICallAlertProps> = ({interlocutor, toggleVisibilityMo
     toggleVisibilityModal(false)
     showVideoCallModal()
   }
-
-  const onDeclineCall = () => toggleVisibilityModal(false)
 
   return (
     <div className="call-alert">
@@ -52,7 +55,7 @@ export const CallAlert: FC<ICallAlertProps> = ({interlocutor, toggleVisibilityMo
         </li>
         <li className='call-alert__action'>
           <Button
-            onClick={onDeclineCall}
+            onClick={declineCall}
             additionalClassName="call-alert__button call-alert__button--decline"
             modifier={ButtonModifier.CIRCLE}
             icon={<Phone className="call-alert__button-icon" />}

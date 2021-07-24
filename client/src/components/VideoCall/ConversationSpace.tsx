@@ -8,7 +8,7 @@ import {Button, ButtonModifier} from 'components/common/Button'
 import {MediaCircle} from 'components/common/MediaCircle'
 
 interface VideoCallProps {
-  toggleVisibilityModal: (visibility: boolean) => void
+  declineCall: () => void
   interlocutor: IUser
 }
 
@@ -16,14 +16,12 @@ const INTERLOCUTOR_VIDEO_SIZE = 500
 const audio = new Audio(callStartSound)
 
 export const ConversationSpace: FC<VideoCallProps> = ({
-  toggleVisibilityModal,
+  declineCall,
   interlocutor,
 }) => {
   const mediaStream = useRef<MediaStream>()
   const videoRef = useRef<HTMLVideoElement>(null)
   const [connecting, setConnecting] = useState(true);
-
-  const endCall = () => toggleVisibilityModal(false)
 
   const getMedia = async () => {
     try {
@@ -74,7 +72,7 @@ export const ConversationSpace: FC<VideoCallProps> = ({
       </div>
 
       <Button
-        onClick={endCall}
+        onClick={declineCall}
         additionalClassName="conversation-space__button"
         modifier={ButtonModifier.CIRCLE}
         icon={<Phone className="conversation-space__button-icon" />}
