@@ -28,5 +28,13 @@ export const createSocket = (http: ServerHttp, io: Server, app: Express) => {
     socket.on(EVENTS_SOCKET.START_CALL, (interlocutor: string) => {
       socket.to(interlocutor).emit(EVENTS_SOCKET.START_CALL)
     })
+
+    socket.on(EVENTS_SOCKET.ACCEPT_CALL, (interlocutor: string) => {
+      socket.to(interlocutor).emit(EVENTS_SOCKET.ACCEPT_CALL)
+    })
+
+    socket.on(EVENTS_SOCKET.DECLINE_CALL, (interlocutor: string) => {
+      socket.to(interlocutor).emit(EVENTS_SOCKET.DECLINE_CALL)
+    })
   })
 }
