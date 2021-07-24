@@ -1,4 +1,5 @@
 import type {RootState} from 'store/reducers'
+import {useState} from 'react'
 import {useSelector} from 'react-redux'
 import {ReactComponent as Phone} from 'assets/icons/phone.svg'
 import {TextTypes} from 'models/common/text'
@@ -8,14 +9,12 @@ import {Dialogs} from 'components/Dialogs'
 import {Messages} from 'components/Messages'
 import {CreateMessageForm} from 'components/CreateMessageForm'
 import {VideoCall} from 'components/VideoCall'
-import {Modal} from 'components/common/Modal'
-import {useState} from 'react'
 
 const Chat = () => {
   const dialogParam = useSearchParams('dialog')
   const {dialogs} = useSelector((state: RootState) => state.dialogs)
-  const [modalVisibility, setModalVisibility] = useState(false)
   const interlocutor = dialogs?.find(({id}) => id === dialogParam)?.interlocutor
+  const [calling, setCalling] = useState(false)
 
   return (
     <div className="container">
@@ -34,7 +33,7 @@ const Chat = () => {
             {interlocutor && (
               <Phone
                 className="chat__call-icon"
-                onClick={() => setModalVisibility(true)}
+                onClick={() => setCalling(true)}
               />
             )}
           </div>
@@ -50,13 +49,7 @@ const Chat = () => {
         </div>
       </div>
 
-      <Modal modalVisibility={modalVisibility}>
-        {/* TODO: исправить типизацию interlocutor */}
-        <VideoCall
-          interlocutor={interlocutor!}
-          toggleVisibilityModal={setModalVisibility}
-        />
-      </Modal>
+      <VideoCall calling={calling} setCalling={setCalling} />
     </div>
   )
 }

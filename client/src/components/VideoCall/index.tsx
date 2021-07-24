@@ -1,78 +1,57 @@
-import type {FC} from 'react'
-import type {IUser} from 'models/user'
-import {useEffect, useRef, useState} from 'react'
-import {ReactComponent as Phone} from 'assets/icons/phone.svg'
-import {Sizes} from 'models/common/sizes'
-import {Button, ButtonModifier} from 'components/common/Button'
-import {MediaCircle} from 'components/common/MediaCircle'
+import type {RootState} from 'store/reducers'
+import {useState, useEffect, FC} from 'react'
+import {useSelector} from 'react-redux'
+import {EVENTS_SOCKET} from 'models/common/socket'
+import {useSearchParams} from 'hooks/useSearchParams'
+import {socket} from 'utils/socket'
+import {Modal} from 'components/common/Modal'
+import {CallAlert} from 'components/VideoCall/CallAlert'
+import {ConversationSpace} from 'components/VideoCall/ConversationSpace'
 
-interface VideoCallProps {
-  toggleVisibilityModal: (visibility: boolean) => void
-  // TODO: Может быть стоит передавать это не в пропсах
-  interlocutor: IUser
+interface IVideoCallProps {
+  calling: boolean
+  setCalling: (calling: boolean) => void
 }
 
-const INTERLOCUTOR_VIDEO_SIZE = 500
-
-export const VideoCall: FC<VideoCallProps> = ({
-  toggleVisibilityModal,
-  interlocutor,
-}) => {
-  const mediaStream = useRef<MediaStream>()
-  const videoRef = useRef<HTMLVideoElement>(null)
-  const [connecting, setConnecting] = useState(true);
-
-  const endCall = () => toggleVisibilityModal(false)
-
-  const getMedia = async () => {
-    try {
-      const stream = await navigator.mediaDevices.getUserMedia({
-        audio: true,
-        video: {
-          width: INTERLOCUTOR_VIDEO_SIZE,
-          height: INTERLOCUTOR_VIDEO_SIZE,
-        }
-      })
-
-      if (videoRef.current) videoRef.current.srcObject = stream
-      mediaStream.current = stream
-      setConnecting(false)
-    } catch (error) {
-      // TODO: FIX
-      console.log(error)
-    }
-  }
+export const VideoCall: FC<IVideoCallProps> = ({calling, setCalling}) => {
+  const dialogParam = useSearchParams('dialog')
+  const {dialogs} = useSelector((state: RootState) => state.dialogs)
+  const interlocutor = dialogs?.find(({id}) => id === dialogParam)?.interlocutor
+  const [modalVisibility, setModalVisibility] = useState(false)
+  const [alertVisibility, setAlertVisibility] = useState(false);
 
   useEffect(() => {
-    getMedia()
+    socket.on(EVENTS_SOCKET.START_CALL, (data: any) => {
+      setAlertVisibility(true)
+    })
 
-    return () => mediaStream.current?.getTracks().forEach(track => track.stop())
-  }, [])
+    if (calling) {
+      setModalVisibility(calling)
+      setCalling(false)
+      interlocutor && socket.emit(EVENTS_SOCKET.START_CALL, interlocutor.id)
+    }
+  }, [calling])
+
+  if (!interlocutor) {
+    return null
+  }
 
   return (
-    <div className="video-call">
-      <div className="video-call__area">
-        <MediaCircle
-          additionalClassName="video-call__area-circle video-call__area-circle--main"
-          size={Sizes.LARGE}
-          connecting={true}
-          user={interlocutor}
+    <>
+      <Modal modalVisibility={modalVisibility}>
+        <ConversationSpace
+          interlocutor={interlocutor}
+          toggleVisibilityModal={setModalVisibility}
         />
-        <MediaCircle
-          additionalClassName="video-call__area-circle video-call__area-circle--subsidiary"
-          ref={videoRef}
-          size={Sizes.SMALL}
-          connecting={connecting}
-          user={interlocutor}
-        />
-      </div>
+      </Modal>
 
-      <Button
-        onClick={endCall}
-        additionalClassName="video-call__button"
-        modifier={ButtonModifier.CIRCLE}
-        icon={<Phone className="video-call__button-icon" />}
-      />
-    </div>
+      <Modal modalVisibility={alertVisibility}>
+        <CallAlert
+          interlocutor={interlocutor}
+          toggleVisibilityModal={setAlertVisibility}
+          showVideoCallModal={() => setModalVisibility(true)}
+        />
+      </Modal>
+    </>
   )
 }
