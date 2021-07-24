@@ -1,9 +1,9 @@
 import {IMessageMongoose, IMessage} from '../../types/message'
-import {userMapper} from './userMapper'
+import {userDTO} from './userDTO'
 
-export const messageMapper = (message: IMessageMongoose): IMessage => ({
+export const messageDTO = (message: IMessageMongoose): IMessage => ({
   id: message._id,
-  author: userMapper(message.user),
+  author: userDTO(message.user),
   text: message.text,
   dialog: message.dialog,
   createdAt: message.createdAt,

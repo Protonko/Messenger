@@ -1,19 +1,19 @@
 import {IDialogMongoose, IDialog} from '../../types/dialog'
-import {userMapper} from './userMapper'
-import {messageMapper} from './messageMapper'
+import {userDTO} from './userDTO'
+import {messageDTO} from './messageDTO'
 
-export const dialogMapper = (dialog: IDialogMongoose, authorId: string | null): IDialog => {
+export const dialogDTO = (dialog: IDialogMongoose, authorId: string | null): IDialog => {
   const user = dialog.interlocutor._id.toString() === authorId?.toString()
     ? dialog.author
     : dialog.interlocutor
 
   return ({
     id: dialog._id,
-    interlocutor: userMapper(user),
+    interlocutor: userDTO(user),
     createdAt: dialog.createdAt,
     updatedAt: dialog.updatedAt === dialog.updatedAt ? '' : dialog.updatedAt,
     messages: dialog.messages ?? 0,
     muted: dialog.muted,
-    lastMessage: dialog.last_message && messageMapper(dialog.last_message)
+    lastMessage: dialog.last_message && messageDTO(dialog.last_message)
   })
 }

@@ -1,6 +1,6 @@
 import {IUser, IUserMongoose} from '../../types/user'
 
-export const userMapper = (user: IUserMongoose): IUser => ({
+export const userDTO = (user: IUserMongoose): IUser => ({
   id: user._id,
   avatar: user.avatar,
   last_seen: user.last_seen,

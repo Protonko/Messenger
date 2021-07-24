@@ -6,7 +6,7 @@ import {Dialog} from '../models/Dialog'
 import {IError} from '../types/error'
 import {IMessageMongoose} from '../types/message'
 import {IDialogMongoose, IDialogUnpopulatedUsers} from '../types/dialog'
-import {messageMapper} from '../utils/mappers/messageMapper'
+import {messageDTO} from '../utils/dto/messageDTO'
 
 export class MessageController {
   private io: Server
@@ -67,7 +67,7 @@ export class MessageController {
               .json({message: error.value})
           }
 
-          return response.json(messages.map(messageMapper))
+          return response.json(messages.map(messageDTO))
         } catch (error) {
           return response
             .status(500)
@@ -102,8 +102,8 @@ export class MessageController {
 
           this.updateDialog(response, dialog, message)
 
-          this.io.to(interlocutor).emit(EVENTS_SOCKET.NEW_MESSAGE, messageMapper(message))
-          return response.json(messageMapper(message))
+          this.io.to(interlocutor).emit(EVENTS_SOCKET.NEW_MESSAGE, messageDTO(message))
+          return response.json(messageDTO(message))
         })
     } catch (error) {
       return response

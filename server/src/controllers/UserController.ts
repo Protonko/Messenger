@@ -6,7 +6,7 @@ import {User} from '../models/User'
 import {IUserMongoose} from '../types/user'
 import {IError} from '../types/error'
 import {jwtCreate} from '../utils/jwtCreate'
-import {userMapper} from '../utils/mappers/userMapper'
+import {userDTO} from '../utils/dto/userDTO'
 
 export class UserController {
   private io: Server
@@ -26,7 +26,7 @@ export class UserController {
             .json({message: 'User not found.'})
         }
 
-        return response.json(userMapper(user))
+        return response.json(userDTO(user))
       } catch (error) {
         return response
           .status(500)
@@ -44,7 +44,7 @@ export class UserController {
             .json({message: error.value})
         }
 
-        return response.json(users.map(userMapper))
+        return response.json(users.map(userDTO))
       } catch {
         return response
           .status(500)
@@ -64,7 +64,7 @@ export class UserController {
           .json({message: error.value})
       }
 
-      response.json(userMapper(user))
+      response.json(userDTO(user))
     })
   }
 
@@ -90,7 +90,7 @@ export class UserController {
         const {accessToken} = jwtCreate(user)
 
         response.json({
-          user: userMapper(user),
+          user: userDTO(user),
           accessToken,
         })
       } else {
@@ -115,7 +115,7 @@ export class UserController {
       const user = new User({email, full_name, password})
       const createdUser = await user.save()
 
-      response.json(userMapper(createdUser))
+      response.json(userDTO(createdUser))
     } catch (error) {
       response
         .status(500)

@@ -4,7 +4,7 @@ import {Dialog} from '../models/Dialog'
 import {Message} from '../models/Message'
 import {IError} from '../types/error'
 import {IDialogMongoose} from '../types/dialog'
-import {dialogMapper} from '../utils/mappers/dialogMapper'
+import {dialogDTO} from '../utils/dto/dialogDTO'
 
 export class DialogController {
   private io: Server
@@ -29,7 +29,7 @@ export class DialogController {
               .json({message: 'Chat not found'})
           }
 
-          return response.json(dialogs.map(dialog => dialogMapper(dialog, authorId)))
+          return response.json(dialogs.map(dialog => dialogDTO(dialog, authorId)))
         } catch (error) {
           return response
             .json({error: error.message})
@@ -88,7 +88,7 @@ export class DialogController {
                 .json({message: 'Chat not found'})
             }
 
-            return response.json(dialogMapper(dialog, authorId))
+            return response.json(dialogDTO(dialog, authorId))
           } catch (error) {
             return response
               .json(error)

@@ -1,7 +1,7 @@
 import {sign} from 'jsonwebtoken'
 import {config} from '../config'
 import {IUserMongoose} from '../types/user'
-import {userMapper} from './mappers/userMapper'
+import {userDTO} from './dto/userDTO'
 
 const options = {
   expiresIn: config.ACCESS_TOKEN_MAX_AGE,
@@ -11,7 +11,7 @@ const options = {
 export const jwtCreate = (user: IUserMongoose) => {
   return {
     accessToken: sign(
-      {data: userMapper(user)},
+      {data: userDTO(user)},
       config.JWT_SECRET_KEY,
       options,
     )

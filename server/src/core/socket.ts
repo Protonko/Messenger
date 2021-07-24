@@ -24,5 +24,9 @@ export const createSocket = (http: ServerHttp, io: Server, app: Express) => {
       messageController.clearUnreadMessages(dialog, app.response)
       messageController.updateReadStatus(dialog, app.response, interlocutor)
     })
+
+    socket.on(EVENTS_SOCKET.START_CALL, (interlocutor: string) => {
+      socket.to(interlocutor).emit(EVENTS_SOCKET.START_CALL)
+    })
   })
 }
