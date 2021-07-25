@@ -29,12 +29,20 @@ export const createSocket = (http: ServerHttp, io: Server, app: Express) => {
       socket.to(interlocutor).emit(EVENTS_SOCKET.START_CALL)
     })
 
-    socket.on(EVENTS_SOCKET.ACCEPT_CALL, (interlocutor: string) => {
-      socket.to(interlocutor).emit(EVENTS_SOCKET.ACCEPT_CALL)
+    socket.on(EVENTS_SOCKET.CREATE_OFFER, (interlocutor: string, sessionDescription: RTCSessionDescriptionInit) => {
+      socket.to(interlocutor).emit(EVENTS_SOCKET.CREATE_OFFER, sessionDescription)
+    })
+
+    socket.on(EVENTS_SOCKET.CREATE_ANSWER, (interlocutor: string, sessionDescription: RTCSessionDescriptionInit) => {
+      socket.to(interlocutor).emit(EVENTS_SOCKET.CREATE_ANSWER, sessionDescription)
     })
 
     socket.on(EVENTS_SOCKET.DECLINE_CALL, (interlocutor: string) => {
       socket.to(interlocutor).emit(EVENTS_SOCKET.DECLINE_CALL)
     })
+
+    socket.on(EVENTS_SOCKET.RELAY_ICE, (interlocutor: string, iceCandidate: RTCIceCandidate) => {
+      io.to(interlocutor).emit(EVENTS_SOCKET.ICE_CANDIDATE, iceCandidate);
+    });
   })
 }
