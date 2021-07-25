@@ -6,10 +6,13 @@ import callStartSound from 'assets/audio/call-start-sound.mp3'
 import {Sizes} from 'models/common/sizes'
 import {Button, ButtonModifier} from 'components/common/Button'
 import {MediaCircle} from 'components/common/MediaCircle'
+import {socket} from 'utils/socket'
+import {EVENTS_SOCKET} from 'models/common/socket'
 
 interface VideoCallProps {
   declineCall: () => void
   interlocutor: IUser
+  peerConnection: RTCPeerConnection
 }
 
 const INTERLOCUTOR_VIDEO_SIZE = 500
@@ -18,6 +21,7 @@ const audio = new Audio(callStartSound)
 export const ConversationSpace: FC<VideoCallProps> = ({
   declineCall,
   interlocutor,
+  peerConnection,
 }) => {
   const mediaStream = useRef<MediaStream>()
   const videoRef = useRef<HTMLVideoElement>(null)
@@ -43,6 +47,14 @@ export const ConversationSpace: FC<VideoCallProps> = ({
   }
 
   useEffect(() => {
+    socket.on(EVENTS_SOCKET.CREATE_OFFER, () => {
+      if (mediaStream.current) {
+        mediaStream.current.getTracks().forEach(track => {
+          peerConnection.addTrack(track, mediaStream.current!);
+        })
+      }
+    })
+
     audio.play()
     getMedia()
 

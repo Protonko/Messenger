@@ -5,12 +5,15 @@ import {ReactComponent as Phone} from 'assets/icons/phone.svg'
 import {Sizes} from 'models/common/sizes'
 import {Button, ButtonModifier} from 'components/common/Button'
 import {MediaCircle} from 'components/common/MediaCircle'
+import {socket} from 'utils/socket'
+import {EVENTS_SOCKET} from 'models/common/socket'
 
 interface ICallAlertProps {
   interlocutor: IUser
   toggleVisibilityModal: (visibility: boolean) => void
   showVideoCallModal: () => void
   declineCall: () => void
+  peerConnection: RTCPeerConnection
 }
 
 const audio = new Audio(callSound)
@@ -20,6 +23,7 @@ export const CallAlert: FC<ICallAlertProps> = (
     toggleVisibilityModal,
     showVideoCallModal,
     declineCall,
+    peerConnection,
   }) => {
   useEffect(() => {
     audio.play()
@@ -30,7 +34,10 @@ export const CallAlert: FC<ICallAlertProps> = (
     }
   }, [])
 
-  const onAcceptCall = () => {
+  const onAcceptCall = async () => {
+    const offer = await peerConnection.createOffer()
+    await peerConnection.setLocalDescription(offer)
+    socket.emit(EVENTS_SOCKET.CREATE_OFFER, interlocutor.id, offer)
     toggleVisibilityModal(false)
     showVideoCallModal()
   }
