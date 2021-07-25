@@ -18,10 +18,10 @@ export const VideoCall: FC<IVideoCallProps> = ({calling, setCalling}) => {
   const {dialogs} = useSelector((state: RootState) => state.dialogs)
   const interlocutor = dialogs?.find(({id}) => id === dialogParam)?.interlocutor
   const [conversationModalVisibility, setModalConversationVisibility] = useState(false)
-  const [alertVisibility, setAlertVisibility] = useState(false);
-
-  // RTCPeerConnection
+  const [alertVisibility, setAlertVisibility] = useState(false)
+  const peerMediaElement = useRef<HTMLVideoElement>()
   const peerConnection = useRef(new RTCPeerConnection())
+
   peerConnection.current.onicecandidate = ({candidate}) => {
     if (candidate) {
       socket.emit(EVENTS_SOCKET.RELAY_ICE, interlocutor, candidate)
@@ -29,9 +29,19 @@ export const VideoCall: FC<IVideoCallProps> = ({calling, setCalling}) => {
   }
 
   peerConnection.current.ontrack = ({streams}) => {
+    console.log('ONTRACK')
     console.log(streams)
+
+    if (peerMediaElement.current) {
+      peerMediaElement.current.srcObject = streams[0];
+    } else {
+      setTimeout(() => {
+        if (peerMediaElement.current) {
+          peerMediaElement.current.srcObject = streams[0];
+        }
+      }, 1000);
+    }
   }
-  // ./RTCPeerConnection
 
   const startCall = async () => {
     setModalConversationVisibility(calling)
@@ -48,7 +58,7 @@ export const VideoCall: FC<IVideoCallProps> = ({calling, setCalling}) => {
       const answer = await peerConnection.current.createAnswer();
       await peerConnection.current.setLocalDescription(answer);
 
-      interlocutor && socket.emit(EVENTS_SOCKET.CREATE_ANSWER, interlocutor.id, answer);
+      interlocutor && socket.emit(EVENTS_SOCKET.RELAY_SESSION_DESCRIPTION, interlocutor.id, answer);
     }
   }
 
@@ -60,13 +70,11 @@ export const VideoCall: FC<IVideoCallProps> = ({calling, setCalling}) => {
       setModalConversationVisibility(false)
       setAlertVisibility(false)
     })
-    socket.on(EVENTS_SOCKET.CREATE_OFFER, (data: RTCSessionDescriptionInit) => {
+    socket.on(EVENTS_SOCKET.ACCEPT_CALL, () => {
       setAlertVisibility(false)
       setModalConversationVisibility(true)
-      console.log(dialogs)
-      setRemoteMediaDescription(data)
     })
-    socket.on(EVENTS_SOCKET.CREATE_ANSWER, (data: RTCSessionDescriptionInit) => {
+    socket.on(EVENTS_SOCKET.SESSION_DESCRIPTION, (data: RTCSessionDescriptionInit) => {
       setRemoteMediaDescription(data)
     })
     socket.on(EVENTS_SOCKET.ICE_CANDIDATE, async (iceCandidate: RTCIceCandidate) => {
@@ -76,8 +84,7 @@ export const VideoCall: FC<IVideoCallProps> = ({calling, setCalling}) => {
     })
 
     return () => {
-      socket.off(EVENTS_SOCKET.CREATE_OFFER);
-      socket.off(EVENTS_SOCKET.CREATE_ANSWER);
+      socket.off(EVENTS_SOCKET.SESSION_DESCRIPTION);
     }
   }, [dialogs]);
 
@@ -105,6 +112,7 @@ export const VideoCall: FC<IVideoCallProps> = ({calling, setCalling}) => {
           interlocutor={interlocutor}
           declineCall={declineCall}
           peerConnection={peerConnection.current}
+          peerMediaElement={peerMediaElement}
         />
       </Modal>
 

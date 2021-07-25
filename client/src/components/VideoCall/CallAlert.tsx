@@ -37,7 +37,8 @@ export const CallAlert: FC<ICallAlertProps> = (
   const onAcceptCall = async () => {
     const offer = await peerConnection.createOffer()
     await peerConnection.setLocalDescription(offer)
-    socket.emit(EVENTS_SOCKET.CREATE_OFFER, interlocutor.id, offer)
+    socket.emit(EVENTS_SOCKET.ACCEPT_CALL, interlocutor.id, offer)
+    socket.emit(EVENTS_SOCKET.RELAY_SESSION_DESCRIPTION, interlocutor.id, offer)
     toggleVisibilityModal(false)
     showVideoCallModal()
   }

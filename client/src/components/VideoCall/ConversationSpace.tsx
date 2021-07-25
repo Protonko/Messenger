@@ -13,6 +13,7 @@ interface VideoCallProps {
   declineCall: () => void
   interlocutor: IUser
   peerConnection: RTCPeerConnection
+  peerMediaElement: any
 }
 
 const INTERLOCUTOR_VIDEO_SIZE = 500
@@ -22,6 +23,7 @@ export const ConversationSpace: FC<VideoCallProps> = ({
   declineCall,
   interlocutor,
   peerConnection,
+  peerMediaElement,
 }) => {
   const mediaStream = useRef<MediaStream>()
   const videoRef = useRef<HTMLVideoElement>(null)
@@ -47,7 +49,7 @@ export const ConversationSpace: FC<VideoCallProps> = ({
   }
 
   useEffect(() => {
-    socket.on(EVENTS_SOCKET.CREATE_OFFER, () => {
+    socket.on(EVENTS_SOCKET.ACCEPT_CALL, () => {
       if (mediaStream.current) {
         mediaStream.current.getTracks().forEach(track => {
           peerConnection.addTrack(track, mediaStream.current!);
@@ -70,8 +72,9 @@ export const ConversationSpace: FC<VideoCallProps> = ({
       <div className="conversation-space__area">
         <MediaCircle
           additionalClassName="conversation-space__area-circle conversation-space__area-circle--main"
+          ref={peerMediaElement}
           size={Sizes.LARGE}
-          connecting={true}
+          connecting={false}
           user={interlocutor}
         />
         <MediaCircle
