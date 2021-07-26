@@ -11,7 +11,7 @@ import {EVENTS_SOCKET} from 'models/common/socket'
 interface ICallAlertProps {
   interlocutor: IUser
   toggleVisibilityModal: (visibility: boolean) => void
-  showVideoCallModal: () => void
+  showConversationModal: () => void
   declineCall: () => void
   peerConnection: RTCPeerConnection
 }
@@ -21,7 +21,7 @@ const audio = new Audio(callSound)
 export const CallAlert: FC<ICallAlertProps> = (
   {interlocutor,
     toggleVisibilityModal,
-    showVideoCallModal,
+    showConversationModal,
     declineCall,
     peerConnection,
   }) => {
@@ -35,12 +35,13 @@ export const CallAlert: FC<ICallAlertProps> = (
   }, [])
 
   const onAcceptCall = async () => {
+    showConversationModal()
+    toggleVisibilityModal(false)
+
     const offer = await peerConnection.createOffer()
     await peerConnection.setLocalDescription(offer)
     socket.emit(EVENTS_SOCKET.ACCEPT_CALL, interlocutor.id, offer)
     socket.emit(EVENTS_SOCKET.RELAY_SESSION_DESCRIPTION, interlocutor.id, offer)
-    toggleVisibilityModal(false)
-    showVideoCallModal()
   }
 
   return (

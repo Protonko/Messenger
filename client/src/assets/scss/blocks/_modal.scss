@@ -13,6 +13,15 @@
   &--blur {
     backdrop-filter: blur(4px);
   }
+  &--blur & {
+    &__popup {
+      position: static;
+      display: block;
+      height: 100%;
+      padding: 0;
+      background-color: transparent;
+    }
+  }
 
   &--fade-in {
     animation-name: fade-in;

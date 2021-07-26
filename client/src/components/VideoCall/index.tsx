@@ -17,7 +17,7 @@ export const VideoCall: FC<IVideoCallProps> = ({calling, setCalling}) => {
   const dialogParam = useSearchParams('dialog')
   const {dialogs} = useSelector((state: RootState) => state.dialogs)
   const interlocutor = dialogs?.find(({id}) => id === dialogParam)?.interlocutor
-  const [conversationModalVisibility, setModalConversationVisibility] = useState(false)
+  const [conversationModalVisibility, setConversationModalVisibility] = useState(false)
   const [alertVisibility, setAlertVisibility] = useState(false)
   const peerMediaElement = useRef<HTMLVideoElement>()
   const peerConnection = useRef(new RTCPeerConnection())
@@ -44,7 +44,7 @@ export const VideoCall: FC<IVideoCallProps> = ({calling, setCalling}) => {
   }
 
   const startCall = async () => {
-    setModalConversationVisibility(calling)
+    setConversationModalVisibility(calling)
     setCalling(false)
     interlocutor && socket.emit(EVENTS_SOCKET.START_CALL, interlocutor.id)
   }
@@ -67,12 +67,11 @@ export const VideoCall: FC<IVideoCallProps> = ({calling, setCalling}) => {
       setAlertVisibility(true)
     })
     socket.on(EVENTS_SOCKET.DECLINE_CALL, () => {
-      setModalConversationVisibility(false)
+      setConversationModalVisibility(false)
       setAlertVisibility(false)
     })
     socket.on(EVENTS_SOCKET.ACCEPT_CALL, () => {
-      setAlertVisibility(false)
-      setModalConversationVisibility(true)
+      console.log('ACCEPT')
     })
     socket.on(EVENTS_SOCKET.SESSION_DESCRIPTION, (data: RTCSessionDescriptionInit) => {
       setRemoteMediaDescription(data)
@@ -96,7 +95,7 @@ export const VideoCall: FC<IVideoCallProps> = ({calling, setCalling}) => {
   }, [calling])
 
   const declineCall = () => {
-    setModalConversationVisibility(false)
+    setConversationModalVisibility(false)
     setAlertVisibility(false)
     socket.emit(EVENTS_SOCKET.DECLINE_CALL, interlocutor?.id)
   }
@@ -121,7 +120,7 @@ export const VideoCall: FC<IVideoCallProps> = ({calling, setCalling}) => {
           interlocutor={interlocutor}
           declineCall={declineCall}
           toggleVisibilityModal={setAlertVisibility}
-          showVideoCallModal={() => setModalConversationVisibility(true)}
+          showConversationModal={() => setConversationModalVisibility(true)}
           peerConnection={peerConnection.current}
         />
       </Modal>
