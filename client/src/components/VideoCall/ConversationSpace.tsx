@@ -1,15 +1,13 @@
-import type {FC} from 'react'
 import type {IUser} from 'models/user'
-import {useEffect, useRef, useState} from 'react'
+import {useEffect, useRef, FC} from 'react'
 import {ReactComponent as Phone} from 'assets/icons/phone.svg'
 import callStartSound from 'assets/audio/call-start-sound.mp3'
 import {Sizes} from 'models/common/sizes'
 import {Button, ButtonModifier} from 'components/common/Button'
 import {MediaCircle} from 'components/common/MediaCircle'
-import {socket} from 'utils/socket'
-import {EVENTS_SOCKET} from 'models/common/socket'
 
 interface VideoCallProps {
+  connecting: boolean
   declineCall: () => void
   interlocutor: IUser
   peerConnection: RTCPeerConnection
@@ -20,6 +18,7 @@ const INTERLOCUTOR_VIDEO_SIZE = 500
 const audio = new Audio(callStartSound)
 
 export const ConversationSpace: FC<VideoCallProps> = ({
+  connecting,
   declineCall,
   interlocutor,
   peerConnection,
@@ -27,7 +26,6 @@ export const ConversationSpace: FC<VideoCallProps> = ({
 }) => {
   const mediaStream = useRef<MediaStream>()
   const videoRef = useRef<HTMLVideoElement>(null)
-  const [connecting, setConnecting] = useState(true);
 
   const getMedia = async () => {
     try {
@@ -41,24 +39,22 @@ export const ConversationSpace: FC<VideoCallProps> = ({
 
       if (videoRef.current) videoRef.current.srcObject = stream
       mediaStream.current = stream
-      setConnecting(false)
     } catch (error) {
-      // TODO: FIX
       console.log(error)
     }
   }
 
-  useEffect(() => {
-    socket.on(EVENTS_SOCKET.ACCEPT_CALL, () => {
+  useEffect( () => {
+    (async function() {
+      await audio.play()
+      await getMedia()
+
       if (mediaStream.current) {
         mediaStream.current.getTracks().forEach(track => {
           peerConnection.addTrack(track, mediaStream.current!);
         })
       }
-    })
-
-    audio.play()
-    getMedia()
+    })()
 
     return () => {
       mediaStream.current?.getTracks().forEach(track => track.stop())
@@ -74,14 +70,14 @@ export const ConversationSpace: FC<VideoCallProps> = ({
           additionalClassName="conversation-space__area-circle conversation-space__area-circle--main"
           ref={peerMediaElement}
           size={Sizes.LARGE}
-          connecting={false}
+          connecting={connecting}
           user={interlocutor}
         />
         <MediaCircle
           additionalClassName="conversation-space__area-circle conversation-space__area-circle--subsidiary"
           ref={videoRef}
           size={Sizes.SMALL}
-          connecting={connecting}
+          connecting={false}
           user={interlocutor}
         />
       </div>
