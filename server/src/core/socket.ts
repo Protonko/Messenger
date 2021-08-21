@@ -3,6 +3,10 @@ import {Server, Socket} from 'socket.io'
 import {Server as ServerHttp} from 'http'
 import {EVENTS_SOCKET} from '../static'
 import {MessageController} from '../controllers/MessageController'
+import {User} from '../models/User'
+import {IError} from '../types/error'
+import {IUserMongoose} from '../types/user'
+import {userDTO} from '../utils/dto/userDTO'
 
 export const createSocket = (http: ServerHttp, io: Server, app: Express) => {
   const messageController = new MessageController(io)
@@ -25,8 +29,18 @@ export const createSocket = (http: ServerHttp, io: Server, app: Express) => {
       messageController.updateReadStatus(dialog, app.response, interlocutor)
     })
 
-    socket.on(EVENTS_SOCKET.START_CALL, (interlocutor: string) => {
-      socket.to(interlocutor).emit(EVENTS_SOCKET.START_CALL)
+    socket.on(EVENTS_SOCKET.START_CALL, (interlocutor: string, initiatorId: string) => {
+      User.findById(initiatorId, (error: IError, user: IUserMongoose) => {
+        try {
+          if (error) {
+            return socket.to(interlocutor).emit(EVENTS_SOCKET.CALL_ERROR, error.value)
+          }
+
+          socket.to(interlocutor).emit(EVENTS_SOCKET.START_CALL, userDTO(user))
+        } catch (error) {
+          socket.to(interlocutor).emit(EVENTS_SOCKET.CALL_ERROR, error.message)
+        }
+      })
     })
 
     socket.on(EVENTS_SOCKET.DECLINE_CALL, (interlocutor: string) => {
@@ -38,7 +52,6 @@ export const createSocket = (http: ServerHttp, io: Server, app: Express) => {
     })
 
     socket.on(EVENTS_SOCKET.RELAY_SESSION_DESCRIPTION, (interlocutor: string, sessionDescription: RTCSessionDescriptionInit) => {
-      console.log(sessionDescription)
       io.to(interlocutor).emit(EVENTS_SOCKET.SESSION_DESCRIPTION, sessionDescription);
     });
   })
