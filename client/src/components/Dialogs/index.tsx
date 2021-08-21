@@ -1,6 +1,6 @@
 import type {IDialog} from 'models/dialog'
 import type {RootState} from 'store/reducers'
-import {useEffect, FC, MouseEvent as ReactMouseEvent} from 'react'
+import {useEffect, useState, FC, MouseEvent as ReactMouseEvent} from 'react'
 import {useHistory} from 'react-router-dom'
 import {useDispatch, useSelector} from 'react-redux'
 import {useSearchParams} from 'hooks/useSearchParams'
@@ -17,6 +17,7 @@ export const Dialogs: FC = () => {
   const history = useHistory()
   const dialogParam = useSearchParams('dialog')
   const [typing, typingHandler] = useTyping()
+  const [typingMessageAuthorId, seTypingMessageAuthorId] = useState<string>()
   const dispatch = useDispatch()
   const {account} = useSelector((state: RootState) => state.auth)
   const {dialogs, loading, errorMessage} = useSelector(
@@ -32,7 +33,8 @@ export const Dialogs: FC = () => {
       dispatch(changeReadStatus(dialogId))
     })
 
-    socket.on(EVENTS_SOCKET.TYPING_MESSAGE, () => {
+    socket.on(EVENTS_SOCKET.TYPING_MESSAGE, (authorId: string) => {
+      seTypingMessageAuthorId(authorId)
       typingHandler()
     })
   }, [])
@@ -58,7 +60,7 @@ export const Dialogs: FC = () => {
       >
         <Dialog
           {...dialog}
-          isTyping={typing}
+          isTyping={typingMessageAuthorId === dialog.interlocutor.id && typing}
           isOwnMessage={account?.id === dialog.lastMessage?.author?.id}
           selected={dialogParam === dialog.id}
         />

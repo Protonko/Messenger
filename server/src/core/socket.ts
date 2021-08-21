@@ -20,8 +20,8 @@ export const createSocket = (http: ServerHttp, io: Server, app: Express) => {
       socket.emit(EVENTS_SOCKET.CONNECTION_ERROR, 'Token should be string.')
     }
 
-    socket.on(EVENTS_SOCKET.TYPING_MESSAGE, (interlocutor: string) => {
-      socket.to(interlocutor).emit(EVENTS_SOCKET.TYPING_MESSAGE)
+    socket.on(EVENTS_SOCKET.TYPING_MESSAGE, (interlocutor: string, author: string) => {
+      socket.to(interlocutor).emit(EVENTS_SOCKET.TYPING_MESSAGE, author)
     })
 
     socket.on(EVENTS_SOCKET.READ_MESSAGE, (interlocutor: string, dialog: string) => {

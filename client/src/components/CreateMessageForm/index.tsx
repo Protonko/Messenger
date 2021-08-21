@@ -32,7 +32,9 @@ export const CreateMessageForm = () => {
 
   const emitWriteMessage = useCallback(
     throttle(() => {
-      interlocutor && socket.emit(EVENTS_SOCKET.TYPING_MESSAGE, interlocutor.id)
+      if (interlocutor && account) {
+        socket.emit(EVENTS_SOCKET.TYPING_MESSAGE, interlocutor.id, account.id)
+      }
     }, TYPING_TIMEOUT),
     [dialogs],
   )
