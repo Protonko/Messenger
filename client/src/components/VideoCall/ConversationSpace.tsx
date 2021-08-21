@@ -1,5 +1,5 @@
 import type {IUser} from 'models/user'
-import {useEffect, useRef, FC} from 'react'
+import {useEffect, useRef, FC, RefObject} from 'react'
 import {ReactComponent as Phone} from 'assets/icons/phone.svg'
 import callStartSound from 'assets/audio/call-start-sound.mp3'
 import {Sizes} from 'models/common/sizes'
@@ -11,7 +11,7 @@ interface VideoCallProps {
   declineCall: () => void
   interlocutor: IUser
   peerConnection: RTCPeerConnection
-  peerMediaElement: any
+  peerMediaElement: RefObject<HTMLVideoElement>
 }
 
 const INTERLOCUTOR_VIDEO_SIZE = 500
