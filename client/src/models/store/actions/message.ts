@@ -26,6 +26,7 @@ export interface ICreateMessagePayload {
   text: string
   dialogId: string
   interlocutorId: string
+  attachment: File | undefined
 }
 
 export interface IAppendMessagePayload {

@@ -1,9 +1,7 @@
 import type {EmojiData} from 'emoji-mart'
 import type {RootState} from 'store/reducers'
-import type {IUploadFile} from 'models/file'
 import {useState, useCallback, useMemo, FormEvent} from 'react'
 import {useDispatch, useSelector} from 'react-redux'
-import {ReactComponent as Microphone} from 'assets/icons/microphone.svg'
 import {EVENTS_SOCKET} from 'models/common/socket'
 import {socket} from 'utils/socket'
 import throttle from 'utils/throttle'
@@ -16,17 +14,17 @@ import {Avatar} from 'components/common/Avatar'
 import {Button} from 'components/common/Button'
 import {Emoji} from 'components/common/Emoji'
 import {FileUploader} from 'components/common/FileUploader'
-import {File} from 'components/common/File'
+import {File as FileComponent} from 'components/common/File'
 
 export const CreateMessageForm = () => {
   const dialogParam = useSearchParams('dialog')
-  const {dialogs, account, files} = useSelector((state: RootState) => ({
+  const {dialogs, account} = useSelector((state: RootState) => ({
     ...state.dialogs,
     ...state.auth,
-    ...state.files,
   }))
   const dispatch = useDispatch()
   const [value, setValue] = useState('')
+  const [file, setFile] = useState<File>()
   const interlocutor = useMemo(
     () => dialogs?.find((dialog) => dialog.id === dialogParam)?.interlocutor,
     [dialogs, dialogParam],
@@ -38,6 +36,10 @@ export const CreateMessageForm = () => {
     }, TYPING_TIMEOUT),
     [dialogs],
   )
+
+  const onRemoveFile = () => {
+    setFile(undefined)
+  }
 
   const onChange = (value: string) => {
     emitWriteMessage()
@@ -51,15 +53,17 @@ export const CreateMessageForm = () => {
       return dispatch(commonError('ID not found!'))
     }
 
-    setValue('')
-
     dispatch(
       createMessage({
         text: value,
         dialogId: dialogParam,
         interlocutorId: interlocutor.id,
+        attachment: file,
       }),
     )
+
+    setValue('')
+    setFile(undefined)
   }
 
   const onSelect = (data: EmojiData) => {
@@ -68,11 +72,19 @@ export const CreateMessageForm = () => {
     }
   }
 
-  const renderItem = (file: IUploadFile) => (
-    <li className="create-message-form__file" key={file.id}>
-      <File file={file.file} value={file.progress} />
-    </li>
-  )
+  const renderFile = () => {
+    if (file) {
+      return (
+        <FileComponent
+          additionalClassName="create-message-form__file"
+          file={file}
+          onRemove={onRemoveFile}
+        />
+      )
+    } else {
+      return null
+    }
+  }
 
   return (
     <form className="create-message-form" onSubmit={onSubmit}>
@@ -85,9 +97,9 @@ export const CreateMessageForm = () => {
             value={value}
             onChange={onChange}
           />
-          <ul className="create-message-form__files list list--reset">
-            {files?.length ? files.map(renderItem) : null}
-          </ul>
+
+          {renderFile()}
+
         </div>
         <Avatar
           name={interlocutor?.full_name}
@@ -99,10 +111,7 @@ export const CreateMessageForm = () => {
         <div className="create-message-form__col">
           <ul className="create-message-form__icons list list--reset">
             <li className="create-message-form__icons-item">
-              <FileUploader multiple={true} />
-            </li>
-            <li className="create-message-form__icons-item">
-              <Microphone className="create-message-form__icon" />
+              <FileUploader onChange={setFile} />
             </li>
             <li className="create-message-form__icons-item">
               <Emoji onSelect={onSelect} />

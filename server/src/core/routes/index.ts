@@ -1,5 +1,6 @@
 import {Express} from 'express'
-import {Server, Socket} from 'socket.io'
+import fileUpload from 'express-fileupload'
+import {Server} from 'socket.io'
 import bodyParser from 'body-parser'
 import cors from 'cors'
 import {CORS_OPTIONS} from '../../config'
@@ -15,6 +16,8 @@ export const createRoutes = (app: Express, io: Server) => {
   app.use(bodyParser.json())
   app.use(updateLastSeen)
   app.use(checkAuth)
+  app.use(fileUpload())
+
 
   usersRoute(app, io)
   dialogsRoutes(app, io)

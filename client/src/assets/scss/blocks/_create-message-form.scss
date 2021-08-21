@@ -23,19 +23,8 @@
     flex-grow: 1;
   }
 
-  &__files {
-    @include margin-horizontal(-$horizontal-files-gutter / 2);
-
-    display: flex;
-    flex-wrap: wrap;
-    margin-top: rem(15px);
-  }
-
   &__file {
-    @include padding-horizontal($horizontal-files-gutter / 2);
-
-    display: flex;
-    align-self: center;
+    margin-top: rem(10px);
   }
 
   &__actions {

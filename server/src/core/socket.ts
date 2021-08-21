@@ -1,12 +1,12 @@
 import {Express} from 'express'
 import {Server, Socket} from 'socket.io'
 import {Server as ServerHttp} from 'http'
-import {EVENTS_SOCKET} from '../static'
 import {MessageController} from '../controllers/MessageController'
 import {User} from '../models/User'
 import {IError} from '../types/error'
 import {IUserMongoose} from '../types/user'
 import {userDTO} from '../utils/dto/userDTO'
+import {EVENTS_SOCKET} from '../types/socketEvents'
 
 export const createSocket = (http: ServerHttp, io: Server, app: Express) => {
   const messageController = new MessageController(io)

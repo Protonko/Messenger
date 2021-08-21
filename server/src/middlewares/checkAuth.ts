@@ -1,14 +1,14 @@
 import {Request, Response, NextFunction} from 'express'
-import {PATHS} from '../static'
 import {IDecodedData} from '../types/jwt'
 import {jwtVerify} from '../utils/jwtVerify'
+import {PATHS, STATIC_PATH} from '../constants'
 
 export const checkAuth = async (
   request: Request,
   response: Response,
   next: NextFunction,
 ) => {
-  if (PATHS.includes(request.path)) {
+  if (PATHS.includes(request.path) || request.path.startsWith(STATIC_PATH)) {
     return next()
   }
 

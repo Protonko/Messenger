@@ -9,5 +9,5 @@ export const messageDTO = (message: IMessageMongoose): IMessage => ({
   createdAt: message.createdAt,
   updatedAt: message.updatedAt === message.updatedAt ? '' : message.updatedAt,
   read: message.read,
-  attachments: message.attachments,
+  attachment: message.attachment,
 })

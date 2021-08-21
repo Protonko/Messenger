@@ -18,10 +18,7 @@ const MessageSchema = new Schema({
     ref: 'User',
     require: true,
   },
-  attachments: [{
-      type: Schema.Types.ObjectId,
-      ref: 'UploadFile',
-  }],
+  attachment: String,
 }, {
   timestamps: true,
   usePushEach: true,

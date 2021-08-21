@@ -1,10 +1,10 @@
-import type {IFile} from 'models/file'
 import type {IUser} from 'models/user'
 
 export interface ICreateMessageBody {
   dialog: string
   text: string
   interlocutor: string
+  attachment?: string
 }
 
 export interface IMessage {
@@ -15,5 +15,5 @@ export interface IMessage {
   createdAt: string
   updatedAt: string
   read: boolean
-  attachments: IFile[]
+  attachment: string
 }

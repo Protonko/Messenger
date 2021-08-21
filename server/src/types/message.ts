@@ -1,5 +1,4 @@
 import {Document} from 'mongoose'
-import {IFile} from '../models/File'
 import {IUser, IUserMongoose} from './user'
 
 export interface IMessageMongoose extends Document {
@@ -11,7 +10,7 @@ export interface IMessageMongoose extends Document {
   createdAt: string,
   updatedAt: string,
   read: boolean,
-  attachments: Array<IFile>,
+  attachment: string,
 }
 
 export interface IMessage {
@@ -22,5 +21,12 @@ export interface IMessage {
   createdAt: string,
   updatedAt: string,
   read: boolean,
-  attachments: Array<IFile>,
+  attachment: string,
+}
+
+export interface IMessageCreateBody {
+  text: string,
+  dialog: string,
+  interlocutor: string,
+  attachment: string,
 }

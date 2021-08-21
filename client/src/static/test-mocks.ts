@@ -5,7 +5,7 @@ import {Status} from 'models/common/status'
 
 export const MESSAGE: IMessage = {
   read: false,
-  attachments: [],
+  attachment: '',
   id: 'id',
   dialog: 'dialog_id',
   author: {

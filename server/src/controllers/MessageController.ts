@@ -1,12 +1,13 @@
 import {Request, Response} from 'express'
+import * as core from 'express-serve-static-core';
 import {Server} from 'socket.io'
-import {EVENTS_SOCKET} from '../static'
 import {Message} from '../models/Message'
 import {Dialog} from '../models/Dialog'
-import {IError} from '../types/error'
-import {IMessageMongoose} from '../types/message'
+import {IError, ResponseError} from '../types/error'
+import {IMessage, IMessageCreateBody, IMessageMongoose} from '../types/message'
 import {IDialogMongoose, IDialogUnpopulatedUsers} from '../types/dialog'
 import {messageDTO} from '../utils/dto/messageDTO'
+import {EVENTS_SOCKET} from '../types/socketEvents'
 
 export class MessageController {
   private io: Server
@@ -76,10 +77,13 @@ export class MessageController {
       })
   }
 
-  async create(request: Request, response: Response) {
+  async create(
+    request: Request<core.ParamsDictionary, unknown, IMessageCreateBody>,
+    response: Response<ResponseError | IMessage>
+  ) {
     // @ts-ignore
     const userId: string | null = request.user?.id ?? null
-    const {text, dialog, interlocutor} = request.body
+    const {text, dialog, interlocutor, attachment} = request.body
 
     if (!userId) {
       return response
@@ -88,7 +92,7 @@ export class MessageController {
     }
 
     try {
-      const message = await new Message({text, user: userId, dialog}).save()
+      const message = await new Message({text, user: userId, dialog, attachment}).save()
 
       await Message
         .findOne({_id: message.id})

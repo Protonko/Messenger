@@ -1,27 +1,32 @@
 import {Request, Response} from 'express'
-import * as fs from 'fs'
+import fs from 'fs'
+import path from 'path'
+import {config} from '../config'
+import {ResponseError} from '../types/error'
+import {STATIC_PATH} from '../constants'
 
 export class UploadController {
-  private readonly files: Buffer[]
-
-  constructor() {
-    this.files = []
-
-    this.upload = this.upload.bind(this)
-  }
-
-  upload(request: Request, response: Response) {
-    let length = 0
-    request.on('data', (chunk: Buffer) =>  {
-      this.files.push(chunk)
-      length += chunk.length
-      if (length > 50 * 1024 ** 2) {
-        response.statusCode = 413
-        response.end('File size is too large!')
+  async uploadFile(request: Request, response: Response<ResponseError | string>) {
+    try {
+      if (!request.files?.file) {
+        return response.status(400).json({message: 'Missing files.'})
       }
-    }).on('end', () => {
-      fs.writeFile('text.png', Buffer.concat(this.files).toString('utf-8'), 'utf-8', () => {})
-      response.end(Buffer.concat(this.files).toString('base64'))
-    })
+
+      const file = Array.isArray(request.files.file) ? request.files.file[0] : request.files.file
+      let filePath = `${config.FILE_PATH}/${file.name}`
+
+      if (fs.existsSync(filePath)) {
+        const fileExtension = filePath.split('.').pop()
+        filePath = `${config.FILE_PATH}/${Math.random()}.${fileExtension}`
+      }
+
+      await file.mv(filePath)
+
+      return response.json(`http://${request.headers.host}/${STATIC_PATH}/${path.basename(filePath)}`)
+    } catch (error) {
+      return response
+        .status(500)
+        .json({message: error.message})
+    }
   }
 }

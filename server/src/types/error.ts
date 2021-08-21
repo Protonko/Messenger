@@ -3,5 +3,9 @@ export interface IError {
   kind: string,
   value: string,
   path: string,
-  reason: Object
+  reason: Object,
+}
+
+export interface ResponseError {
+  message: string,
 }

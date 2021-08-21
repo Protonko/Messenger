@@ -1,14 +1,23 @@
 import {useEffect, useState, FC} from 'react'
+import classNames from 'classnames'
 import {ReactComponent as FileIcon} from 'assets/icons/file.svg'
-import {Progressbar} from 'components/common/Progressbar'
 
 interface IFileProps {
-  value: number
   file: File
+  onRemove?: (name: string, lastModified: number) => void
+  additionalClassName?: string
 }
 
-export const File: FC<IFileProps> = ({value, file}) => {
+export const File: FC<IFileProps> = ({file, onRemove, additionalClassName}) => {
   const [preview, setPreview] = useState('')
+  const isImage = file.type.startsWith('image')
+  const fileClassNames = classNames(
+    'file-preview',
+    {'file-preview--image': isImage},
+    {'file-preview--file': !isImage},
+    {[additionalClassName ?? '']: !!additionalClassName}
+  )
+
   const convertToMB = (bytes: number) => {
     const CONVERSATION_VALUE = 1024
     return (bytes / CONVERSATION_VALUE ** 2).toFixed(2)
@@ -21,24 +30,36 @@ export const File: FC<IFileProps> = ({value, file}) => {
     return () => URL.revokeObjectURL(objectUrl)
   }, [file])
 
-  if (value < 100) {
-    return <Progressbar value={value} />
+  const renderRemoveIcon = () => {
+    if (onRemove) {
+      return (
+        <div
+          className="file-preview__remove"
+          onClick={() => onRemove(file.name, file.lastModified)}
+        >
+          &times;
+        </div>
+      )
+    }
+
+    return null
   }
 
   if (file.type.startsWith('image')) {
     return (
       <div
-        className="file-preview file-preview--image"
+        className={fileClassNames}
         style={{backgroundImage: `url(${preview})`}}
       >
-        <div className="file-preview__remove">&times;</div>
+        {renderRemoveIcon()}
       </div>
     )
   }
 
   return (
-    <div className="file-preview file-preview--file">
-      <div className="file-preview__remove">&times;</div>
+    <div className={fileClassNames}>
+      {renderRemoveIcon()}
+
       <FileIcon className="file-preview__icon" />
       <div className="file-preview__info">
         <span className="file-preview__info-name">{file.name}</span>

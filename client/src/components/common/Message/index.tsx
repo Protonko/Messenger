@@ -12,7 +12,7 @@ export interface IPropsMessage extends IMessage {
 }
 
 export const Message: FC<IPropsMessage> = memo(
-  ({customStyles, text, author, createdAt, updatedAt, attachments}) => {
+  ({customStyles, text, author, createdAt, updatedAt, attachment}) => {
     const classNamesMessage = classNames('message', {
       [customStyles ?? '']: !!customStyles,
     })
@@ -33,12 +33,12 @@ export const Message: FC<IPropsMessage> = memo(
     }
 
     const renderAttachments = () => {
-      if (attachments.length) {
+      if (attachment) {
         return (
           <img
             className="message__content-item message__content-item--image"
-            src=""
-            alt="#"
+            src={attachment}
+            alt={attachment}
           />
         )
       }

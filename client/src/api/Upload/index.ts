@@ -2,14 +2,16 @@ import type {AxiosError} from 'axios'
 import {api} from 'api'
 
 export class UploadApi {
-  static uploadFiles(
-    body: FormData,
-    onUploadProgress: (progressEvent: ProgressEvent) => void,
-  ): Promise<void | string> {
+  static uploadFile(formData: FormData): Promise<string[]> {
+    const config = {
+      headers: {
+        'Content-Type': 'multipart/form-data'
+      }
+    }
     return new Promise((resolve, reject) => {
       api
-        .post('/upload', body, {onUploadProgress})
-        .then((response) => {
+        .post<string[]>('/upload', formData, config)
+        .then(response => {
           if (response.status === 200) {
             resolve(response.data)
           } else {
