@@ -1,5 +1,6 @@
 import type {Request, Response, NextFunction} from 'express'
 import type {IUser} from '../types/user'
+import type {IError} from '../types/error'
 import {User} from '../models/User'
 
 export const updateLastSeen = (
@@ -13,8 +14,12 @@ export const updateLastSeen = (
       {$set: {
           last_seen: new Date()
         }},
-      {new: true},
     )
+      .exec((error: IError) => {
+        if (error) {
+          console.log(error.value)
+        }
+      })
   }
 
   next()

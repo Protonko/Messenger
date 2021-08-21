@@ -31,23 +31,10 @@
     &--lg {
       width: 70%;
     }
-
-    &--space-between {
-      justify-content: space-between;
-    }
   }
 
   &__title {
     color: $white;
-  }
-
-  &__call {
-    &-icon {
-      @include square(24px);
-
-      color: $white;
-      cursor: pointer;
-    }
   }
 
   &__dialogs {
