@@ -43,16 +43,18 @@ export const Dialog: FC<IDialogProps> = memo(
         return <Text customStyles="dialog__text-description">{''}</Text>
       }
 
+      const message = lastMessage.attachment ? 'Photo' : lastMessage.text
+
       if (isOwnMessage) {
         return (
           <Text customStyles="dialog__text-description">
-            {`You: ${lastMessage.text}`}
+            {`You: ${message}`}
           </Text>
         )
       }
 
       return (
-        <Text customStyles="dialog__text-description">{lastMessage.text}</Text>
+        <Text customStyles="dialog__text-description">{message}</Text>
       )
     }
 
