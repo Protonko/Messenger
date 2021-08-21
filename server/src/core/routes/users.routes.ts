@@ -1,10 +1,9 @@
-import {Express} from 'express'
-import {Server} from 'socket.io'
+import type {Express} from 'express'
 import {UserController} from '../../controllers/UserController'
 import {loginValidation} from '../../utils/validations/login'
 
-export const usersRoute = (app: Express, io: Server) => {
-  const user = new UserController(io)
+export const usersRoute = (app: Express) => {
+  const user = new UserController()
 
   app.get('/user/own', user.getOwnProfile)
   app.get('/user/:id', user.find)

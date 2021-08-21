@@ -20,3 +20,19 @@ export interface IUser {
   confirmed: boolean,
   confirm_hash?: string,
 }
+
+export interface IUserAuthData {
+  user: IUser,
+  accessToken: string,
+}
+
+export interface IUserLoginBody {
+  email: string,
+  password: string,
+}
+
+export interface IUserCreateBody {
+  email: string,
+  password: string,
+  full_name: string,
+}

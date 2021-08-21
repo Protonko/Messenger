@@ -1,4 +1,4 @@
-import {IMessageMongoose, IMessage} from '../../types/message'
+import type {IMessageMongoose, IMessage} from '../../types/message'
 import {userDTO} from './userDTO'
 
 export const messageDTO = (message: IMessageMongoose): IMessage => ({

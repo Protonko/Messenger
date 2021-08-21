@@ -1,6 +1,6 @@
+import type {IDecodedData} from '../types/jwt';
 import {verify, VerifyErrors} from 'jsonwebtoken'
 import {config} from '../config'
-import {IDecodedData} from '../types/jwt';
 
 export const jwtVerify = (token: string): Promise<IDecodedData> => {
   return new Promise((resolve, reject) => {

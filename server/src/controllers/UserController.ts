@@ -1,21 +1,16 @@
-import {Request, Response} from 'express'
+import type {Request, Response} from 'express'
+import type {IUser, IUserAuthData, IUserCreateBody, IUserLoginBody, IUserMongoose} from '../types/user'
+import type {IError, IValidationErrors} from '../types/error'
+import type {IResponseMessage} from '../types/response'
+import * as core from 'express-serve-static-core';
 import {validationResult} from 'express-validator'
-import {Server} from 'socket.io'
 import {compareSync} from 'bcrypt'
 import {User} from '../models/User'
-import {IUserMongoose} from '../types/user'
-import {IError} from '../types/error'
 import {jwtCreate} from '../utils/jwtCreate'
 import {userDTO} from '../utils/dto/userDTO'
 
 export class UserController {
-  private io: Server
-
-  constructor(io: Server) {
-    this.io = io
-  }
-
-  find(request: Request, response: Response) {
+  find(request: Request, response: Response<IResponseMessage | IUser>) {
     const {id} = request.params
 
     User.findById(id, (error: IError, user: IUserMongoose) => {
@@ -30,12 +25,12 @@ export class UserController {
       } catch (error) {
         return response
           .status(500)
-          .json({error: error.message})
+          .json({message: error.message})
       }
     })
   }
 
-  getProfiles(request: Request, response: Response) {
+  getProfiles(request: Request, response: Response<IResponseMessage | IUser[]>) {
     User.find({}, (error: IError, users: IUserMongoose[]) => {
       try {
         if (error) {
@@ -53,9 +48,8 @@ export class UserController {
     }).limit( 10 )
   }
 
-  getOwnProfile(request: Request, response: Response) {
-    // @ts-ignore
-    const id = request.user?.id ?? null
+  getOwnProfile(request: Request, response: Response<IResponseMessage | IUser>) {
+    const id = (request.user as IUser)?.id ?? null
 
     User.findById(id, (error: IError, user: IUserMongoose) => {
       if (error) {
@@ -64,11 +58,11 @@ export class UserController {
           .json({message: error.value})
       }
 
-      response.json(userDTO(user))
+      return response.json(userDTO(user))
     })
   }
 
-  login(request: Request, response: Response) {
+  login(request: Request<core.ParamsDictionary, unknown, IUserLoginBody>, response: Response<IResponseMessage | IValidationErrors | IUserAuthData>) {
     const errors = validationResult(request)
 
     if (!errors.isEmpty()) {
@@ -89,19 +83,19 @@ export class UserController {
       if (compareSync(password, user.password)) {
         const {accessToken} = jwtCreate(user)
 
-        response.json({
+        return response.json({
           user: userDTO(user),
           accessToken,
         })
-      } else {
-        response.status(535).json({
-          message: 'Incorrect password or email.',
-        })
       }
+
+      return response.status(535).json({
+        message: 'Incorrect password or email.',
+      })
     })
   }
 
-  async create(request: Request, response: Response) {
+  async create(request: Request<core.ParamsDictionary, unknown, IUserCreateBody>, response: Response<IResponseMessage | IValidationErrors | IUser>) {
     try {
       const errors = validationResult(request)
 
@@ -115,15 +109,15 @@ export class UserController {
       const user = new User({email, full_name, password})
       const createdUser = await user.save()
 
-      response.json(userDTO(createdUser))
+      return response.json(userDTO(createdUser))
     } catch (error) {
-      response
+      return response
         .status(500)
         .json({message: error.message})
     }
   }
 
-  async delete(request: Request, response: Response) {
+  async delete(request: Request, response: Response<IResponseMessage>) {
     const {id} = request.params
     const user = await User.findOneAndRemove({_id: id})
 

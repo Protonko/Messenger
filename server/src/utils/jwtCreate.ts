@@ -1,6 +1,6 @@
+import type {IUserMongoose} from '../types/user'
 import {sign} from 'jsonwebtoken'
 import {config} from '../config'
-import {IUserMongoose} from '../types/user'
 import {userDTO} from './dto/userDTO'
 
 const options = {

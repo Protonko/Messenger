@@ -1,6 +1,6 @@
-import {Express} from 'express'
+import type {Express} from 'express'
+import type {Server} from 'socket.io'
 import fileUpload from 'express-fileupload'
-import {Server} from 'socket.io'
 import bodyParser from 'body-parser'
 import cors from 'cors'
 import {CORS_OPTIONS} from '../../config'
@@ -14,12 +14,12 @@ import {uploadRoutes} from './upload.routes'
 export const createRoutes = (app: Express, io: Server) => {
   app.use(cors(CORS_OPTIONS));
   app.use(bodyParser.json())
-  app.use(updateLastSeen)
   app.use(checkAuth)
+  app.use(updateLastSeen)
   app.use(fileUpload())
 
 
-  usersRoute(app, io)
+  usersRoute(app)
   dialogsRoutes(app, io)
   messagesRoutes(app, io)
   uploadRoutes(app)

@@ -1,6 +1,6 @@
+import type {IUser, IUserMongoose} from './user'
+import type {IMessage, IMessageMongoose} from './message'
 import {Document} from 'mongoose'
-import {IUser, IUserMongoose} from './user'
-import {IMessage, IMessageMongoose} from './message'
 
 export interface IDialogUnpopulatedUsers {
   _id: string,
@@ -32,4 +32,10 @@ export interface IDialog {
   updatedAt: string,
   messages: number,
   muted: boolean,
+}
+
+export interface IDialogCreateBody {
+  author: string,
+  text: string,
+  interlocutor: string,
 }

@@ -1,4 +1,4 @@
-import {Express} from 'express'
+import type {Express} from 'express'
 import {UploadController} from '../../controllers/UploadController'
 
 export const uploadRoutes = (app: Express) => {

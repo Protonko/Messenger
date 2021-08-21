@@ -1,4 +1,4 @@
-import {IDialogMongoose, IDialog} from '../../types/dialog'
+import type {IDialogMongoose, IDialog} from '../../types/dialog'
 import {userDTO} from './userDTO'
 import {messageDTO} from './messageDTO'
 

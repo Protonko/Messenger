@@ -1,12 +1,12 @@
-import {Request, Response} from 'express'
+import type {Request, Response} from 'express'
+import type {IResponseMessage} from '../types/response'
 import fs from 'fs'
 import path from 'path'
 import {config} from '../config'
-import {ResponseError} from '../types/error'
 import {STATIC_PATH} from '../constants'
 
 export class UploadController {
-  async uploadFile(request: Request, response: Response<ResponseError | string>) {
+  async uploadFile(request: Request, response: Response<IResponseMessage | string>) {
     try {
       if (!request.files?.file) {
         return response.status(400).json({message: 'Missing files.'})

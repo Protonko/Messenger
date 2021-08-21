@@ -1,6 +1,6 @@
+import type {IUserMongoose} from '../types/user'
 import {Schema, model} from 'mongoose'
 import validator from 'validator'
-import {IUserMongoose} from '../types/user'
 import {generatePasswordHash} from '../utils/generatePaswordHash'
 
 const schema = new Schema({

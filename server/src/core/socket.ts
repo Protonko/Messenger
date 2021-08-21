@@ -1,10 +1,10 @@
-import {Express} from 'express'
-import {Server, Socket} from 'socket.io'
+import type {Express} from 'express'
+import type {IError} from '../types/error'
+import type {IUserMongoose} from '../types/user'
+import type {Server, Socket} from 'socket.io'
 import {Server as ServerHttp} from 'http'
 import {MessageController} from '../controllers/MessageController'
 import {User} from '../models/User'
-import {IError} from '../types/error'
-import {IUserMongoose} from '../types/user'
 import {userDTO} from '../utils/dto/userDTO'
 import {EVENTS_SOCKET} from '../types/socketEvents'
 
@@ -25,8 +25,7 @@ export const createSocket = (http: ServerHttp, io: Server, app: Express) => {
     })
 
     socket.on(EVENTS_SOCKET.READ_MESSAGE, (interlocutor: string, dialog: string) => {
-      messageController.clearUnreadMessages(dialog, app.response)
-      messageController.updateReadStatus(dialog, app.response, interlocutor)
+      messageController.readMessage(app.response, dialog, interlocutor)
     })
 
     socket.on(EVENTS_SOCKET.START_CALL, (interlocutor: string, initiatorId: string) => {

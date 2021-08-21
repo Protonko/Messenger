@@ -1,5 +1,5 @@
-import {Request, Response, NextFunction} from 'express'
-import {IDecodedData} from '../types/jwt'
+import type {Request, Response, NextFunction} from 'express'
+import type {IDecodedData} from '../types/jwt'
 import {jwtVerify} from '../utils/jwtVerify'
 import {PATHS, STATIC_PATH} from '../constants'
 

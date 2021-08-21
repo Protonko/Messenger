@@ -1,5 +1,5 @@
+import type {IUser, IUserMongoose} from './user'
 import {Document} from 'mongoose'
-import {IUser, IUserMongoose} from './user'
 
 export interface IMessageMongoose extends Document {
   _id: string,

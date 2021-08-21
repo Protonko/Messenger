@@ -1,9 +1,12 @@
-import {Request, Response} from 'express'
-import {Server} from 'socket.io'
+import type {Server} from 'socket.io'
+import type {Request, Response} from 'express'
+import type {IError} from '../types/error'
+import type {IDialog, IDialogCreateBody, IDialogMongoose} from '../types/dialog'
+import type {IUser} from '../types/user'
+import type {IResponseMessage} from '../types/response'
+import * as core from 'express-serve-static-core';
 import {Dialog} from '../models/Dialog'
 import {Message} from '../models/Message'
-import {IError} from '../types/error'
-import {IDialogMongoose} from '../types/dialog'
 import {dialogDTO} from '../utils/dto/dialogDTO'
 
 export class DialogController {
@@ -13,9 +16,8 @@ export class DialogController {
     this.io = io
   }
 
-  async find(request: Request, response: Response) {
-    // @ts-ignore
-    const authorId = request.user?.id ?? null
+  async find(request: Request, response: Response<IResponseMessage | IDialog[]>) {
+    const authorId = (request.user as IUser)?.id ?? null
 
     await Dialog
       .find()
@@ -32,27 +34,27 @@ export class DialogController {
           return response.json(dialogs.map(dialog => dialogDTO(dialog, authorId)))
         } catch (error) {
           return response
-            .json({error: error.message})
+            .json({message: error.message})
         }
       })
   }
 
-  async create(request: Request, response: Response) {
+  async create(request: Request<core.ParamsDictionary, unknown, IDialogCreateBody>, response: Response<IResponseMessage | IDialog>) {
     let shouldContinue = true
-    // @ts-ignore
-    const authorId = request.user?.id ?? null
+    const authorId = (request.user as IUser)?.id ?? null
     const {author, text, interlocutor} = request.body
 
     try {
       await Dialog
         .findOne(
+          // @ts-ignore
           {author, interlocutor},
           (error: IError, dialog: IDialogMongoose) => {
             if (error) {
               shouldContinue = false
               return response
                 .status(404)
-                .json({message: error})
+                .json({message: error.value})
             }
 
             if (dialog) {
@@ -95,13 +97,12 @@ export class DialogController {
           }
         })
     } catch (error) {
-      response.json({error: error.message})
+      response.json({message: error.message})
     }
   }
 
-  async delete(request: Request, response: Response) {
+  async delete(request: Request, response: Response<IResponseMessage>) {
     const {id} = request.params
-
     const dialog = await Dialog.findOneAndRemove({_id: id})
 
     try {

@@ -1,11 +1,13 @@
-import {Request, Response} from 'express'
+import type {Server} from 'socket.io'
+import type {Request, Response} from 'express'
+import type {IError} from '../types/error'
+import type {IResponseMessage} from '../types/response'
+import type {IMessage, IMessageCreateBody, IMessageMongoose} from '../types/message'
+import type {IDialogMongoose, IDialogUnpopulatedUsers} from '../types/dialog'
+import type {IUser} from '../types/user'
 import * as core from 'express-serve-static-core';
-import {Server} from 'socket.io'
 import {Message} from '../models/Message'
 import {Dialog} from '../models/Dialog'
-import {IError, ResponseError} from '../types/error'
-import {IMessage, IMessageCreateBody, IMessageMongoose} from '../types/message'
-import {IDialogMongoose, IDialogUnpopulatedUsers} from '../types/dialog'
 import {messageDTO} from '../utils/dto/messageDTO'
 import {EVENTS_SOCKET} from '../types/socketEvents'
 
@@ -20,9 +22,8 @@ export class MessageController {
     this.updateReadStatus = this.updateReadStatus.bind(this)
   }
 
-  async find(request: Request, response: Response) {
-    // @ts-ignore
-    const userId: string | null = request.user?.id ?? null
+  async find(request: Request, response: Response<IResponseMessage | IMessage[]>) {
+    const userId = (request.user as IUser)?.id ?? null
     const {dialog} = request.query
 
     if (typeof dialog !== 'string') {
@@ -79,10 +80,9 @@ export class MessageController {
 
   async create(
     request: Request<core.ParamsDictionary, unknown, IMessageCreateBody>,
-    response: Response<ResponseError | IMessage>
+    response: Response<IResponseMessage | IMessage>
   ) {
-    // @ts-ignore
-    const userId: string | null = request.user?.id ?? null
+    const userId = (request.user as IUser)?.id ?? null
     const {text, dialog, interlocutor, attachment} = request.body
 
     if (!userId) {
@@ -116,7 +116,7 @@ export class MessageController {
     }
   }
 
-  async updateDialog(response: Response, dialog: string, message: IMessageMongoose) {
+  private async updateDialog(response: Response, dialog: string, message: IMessageMongoose) {
     await Dialog
       .findOne({_id: dialog})
       .exec(async (error: IError, result: IDialogMongoose) => {
@@ -132,11 +132,10 @@ export class MessageController {
       })
   }
 
-  async delete(request: Request, response: Response) {
-    // message id
-    const {id} = request.query
+  async delete(request: Request, response: Response<IResponseMessage>) {
+    const {id: messageId} = request.query
     const message: IMessageMongoose | void =
-      typeof id === 'string' ? await Message.findOneAndRemove({_id: id}) : undefined
+      typeof messageId === 'string' ? await Message.findOneAndRemove({_id: messageId}) : undefined
 
     try {
       if (!message) {
@@ -153,7 +152,7 @@ export class MessageController {
     }
   }
 
-  clearUnreadMessages(dialog: string, response: Response) {
+  private clearUnreadMessages(dialog: string, response: Response) {
     Dialog
       .findOneAndUpdate(
         {_id: dialog},
@@ -170,7 +169,7 @@ export class MessageController {
       })
   }
 
-  updateReadStatus(dialog: string, response: Response, interlocutor: string) {
+  private updateReadStatus(dialog: string, response: Response, interlocutor: string) {
     Message
       .updateMany({dialog},
         {$set: {read: true}},
@@ -188,5 +187,10 @@ export class MessageController {
             .json({message: error.message})
         }
       })
+  }
+
+  readMessage(response: Response<IResponseMessage | void>, dialog: string, interlocutor: string) {
+    this.clearUnreadMessages(dialog, response)
+    this.updateReadStatus(dialog, response, interlocutor)
   }
 }

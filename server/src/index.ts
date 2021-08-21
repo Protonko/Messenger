@@ -24,4 +24,3 @@ createSocket(http, io, app)
 http.listen(config.PORT, () => {
   console.log(`App has been started on port ${config.PORT}`)
 })
-export {EVENTS_SOCKET} from './types/socketEvents'

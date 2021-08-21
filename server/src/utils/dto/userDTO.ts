@@ -1,4 +1,4 @@
-import {IUser, IUserMongoose} from '../../types/user'
+import type {IUser, IUserMongoose} from '../../types/user'
 
 export const userDTO = (user: IUserMongoose): IUser => ({
   id: user._id,

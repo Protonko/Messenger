@@ -1,3 +1,5 @@
+import type {ValidationError} from 'express-validator'
+
 export interface IError {
   stringValue: string,
   kind: string,
@@ -6,6 +8,6 @@ export interface IError {
   reason: Object,
 }
 
-export interface ResponseError {
-  message: string,
+export interface IValidationErrors {
+  errors: ValidationError[]
 }
