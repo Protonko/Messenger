@@ -12,12 +12,11 @@ import {messagesRoutes} from './messages.routes'
 import {uploadRoutes} from './upload.routes'
 
 export const createRoutes = (app: Express, io: Server) => {
-  app.use(cors(CORS_OPTIONS));
+  app.use(cors(CORS_OPTIONS))
   app.use(bodyParser.json())
   app.use(checkAuth)
   app.use(updateLastSeen)
   app.use(fileUpload())
-
 
   usersRoute(app)
   dialogsRoutes(app, io)

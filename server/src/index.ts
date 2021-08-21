@@ -13,8 +13,8 @@ const http = createServer(app)
 const io = new Server(http, {
   cors: {
     origin: '*',
-  }
-});
+  },
+})
 
 app.use('/static', express.static(path.join(__dirname, STATIC_PATH)))
 

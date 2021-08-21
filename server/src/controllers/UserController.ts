@@ -1,8 +1,14 @@
 import type {Request, Response} from 'express'
-import type {IUser, IUserAuthData, IUserCreateBody, IUserLoginBody, IUserMongoose} from '../types/user'
+import type {
+  IUser,
+  IUserAuthData,
+  IUserCreateBody,
+  IUserLoginBody,
+  IUserMongoose,
+} from '../types/user'
 import type {IError, IValidationErrors} from '../types/error'
 import type {IResponseMessage} from '../types/response'
-import * as core from 'express-serve-static-core';
+import * as core from 'express-serve-static-core'
 import {validationResult} from 'express-validator'
 import {compareSync} from 'bcrypt'
 import {User} from '../models/User'
@@ -16,59 +22,56 @@ export class UserController {
     User.findById(id, (error: IError, user: IUserMongoose) => {
       try {
         if (error) {
-          return response
-            .status(404)
-            .json({message: 'User not found.'})
+          return response.status(404).json({message: 'User not found.'})
         }
 
         return response.json(userDTO(user))
       } catch (error) {
-        return response
-          .status(500)
-          .json({message: error.message})
+        return response.status(500).json({message: error.message})
       }
     })
   }
 
-  getProfiles(request: Request, response: Response<IResponseMessage | IUser[]>) {
+  getProfiles(
+    request: Request,
+    response: Response<IResponseMessage | IUser[]>,
+  ) {
     User.find({}, (error: IError, users: IUserMongoose[]) => {
       try {
         if (error) {
-          return response
-            .status(404)
-            .json({message: error.value})
+          return response.status(404).json({message: error.value})
         }
 
         return response.json(users.map(userDTO))
       } catch {
-        return response
-          .status(500)
-          .json({message: 'Undefined error.'})
+        return response.status(500).json({message: 'Undefined error.'})
       }
-    }).limit( 10 )
+    }).limit(10)
   }
 
-  getOwnProfile(request: Request, response: Response<IResponseMessage | IUser>) {
+  getOwnProfile(
+    request: Request,
+    response: Response<IResponseMessage | IUser>,
+  ) {
     const id = (request.user as IUser)?.id ?? null
 
     User.findById(id, (error: IError, user: IUserMongoose) => {
       if (error) {
-        return response
-          .status(404)
-          .json({message: error.value})
+        return response.status(404).json({message: error.value})
       }
 
       return response.json(userDTO(user))
     })
   }
 
-  login(request: Request<core.ParamsDictionary, unknown, IUserLoginBody>, response: Response<IResponseMessage | IValidationErrors | IUserAuthData>) {
+  login(
+    request: Request<core.ParamsDictionary, unknown, IUserLoginBody>,
+    response: Response<IResponseMessage | IValidationErrors | IUserAuthData>,
+  ) {
     const errors = validationResult(request)
 
     if (!errors.isEmpty()) {
-      return response
-        .status(422)
-        .json({errors: errors.array()});
+      return response.status(422).json({errors: errors.array()})
     }
 
     const {email, password} = request.body
@@ -95,14 +98,15 @@ export class UserController {
     })
   }
 
-  async create(request: Request<core.ParamsDictionary, unknown, IUserCreateBody>, response: Response<IResponseMessage | IValidationErrors | IUser>) {
+  async create(
+    request: Request<core.ParamsDictionary, unknown, IUserCreateBody>,
+    response: Response<IResponseMessage | IValidationErrors | IUser>,
+  ) {
     try {
       const errors = validationResult(request)
 
       if (!errors.isEmpty()) {
-        return response
-          .status(422)
-          .json({errors: errors.array()});
+        return response.status(422).json({errors: errors.array()})
       }
 
       const {email, full_name, password} = request.body
@@ -111,9 +115,7 @@ export class UserController {
 
       return response.json(userDTO(createdUser))
     } catch (error) {
-      return response
-        .status(500)
-        .json({message: error.message})
+      return response.status(500).json({message: error.message})
     }
   }
 
@@ -123,16 +125,12 @@ export class UserController {
 
     try {
       if (!user) {
-        return response
-          .status(404)
-          .json({message: 'User not found.'})
+        return response.status(404).json({message: 'User not found.'})
       }
 
       return response.json({message: 'User deleted.'})
     } catch (error) {
-      return response
-        .status(500)
-        .json({message: error.message})
+      return response.status(500).json({message: error.message})
     }
   }
 }

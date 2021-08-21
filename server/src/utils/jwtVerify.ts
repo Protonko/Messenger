@@ -1,4 +1,4 @@
-import type {IDecodedData} from '../types/jwt';
+import type {IDecodedData} from '../types/jwt'
 import {verify, VerifyErrors} from 'jsonwebtoken'
 import {config} from '../config'
 

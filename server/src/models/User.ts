@@ -3,37 +3,40 @@ import {Schema, model} from 'mongoose'
 import validator from 'validator'
 import {generatePasswordHash} from '../utils/generatePaswordHash'
 
-const schema = new Schema({
-  email: {
-    type: String,
-    unique: true,
-    required: true,
-    validate: [validator.isEmail, 'Invalid email.'],
+const schema = new Schema(
+  {
+    email: {
+      type: String,
+      unique: true,
+      required: true,
+      validate: [validator.isEmail, 'Invalid email.'],
+    },
+    avatar: {
+      type: String,
+      default: null,
+    },
+    full_name: {
+      type: String,
+      required: 'Full name is required.',
+    },
+    password: {
+      type: String,
+      required: true,
+    },
+    confirm_hash: String,
+    confirmed: {
+      type: Boolean,
+      default: false,
+    },
+    last_seen: {
+      type: Date,
+      default: new Date(),
+    },
   },
-  avatar: {
-    type: String,
-    default: null,
+  {
+    timestamps: true,
   },
-  full_name: {
-    type: String,
-    required: 'Full name is required.',
-  },
-  password: {
-    type: String,
-    required: true,
-  },
-  confirm_hash: String,
-  confirmed: {
-    type: Boolean,
-    default: false,
-  },
-  last_seen: {
-    type: Date,
-    default: new Date(),
-  },
-}, {
-  timestamps: true,
-})
+)
 
 schema.pre<IUserMongoose>('save', async function (next) {
   const user = this

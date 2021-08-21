@@ -1,3 +1,3 @@
 export interface IResponseMessage {
-  message: string,
+  message: string
 }

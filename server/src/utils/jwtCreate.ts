@@ -10,10 +10,6 @@ const options = {
 
 export const jwtCreate = (user: IUserMongoose) => {
   return {
-    accessToken: sign(
-      {data: userDTO(user)},
-      config.JWT_SECRET_KEY,
-      options,
-    )
+    accessToken: sign({data: userDTO(user)}, config.JWT_SECRET_KEY, options),
   }
 }

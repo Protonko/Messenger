@@ -2,12 +2,12 @@ import {config as configEnv} from 'dotenv'
 import {Algorithm} from 'jsonwebtoken'
 
 type TConfig = {
-  NODE_ENV: string,
-  PORT: number,
-  JWT_SECRET_KEY: string,
-  URL_DB: string,
-  ACCESS_TOKEN_MAX_AGE: string,
-  JWT_ALGORITHM: Algorithm,
+  NODE_ENV: string
+  PORT: number
+  JWT_SECRET_KEY: string
+  URL_DB: string
+  ACCESS_TOKEN_MAX_AGE: string
+  JWT_ALGORITHM: Algorithm
   FILE_PATH: string
 }
 
@@ -18,7 +18,7 @@ const {
   URL_DB,
   ACCESS_TOKEN_MAX_AGE,
   JWT_ALGORITHM,
-  FILE_PATH
+  FILE_PATH,
 } = configEnv().parsed ?? {}
 
 export const config: TConfig = {

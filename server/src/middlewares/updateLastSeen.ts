@@ -11,15 +11,16 @@ export const updateLastSeen = (
   if (request.user) {
     User.findOneAndUpdate(
       {_id: (request.user as IUser).id},
-      {$set: {
-          last_seen: new Date()
-        }},
-    )
-      .exec((error: IError) => {
-        if (error) {
-          console.log(error.value)
-        }
-      })
+      {
+        $set: {
+          last_seen: new Date(),
+        },
+      },
+    ).exec((error: IError) => {
+      if (error) {
+        console.log(error.value)
+      }
+    })
   }
 
   next()

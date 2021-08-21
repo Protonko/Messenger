@@ -24,13 +24,9 @@ export const checkAuth = async (
 
       next()
     } catch {
-      response
-        .status(403)
-        .json({message: 'Invalid auth token provided.'})
+      response.status(403).json({message: 'Invalid auth token provided.'})
     }
   } else {
-    return response
-      .status(403)
-      .json({message: 'Invalid auth token provided.'})
+    return response.status(403).json({message: 'Invalid auth token provided.'})
   }
 }
