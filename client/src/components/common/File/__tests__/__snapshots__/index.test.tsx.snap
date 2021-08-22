@@ -1,0 +1,106 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`File Should render File component with additional classname: File with additional classname 1`] = `
+<div
+  className="file-preview file-preview--file additional-classname"
+>
+  <div
+    className="file-preview__remove"
+    onClick={[Function]}
+  >
+    ×
+  </div>
+  <div
+    className="file-preview__icon"
+  />
+  <div
+    className="file-preview__info"
+  >
+    <span
+      className="file-preview__info-name"
+    >
+      mock
+    </span>
+    <span
+      className="file-preview__info-size"
+    >
+      0.00
+       MB
+    </span>
+  </div>
+</div>
+`;
+
+exports[`File Should render File component: File 1`] = `
+<div
+  className="file-preview file-preview--file"
+>
+  <div
+    className="file-preview__remove"
+    onClick={[Function]}
+  >
+    ×
+  </div>
+  <div
+    className="file-preview__icon"
+  />
+  <div
+    className="file-preview__info"
+  >
+    <span
+      className="file-preview__info-name"
+    >
+      mock
+    </span>
+    <span
+      className="file-preview__info-size"
+    >
+      0.00
+       MB
+    </span>
+  </div>
+</div>
+`;
+
+exports[`File Should render File without remove button: File without remove button 1`] = `
+<div
+  className="file-preview file-preview--file"
+>
+  <div
+    className="file-preview__icon"
+  />
+  <div
+    className="file-preview__info"
+  >
+    <span
+      className="file-preview__info-name"
+    >
+      mock
+    </span>
+    <span
+      className="file-preview__info-size"
+    >
+      0.00
+       MB
+    </span>
+  </div>
+</div>
+`;
+
+exports[`File Should render image File: File with image file 1`] = `
+<div
+  className="file-preview file-preview--image"
+  style={
+    Object {
+      "backgroundImage": "url()",
+    }
+  }
+>
+  <div
+    className="file-preview__remove"
+    onClick={[Function]}
+  >
+    ×
+  </div>
+</div>
+`;

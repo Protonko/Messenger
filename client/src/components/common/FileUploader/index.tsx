@@ -2,12 +2,12 @@ import type {ChangeEvent, FC} from 'react'
 import classNames from 'classnames'
 import {ReactComponent as Clip} from 'assets/icons/clip.svg'
 
-interface FileUploaderProps {
+export interface IFileUploaderProps {
   onChange: (file: File) => void
   disabled?: boolean
 }
 
-export const FileUploader: FC<FileUploaderProps> = ({
+export const FileUploader: FC<IFileUploaderProps> = ({
   onChange,
   disabled,
 }) => {

@@ -8,28 +8,28 @@ exports[`Dialog Match snapshot: Dialog 1`] = `
     Object {
       "avatar": null,
       "confirmed": false,
-      "createdAt": 2000-12-31T21:00:00.000Z,
+      "createdAt": "2021-08-19T00:00:00.000Z",
       "email": "foo@bar.baz",
       "full_name": "name",
       "id": "123",
-      "last_seen": 2000-12-31T21:00:00.000Z,
-      "updatedAt": 2000-12-31T21:00:00.000Z,
+      "last_seen": "2021-08-21T00:00:00.000Z",
+      "updatedAt": "2021-08-20T00:00:00.000Z",
     }
   }
   isOwnMessage={false}
   isTyping={false}
   lastMessage={
     Object {
-      "attachments": Array [],
+      "attachment": "",
       "author": Object {
         "avatar": "",
         "confirmed": false,
-        "createdAt": 2000-12-31T21:00:00.000Z,
+        "createdAt": "2021-08-19T00:00:00.000Z",
         "email": "foo@bar.baz",
         "full_name": "name",
         "id": "123",
-        "last_seen": 2000-12-31T21:00:00.000Z,
-        "updatedAt": 2000-12-31T21:00:00.000Z,
+        "last_seen": "2021-08-21T00:00:00.000Z",
+        "updatedAt": "2021-08-20T00:00:00.000Z",
       },
       "createdAt": "createdAt",
       "dialog": "dialog_id",
@@ -164,28 +164,28 @@ exports[`Dialog Should render Check icon: Dialog with sent message 1`] = `
     Object {
       "avatar": null,
       "confirmed": false,
-      "createdAt": 2000-12-31T21:00:00.000Z,
+      "createdAt": "2021-08-19T00:00:00.000Z",
       "email": "foo@bar.baz",
       "full_name": "name",
       "id": "123",
-      "last_seen": 2000-12-31T21:00:00.000Z,
-      "updatedAt": 2000-12-31T21:00:00.000Z,
+      "last_seen": "2021-08-21T00:00:00.000Z",
+      "updatedAt": "2021-08-20T00:00:00.000Z",
     }
   }
   isOwnMessage={true}
   isTyping={false}
   lastMessage={
     Object {
-      "attachments": Array [],
+      "attachment": "",
       "author": Object {
         "avatar": "",
         "confirmed": false,
-        "createdAt": 2000-12-31T21:00:00.000Z,
+        "createdAt": "2021-08-19T00:00:00.000Z",
         "email": "foo@bar.baz",
         "full_name": "name",
         "id": "123",
-        "last_seen": 2000-12-31T21:00:00.000Z,
-        "updatedAt": 2000-12-31T21:00:00.000Z,
+        "last_seen": "2021-08-21T00:00:00.000Z",
+        "updatedAt": "2021-08-20T00:00:00.000Z",
       },
       "createdAt": "createdAt",
       "dialog": "dialog_id",
@@ -325,28 +325,28 @@ exports[`Dialog Should render Counter: Dialog with counter 1`] = `
     Object {
       "avatar": null,
       "confirmed": false,
-      "createdAt": 2000-12-31T21:00:00.000Z,
+      "createdAt": "2021-08-19T00:00:00.000Z",
       "email": "foo@bar.baz",
       "full_name": "name",
       "id": "123",
-      "last_seen": 2000-12-31T21:00:00.000Z,
-      "updatedAt": 2000-12-31T21:00:00.000Z,
+      "last_seen": "2021-08-21T00:00:00.000Z",
+      "updatedAt": "2021-08-20T00:00:00.000Z",
     }
   }
   isOwnMessage={false}
   isTyping={false}
   lastMessage={
     Object {
-      "attachments": Array [],
+      "attachment": "",
       "author": Object {
         "avatar": "",
         "confirmed": false,
-        "createdAt": 2000-12-31T21:00:00.000Z,
+        "createdAt": "2021-08-19T00:00:00.000Z",
         "email": "foo@bar.baz",
         "full_name": "name",
         "id": "123",
-        "last_seen": 2000-12-31T21:00:00.000Z,
-        "updatedAt": 2000-12-31T21:00:00.000Z,
+        "last_seen": "2021-08-21T00:00:00.000Z",
+        "updatedAt": "2021-08-20T00:00:00.000Z",
       },
       "createdAt": "createdAt",
       "dialog": "dialog_id",
@@ -495,28 +495,28 @@ exports[`Dialog Should render Dialog component with selected modifier: Dialog wi
     Object {
       "avatar": null,
       "confirmed": false,
-      "createdAt": 2000-12-31T21:00:00.000Z,
+      "createdAt": "2021-08-19T00:00:00.000Z",
       "email": "foo@bar.baz",
       "full_name": "name",
       "id": "123",
-      "last_seen": 2000-12-31T21:00:00.000Z,
-      "updatedAt": 2000-12-31T21:00:00.000Z,
+      "last_seen": "2021-08-21T00:00:00.000Z",
+      "updatedAt": "2021-08-20T00:00:00.000Z",
     }
   }
   isOwnMessage={false}
   isTyping={false}
   lastMessage={
     Object {
-      "attachments": Array [],
+      "attachment": "",
       "author": Object {
         "avatar": "",
         "confirmed": false,
-        "createdAt": 2000-12-31T21:00:00.000Z,
+        "createdAt": "2021-08-19T00:00:00.000Z",
         "email": "foo@bar.baz",
         "full_name": "name",
         "id": "123",
-        "last_seen": 2000-12-31T21:00:00.000Z,
-        "updatedAt": 2000-12-31T21:00:00.000Z,
+        "last_seen": "2021-08-21T00:00:00.000Z",
+        "updatedAt": "2021-08-20T00:00:00.000Z",
       },
       "createdAt": "createdAt",
       "dialog": "dialog_id",
@@ -651,28 +651,28 @@ exports[`Dialog Should render DoubleCheck icon: Dialog with read message 1`] = `
     Object {
       "avatar": null,
       "confirmed": false,
-      "createdAt": 2000-12-31T21:00:00.000Z,
+      "createdAt": "2021-08-19T00:00:00.000Z",
       "email": "foo@bar.baz",
       "full_name": "name",
       "id": "123",
-      "last_seen": 2000-12-31T21:00:00.000Z,
-      "updatedAt": 2000-12-31T21:00:00.000Z,
+      "last_seen": "2021-08-21T00:00:00.000Z",
+      "updatedAt": "2021-08-20T00:00:00.000Z",
     }
   }
   isOwnMessage={false}
   isTyping={false}
   lastMessage={
     Object {
-      "attachments": Array [],
+      "attachment": "",
       "author": Object {
         "avatar": "",
         "confirmed": false,
-        "createdAt": 2000-12-31T21:00:00.000Z,
+        "createdAt": "2021-08-19T00:00:00.000Z",
         "email": "foo@bar.baz",
         "full_name": "name",
         "id": "123",
-        "last_seen": 2000-12-31T21:00:00.000Z,
-        "updatedAt": 2000-12-31T21:00:00.000Z,
+        "last_seen": "2021-08-21T00:00:00.000Z",
+        "updatedAt": "2021-08-20T00:00:00.000Z",
       },
       "createdAt": "createdAt",
       "dialog": "dialog_id",
@@ -812,28 +812,28 @@ exports[`Dialog Should render component with avatar: Dialog with avatar 1`] = `
     Object {
       "avatar": "avatar/src",
       "confirmed": false,
-      "createdAt": 2000-12-31T21:00:00.000Z,
+      "createdAt": "2021-08-19T00:00:00.000Z",
       "email": "foo@bar.baz",
       "full_name": "name",
       "id": "123",
-      "last_seen": 2000-12-31T21:00:00.000Z,
-      "updatedAt": 2000-12-31T21:00:00.000Z,
+      "last_seen": "2021-08-21T00:00:00.000Z",
+      "updatedAt": "2021-08-20T00:00:00.000Z",
     }
   }
   isOwnMessage={false}
   isTyping={false}
   lastMessage={
     Object {
-      "attachments": Array [],
+      "attachment": "",
       "author": Object {
         "avatar": "",
         "confirmed": false,
-        "createdAt": 2000-12-31T21:00:00.000Z,
+        "createdAt": "2021-08-19T00:00:00.000Z",
         "email": "foo@bar.baz",
         "full_name": "name",
         "id": "123",
-        "last_seen": 2000-12-31T21:00:00.000Z,
-        "updatedAt": 2000-12-31T21:00:00.000Z,
+        "last_seen": "2021-08-21T00:00:00.000Z",
+        "updatedAt": "2021-08-20T00:00:00.000Z",
       },
       "createdAt": "createdAt",
       "dialog": "dialog_id",
@@ -1017,28 +1017,28 @@ exports[`Dialog Should render component with created date: Dialog with created d
     Object {
       "avatar": "avatar/src",
       "confirmed": false,
-      "createdAt": 2000-12-31T21:00:00.000Z,
+      "createdAt": "2021-08-19T00:00:00.000Z",
       "email": "foo@bar.baz",
       "full_name": "name",
       "id": "123",
-      "last_seen": 2000-12-31T21:00:00.000Z,
-      "updatedAt": 2000-12-31T21:00:00.000Z,
+      "last_seen": "2021-08-21T00:00:00.000Z",
+      "updatedAt": "2021-08-20T00:00:00.000Z",
     }
   }
   isOwnMessage={false}
   isTyping={false}
   lastMessage={
     Object {
-      "attachments": Array [],
+      "attachment": "",
       "author": Object {
         "avatar": "",
         "confirmed": false,
-        "createdAt": 2000-12-31T21:00:00.000Z,
+        "createdAt": "2021-08-19T00:00:00.000Z",
         "email": "foo@bar.baz",
         "full_name": "name",
         "id": "123",
-        "last_seen": 2000-12-31T21:00:00.000Z,
-        "updatedAt": 2000-12-31T21:00:00.000Z,
+        "last_seen": "2021-08-21T00:00:00.000Z",
+        "updatedAt": "2021-08-20T00:00:00.000Z",
       },
       "createdAt": "createdAt",
       "dialog": "dialog_id",
@@ -1222,28 +1222,28 @@ exports[`Dialog Should render component with typing: Dialog with typing 1`] = `
     Object {
       "avatar": "avatar/src",
       "confirmed": false,
-      "createdAt": 2000-12-31T21:00:00.000Z,
+      "createdAt": "2021-08-19T00:00:00.000Z",
       "email": "foo@bar.baz",
       "full_name": "name",
       "id": "123",
-      "last_seen": 2000-12-31T21:00:00.000Z,
-      "updatedAt": 2000-12-31T21:00:00.000Z,
+      "last_seen": "2021-08-21T00:00:00.000Z",
+      "updatedAt": "2021-08-20T00:00:00.000Z",
     }
   }
   isOwnMessage={false}
   isTyping={true}
   lastMessage={
     Object {
-      "attachments": Array [],
+      "attachment": "",
       "author": Object {
         "avatar": "",
         "confirmed": false,
-        "createdAt": 2000-12-31T21:00:00.000Z,
+        "createdAt": "2021-08-19T00:00:00.000Z",
         "email": "foo@bar.baz",
         "full_name": "name",
         "id": "123",
-        "last_seen": 2000-12-31T21:00:00.000Z,
-        "updatedAt": 2000-12-31T21:00:00.000Z,
+        "last_seen": "2021-08-21T00:00:00.000Z",
+        "updatedAt": "2021-08-20T00:00:00.000Z",
       },
       "createdAt": "createdAt",
       "dialog": "dialog_id",
@@ -1435,28 +1435,28 @@ exports[`Dialog Should render updated date: Dialog with date 1`] = `
     Object {
       "avatar": null,
       "confirmed": false,
-      "createdAt": 2000-12-31T21:00:00.000Z,
+      "createdAt": "2021-08-19T00:00:00.000Z",
       "email": "foo@bar.baz",
       "full_name": "name",
       "id": "123",
-      "last_seen": 2000-12-31T21:00:00.000Z,
-      "updatedAt": 2000-12-31T21:00:00.000Z,
+      "last_seen": "2021-08-21T00:00:00.000Z",
+      "updatedAt": "2021-08-20T00:00:00.000Z",
     }
   }
   isOwnMessage={false}
   isTyping={false}
   lastMessage={
     Object {
-      "attachments": Array [],
+      "attachment": "",
       "author": Object {
         "avatar": "",
         "confirmed": false,
-        "createdAt": 2000-12-31T21:00:00.000Z,
+        "createdAt": "2021-08-19T00:00:00.000Z",
         "email": "foo@bar.baz",
         "full_name": "name",
         "id": "123",
-        "last_seen": 2000-12-31T21:00:00.000Z,
-        "updatedAt": 2000-12-31T21:00:00.000Z,
+        "last_seen": "2021-08-21T00:00:00.000Z",
+        "updatedAt": "2021-08-20T00:00:00.000Z",
       },
       "createdAt": "createdAt",
       "dialog": "dialog_id",
@@ -1591,12 +1591,12 @@ exports[`Dialog Shouldn\`t render status: Dialog without status 1`] = `
     Object {
       "avatar": null,
       "confirmed": false,
-      "createdAt": 2000-12-31T21:00:00.000Z,
+      "createdAt": "2021-08-19T00:00:00.000Z",
       "email": "foo@bar.baz",
       "full_name": "name",
       "id": "123",
-      "last_seen": 2000-12-31T21:00:00.000Z,
-      "updatedAt": 2000-12-31T21:00:00.000Z,
+      "last_seen": "2021-08-21T00:00:00.000Z",
+      "updatedAt": "2021-08-20T00:00:00.000Z",
     }
   }
   isOwnMessage={false}

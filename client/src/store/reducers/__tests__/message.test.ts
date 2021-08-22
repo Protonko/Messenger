@@ -22,6 +22,7 @@ describe('auth reducer', () => {
         text: 'foo',
         dialogId: 'bar',
         interlocutorId: 'baz',
+        attachment: undefined,
       },
     },
     CREATE_MESSAGE_SUCCESS: {

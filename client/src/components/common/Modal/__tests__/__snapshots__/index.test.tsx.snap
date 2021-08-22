@@ -95,7 +95,13 @@ exports[`Modal component Should render modal without template: Modal without tem
     mountOnEnter={true}
     nodeRef={
       Object {
-        "current": null,
+        "current": <article
+          class="modal__popup"
+        >
+          <div>
+            Yolo
+          </div>
+        </article>,
       }
     }
     onEnter={[Function]}
@@ -110,11 +116,15 @@ exports[`Modal component Should render modal without template: Modal without tem
     <div
       className="modal modal--blur"
     >
-      <Child>
-        <div>
-          Yolo
-        </div>
-      </Child>
+      <article
+        className="modal__popup"
+      >
+        <Child>
+          <div>
+            Yolo
+          </div>
+        </Child>
+      </article>
     </div>
   </Transition>
 </ModalContent>

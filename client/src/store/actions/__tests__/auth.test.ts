@@ -1,3 +1,5 @@
+import {USER as USER_MOCK} from 'static/test-mocks'
+
 import {
   setLoginData,
   login,
@@ -17,15 +19,6 @@ const USER_SIGN_UP = {
   ...USER,
   full_name: 'full name',
 }
-const USER_DATA = {
-  ...USER_SIGN_UP,
-  avatar: 'https://test.test',
-  confirmed: true,
-  createdAt: new Date(),
-  last_seen: new Date(),
-  updatedAt: new Date(),
-  id: 'string',
-}
 
 describe('auth actions', () => {
   it('should create login', () => {
@@ -42,14 +35,14 @@ describe('auth actions', () => {
       type: AuthActionTypes.SET_LOGIN_DATA,
       payload: {
         accessToken: 'string',
-        user: USER_DATA,
+        user: USER_MOCK,
       },
     }
 
     expect(
       setLoginData({
         accessToken: 'string',
-        user: USER_DATA,
+        user: USER_MOCK,
       }),
     ).toEqual(expectedAction)
   })
@@ -57,12 +50,12 @@ describe('auth actions', () => {
   it('should create setUserData', () => {
     const expectedAction = {
       type: AuthActionTypes.SET_USER_DATA,
-      payload: USER_DATA,
+      payload: USER_MOCK,
     }
 
     expect(
       setUserData({
-        ...USER_DATA,
+        ...USER_MOCK,
       }),
     ).toEqual(expectedAction)
   })
@@ -79,10 +72,10 @@ describe('auth actions', () => {
   it('should create setSignUpData', () => {
     const expectedAction = {
       type: AuthActionTypes.SET_SIGN_UP_DATA,
-      payload: USER_DATA,
+      payload: USER_MOCK,
     }
 
-    expect(setSignUpData(USER_DATA)).toEqual(expectedAction)
+    expect(setSignUpData(USER_MOCK)).toEqual(expectedAction)
   })
 
   it('should create resetErrorMessage', () => {

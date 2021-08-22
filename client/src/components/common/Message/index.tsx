@@ -5,17 +5,22 @@ import {TextSize, TextTypes} from 'models/common/text'
 import {Sizes} from 'models/common/sizes'
 import {Avatar} from 'components/common/Avatar'
 import {Text} from 'components/common/Text'
+import {FileLink} from 'components/common/FileLink'
 
 export interface IPropsMessage extends IMessage {
-  customStyles?: string
+  additionalClassname?: string
   avatarSize?: Sizes
 }
 
 export const Message: FC<IPropsMessage> = memo(
-  ({customStyles, text, author, createdAt, updatedAt, attachment}) => {
+  ({additionalClassname, text, author, createdAt, updatedAt, attachment}) => {
     const classNamesMessage = classNames('message', {
-      [customStyles ?? '']: !!customStyles,
+      [additionalClassname ?? '']: !!additionalClassname,
     })
+
+    const checkIsImage = (attachment: string) => {
+      return !!attachment.split('.').pop()?.match(/(jpg|jpeg|png|gif)$/i)
+    }
 
     const renderText = () => {
       if (text) {
@@ -33,15 +38,23 @@ export const Message: FC<IPropsMessage> = memo(
     }
 
     const renderAttachments = () => {
-      if (attachment) {
+      if (!attachment) return null
+
+      if (checkIsImage(attachment)) {
         return (
           <img
             className="message__content-item message__content-item--image"
             src={attachment}
-            alt={attachment}
+            alt={attachment.split('/').pop() ?? '#'}
           />
         )
       }
+
+      return (
+        <div className="message__content-item">
+          <FileLink link={attachment} />
+        </div>
+      )
     }
 
     return (

@@ -1,0 +1,51 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`FileUploader Should render FileUploader component: FileUploader 1`] = `
+<FileUploader
+  onChange={[MockFunction]}
+>
+  <div
+    className="file-uploader"
+  >
+    <label
+      className="file-uploader__label"
+    >
+      <div
+        className="file-uploader__icon"
+      />
+      <input
+        className="file-uploader__input"
+        name="file"
+        onChange={[Function]}
+        type="file"
+      />
+    </label>
+  </div>
+</FileUploader>
+`;
+
+exports[`FileUploader Should render disabled FileUploader component with: FileUploaderDisabled 1`] = `
+<FileUploader
+  disabled={true}
+  onChange={[MockFunction]}
+>
+  <div
+    className="file-uploader file-uploader--disabled"
+  >
+    <label
+      className="file-uploader__label"
+    >
+      <div
+        className="file-uploader__icon"
+      />
+      <input
+        className="file-uploader__input"
+        disabled={true}
+        name="file"
+        onChange={[Function]}
+        type="file"
+      />
+    </label>
+  </div>
+</FileUploader>
+`;

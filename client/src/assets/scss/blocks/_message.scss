@@ -42,7 +42,12 @@
 
   &__content {
     &-item {
+      margin-top: 10px;
       margin-bottom: rem(5px);
+
+      &:first-child {
+        margin-top: 0;
+      }
 
       &:last-child {
         margin-bottom: 0;

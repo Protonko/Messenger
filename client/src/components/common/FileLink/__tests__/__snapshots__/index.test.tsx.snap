@@ -1,0 +1,22 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`FileLink Should render FileLink component: FileLink 1`] = `
+<a
+  className="file-link"
+  download={true}
+  href="foo.bar/file.pdf"
+>
+  <div
+    className="file-link__icon"
+  />
+  <div
+    className="file-link__info"
+  >
+    <span
+      className="file-link__info-name"
+    >
+      file.pdf
+    </span>
+  </div>
+</a>
+`;

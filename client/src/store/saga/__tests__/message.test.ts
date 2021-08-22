@@ -15,26 +15,48 @@ import {
   getMessagesWorker,
 } from 'store/saga/message'
 import {MESSAGE} from 'static/test-mocks'
+import {UploadApi} from '../../../api/Upload'
 
 describe('message sagas', () => {
-  const createMessagePayload: ICreateMessagePayload = {
-    dialogId: 'userId',
-    interlocutorId: 'interlocutorId',
-    text: 'text',
-  }
+  let createMessagePayload: ICreateMessagePayload
+  let createMessageAction: CreateMessageAction
 
-  describe('create message', () => {
-    const createMessageAction: CreateMessageAction = {
+  beforeEach(() => {
+    createMessagePayload = {
+      dialogId: 'userId',
+      interlocutorId: 'interlocutorId',
+      text: 'text',
+      attachment: undefined,
+    }
+
+    createMessageAction = {
       type: MessageActionsTypes.CREATE_MESSAGE,
       payload: createMessagePayload,
     }
+  })
 
+  describe('create message', () => {
     it('Should create message', () => {
       return expectSaga(createMessageWatcher)
         .provide([[call.fn(MessagesApi.createMessage), MESSAGE]])
         .put({
           type: MessageActionsTypes.CREATE_MESSAGE_SUCCESS,
           payload: MESSAGE,
+        })
+        .dispatch(createMessageAction)
+        .run()
+    })
+
+    it('Should create message with attachment', () => {
+      const file = new File([], 'filename')
+      const message = {...MESSAGE, attachment: file}
+      createMessagePayload.attachment = file
+
+      return expectSaga(createMessageWatcher)
+        .provide([[call.fn(MessagesApi.createMessage), message], [call.fn(UploadApi.uploadFile), file]])
+        .put({
+          type: MessageActionsTypes.CREATE_MESSAGE_SUCCESS,
+          payload: message,
         })
         .dispatch(createMessageAction)
         .run()

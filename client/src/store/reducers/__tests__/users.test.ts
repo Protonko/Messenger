@@ -1,5 +1,6 @@
 import {AllUsersActions, UsersActionTypes} from 'models/store/actions/users'
 import users, {initialState} from 'store/reducers/users'
+import {USER} from 'static/test-mocks'
 
 describe('Users reducer', () => {
   const ACTIONS: Record<string, AllUsersActions> = {
@@ -8,18 +9,7 @@ describe('Users reducer', () => {
     },
     GET_SUCCESS: {
       type: UsersActionTypes.GET_SUCCESS,
-      payload: [
-        {
-          avatar: 'avatar',
-          confirmed: false,
-          createdAt: new Date(),
-          email: 'email',
-          full_name: 'full name',
-          last_seen: new Date(),
-          updatedAt: new Date(),
-          id: '123id',
-        },
-      ],
+      payload: [USER],
     },
     GET_ERROR: {
       type: UsersActionTypes.GET_ERROR,

@@ -3,12 +3,13 @@ import {ReactComponent as DoubleCheck} from 'assets/icons/double-check.svg'
 import {ReactComponent as Check} from 'assets/icons/check.svg'
 import {Counter} from 'components/common/Counter'
 import {Dialog, IDialogProps} from 'components/common/Dialog'
-import {DIALOG} from 'static/test-mocks'
+import {DIALOG, MESSAGE} from 'static/test-mocks'
 
 const ELEMENT_SELECTORS = {
   dialog: 'dialog',
   date: 'dialog__info-date',
   selected: 'dialog--selected',
+  description: 'dialog__text-description',
 }
 
 describe('Dialog', () => {
@@ -29,6 +30,14 @@ describe('Dialog', () => {
     componentMount = mount(<Dialog {...props} />)
 
     expect(componentMount.find(`.${ELEMENT_SELECTORS.dialog}`).length).toBe(1)
+  })
+
+  it('Should render Dialog component with photo', () => {
+    const lastMessage = {...MESSAGE, attachment: 'photo.png'}
+
+    componentMount = mount(<Dialog {...{...props, lastMessage}} />)
+
+    expect(componentMount.find(`.${ELEMENT_SELECTORS.description}`).text()).toBe('Photo')
   })
 
   it('Should render Dialog component with selected modifier', () => {

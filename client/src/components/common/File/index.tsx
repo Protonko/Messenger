@@ -2,8 +2,9 @@ import {useEffect, useState, FC} from 'react'
 import classNames from 'classnames'
 import {ReactComponent as FileIcon} from 'assets/icons/file.svg'
 
-interface IFileProps {
+export interface IFileProps {
   file: File
+  link?: string
   onRemove?: (name: string, lastModified: number) => void
   additionalClassName?: string
 }

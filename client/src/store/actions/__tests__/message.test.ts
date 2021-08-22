@@ -7,15 +7,16 @@ import {
   getMessagesError,
   getMessagesSuccess,
 } from 'store/actions/message'
-import {MessageActionsTypes} from 'models/store/actions/message'
+import {ICreateMessagePayload, MessageActionsTypes} from 'models/store/actions/message'
 import {MESSAGE} from 'static/test-mocks'
 
 describe('message actions', () => {
   it('should create createMessage', () => {
-    const payload = {
+    const payload: ICreateMessagePayload = {
       text: 'text',
       dialogId: 'dialog',
       interlocutorId: 'interlocutor',
+      attachment: undefined,
     }
 
     const expectedAction = {

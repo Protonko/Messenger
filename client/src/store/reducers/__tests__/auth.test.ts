@@ -30,16 +30,7 @@ describe('auth reducer', () => {
     },
     SET_SIGN_UP_DATA: {
       type: AuthActionTypes.SET_SIGN_UP_DATA,
-      payload: {
-        avatar: 'avatar',
-        confirmed: true,
-        createdAt: new Date(),
-        email: 'email',
-        full_name: 'full_name',
-        last_seen: new Date(),
-        updatedAt: new Date(),
-        id: '2',
-      },
+      payload: USER,
       meta: undefined,
     },
     SIGN_UP: {
