@@ -75,10 +75,7 @@ export const ModalContent: FC<IPropsModal> = ({
 
     return (
       <div className={classNamesModal}>
-        <article
-          className={classNamesModalContent}
-          ref={modal}
-        >
+        <article className={classNamesModalContent} ref={modal}>
           {children}
         </article>
       </div>

@@ -40,7 +40,7 @@
     position: relative;
     transform: rotateY(180deg);
     border: rem(1px) solid $wild-sand;
-    background-color: rgba($white, .8);
+    background-color: rgba($white, 0.8);
     backdrop-filter: blur(4px);
 
     &--connecting {

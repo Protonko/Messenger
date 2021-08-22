@@ -24,7 +24,7 @@ describe('UploadApi', () => {
     it('Should return error response if status is 400', async () => {
       ;(axios.post as jest.Mock).mockResolvedValue(mockRejectedJSON)
 
-      return UploadApi.uploadFile(formData).catch(error => {
+      return UploadApi.uploadFile(formData).catch((error) => {
         expect(error).toEqual(RESPONSE_ERROR.statusText)
       })
     })

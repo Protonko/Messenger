@@ -53,7 +53,10 @@ describe('message sagas', () => {
       createMessagePayload.attachment = file
 
       return expectSaga(createMessageWatcher)
-        .provide([[call.fn(MessagesApi.createMessage), message], [call.fn(UploadApi.uploadFile), file]])
+        .provide([
+          [call.fn(MessagesApi.createMessage), message],
+          [call.fn(UploadApi.uploadFile), file],
+        ])
         .put({
           type: MessageActionsTypes.CREATE_MESSAGE_SUCCESS,
           payload: message,

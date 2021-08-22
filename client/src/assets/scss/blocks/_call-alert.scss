@@ -1,52 +1,52 @@
 .call-alert {
-    $horizontal-actions-gutter: 25px;
+  $horizontal-actions-gutter: 25px;
 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  width: rem(600px);
+  height: 100%;
+  margin: auto;
+
+  &__actions {
+    @include margin-horizontal(-$horizontal-actions-gutter / 2);
+
+    position: relative;
     display: flex;
     align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    width: rem(600px);
-    height: 100%;
-    margin: auto;
+  }
 
-    &__actions {
-        @include margin-horizontal(-$horizontal-actions-gutter / 2);
+  &__action {
+    @include padding-horizontal($horizontal-actions-gutter / 2);
+  }
 
-        position: relative;
-        display: flex;
-        align-items: center;
+  &__button {
+    @include square(65px);
+
+    margin-top: rem(50px);
+
+    &--accept {
+      border-color: $puerto-rico;
+      background-color: $puerto-rico;
     }
 
-    &__action {
-        @include padding-horizontal($horizontal-actions-gutter / 2);
+    &--decline {
+      border-color: $sunglo;
+      background-color: $sunglo;
+    }
+    &--decline & {
+      &-icon {
+        transform: rotate(135deg) translate(10%, -10%);
+      }
     }
 
-    &__button {
-        @include square(65px);
-
-        margin-top: rem(50px);
-
-        &--accept {
-            border-color: $puerto-rico;
-            background-color: $puerto-rico;
-        }
-
-        &--decline {
-            border-color: $sunglo;
-            background-color: $sunglo;
-        }
-        &--decline & {
-            &-icon {
-                transform: rotate(135deg) translate(10%, -10%);
-            }
-        }
-
-        &:hover {
-            border-color: $white;
-        }
-
-        &-icon {
-            @include square(28px);
-        }
+    &:hover {
+      border-color: $white;
     }
+
+    &-icon {
+      @include square(28px);
+    }
+  }
 }

@@ -20,10 +20,9 @@ export const MediaCircle = forwardRef<HTMLVideoElement, IMediaCircleProps>(
       {[additionalClassName ?? '']: !!additionalClassName},
     )
 
-    const videoClassNames = classNames(
-      'media-circle__video',
-      {'media-circle__video--connecting': connecting},
-    )
+    const videoClassNames = classNames('media-circle__video', {
+      'media-circle__video--connecting': connecting,
+    })
 
     const renderAvatar = () => {
       if (connecting) {
@@ -51,5 +50,5 @@ export const MediaCircle = forwardRef<HTMLVideoElement, IMediaCircleProps>(
         />
       </div>
     )
-  }
+  },
 )

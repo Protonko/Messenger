@@ -17,12 +17,12 @@ interface ICallAlertProps {
 const audio = new Audio(callSound)
 
 export const CallAlert: FC<ICallAlertProps> = ({
-    initiator,
-    toggleVisibilityModal,
-    showConversationModal,
-    declineCall,
-    createOffer,
-  }) => {
+  initiator,
+  toggleVisibilityModal,
+  showConversationModal,
+  declineCall,
+  createOffer,
+}) => {
   useEffect(() => {
     audio.play()
 
@@ -47,8 +47,8 @@ export const CallAlert: FC<ICallAlertProps> = ({
         user={initiator}
       />
 
-      <ul className='call-alert__actions list list--reset'>
-        <li className='call-alert__action'>
+      <ul className="call-alert__actions list list--reset">
+        <li className="call-alert__action">
           <Button
             onClick={onAcceptCall}
             additionalClassName="call-alert__button call-alert__button--accept"
@@ -56,7 +56,7 @@ export const CallAlert: FC<ICallAlertProps> = ({
             icon={<Phone className="call-alert__button-icon" />}
           />
         </li>
-        <li className='call-alert__action'>
+        <li className="call-alert__action">
           <Button
             onClick={declineCall}
             additionalClassName="call-alert__button call-alert__button--decline"

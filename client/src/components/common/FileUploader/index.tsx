@@ -7,16 +7,13 @@ export interface IFileUploaderProps {
   disabled?: boolean
 }
 
-export const FileUploader: FC<IFileUploaderProps> = ({
-  onChange,
-  disabled,
-}) => {
+export const FileUploader: FC<IFileUploaderProps> = ({onChange, disabled}) => {
   const uploaderClassNames = classNames('file-uploader', {
     'file-uploader--disabled': disabled,
   })
 
   const onUpload = (event: ChangeEvent<HTMLInputElement>) => {
-    const file =  event.target.files?.[0]
+    const file = event.target.files?.[0]
 
     file && onChange(file)
   }

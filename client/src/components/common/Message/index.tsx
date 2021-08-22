@@ -19,7 +19,10 @@ export const Message: FC<IPropsMessage> = memo(
     })
 
     const checkIsImage = (attachment: string) => {
-      return !!attachment.split('.').pop()?.match(/(jpg|jpeg|png|gif)$/i)
+      return !!attachment
+        .split('.')
+        .pop()
+        ?.match(/(jpg|jpeg|png|gif)$/i)
     }
 
     const renderText = () => {

@@ -34,7 +34,7 @@ export const ConversationSpace: FC<VideoCallProps> = ({
         video: {
           width: INTERLOCUTOR_VIDEO_SIZE,
           height: INTERLOCUTOR_VIDEO_SIZE,
-        }
+        },
       })
 
       if (videoRef.current) videoRef.current.srcObject = stream
@@ -44,20 +44,20 @@ export const ConversationSpace: FC<VideoCallProps> = ({
     }
   }
 
-  useEffect( () => {
-    (async function() {
+  useEffect(() => {
+    ;(async function () {
       await audio.play()
       await getMedia()
 
       if (mediaStream.current) {
-        mediaStream.current.getTracks().forEach(track => {
-          peerConnection.addTrack(track, mediaStream.current!);
+        mediaStream.current.getTracks().forEach((track) => {
+          peerConnection.addTrack(track, mediaStream.current!)
         })
       }
     })()
 
     return () => {
-      mediaStream.current?.getTracks().forEach(track => track.stop())
+      mediaStream.current?.getTracks().forEach((track) => track.stop())
       audio.pause()
       audio.currentTime = 0
     }

@@ -31,7 +31,9 @@ describe('FileUploader', () => {
 
   it('Should call onChange', () => {
     component = mount(<FileUploader {...props} disabled={true} />)
-    component.find(ELEMENT_SELECTORS.input).simulate('change', {target: {files: [new File([], 'mock')]}})
+    component
+      .find(ELEMENT_SELECTORS.input)
+      .simulate('change', {target: {files: [new File([], 'mock')]}})
 
     expect(props.onChange).toBeCalled()
   })

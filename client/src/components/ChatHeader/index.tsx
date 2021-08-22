@@ -24,14 +24,13 @@ export const ChatHeader: FC<IChatHeaderProps> = ({onPhoneClick}) => {
           </Text>
 
           <Text type={TextTypes.p} customStyles="chat-header__description">
-            {`(Last seen: ${new Date(interlocutor.last_seen).toLocaleString() ?? ''})`}
+            {`(Last seen: ${
+              new Date(interlocutor.last_seen).toLocaleString() ?? ''
+            })`}
           </Text>
         </div>
 
-        <Phone
-          className="chat-header__call-icon"
-          onClick={onPhoneClick}
-        />
+        <Phone className="chat-header__call-icon" onClick={onPhoneClick} />
       </div>
     )
   }

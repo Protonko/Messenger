@@ -1,31 +1,31 @@
 .file-link {
-    $size: 40px;
+  $size: 40px;
 
-    position: relative;
-    display: flex;
-    align-items: center;
+  position: relative;
+  display: flex;
+  align-items: center;
 
-    &__icon {
-        width: rem(0.75 * $size);
-        height: rem($size);
-        color: $grey;
+  &__icon {
+    width: rem(0.75 * $size);
+    height: rem($size);
+    color: $grey;
+  }
+
+  &__info {
+    &:not(:first-child) {
+      margin-left: rem(5px);
     }
 
-    &__info {
-        &:not(:first-child) {
-            margin-left: rem(5px);
-        }
+    &-name {
+      font-size: rem($font-size-extra-small);
+      display: block;
+      cursor: pointer;
+      color: $text-color;
+      text-decoration-color: $brand-color;
 
-        &-name {
-            font-size: rem($font-size-extra-small);
-            display: block;
-            cursor: pointer;
-            color: $text-color;
-            text-decoration-color: $brand-color;
-
-            &:not(:last-child) {
-                margin-bottom: rem(1px);
-            }
-        }
+      &:not(:last-child) {
+        margin-bottom: rem(1px);
+      }
     }
+  }
 }

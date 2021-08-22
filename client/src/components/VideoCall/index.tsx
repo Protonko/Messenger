@@ -19,7 +19,8 @@ export const VideoCall: FC<IVideoCallProps> = ({calling, setCalling}) => {
   const {dialogs} = useSelector((state: RootState) => state.dialogs)
   const {account} = useSelector((state: RootState) => state.auth)
   const interlocutor = dialogs?.find(({id}) => id === dialogParam)?.interlocutor
-  const [conversationModalVisibility, setConversationModalVisibility] = useState(false)
+  const [conversationModalVisibility, setConversationModalVisibility] =
+    useState(false)
   const [alertVisibility, setAlertVisibility] = useState(false)
   const [connecting, setConnecting] = useState(true)
   const [initiator, setInitiator] = useState<IUser>()
@@ -44,24 +45,33 @@ export const VideoCall: FC<IVideoCallProps> = ({calling, setCalling}) => {
 
     setConversationModalVisibility(calling)
     setCalling(false)
-    interlocutor && socket.emit(EVENTS_SOCKET.START_CALL, interlocutor.id, account.id)
+    interlocutor &&
+      socket.emit(EVENTS_SOCKET.START_CALL, interlocutor.id, account.id)
   }
 
   const createAnswer = async () => {
     const answer = await peerConnection.current.createAnswer()
     await peerConnection.current.setLocalDescription(answer)
-    initiator && socket.emit(EVENTS_SOCKET.RELAY_SESSION_DESCRIPTION, initiator.id, answer)
+    initiator &&
+      socket.emit(EVENTS_SOCKET.RELAY_SESSION_DESCRIPTION, initiator.id, answer)
   }
 
   const createOffer = async () => {
     const offer = await peerConnection.current.createOffer()
     await peerConnection.current.setLocalDescription(offer)
-    interlocutor && socket.emit(EVENTS_SOCKET.RELAY_SESSION_DESCRIPTION, interlocutor.id, offer)
+    interlocutor &&
+      socket.emit(
+        EVENTS_SOCKET.RELAY_SESSION_DESCRIPTION,
+        interlocutor.id,
+        offer,
+      )
   }
 
-  const setRemoteMediaDescription = async (sessionDescription: RTCSessionDescriptionInit) => {
+  const setRemoteMediaDescription = async (
+    sessionDescription: RTCSessionDescriptionInit,
+  ) => {
     await peerConnection.current.setRemoteDescription(
-      new RTCSessionDescription(sessionDescription)
+      new RTCSessionDescription(sessionDescription),
     )
 
     if (sessionDescription.type === 'offer') {
@@ -84,15 +94,21 @@ export const VideoCall: FC<IVideoCallProps> = ({calling, setCalling}) => {
       setInitiator(initiator)
     })
 
-    socket.on(EVENTS_SOCKET.SESSION_DESCRIPTION, (data: RTCSessionDescriptionInit) => {
-      setRemoteMediaDescription(data)
-    })
+    socket.on(
+      EVENTS_SOCKET.SESSION_DESCRIPTION,
+      (data: RTCSessionDescriptionInit) => {
+        setRemoteMediaDescription(data)
+      },
+    )
 
-    socket.on(EVENTS_SOCKET.ICE_CANDIDATE, async (iceCandidate: RTCIceCandidate) => {
-      await peerConnection.current.addIceCandidate(
-        new RTCIceCandidate(iceCandidate)
-      )
-    })
+    socket.on(
+      EVENTS_SOCKET.ICE_CANDIDATE,
+      async (iceCandidate: RTCIceCandidate) => {
+        await peerConnection.current.addIceCandidate(
+          new RTCIceCandidate(iceCandidate),
+        )
+      },
+    )
   }, [dialogs])
 
   useEffect(() => {
@@ -152,9 +168,7 @@ export const VideoCall: FC<IVideoCallProps> = ({calling, setCalling}) => {
         {renderConversationSpace()}
       </Modal>
 
-      <Modal modalVisibility={alertVisibility}>
-        {renderCallAlert()}
-      </Modal>
+      <Modal modalVisibility={alertVisibility}>{renderCallAlert()}</Modal>
     </>
   )
 }

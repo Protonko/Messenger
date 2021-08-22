@@ -5,13 +5,13 @@ export class UploadApi {
   static uploadFile(formData: FormData): Promise<string[]> {
     const config = {
       headers: {
-        'Content-Type': 'multipart/form-data'
-      }
+        'Content-Type': 'multipart/form-data',
+      },
     }
     return new Promise((resolve, reject) => {
       api
         .post<string[]>('/upload', formData, config)
-        .then(response => {
+        .then((response) => {
           if (response.status === 200) {
             resolve(response.data)
           } else {

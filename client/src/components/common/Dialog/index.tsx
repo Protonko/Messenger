@@ -53,9 +53,7 @@ export const Dialog: FC<IDialogProps> = memo(
         )
       }
 
-      return (
-        <Text customStyles="dialog__text-description">{message}</Text>
-      )
+      return <Text customStyles="dialog__text-description">{message}</Text>
     }
 
     const renderStatus = () => {

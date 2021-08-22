@@ -43,7 +43,9 @@ export const Dialogs: FC = () => {
     dispatch(getDialogs())
   }, [])
 
-  const selectDialog = (event: ReactMouseEvent<HTMLUListElement, MouseEvent>) => {
+  const selectDialog = (
+    event: ReactMouseEvent<HTMLUListElement, MouseEvent>,
+  ) => {
     const element = (event.target as HTMLUListElement).closest('.dialogs__item')
 
     if (!element) return
@@ -53,11 +55,7 @@ export const Dialogs: FC = () => {
 
   const renderItem = (dialog: IDialog) => {
     return (
-      <li
-        className="dialogs__item"
-        key={dialog.id}
-        id={dialog.id}
-      >
+      <li className="dialogs__item" key={dialog.id} id={dialog.id}>
         <Dialog
           {...dialog}
           isTyping={typingMessageAuthorId === dialog.interlocutor.id && typing}

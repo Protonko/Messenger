@@ -7,7 +7,10 @@ import {
   getMessagesError,
   getMessagesSuccess,
 } from 'store/actions/message'
-import {ICreateMessagePayload, MessageActionsTypes} from 'models/store/actions/message'
+import {
+  ICreateMessagePayload,
+  MessageActionsTypes,
+} from 'models/store/actions/message'
 import {MESSAGE} from 'static/test-mocks'
 
 describe('message actions', () => {

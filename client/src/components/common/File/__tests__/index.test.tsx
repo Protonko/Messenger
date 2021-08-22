@@ -27,7 +27,12 @@ describe('File', () => {
   })
 
   it('Should render File component with additional classname', () => {
-    component = shallow(<FileComponent {...props} additionalClassName={ELEMENT_SELECTORS.additional} />)
+    component = shallow(
+      <FileComponent
+        {...props}
+        additionalClassName={ELEMENT_SELECTORS.additional}
+      />,
+    )
 
     expect(component).toMatchSnapshot('File with additional classname')
     expect(component.find(`.${ELEMENT_SELECTORS.additional}`).length).toBe(1)

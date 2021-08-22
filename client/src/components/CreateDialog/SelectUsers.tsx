@@ -22,11 +22,7 @@ export const SelectUsers = forwardRef<HTMLUListElement, ISelectUsersProps>(
 
     const renderUsers = (user: IUser) => {
       return (
-        <li
-          className="users__item"
-          key={user.id}
-          id={user.id}
-        >
+        <li className="users__item" key={user.id} id={user.id}>
           <User
             name={user.full_name}
             src={user.avatar ?? ''}
@@ -36,7 +32,9 @@ export const SelectUsers = forwardRef<HTMLUListElement, ISelectUsersProps>(
       )
     }
 
-    const onSelectUser = (event: ReactMouseEvent<HTMLUListElement, MouseEvent>) => {
+    const onSelectUser = (
+      event: ReactMouseEvent<HTMLUListElement, MouseEvent>,
+    ) => {
       const element = (event.target as HTMLUListElement).closest('.users__item')
 
       if (!element) return
@@ -56,7 +54,11 @@ export const SelectUsers = forwardRef<HTMLUListElement, ISelectUsersProps>(
 
         <div className="dialogs-modal__section dialogs-modal__section--body">
           <ContentContainer loading={loading} errorMessage={errorMessage}>
-            <ul className="users list list--reset" ref={ref} onClick={onSelectUser}>
+            <ul
+              className="users list list--reset"
+              ref={ref}
+              onClick={onSelectUser}
+            >
               {users?.length ? (
                 users.map(renderUsers)
               ) : (

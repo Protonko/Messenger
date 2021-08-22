@@ -37,7 +37,9 @@ describe('Dialog', () => {
 
     componentMount = mount(<Dialog {...{...props, lastMessage}} />)
 
-    expect(componentMount.find(`.${ELEMENT_SELECTORS.description}`).text()).toBe('Photo')
+    expect(
+      componentMount.find(`.${ELEMENT_SELECTORS.description}`).text(),
+    ).toBe('Photo')
   })
 
   it('Should render Dialog component with selected modifier', () => {

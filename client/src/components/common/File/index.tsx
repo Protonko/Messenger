@@ -16,7 +16,7 @@ export const File: FC<IFileProps> = ({file, onRemove, additionalClassName}) => {
     'file-preview',
     {'file-preview--image': isImage},
     {'file-preview--file': !isImage},
-    {[additionalClassName ?? '']: !!additionalClassName}
+    {[additionalClassName ?? '']: !!additionalClassName},
   )
 
   const convertToMB = (bytes: number) => {

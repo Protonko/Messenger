@@ -16,7 +16,7 @@ describe('Message', () => {
 
   beforeEach(() => {
     props = {
-      ...MESSAGE
+      ...MESSAGE,
     }
   })
 
@@ -49,7 +49,9 @@ describe('Message', () => {
   })
 
   it('Should render Message component with additional classname', () => {
-    component = shallow(<Message {...props} additionalClassname={ELEMENT_SELECTORS.additional} />)
+    component = shallow(
+      <Message {...props} additionalClassname={ELEMENT_SELECTORS.additional} />,
+    )
 
     expect(component.find(`.${ELEMENT_SELECTORS.additional}`).length).toBe(1)
     expect(component).toMatchSnapshot('Message with additionalClassName')

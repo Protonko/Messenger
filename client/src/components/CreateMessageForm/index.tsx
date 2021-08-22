@@ -101,7 +101,6 @@ export const CreateMessageForm = () => {
           />
 
           {renderFile()}
-
         </div>
         <Avatar
           name={interlocutor?.full_name}
