@@ -1,4 +1,3 @@
-import type {AxiosError, AxiosResponse} from 'axios'
 import type {
   IUserLoginBody,
   IUserSignupBody,
@@ -6,50 +5,18 @@ import type {
 } from 'models/auth'
 import type {IUser} from 'models/user'
 import {api} from 'api'
+import {apiHandler} from 'api/apiHandler'
 
 export class UserApi {
-  static login(body: IUserLoginBody): Promise<IUserLoginResponse | AxiosResponse | string> {
-    return new Promise((resolve, reject) => {
-      api
-        .post<IUserLoginResponse>('/user/login', body)
-        .then((response) => {
-          if (response.status === 200) {
-            resolve(response.data)
-          } else {
-            reject(response.statusText)
-          }
-        })
-        .catch((error: AxiosError) => reject(error.response))
-    })
+  static login(body: IUserLoginBody) {
+    return apiHandler(api.post<IUserLoginResponse>('/user/login', body))
   }
 
-  static signUp(body: IUserSignupBody | void): Promise<IUser | AxiosResponse | string> {
-    return new Promise((resolve, reject) => {
-      api
-        .post<IUser>('/user/signup', body)
-        .then((response) => {
-          if (response.status === 200) {
-            resolve(response.data)
-          } else {
-            reject(response.statusText)
-          }
-        })
-        .catch((error: AxiosError) => reject(error.response))
-    })
+  static signUp(body: IUserSignupBody | void) {
+    return apiHandler(api.post<IUser>('/user/signup', body))
   }
 
-  static getUsers(): Promise<IUser[] | AxiosResponse | string> {
-    return new Promise((resolve, reject) => {
-      api
-        .get<IUser[]>('/users')
-        .then((response) => {
-          if (response.status === 200) {
-            resolve(response.data)
-          } else {
-            reject(response.statusText)
-          }
-        })
-        .catch((error: AxiosError) => reject(error.response))
-    })
+  static getUsers() {
+    return apiHandler(api.get<IUser[]>('/users'))
   }
 }
