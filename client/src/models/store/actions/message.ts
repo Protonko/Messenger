@@ -9,6 +9,8 @@ export enum MessageActionsTypes {
   GET_MESSAGES_SUCCESS = '[MESSAGE]GET_MESSAGES_SUCCESS',
   GET_MESSAGES_ERROR = '[MESSAGE]GET_MESSAGES_ERROR',
   APPEND_MESSAGE = '[MESSAGE]APPEND_MESSAGE',
+  DELETE_MESSAGES = '[MESSAGE]DELETE_MESSAGES',
+  DELETE_MESSAGES_SUCCESS = '[MESSAGE]DELETE_MESSAGES_SUCCESS',
 }
 
 // payloads
@@ -32,6 +34,11 @@ export interface ICreateMessagePayload {
 export interface IAppendMessagePayload {
   message: IMessage
   isCurrentDialog: boolean
+}
+
+export interface IDeleteMessagePayload {
+  messagesIds: string[]
+  dialogId: string
 }
 
 // actions
@@ -70,6 +77,16 @@ export interface AppendMessageAction extends AnyAction {
   payload: IAppendMessagePayload
 }
 
+export interface DeleteMessagesAction extends AnyAction {
+  type: MessageActionsTypes.DELETE_MESSAGES
+  payload: IDeleteMessagePayload
+}
+
+export interface DeleteMessagesSuccessAction extends AnyAction {
+  type: MessageActionsTypes.DELETE_MESSAGES_SUCCESS
+  payload: IDeleteMessagePayload
+}
+
 export type AllMessageActions =
   | CreateMessageAction
   | CreateMessageSuccessAction
@@ -78,3 +95,5 @@ export type AllMessageActions =
   | GetMessagesSuccessAction
   | GetMessagesErrorAction
   | AppendMessageAction
+  | DeleteMessagesAction
+  | DeleteMessagesSuccessAction

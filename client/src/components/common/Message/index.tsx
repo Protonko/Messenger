@@ -6,23 +6,26 @@ import {Sizes} from 'models/common/sizes'
 import {Avatar} from 'components/common/Avatar'
 import {Text} from 'components/common/Text'
 import {FileLink} from 'components/common/FileLink'
+import {IMAGE_REGEX} from 'static/regex'
 
 export interface IPropsMessage extends IMessage {
   additionalClassname?: string
+  selected?: boolean
   avatarSize?: Sizes
 }
 
 export const Message: FC<IPropsMessage> = memo(
-  ({additionalClassname, text, author, createdAt, updatedAt, attachment}) => {
+  ({additionalClassname, text, author, createdAt, updatedAt, attachment, selected}) => {
     const classNamesMessage = classNames('message', {
       [additionalClassname ?? '']: !!additionalClassname,
+      'message--selected': selected,
     })
 
     const checkIsImage = (attachment: string) => {
       return !!attachment
         .split('.')
         .pop()
-        ?.match(/(jpg|jpeg|png|gif)$/i)
+        ?.match(IMAGE_REGEX)
     }
 
     const renderText = () => {

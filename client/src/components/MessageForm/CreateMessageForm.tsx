@@ -2,7 +2,7 @@ import type {EmojiData} from 'emoji-mart'
 import type {RootState} from 'store/reducers'
 import {useState, useCallback, useMemo, FormEvent} from 'react'
 import {useDispatch, useSelector} from 'react-redux'
-import {EVENTS_SOCKET} from 'models/common/socket'
+import {EventsSocket} from 'models/common/socket'
 import {socket} from 'utils/socket'
 import throttle from 'utils/throttle'
 import {useSearchParams} from 'hooks/useSearchParams'
@@ -33,7 +33,7 @@ export const CreateMessageForm = () => {
   const emitWriteMessage = useCallback(
     throttle(() => {
       if (interlocutor && account) {
-        socket.emit(EVENTS_SOCKET.TYPING_MESSAGE, interlocutor.id, account.id)
+        socket.emit(EventsSocket.TYPING_MESSAGE, interlocutor.id, account.id)
       }
     }, TYPING_TIMEOUT),
     [dialogs],

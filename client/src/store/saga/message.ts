@@ -1,15 +1,18 @@
+import type {AxiosResponse} from 'axios'
 import type {ICreateMessageBody, IMessage} from 'models/message'
 import {call, put, takeEvery} from 'redux-saga/effects'
 import {
-  CreateMessageAction,
+  CreateMessageAction, DeleteMessagesAction,
   GetMessagesAction,
   MessageActionsTypes,
 } from 'models/store/actions/message'
+import {commonError} from 'store/actions/error'
 import {MessagesApi} from 'api/Messages'
 import {UploadApi} from 'api/Upload'
 import {
   createMessageError,
   createMessageSuccess,
+  deleteMessagesSuccess,
   getMessagesError,
   getMessagesSuccess,
 } from 'store/actions/message'
@@ -54,4 +57,22 @@ export function* createMessageWorker({payload}: CreateMessageAction) {
 
 export function* createMessageWatcher() {
   yield takeEvery(MessageActionsTypes.CREATE_MESSAGE, createMessageWorker)
+}
+
+// delete
+export function* deleteMessagesWorker({payload}: DeleteMessagesAction) {
+  try {
+    const messagesIds: string[] = yield call(MessagesApi.deleteMessages, payload.messagesIds)
+    yield put(deleteMessagesSuccess({messagesIds, dialogId: payload.dialogId}))
+  } catch (error) {
+    if (typeof (error as AxiosResponse).data) {
+      yield put(commonError(error.data.message))
+    } else {
+      yield put(commonError(error.message))
+    }
+  }
+}
+
+export function* deleteMessagesWatcher() {
+  yield takeEvery(MessageActionsTypes.DELETE_MESSAGES, deleteMessagesWorker)
 }

@@ -1,9 +1,9 @@
+import type {AxiosError, AxiosResponse} from 'axios'
 import type {ICreateDialogBody, IDialog} from 'models/dialog'
 import {api} from 'api'
-import {AxiosError} from 'axios'
 
 export class DialogsApi {
-  static getDialogs(id: string): Promise<IDialog[] | string> {
+  static getDialogs(id: string): Promise<IDialog[] | AxiosResponse | string> {
     return new Promise((resolve, reject) => {
       api
         .get<IDialog[]>(`/dialogs/${id}`)
@@ -18,7 +18,7 @@ export class DialogsApi {
     })
   }
 
-  static createDialog(dialog: ICreateDialogBody): Promise<IDialog | string> {
+  static createDialog(dialog: ICreateDialogBody): Promise<IDialog | AxiosResponse | string> {
     return new Promise((resolve, reject) => {
       api
         .post<IDialog>('/dialogs', dialog)

@@ -1,8 +1,5 @@
 import type {IMessage} from 'models/message'
-import {
-  AllMessageActions,
-  MessageActionsTypes,
-} from 'models/store/actions/message'
+import {AllMessageActions, MessageActionsTypes} from 'models/store/actions/message'
 import {omit} from 'utils/omit'
 
 export interface IInitialState {
@@ -92,6 +89,21 @@ const reducers = (state = initialState, action: AllMessageActions) => {
       }
 
       return state
+    }
+
+    case MessageActionsTypes.DELETE_MESSAGES_SUCCESS: {
+      if (!state.messages?.[action.payload.dialogId]) return state
+
+      const updatedMessages = state.messages[action.payload.dialogId]
+        .filter(message => !action.payload.messagesIds.includes(message.id))
+
+      return {
+        ...state,
+        messages: {
+          ...state.messages,
+          [action.payload.dialogId]: updatedMessages,
+        }
+      }
     }
 
     default:

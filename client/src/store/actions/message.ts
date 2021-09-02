@@ -12,6 +12,7 @@ import {
   ICreateMessagePayload,
   AppendMessageAction,
   IAppendMessagePayload,
+  IDeleteMessagePayload,
 } from 'models/store/actions/message'
 
 export const createMessage = (
@@ -59,4 +60,14 @@ export const appendMessage = (
 ): AppendMessageAction => ({
   type: MessageActionsTypes.APPEND_MESSAGE,
   payload,
+})
+
+export const deleteMessages = (payload: IDeleteMessagePayload) => ({
+  type: MessageActionsTypes.DELETE_MESSAGES,
+  payload,
+})
+
+export const deleteMessagesSuccess = (payload: IDeleteMessagePayload) => ({
+  type: MessageActionsTypes.DELETE_MESSAGES_SUCCESS,
+  payload
 })

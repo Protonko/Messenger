@@ -3,7 +3,8 @@
   cursor: pointer;
   transition: background-color $transition-duration;
 
-  &:hover {
+  &:hover,
+  &--selected {
     background-color: rgba($brand-color, 0.1);
 
     &::before {
@@ -19,6 +20,18 @@
       content: url('../../icons/check-in-circle.svg');
       transform: translateX(-50%);
       opacity: 0.5;
+    }
+  }
+
+  &--selected {
+    &::before {
+      opacity: 1;
+    }
+
+    &:hover {
+      &::before {
+        opacity: 1;
+      }
     }
   }
 

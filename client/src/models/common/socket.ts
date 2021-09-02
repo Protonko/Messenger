@@ -1,4 +1,4 @@
-export enum EVENTS_SOCKET {
+export enum EventsSocket {
   NEW_MESSAGE = 'MESSAGE:CREATE',
   NEW_DIALOG = 'MESSAGE:DIALOG',
   READ_MESSAGE = 'MESSAGE:READ',

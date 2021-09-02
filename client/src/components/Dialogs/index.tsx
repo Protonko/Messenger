@@ -7,7 +7,7 @@ import {useSearchParams} from 'hooks/useSearchParams'
 import {useTyping} from 'hooks/useTyping'
 import {changeReadStatus, getDialogs} from 'store/actions/dialogs'
 import {socket} from 'utils/socket'
-import {EVENTS_SOCKET} from 'models/common/socket'
+import {EventsSocket} from 'models/common/socket'
 import {Dialog} from 'components/common/Dialog'
 import {Search} from 'components/common/Search'
 import {ContentContainer} from 'components/common/ContentContainer'
@@ -25,15 +25,15 @@ export const Dialogs: FC = () => {
   )
 
   useEffect(() => {
-    socket.on(EVENTS_SOCKET.NEW_DIALOG, (dialog: IDialog) => {
+    socket.on(EventsSocket.NEW_DIALOG, (dialog: IDialog) => {
       console.log(dialog)
     })
 
-    socket.on(EVENTS_SOCKET.READ_MESSAGE, (dialogId: string) => {
+    socket.on(EventsSocket.READ_MESSAGE, (dialogId: string) => {
       dispatch(changeReadStatus(dialogId))
     })
 
-    socket.on(EVENTS_SOCKET.TYPING_MESSAGE, (authorId: string) => {
+    socket.on(EventsSocket.TYPING_MESSAGE, (authorId: string) => {
       seTypingMessageAuthorId(authorId)
       typingHandler()
     })

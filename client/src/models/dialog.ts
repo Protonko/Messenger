@@ -1,6 +1,6 @@
 import type {IUser} from './user'
+import type {IMessage} from './message'
 import {Status} from './common/status'
-import {IMessage} from './message'
 
 export interface IDialog {
   id: string

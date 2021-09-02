@@ -8,6 +8,7 @@ const ELEMENT_SELECTORS = {
   text: '.message__content-item--text',
   image: '.message__content-item--image',
   additional: 'additionalClassName',
+  selected: '.message--selected',
 }
 
 describe('Message', () => {
@@ -25,6 +26,14 @@ describe('Message', () => {
 
     expect(component.find(ELEMENT_SELECTORS.message).length).toBe(1)
     expect(component).toMatchSnapshot('Message')
+  })
+
+  it('Should render Message component with selected modifier', () => {
+    props.selected = true
+    component = shallow(<Message {...props} />)
+
+    expect(component.find(ELEMENT_SELECTORS.selected).length).toBe(1)
+    expect(component).toMatchSnapshot('Selected message')
   })
 
   it('Should render Message component without text', () => {

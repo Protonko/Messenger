@@ -1,8 +1,8 @@
-import type {AxiosError} from 'axios'
+import type {AxiosError, AxiosResponse} from 'axios'
 import {api} from 'api'
 
 export class UploadApi {
-  static uploadFile(formData: FormData): Promise<string[]> {
+  static uploadFile(formData: FormData): Promise<string[] | AxiosResponse | string> {
     const config = {
       headers: {
         'Content-Type': 'multipart/form-data',
