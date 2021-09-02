@@ -130,22 +130,26 @@ export class MessageController {
     )
   }
 
-  async delete(request: Request, response: Response<IResponseMessage>) {
-    const {id: messageId} = request.query
-    const message: IMessageMongoose | void =
-      typeof messageId === 'string'
-        ? await Message.findOneAndRemove({_id: messageId})
-        : undefined
+  async delete(request: Request, response: Response<string[] | IResponseMessage>) {
+    const {messages} = request.query
 
-    try {
-      if (!message) {
-        return response.status(404).json({message: 'Message not found'})
-      }
-
-      return response.json({message: 'Message deleted'})
-    } catch (error) {
-      return response.status(500).json({message: error.message})
+    if (!messages?.length) {
+      return response.status(400).json({message: 'Expected messages for delete.'})
     }
+
+    const messagesArray = Array.isArray(messages) ? messages : [messages]
+
+    await Message.deleteMany({_id: {$in: messagesArray}}).exec((error: IError) => {
+      try {
+        if (error) {
+          return response.status(500).json({message: error.value})
+        }
+
+        return response.json(messagesArray as string[])
+      } catch (error) {
+        return response.status(500).json({message: error.message})
+      }
+    })
   }
 
   private clearUnreadMessages(dialog: string, response: Response) {

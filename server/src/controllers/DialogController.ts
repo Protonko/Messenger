@@ -101,19 +101,4 @@ export class DialogController {
       response.json({message: error.message})
     }
   }
-
-  async delete(request: Request, response: Response<IResponseMessage>) {
-    const {id} = request.params
-    const dialog = await Dialog.findOneAndRemove({_id: id})
-
-    try {
-      if (!dialog) {
-        return response.status(404).json({message: 'Dialog not found'})
-      }
-
-      return response.json({message: 'Dialog deleted'})
-    } catch (error) {
-      return response.json({message: error.message})
-    }
-  }
 }

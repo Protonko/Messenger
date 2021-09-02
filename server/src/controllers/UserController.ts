@@ -118,19 +118,4 @@ export class UserController {
       return response.status(500).json({message: error.message})
     }
   }
-
-  async delete(request: Request, response: Response<IResponseMessage>) {
-    const {id} = request.params
-    const user = await User.findOneAndRemove({_id: id})
-
-    try {
-      if (!user) {
-        return response.status(404).json({message: 'User not found.'})
-      }
-
-      return response.json({message: 'User deleted.'})
-    } catch (error) {
-      return response.status(500).json({message: error.message})
-    }
-  }
 }
