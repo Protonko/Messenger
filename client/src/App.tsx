@@ -23,7 +23,11 @@ const App = () => {
     api.defaults.headers.authorization = `Bearer ${accessToken}`
 
     if (accessTokenFromCookie && !tokenFromStore) {
-      dispatch(setUserData(parseJWT<IAuthToken>(accessTokenFromCookie).data))
+      const userData = parseJWT<IAuthToken>(accessTokenFromCookie)?.data
+
+      if (userData) {
+        dispatch(setUserData(userData))
+      }
     }
   }, [accessToken])
 

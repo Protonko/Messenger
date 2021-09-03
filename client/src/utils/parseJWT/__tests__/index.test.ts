@@ -10,4 +10,8 @@ describe('parseJWT', () => {
   it('should parse jwt', () => {
     expect(parseJWT(token)).toStrictEqual(decodedToken)
   })
+
+  it('shouldn`t parse jwt', () => {
+    expect(parseJWT('incorrect')).toStrictEqual(null)
+  })
 })
