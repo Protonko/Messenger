@@ -157,50 +157,52 @@ export class MessageController {
   }
 
   private updateDialogLastMessages(messages: string[], response: Response<string[] | IResponseMessage>) {
-    try {
-      messages.forEach(message => {
-        Dialog
-          // @ts-ignore
-          .findOne({last_message: message})
-          .populate(['author', 'interlocutor'])
-          .exec((error: IError, dialog: IDialogMongoose | null) => {
+    messages.forEach(message => {
+      Dialog
+        // @ts-ignore
+        .findOne({last_message: message})
+        .populate(['author', 'interlocutor'])
+        .exec((error: IError, dialog: IDialogMongoose | null) => {
+          try {
             if (error) {
               return response.status(500).json({message: error.value})
             }
 
-            if (dialog === null) {
-              return response.status(500).json({message: 'Message not found.'})
-            }
+            if (dialog === null) return;
 
             Message.findOne(
               {dialog: dialog._id},
               {},
               {sort: {createdAt: -1}},
               async (error, lastMessage: IMessageMongoose | null) => {
-                if (error) {
-                  return response.status(500).json({
-                    message: error.message,
-                  });
+                try {
+                  if (error) {
+                    return response.status(500).json({
+                      message: error.message,
+                    })
+                  }
+
+                  if (!lastMessage) {
+                    return response.status(500).json({
+                      message: 'Message not found.',
+                    })
+                  }
+
+                  dialog.last_message = lastMessage
+                  await dialog.save()
+
+                  this.io.to(dialog.interlocutor.id).emit(EventsSocket.UPDATE_LAST_MESSAGE, dialogDTO(dialog, dialog.author.id))
+                  this.io.to(dialog.author.id).emit(EventsSocket.UPDATE_LAST_MESSAGE, dialogDTO(dialog, dialog.interlocutor.id))
+                } catch (error) {
+                  response.json({message: error.message})
                 }
-
-                if (!lastMessage) {
-                  return response.status(500).json({
-                    message: 'Message not found.',
-                  });
-                }
-
-                dialog.last_message = lastMessage
-                await dialog.save()
-
-                this.io.to(dialog.interlocutor.id).emit(EventsSocket.UPDATE_LAST_MESSAGE, dialogDTO(dialog, dialog.author.id))
-                this.io.to(dialog.author.id).emit(EventsSocket.UPDATE_LAST_MESSAGE, dialogDTO(dialog, dialog.interlocutor.id))
-              }
+              },
             )
-          })
-      })
-    } catch (error) {
-      response.json({message: error.message})
-    }
+          } catch (error) {
+            response.json({message: error.message})
+          }
+        })
+    })
   }
 
   private clearUnreadMessages(dialog: string, response: Response) {

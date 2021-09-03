@@ -13,6 +13,7 @@ export const DeleteMessageForm = () => {
   const onDelete = () => {
     if (dialogId) {
       dispatch(deleteMessages({messagesIds: selectedMessagesIds, dialogId}))
+      resetSelectedMessagesIds()
     }
   }
 
