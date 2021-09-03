@@ -8,12 +8,15 @@ import * as core from 'express-serve-static-core'
 import {Dialog} from '../models/Dialog'
 import {Message} from '../models/Message'
 import {dialogDTO} from '../utils/dto/dialogDTO'
+import {EventsSocket} from '../types/socketEvents'
 
 export class DialogController {
   private io: Server
 
   constructor(io: Server) {
     this.io = io
+
+    this.create = this.create.bind(this)
   }
 
   async find(
@@ -45,7 +48,6 @@ export class DialogController {
     response: Response<IResponseMessage | IDialog>,
   ) {
     let shouldContinue = true
-    const authorId = (request.user as IUser)?.id ?? null
     const {author, text, interlocutor} = request.body
 
     try {
@@ -92,7 +94,8 @@ export class DialogController {
               return response.status(404).json({message: 'Chat not found'})
             }
 
-            return response.json(dialogDTO(dialog, authorId))
+            this.io.to(interlocutor).emit(EventsSocket.NEW_DIALOG, dialogDTO(dialog, interlocutor))
+            return response.json(dialogDTO(dialog, author))
           } catch (error) {
             return response.json(error)
           }

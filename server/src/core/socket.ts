@@ -7,20 +7,14 @@ import {MessageController} from '../controllers/MessageController'
 import {User} from '../models/User'
 import {userDTO} from '../utils/dto/userDTO'
 import {EventsSocket} from '../types/socketEvents'
-import {Dialog} from '../models/Dialog'
-import {IDialogMongoose} from '../types/dialog'
 
 export const createSocket = (http: ServerHttp, io: Server, app: Express) => {
   const messageController = new MessageController(io)
 
   io.on(EventsSocket.CONNECTION, (socket: Socket) => {
-    const {id} = socket.handshake.headers
-
-    if (typeof id === 'string') {
+    socket.on(EventsSocket.JOIN, (id: string) => {
       socket.join(id)
-    } else {
-      socket.emit(EventsSocket.CONNECTION_ERROR, 'Token should be string.')
-    }
+    })
 
     socket.on(
       EventsSocket.TYPING_MESSAGE,

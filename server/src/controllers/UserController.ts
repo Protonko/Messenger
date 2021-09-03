@@ -46,7 +46,7 @@ export class UserController {
       } catch {
         return response.status(500).json({message: 'Undefined error.'})
       }
-    }).limit(10)
+    })
   }
 
   getOwnProfile(
