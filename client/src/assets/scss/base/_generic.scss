@@ -19,6 +19,10 @@ body,
   height: 100%;
 }
 
+#root {
+  overflow-x: auto;
+}
+
 *,
 ::after,
 ::before {
@@ -31,6 +35,6 @@ img:-moz-broken {
 
 .container {
   max-width: rem(1010px);
-  min-width: rem(300px);
+  min-width: rem(1010px);
   margin: 0 auto;
 }

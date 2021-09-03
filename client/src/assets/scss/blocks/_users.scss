@@ -1,6 +1,9 @@
 .users {
   $vertical-gutter: 10px;
 
+  overflow-y: auto;
+  max-height: rem(435px);
+
   &__item {
     @include padding-horizontal(20px);
     @include padding-vertical($vertical-gutter / 2);
