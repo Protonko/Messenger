@@ -7,13 +7,15 @@ import {api} from 'api'
 import {CookieHandler} from 'utils/CookieHandler'
 import {setUserData} from 'store/actions/auth'
 import {parseJWT} from 'utils/parseJWT'
+import {socket} from './utils/socket'
+import {EventsSocket} from './models/common/socket'
 
 const Auth = lazy(() => import('./pages/Auth'))
 const Chat = lazy(() => import('./pages/Chat'))
 
 const App = () => {
   const dispatch = useDispatch()
-  const {accessToken: tokenFromStore} = useSelector(
+  const {accessToken: tokenFromStore, account} = useSelector(
     (state: RootState) => state.auth,
   )
   const accessTokenFromCookie = CookieHandler.getCookie('accessToken')
@@ -30,6 +32,12 @@ const App = () => {
       }
     }
   }, [accessToken])
+
+  useEffect(() => {
+    if (account?.id) {
+      socket.emit(EventsSocket.JOIN, account.id)
+    }
+  }, [account?.id])
 
   return (
     <Switch>

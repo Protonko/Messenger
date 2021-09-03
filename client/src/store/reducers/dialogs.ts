@@ -151,6 +151,15 @@ const reducers = (
       return updateLastMessage(state, {...message, read: true})
     }
 
+    case DialogsActionTypes.APPEND_DIALOG:
+      return {
+        ...state,
+        dialogs: [
+          action.payload,
+          ...(state.dialogs ?? []),
+        ]
+      }
+
     default:
       return state
   }

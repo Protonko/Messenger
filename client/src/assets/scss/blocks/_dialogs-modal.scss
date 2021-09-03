@@ -15,8 +15,9 @@
     }
 
     &--footer {
-      text-align: right;
+      margin-top: 0;
       padding: rem($padding);
+      text-align: right;
     }
   }
 

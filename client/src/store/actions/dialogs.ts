@@ -1,10 +1,11 @@
 import type {IDialog} from 'models/dialog'
 import {
-  DialogsActionTypes,
+  AppendDialogAction,
   ChangeReadStatusAction,
   CreateDialogAction,
   CreateDialogErrorAction,
   CreateDialogSuccessAction,
+  DialogsActionTypes,
   GetDialogsErrorAction,
   GetDialogsStartAction,
   GetDialogsSuccessAction,
@@ -58,5 +59,10 @@ export const changeReadStatus = (payload: string): ChangeReadStatusAction => ({
 
 export const updateLastMessage = (payload: IDialog): UpdateLastMessageAction => ({
   type: DialogsActionTypes.UPDATE_LAST_MESSAGE,
+  payload,
+})
+
+export const appendDialog = (payload: IDialog): AppendDialogAction => ({
+  type: DialogsActionTypes.APPEND_DIALOG,
   payload,
 })

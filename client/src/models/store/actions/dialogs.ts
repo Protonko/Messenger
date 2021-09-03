@@ -11,6 +11,7 @@ export enum DialogsActionTypes {
   RESET_CREATE_DIALOG_STATE = '[DIALOGS]RESET_CREATE_DIALOG_STATE',
   CHANGE_READ_STATUS = '[DIALOGS]CHANGE_READ_STATUS',
   UPDATE_LAST_MESSAGE = '[DIALOGS]UPDATE_LAST_MESSAGE',
+  APPEND_DIALOG = '[DIALOGS]APPEND_DIALOG',
 }
 
 export interface GetDialogsStartAction extends AnyAction {
@@ -56,6 +57,11 @@ export interface UpdateLastMessageAction extends AnyAction {
   payload: IDialog
 }
 
+export interface AppendDialogAction extends AnyAction {
+  type: DialogsActionTypes.APPEND_DIALOG
+  payload: IDialog
+}
+
 export type AllDialogsActions =
   | GetDialogsStartAction
   | GetDialogsSuccessAction
@@ -66,3 +72,4 @@ export type AllDialogsActions =
   | ResetCreateDialogStateAction
   | ChangeReadStatusAction
   | UpdateLastMessageAction
+  | AppendDialogAction
