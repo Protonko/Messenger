@@ -6,7 +6,7 @@ import {EventsSocket} from 'models/common/socket'
 import {socket} from 'utils/socket'
 import {useSearchParams} from 'hooks/useSearchParams'
 import {useTyping} from 'hooks/useTyping'
-import {appendMessage, getMessages} from 'store/actions/message'
+import {appendMessage, deleteMessagesSuccess, getMessages} from 'store/actions/message'
 import {Message} from 'components/common/Message'
 import {ContentContainer} from 'components/common/ContentContainer'
 import {Tag} from 'components/common/Tag'
@@ -34,6 +34,10 @@ export const Messages = () => {
 
     socket.on(EventsSocket.TYPING_MESSAGE, () => {
       typingHandler()
+    })
+
+    socket.on(EventsSocket.DELETE_MESSAGES, (messagesIds: string[], dialogId: string) => {
+      dispatch(deleteMessagesSuccess({messagesIds, dialogId}))
     })
   }, [])
 

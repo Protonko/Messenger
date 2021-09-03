@@ -1,11 +1,13 @@
 import type {AxiosResponse} from 'axios'
 import type {ICreateMessageBody, IMessage} from 'models/message'
-import {call, put, takeEvery} from 'redux-saga/effects'
+import type {IInitialState as DialogsState} from 'store/reducers/dialogs'
+import {call, put, select, takeEvery} from 'redux-saga/effects'
 import {
   CreateMessageAction, DeleteMessagesAction,
   GetMessagesAction,
   MessageActionsTypes,
 } from 'models/store/actions/message'
+import {EventsSocket} from 'models/common/socket'
 import {commonError} from 'store/actions/error'
 import {MessagesApi} from 'api/Messages'
 import {UploadApi} from 'api/Upload'
@@ -17,6 +19,8 @@ import {
   getMessagesSuccess,
 } from 'store/actions/message'
 import {errorHandler} from 'utils/errorHandler'
+import {socket} from 'utils/socket'
+import {selectors} from './selectors'
 
 //get
 export function* getMessagesWorker({payload: dialogId}: GetMessagesAction) {
@@ -63,7 +67,15 @@ export function* createMessageWatcher() {
 export function* deleteMessagesWorker({payload}: DeleteMessagesAction) {
   try {
     const messagesIds: string[] = yield call(MessagesApi.deleteMessages, payload.messagesIds)
+    const {dialogs}: DialogsState = yield select(selectors.getDialogs)
+    const interlocutorId = yield dialogs?.find(dialog => dialog.id === payload.dialogId)?.interlocutor.id
+
+    if (!interlocutorId) {
+      yield put(commonError('Dialog not found.'))
+    }
+
     yield put(deleteMessagesSuccess({messagesIds, dialogId: payload.dialogId}))
+    yield socket.emit(EventsSocket.DELETE_MESSAGES, payload.messagesIds, interlocutorId, payload.dialogId)
   } catch (error) {
     if (typeof (error as AxiosResponse).data) {
       yield put(commonError(error.data.message))

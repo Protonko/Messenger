@@ -5,7 +5,7 @@ import {useHistory} from 'react-router-dom'
 import {useDispatch, useSelector} from 'react-redux'
 import {useSearchParams} from 'hooks/useSearchParams'
 import {useTyping} from 'hooks/useTyping'
-import {changeReadStatus, getDialogs} from 'store/actions/dialogs'
+import {changeReadStatus, getDialogs, updateLastMessage} from 'store/actions/dialogs'
 import {socket} from 'utils/socket'
 import {EventsSocket} from 'models/common/socket'
 import {Dialog} from 'components/common/Dialog'
@@ -36,6 +36,10 @@ export const Dialogs: FC = () => {
     socket.on(EventsSocket.TYPING_MESSAGE, (authorId: string) => {
       seTypingMessageAuthorId(authorId)
       typingHandler()
+    })
+
+    socket.on(EventsSocket.UPDATE_LAST_MESSAGE, (dialog: IDialog) => {
+      dispatch(updateLastMessage(dialog))
     })
   }, [])
 

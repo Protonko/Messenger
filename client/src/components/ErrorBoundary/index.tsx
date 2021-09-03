@@ -3,13 +3,17 @@ import type {IInitialState} from 'store/reducers/error'
 import type {HideErrorNotificationAction} from 'models/store/actions/error'
 import {Component, ErrorInfo, ReactNode} from 'react'
 import {connect} from 'react-redux'
-import {hideErrorNotification} from 'store/actions/error'
+import {commonError, hideErrorNotification} from 'store/actions/error'
 import {Notification, NotificationType} from 'components/common/Notification'
+import {socket} from 'utils/socket'
+import {EventsSocket} from 'models/common/socket'
+import {CommonErrorAction} from 'models/store/actions/error'
 
 interface IProps {
   showErrorNotification: boolean
   errorMessage: string
   hideErrorNotification: () => void
+  callCommonError: (errorMessage: string) => void
   children: ReactNode
 }
 
@@ -35,6 +39,12 @@ class ErrorBoundary extends Component<IProps, IState> {
     return {
       hasError: true,
     }
+  }
+
+  componentDidMount() {
+    socket.on(EventsSocket.SOCKET_ERROR, (errorMessage: string) => {
+      this.props.callCommonError(errorMessage)
+    })
   }
 
   componentDidCatch(error: Error, errorInfo: ErrorInfo) {
@@ -82,9 +92,10 @@ const mapStateToProps = ({error}: {error: IInitialState}) => ({
 })
 
 const mapDispatchToProps = (
-  dispatch: Dispatch<HideErrorNotificationAction>,
+  dispatch: Dispatch<HideErrorNotificationAction | CommonErrorAction>,
 ) => ({
   hideErrorNotification: () => dispatch(hideErrorNotification()),
+  callCommonError: (errorMessage: string) => dispatch(commonError(errorMessage))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(ErrorBoundary)

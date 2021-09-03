@@ -9,6 +9,7 @@ import {
   GetDialogsStartAction,
   GetDialogsSuccessAction,
   ResetCreateDialogStateAction,
+  UpdateLastMessageAction,
 } from 'models/store/actions/dialogs'
 
 export const getDialogs = (): GetDialogsStartAction => ({
@@ -52,5 +53,10 @@ export const resetCreateDialogState = (): ResetCreateDialogStateAction => ({
 
 export const changeReadStatus = (payload: string): ChangeReadStatusAction => ({
   type: DialogsActionTypes.CHANGE_READ_STATUS,
+  payload,
+})
+
+export const updateLastMessage = (payload: IDialog): UpdateLastMessageAction => ({
+  type: DialogsActionTypes.UPDATE_LAST_MESSAGE,
   payload,
 })
