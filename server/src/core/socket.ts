@@ -6,73 +6,82 @@ import {Server as ServerHttp} from 'http'
 import {MessageController} from '../controllers/MessageController'
 import {User} from '../models/User'
 import {userDTO} from '../utils/dto/userDTO'
-import {EVENTS_SOCKET} from '../types/socketEvents'
+import {EventsSocket} from '../types/socketEvents'
+import {Dialog} from '../models/Dialog'
+import {IDialogMongoose} from '../types/dialog'
 
 export const createSocket = (http: ServerHttp, io: Server, app: Express) => {
   const messageController = new MessageController(io)
 
-  io.on(EVENTS_SOCKET.CONNECTION, (socket: Socket) => {
+  io.on(EventsSocket.CONNECTION, (socket: Socket) => {
     const {id} = socket.handshake.headers
 
     if (typeof id === 'string') {
       socket.join(id)
     } else {
-      socket.emit(EVENTS_SOCKET.CONNECTION_ERROR, 'Token should be string.')
+      socket.emit(EventsSocket.CONNECTION_ERROR, 'Token should be string.')
     }
 
     socket.on(
-      EVENTS_SOCKET.TYPING_MESSAGE,
+      EventsSocket.TYPING_MESSAGE,
       (interlocutor: string, author: string) => {
-        socket.to(interlocutor).emit(EVENTS_SOCKET.TYPING_MESSAGE, author)
+        socket.to(interlocutor).emit(EventsSocket.TYPING_MESSAGE, author)
       },
     )
 
     socket.on(
-      EVENTS_SOCKET.READ_MESSAGE,
-      (interlocutor: string, dialog: string) => {
-        messageController.readMessage(app.response, dialog, interlocutor)
+      EventsSocket.READ_MESSAGE,
+      (interlocutor: string, dialogId: string) => {
+        messageController.readMessage(app.response, dialogId, interlocutor)
       },
     )
 
     socket.on(
-      EVENTS_SOCKET.START_CALL,
+      EventsSocket.DELETE_MESSAGES,
+      (messagesIds: string[], interlocutor: string, dialogId: string) => {
+        socket.to(interlocutor).emit(EventsSocket.DELETE_MESSAGES, messagesIds, dialogId)
+      }
+    )
+
+    socket.on(
+      EventsSocket.START_CALL,
       (interlocutor: string, initiatorId: string) => {
         User.findById(initiatorId, (error: IError, user: IUserMongoose) => {
           try {
             if (error) {
               return socket
                 .to(interlocutor)
-                .emit(EVENTS_SOCKET.CALL_ERROR, error.value)
+                .emit(EventsSocket.SOCKET_ERROR, error.value)
             }
 
             socket
               .to(interlocutor)
-              .emit(EVENTS_SOCKET.START_CALL, userDTO(user))
+              .emit(EventsSocket.SOCKET_ERROR, userDTO(user))
           } catch (error) {
             socket
               .to(interlocutor)
-              .emit(EVENTS_SOCKET.CALL_ERROR, error.message)
+              .emit(EventsSocket.SOCKET_ERROR, error.message)
           }
         })
       },
     )
 
-    socket.on(EVENTS_SOCKET.DECLINE_CALL, (interlocutor: string) => {
-      socket.to(interlocutor).emit(EVENTS_SOCKET.DECLINE_CALL)
+    socket.on(EventsSocket.DECLINE_CALL, (interlocutor: string) => {
+      socket.to(interlocutor).emit(EventsSocket.DECLINE_CALL)
     })
 
     socket.on(
-      EVENTS_SOCKET.RELAY_ICE,
+      EventsSocket.RELAY_ICE,
       (interlocutor: string, iceCandidate: RTCIceCandidate) => {
-        io.to(interlocutor).emit(EVENTS_SOCKET.ICE_CANDIDATE, iceCandidate)
+        io.to(interlocutor).emit(EventsSocket.ICE_CANDIDATE, iceCandidate)
       },
     )
 
     socket.on(
-      EVENTS_SOCKET.RELAY_SESSION_DESCRIPTION,
+      EventsSocket.RELAY_SESSION_DESCRIPTION,
       (interlocutor: string, sessionDescription: RTCSessionDescriptionInit) => {
         io.to(interlocutor).emit(
-          EVENTS_SOCKET.SESSION_DESCRIPTION,
+          EventsSocket.SESSION_DESCRIPTION,
           sessionDescription,
         )
       },

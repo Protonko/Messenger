@@ -25,7 +25,7 @@ export class DialogController {
     await Dialog.find()
       .or([{author: authorId}, {interlocutor: authorId}])
       .populate(['author', 'interlocutor', 'last_message'])
-      .exec((error: IError, dialogs: Array<IDialogMongoose>) => {
+      .exec((error: IError, dialogs: IDialogMongoose[]) => {
         try {
           if (error) {
             return response.status(404).json({message: 'Chat not found'})

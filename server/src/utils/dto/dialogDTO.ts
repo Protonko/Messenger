@@ -15,7 +15,7 @@ export const dialogDTO = (
     id: dialog._id,
     interlocutor: userDTO(user),
     createdAt: dialog.createdAt,
-    updatedAt: dialog.updatedAt === dialog.updatedAt ? '' : dialog.updatedAt,
+    updatedAt: dialog.updatedAt === dialog.createdAt ? '' : dialog.updatedAt,
     messages: dialog.messages ?? 0,
     muted: dialog.muted,
     lastMessage: dialog.last_message && messageDTO(dialog.last_message),

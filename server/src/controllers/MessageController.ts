@@ -13,7 +13,8 @@ import * as core from 'express-serve-static-core'
 import {Message} from '../models/Message'
 import {Dialog} from '../models/Dialog'
 import {messageDTO} from '../utils/dto/messageDTO'
-import {EVENTS_SOCKET} from '../types/socketEvents'
+import {EventsSocket} from '../types/socketEvents'
+import {dialogDTO} from '../utils/dto/dialogDTO'
 
 export class MessageController {
   private io: Server
@@ -24,6 +25,7 @@ export class MessageController {
     this.create = this.create.bind(this)
     this.find = this.find.bind(this)
     this.updateReadStatus = this.updateReadStatus.bind(this)
+    this.delete = this.delete.bind(this)
   }
 
   async find(
@@ -104,7 +106,7 @@ export class MessageController {
 
           this.io
             .to(interlocutor)
-            .emit(EVENTS_SOCKET.NEW_MESSAGE, messageDTO(message))
+            .emit(EventsSocket.NEW_MESSAGE, messageDTO(message))
           return response.json(messageDTO(message))
         })
     } catch (error) {
@@ -137,7 +139,7 @@ export class MessageController {
       return response.status(400).json({message: 'Expected messages for delete.'})
     }
 
-    const messagesArray = Array.isArray(messages) ? messages : [messages]
+    const messagesArray = (Array.isArray(messages) ? messages : [messages]) as string[]
 
     await Message.deleteMany({_id: {$in: messagesArray}}).exec((error: IError) => {
       try {
@@ -145,11 +147,60 @@ export class MessageController {
           return response.status(500).json({message: error.value})
         }
 
-        return response.json(messagesArray as string[])
+        this.updateDialogLastMessages(messagesArray, response)
+
+        return response.json(messagesArray)
       } catch (error) {
         return response.status(500).json({message: error.message})
       }
     })
+  }
+
+  private updateDialogLastMessages(messages: string[], response: Response<string[] | IResponseMessage>) {
+    try {
+      messages.forEach(message => {
+        Dialog
+          // @ts-ignore
+          .findOne({last_message: message})
+          .populate(['author', 'interlocutor'])
+          .exec((error: IError, dialog: IDialogMongoose | null) => {
+            if (error) {
+              return response.status(500).json({message: error.value})
+            }
+
+            if (dialog === null) {
+              return response.status(500).json({message: 'Message not found.'})
+            }
+
+            Message.findOne(
+              {dialog: dialog._id},
+              {},
+              {sort: {createdAt: -1}},
+              async (error, lastMessage: IMessageMongoose | null) => {
+                if (error) {
+                  return response.status(500).json({
+                    message: error.message,
+                  });
+                }
+
+                if (!lastMessage) {
+                  return response.status(500).json({
+                    message: 'Message not found.',
+                  });
+                }
+
+                dialog.last_message = lastMessage
+                await dialog.save()
+
+                this.io.to(dialog.interlocutor.id).emit(EventsSocket.UPDATE_LAST_MESSAGE, dialogDTO(dialog, dialog.author.id))
+                this.io.to(dialog.author.id).emit(EventsSocket.UPDATE_LAST_MESSAGE, dialogDTO(dialog, dialog.interlocutor.id))
+              }
+            )
+          })
+      })
+    } catch (error) {
+      response.json({message: error.message})
+    }
   }
 
   private clearUnreadMessages(dialog: string, response: Response) {
@@ -175,7 +226,7 @@ export class MessageController {
         if (error) {
           return response.status(500).json({message: error.value})
         } else {
-          this.io.to(interlocutor).emit(EVENTS_SOCKET.READ_MESSAGE, dialog)
+          this.io.to(interlocutor).emit(EventsSocket.READ_MESSAGE, dialog)
         }
       } catch (error) {
         return response.status(500).json({message: error.message})
