@@ -64,12 +64,16 @@ export const appendMessage = (
   payload,
 })
 
-export const deleteMessages = (payload: IDeleteMessagePayload): DeleteMessagesAction => ({
+export const deleteMessages = (
+  payload: IDeleteMessagePayload,
+): DeleteMessagesAction => ({
   type: MessageActionsTypes.DELETE_MESSAGES,
   payload,
 })
 
-export const deleteMessagesSuccess = (payload: IDeleteMessagePayload): DeleteMessagesSuccessAction => ({
+export const deleteMessagesSuccess = (
+  payload: IDeleteMessagePayload,
+): DeleteMessagesSuccessAction => ({
   type: MessageActionsTypes.DELETE_MESSAGES_SUCCESS,
-  payload
+  payload,
 })

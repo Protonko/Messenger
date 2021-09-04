@@ -1,21 +1,29 @@
-import {expectSaga} from 'redux-saga-test-plan'
+import {expectSaga, SagaType} from 'redux-saga-test-plan'
 import {call} from 'redux-saga-test-plan/matchers'
 import {throwError} from 'redux-saga-test-plan/providers'
+import {select} from 'redux-saga/effects'
 import {
   CreateMessageAction,
+  DeleteMessagesAction,
   GetMessagesAction,
   ICreateMessagePayload,
   MessageActionsTypes,
 } from 'models/store/actions/message'
 import {MessagesApi} from 'api/Messages'
+import {UploadApi} from 'api/Upload'
 import {
   createMessageWatcher,
   createMessageWorker,
+  deleteMessagesWatcher,
+  deleteMessagesWorker,
   getMessagesWatcher,
   getMessagesWorker,
 } from 'store/saga/message'
-import {MESSAGE} from 'static/test-mocks'
-import {UploadApi} from '../../../api/Upload'
+import {selectors} from 'store/saga/selectors'
+import {DIALOG, MESSAGE} from 'static/test-mocks'
+import {ErrorActionTypes} from '../../../models/store/actions/error'
+import type {AxiosError} from 'axios'
+import {AxiosRequestConfig, AxiosResponse} from 'axios'
 
 describe('message sagas', () => {
   let createMessagePayload: ICreateMessagePayload
@@ -119,6 +127,93 @@ describe('message sagas', () => {
             errorMessage: 'error',
             dialogId: getMessagesAction.payload,
           },
+        })
+        .run()
+    })
+  })
+
+  describe('delete messages', () => {
+    const deleteMessagesAction: DeleteMessagesAction = {
+      type: MessageActionsTypes.DELETE_MESSAGES,
+      payload: {
+        messagesIds: [MESSAGE.id],
+        dialogId: DIALOG.id,
+      }
+    }
+
+    it('Should delete messages', () => {
+      return expectSaga(deleteMessagesWatcher)
+        .provide([
+          [select(selectors.getDialogs), {dialogs: [DIALOG]}],
+          [call.fn(MessagesApi.deleteMessages), [MESSAGE.id]],
+        ])
+        .put({
+          type: MessageActionsTypes.DELETE_MESSAGES_SUCCESS,
+          payload: deleteMessagesAction.payload,
+        })
+        .dispatch(deleteMessagesAction)
+        .run()
+    })
+
+    it('Should delete message successfully', () => {
+      return expectSaga(deleteMessagesWorker as SagaType, deleteMessagesAction)
+        .provide([
+          [select(selectors.getDialogs), {dialogs: [DIALOG]}],
+          [call.fn(MessagesApi.deleteMessages), [MESSAGE.id]],
+        ])
+        .put({
+          type: MessageActionsTypes.DELETE_MESSAGES_SUCCESS,
+          payload: deleteMessagesAction.payload,
+        })
+        .run()
+    })
+
+    it('Should get error', () => {
+      return expectSaga(deleteMessagesWorker as SagaType, deleteMessagesAction)
+        .provide([
+          [select(selectors.getDialogs), {dialogs: [DIALOG]}],
+          [call.fn(MessagesApi.deleteMessages), throwError(new Error('error'))],
+        ])
+        .put({
+          type: ErrorActionTypes.COMMON_ERROR,
+          payload: 'error',
+        })
+        .run()
+    })
+
+    it('Should get error because dialogs are empty', () => {
+      return expectSaga(deleteMessagesWorker as SagaType, deleteMessagesAction)
+        .provide([
+          [select(selectors.getDialogs), {dialogs: null}],
+          [call.fn(MessagesApi.deleteMessages), [MESSAGE.id]],
+        ])
+        .put({
+          type: ErrorActionTypes.COMMON_ERROR,
+          payload: 'Dialog not found.',
+        })
+        .run()
+    })
+
+    it('Should get axios error', () => {
+      const axiosResponse: AxiosResponse<Error> = {
+        data: {
+          name: 'Error',
+          message: 'axios error',
+        },
+        status: 400,
+        statusText: 'Error',
+        headers: '',
+        config: {},
+      }
+      return expectSaga(deleteMessagesWorker as SagaType, deleteMessagesAction)
+        .provide([
+          [select(selectors.getDialogs), {dialogs: [DIALOG]}],
+          // @ts-ignore
+          [call.fn(MessagesApi.deleteMessages), throwError(axiosResponse)],
+        ])
+        .put({
+          type: ErrorActionTypes.COMMON_ERROR,
+          payload: 'axios error',
         })
         .run()
     })

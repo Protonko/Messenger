@@ -5,7 +5,12 @@ import {useHistory} from 'react-router-dom'
 import {useDispatch, useSelector} from 'react-redux'
 import {useSearchParams} from 'hooks/useSearchParams'
 import {useTyping} from 'hooks/useTyping'
-import {appendDialog, changeReadStatus, getDialogs, updateLastMessage} from 'store/actions/dialogs'
+import {
+  appendDialog,
+  changeReadStatus,
+  getDialogs,
+  updateLastMessage,
+} from 'store/actions/dialogs'
 import {socket} from 'utils/socket'
 import {EventsSocket} from 'models/common/socket'
 import {Dialog} from 'components/common/Dialog'

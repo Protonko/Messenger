@@ -15,17 +15,22 @@ export interface IPropsMessage extends IMessage {
 }
 
 export const Message: FC<IPropsMessage> = memo(
-  ({additionalClassname, text, author, createdAt, updatedAt, attachment, selected}) => {
+  ({
+    additionalClassname,
+    text,
+    author,
+    createdAt,
+    updatedAt,
+    attachment,
+    selected,
+  }) => {
     const classNamesMessage = classNames('message', {
       [additionalClassname ?? '']: !!additionalClassname,
       'message--selected': selected,
     })
 
     const checkIsImage = (attachment: string) => {
-      return !!attachment
-        .split('.')
-        .pop()
-        ?.match(IMAGE_REGEX)
+      return !!attachment.split('.').pop()?.match(IMAGE_REGEX)
     }
 
     const renderText = () => {

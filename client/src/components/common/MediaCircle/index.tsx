@@ -4,7 +4,7 @@ import classNames from 'classnames'
 import {Sizes} from 'models/common/sizes'
 import {Avatar} from 'components/common/Avatar'
 
-interface IMediaCircleProps {
+export interface IMediaCircleProps {
   size: Exclude<Sizes, Sizes.MEDIUM>
   user: IUser
   connecting: boolean

@@ -57,7 +57,9 @@ export const changeReadStatus = (payload: string): ChangeReadStatusAction => ({
   payload,
 })
 
-export const updateLastMessage = (payload: IDialog): UpdateLastMessageAction => ({
+export const updateLastMessage = (
+  payload: IDialog,
+): UpdateLastMessageAction => ({
   type: DialogsActionTypes.UPDATE_LAST_MESSAGE,
   payload,
 })

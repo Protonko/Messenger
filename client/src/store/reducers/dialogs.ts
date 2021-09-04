@@ -124,7 +124,10 @@ const reducers = (
     case DialogsActionTypes.UPDATE_LAST_MESSAGE: {
       if (!action.payload.lastMessage) return state
 
-      return updateLastMessage(state, {...action.payload.lastMessage, read: true})
+      return updateLastMessage(state, {
+        ...action.payload.lastMessage,
+        read: true,
+      })
     }
 
     case MessageActionsTypes.APPEND_MESSAGE: {
@@ -154,10 +157,7 @@ const reducers = (
     case DialogsActionTypes.APPEND_DIALOG:
       return {
         ...state,
-        dialogs: [
-          action.payload,
-          ...(state.dialogs ?? []),
-        ]
+        dialogs: [action.payload, ...(state.dialogs ?? [])],
       }
 
     default:

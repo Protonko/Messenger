@@ -12,7 +12,9 @@ export class MessagesApi {
   }
 
   static deleteMessages(messagesIds: string[]) {
-    const messagesParams = messagesIds.map(messageId => `messages=${messageId}`).join('&')
+    const messagesParams = messagesIds
+      .map((messageId) => `messages=${messageId}`)
+      .join('&')
 
     return apiHandler(api.delete<string[]>(`/messages?${messagesParams}`))
   }

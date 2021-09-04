@@ -8,10 +8,12 @@ import {
   createDialogSuccess,
   resetCreateDialogState,
   changeReadStatus,
+  updateLastMessage,
+  appendDialog,
 } from 'store/actions/dialogs'
 import {DIALOG} from 'static/test-mocks'
 
-describe('Auth actions', () => {
+describe('Dialog actions', () => {
   it('Should create getDialogs', () => {
     const expectedAction = {
       type: DialogsActionTypes.GET_START,
@@ -80,5 +82,23 @@ describe('Auth actions', () => {
     }
 
     expect(changeReadStatus('dialog_id')).toEqual(expectedAction)
+  })
+
+  it('Should create updateLastMessage', () => {
+    const expectedAction = {
+      type: DialogsActionTypes.UPDATE_LAST_MESSAGE,
+      payload: DIALOG,
+    }
+
+    expect(updateLastMessage(DIALOG)).toEqual(expectedAction)
+  })
+
+  it('Should create appendDialog', () => {
+    const expectedAction = {
+      type: DialogsActionTypes.APPEND_DIALOG,
+      payload: DIALOG,
+    }
+
+    expect(appendDialog(DIALOG)).toEqual(expectedAction)
   })
 })

@@ -212,6 +212,56 @@ exports[`Message Should render Message component with image: Message with image 
 </div>
 `;
 
+exports[`Message Should render Message component with selected modifier: Selected message 1`] = `
+<div
+  className="message message--selected"
+>
+  <div
+    className="message__body"
+  >
+    <Avatar
+      name="name"
+      src=""
+    />
+    <div
+      className="message__data"
+    >
+      <Component
+        customStyles="message__author"
+        numberOfLines={1}
+        type="h4"
+      >
+        name
+      </Component>
+      <div
+        className="message__content"
+      >
+        <Component
+          customStyles="message__content-item message__content-item--text"
+          numberOfLines={1}
+          size="XS"
+          type="mixed"
+        >
+          text
+        </Component>
+      </div>
+    </div>
+    <div
+      className="message__date"
+    >
+      <Component
+        customStyles="message__date-text"
+        numberOfLines={1}
+        size="XS"
+        type="mixed"
+      >
+        Invalid Date
+      </Component>
+    </div>
+  </div>
+</div>
+`;
+
 exports[`Message Should render Message component without text: Message without text 1`] = `
 <div
   className="message"

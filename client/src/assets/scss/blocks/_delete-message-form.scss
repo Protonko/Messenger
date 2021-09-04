@@ -1,12 +1,12 @@
 .delete-message-form {
-    @include padding-vertical(10px);
+  @include padding-vertical(10px);
 
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    width: 100%;
-    max-width: rem($max-chat-content);
-    height: 100%;
-    margin: 0 auto;
-    border-top: rem(1px) solid rgba($alto, .5);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  max-width: rem($max-chat-content);
+  height: 100%;
+  margin: 0 auto;
+  border-top: rem(1px) solid rgba($alto, 0.5);
 }

@@ -1,0 +1,68 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`MediaCircle Should render component when connecting is false: MediaCircle when connecting is false 1`] = `
+<div
+  className="media-circle media-circle--lg"
+>
+  <video
+    autoPlay={true}
+    className="media-circle__video"
+    muted={true}
+    playsInline={true}
+  />
+</div>
+`;
+
+exports[`MediaCircle Should render component with additional class name: MediaCircle with additional class name 1`] = `
+<div
+  className="media-circle media-circle--lg additional"
+>
+  <Avatar
+    additionalClassName="media-circle__avatar"
+    name="full name"
+    src=""
+  />
+  <video
+    autoPlay={true}
+    className="media-circle__video media-circle__video--connecting"
+    muted={true}
+    playsInline={true}
+  />
+</div>
+`;
+
+exports[`MediaCircle Should render component with small size: MediaCircle with small size 1`] = `
+<div
+  className="media-circle media-circle--sm"
+>
+  <Avatar
+    additionalClassName="media-circle__avatar"
+    name="full name"
+    src=""
+  />
+  <video
+    autoPlay={true}
+    className="media-circle__video media-circle__video--connecting"
+    muted={true}
+    playsInline={true}
+  />
+</div>
+`;
+
+exports[`MediaCircle Should render component: MediaCircle 1`] = `
+<div
+  className="media-circle media-circle--lg"
+>
+  <Avatar
+    additionalClassName="media-circle__avatar"
+    name="full name"
+    src=""
+  />
+  <video
+    autoPlay={true}
+    className="media-circle__video media-circle__video--connecting"
+    muted={true}
+    playsInline={true}
+  />
+</div>
+`;

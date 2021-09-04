@@ -1,8 +1,5 @@
 import message, {initialState} from 'store/reducers/message'
-import {
-  AllMessageActions,
-  MessageActionsTypes,
-} from 'models/store/actions/message'
+import {AllMessageActions, MessageActionsTypes} from 'models/store/actions/message'
 import {MESSAGE} from 'static/test-mocks'
 
 describe('auth reducer', () => {
@@ -56,6 +53,13 @@ describe('auth reducer', () => {
       payload: {
         message: APPENDED_MESSAGE,
         isCurrentDialog: false,
+      },
+    },
+    DELETE_MESSAGES_SUCCESS: {
+      type: MessageActionsTypes.DELETE_MESSAGES_SUCCESS,
+      payload: {
+        messagesIds: [MESSAGE.id],
+        dialogId: DIALOG_ID,
       },
     },
   }
@@ -142,6 +146,21 @@ describe('auth reducer', () => {
 
   it('Shouldn`t change state on APPEND_MESSAGE action', () => {
     expect(message(initialState, ACTIONS.APPEND_MESSAGE)).toEqual({
+      ...initialState,
+    })
+  })
+
+  it('Should delete message on DELETE_MESSAGES_SUCCESS action', () => {
+    expect(message(STATE_WITH_MESSAGES_DATA, ACTIONS.DELETE_MESSAGES_SUCCESS)).toEqual({
+      ...STATE_WITH_MESSAGES_DATA,
+      messages: {
+        [DIALOG_ID]: [],
+      },
+    })
+  })
+
+  it('Shouldn`t change state on DELETE_MESSAGES_SUCCESS action', () => {
+    expect(message(initialState, ACTIONS.DELETE_MESSAGES_SUCCESS)).toEqual({
       ...initialState,
     })
   })

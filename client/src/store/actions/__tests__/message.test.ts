@@ -3,6 +3,8 @@ import {
   createMessage,
   createMessageError,
   createMessageSuccess,
+  deleteMessages,
+  deleteMessagesSuccess,
   getMessages,
   getMessagesError,
   getMessagesSuccess,
@@ -101,6 +103,32 @@ describe('message actions', () => {
     }
 
     expect(appendMessage({message: MESSAGE, isCurrentDialog: false})).toEqual(
+      expectedAction,
+    )
+  })
+
+  it('should create deleteMessages', () => {
+    const expectedAction = {
+      type: MessageActionsTypes.DELETE_MESSAGES,
+      payload: {
+        messagesIds: ['message-id'],
+        dialogId: 'dialog-id',
+      },
+    }
+
+    expect(deleteMessages(expectedAction.payload)).toEqual(expectedAction)
+  })
+
+  it('should create deleteMessagesSuccess', () => {
+    const expectedAction = {
+      type: MessageActionsTypes.DELETE_MESSAGES_SUCCESS,
+      payload: {
+        messagesIds: ['message-id-1'],
+        dialogId: 'dialog-id-1',
+      },
+    }
+
+    expect(deleteMessagesSuccess(expectedAction.payload)).toEqual(
       expectedAction,
     )
   })

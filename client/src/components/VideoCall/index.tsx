@@ -54,7 +54,11 @@ export const VideoCall: FC<IVideoCallProps> = ({calling, setCalling}) => {
       const answer = await peerConnection.current.createAnswer()
       await peerConnection.current.setLocalDescription(answer)
       initiator &&
-      socket.emit(EventsSocket.RELAY_SESSION_DESCRIPTION, initiator.id, answer)
+        socket.emit(
+          EventsSocket.RELAY_SESSION_DESCRIPTION,
+          initiator.id,
+          answer,
+        )
     } catch (error) {
       console.log(error)
     }

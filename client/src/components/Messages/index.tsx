@@ -1,12 +1,21 @@
 import type {RootState} from 'store/reducers'
 import type {IMessage} from 'models/message'
-import {useContext, useEffect, useRef, MouseEvent as ReactMouseEvent} from 'react'
+import {
+  useContext,
+  useEffect,
+  useRef,
+  MouseEvent as ReactMouseEvent,
+} from 'react'
 import {useDispatch, useSelector} from 'react-redux'
 import {EventsSocket} from 'models/common/socket'
 import {socket} from 'utils/socket'
 import {useSearchParams} from 'hooks/useSearchParams'
 import {useTyping} from 'hooks/useTyping'
-import {appendMessage, deleteMessagesSuccess, getMessages} from 'store/actions/message'
+import {
+  appendMessage,
+  deleteMessagesSuccess,
+  getMessages,
+} from 'store/actions/message'
 import {Message} from 'components/common/Message'
 import {ContentContainer} from 'components/common/ContentContainer'
 import {Tag} from 'components/common/Tag'
@@ -36,9 +45,12 @@ export const Messages = () => {
       typingHandler()
     })
 
-    socket.on(EventsSocket.DELETE_MESSAGES, (messagesIds: string[], dialogId: string) => {
-      dispatch(deleteMessagesSuccess({messagesIds, dialogId}))
-    })
+    socket.on(
+      EventsSocket.DELETE_MESSAGES,
+      (messagesIds: string[], dialogId: string) => {
+        dispatch(deleteMessagesSuccess({messagesIds, dialogId}))
+      },
+    )
   }, [])
 
   useEffect(() => {
@@ -51,8 +63,12 @@ export const Messages = () => {
     }
   }, [dialogParam])
 
-  const toggleSelectMessage = (event: ReactMouseEvent<HTMLUListElement, MouseEvent>) => {
-    const element = (event.target as HTMLUListElement).closest('.messages__item')
+  const toggleSelectMessage = (
+    event: ReactMouseEvent<HTMLUListElement, MouseEvent>,
+  ) => {
+    const element = (event.target as HTMLUListElement).closest(
+      '.messages__item',
+    )
 
     if (!element) return
 
@@ -62,7 +78,10 @@ export const Messages = () => {
   const renderMessages = (message: IMessage) => {
     return (
       <li className="messages__item" key={message.id} id={message.id}>
-        <Message {...message} selected={selectedMessagesIds.includes(message.id)} />
+        <Message
+          {...message}
+          selected={selectedMessagesIds.includes(message.id)}
+        />
       </li>
     )
   }
@@ -85,7 +104,11 @@ export const Messages = () => {
 
   return (
     <ContentContainer loading={loading} errorMessage={errorMessage}>
-      <ul ref={listRef} className="messages list list--reset" onClick={toggleSelectMessage}>
+      <ul
+        ref={listRef}
+        className="messages list list--reset"
+        onClick={toggleSelectMessage}
+      >
         {renderContent()}
 
         {typing && (

@@ -3,7 +3,8 @@ const decodeBase64ToUTF8 = (char: string) => {
 }
 
 export const parseJWT = <T>(token: string): T | null => {
-  const base64 = token.split('.')[1]?.replace(/-/g, '+').replace(/_/g, '/') ?? ''
+  const base64 =
+    token.split('.')[1]?.replace(/-/g, '+').replace(/_/g, '/') ?? ''
 
   if (!base64) return null
 

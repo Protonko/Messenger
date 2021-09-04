@@ -22,4 +22,8 @@ describe('selectors', () => {
   it('Should return users state', () => {
     expect(selectors.getUsers(reducer)).toStrictEqual(users)
   })
+
+  it('Should return dialogs state', () => {
+    expect(selectors.getDialogs(reducer)).toStrictEqual(dialogs)
+  })
 })

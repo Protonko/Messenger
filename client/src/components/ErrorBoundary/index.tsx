@@ -95,7 +95,8 @@ const mapDispatchToProps = (
   dispatch: Dispatch<HideErrorNotificationAction | CommonErrorAction>,
 ) => ({
   hideErrorNotification: () => dispatch(hideErrorNotification()),
-  callCommonError: (errorMessage: string) => dispatch(commonError(errorMessage))
+  callCommonError: (errorMessage: string) =>
+    dispatch(commonError(errorMessage)),
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(ErrorBoundary)

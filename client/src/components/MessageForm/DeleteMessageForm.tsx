@@ -8,7 +8,8 @@ import {useSearchParams} from 'hooks/useSearchParams'
 export const DeleteMessageForm = () => {
   const dispatch = useDispatch()
   const dialogId = useSearchParams('dialog')
-  const {resetSelectedMessagesIds, selectedMessagesIds} = useContext(ChatContext)
+  const {resetSelectedMessagesIds, selectedMessagesIds} =
+    useContext(ChatContext)
 
   const onDelete = () => {
     if (dialogId) {

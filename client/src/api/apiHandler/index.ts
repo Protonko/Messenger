@@ -1,6 +1,8 @@
 import type {AxiosError, AxiosResponse} from 'axios'
 
-export const apiHandler = <T>(promise: Promise<AxiosResponse<T>>): Promise<T | AxiosResponse | string> => {
+export const apiHandler = <T>(
+  promise: Promise<AxiosResponse<T>>,
+): Promise<T | AxiosResponse | string> => {
   return new Promise((resolve, reject) => {
     promise
       .then((response) => {
