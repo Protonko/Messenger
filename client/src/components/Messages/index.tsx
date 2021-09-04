@@ -4,6 +4,7 @@ import {
   useContext,
   useEffect,
   useRef,
+  FC,
   MouseEvent as ReactMouseEvent,
 } from 'react'
 import {useDispatch, useSelector} from 'react-redux'
@@ -22,7 +23,7 @@ import {Tag} from 'components/common/Tag'
 import {Typing} from 'components/common/Typing'
 import {ChatContext} from 'context/ChatContext'
 
-export const Messages = () => {
+export const Messages: FC = () => {
   const listRef = useRef<HTMLUListElement>(null)
   const dialogParam = useSearchParams('dialog')
   const [typing, typingHandler] = useTyping()

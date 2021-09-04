@@ -7,7 +7,7 @@ import {
   setSelectedUserId,
   resetSelectedUserId,
 } from 'store/actions/users'
-import {USER} from 'static/test-mocks'
+import {USER} from '../../../static/test-mocks/user'
 
 describe('Auth actions', () => {
   it('Should create getDialogs', () => {

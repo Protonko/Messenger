@@ -1,6 +1,9 @@
 import message, {initialState} from 'store/reducers/message'
-import {AllMessageActions, MessageActionsTypes} from 'models/store/actions/message'
-import {MESSAGE} from 'static/test-mocks'
+import {
+  AllMessageActions,
+  MessageActionsTypes,
+} from 'models/store/actions/message'
+import {MESSAGE} from '../../../static/test-mocks/message'
 
 describe('auth reducer', () => {
   const ERROR_MESSAGE = 'error'
@@ -151,7 +154,9 @@ describe('auth reducer', () => {
   })
 
   it('Should delete message on DELETE_MESSAGES_SUCCESS action', () => {
-    expect(message(STATE_WITH_MESSAGES_DATA, ACTIONS.DELETE_MESSAGES_SUCCESS)).toEqual({
+    expect(
+      message(STATE_WITH_MESSAGES_DATA, ACTIONS.DELETE_MESSAGES_SUCCESS),
+    ).toEqual({
       ...STATE_WITH_MESSAGES_DATA,
       messages: {
         [DIALOG_ID]: [],

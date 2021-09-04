@@ -1,7 +1,7 @@
 import axios from 'axios'
 import {DialogsApi} from 'api/Dialogs'
 import {RESPONSE_ERROR} from 'static/constants'
-import {DIALOG} from 'static/test-mocks'
+import {DIALOG} from '../../../static/test-mocks/dialog'
 
 describe('DialogsApi', () => {
   const mockRejectedJSON = Promise.resolve(RESPONSE_ERROR)

@@ -1,7 +1,7 @@
 import {shallow, ShallowWrapper} from 'enzyme'
 import {Message, IPropsMessage} from 'components/common/Message'
 import {FileLink} from 'components/common/FileLink'
-import {MESSAGE} from 'static/test-mocks'
+import {MESSAGE} from '../../../../static/test-mocks/message'
 
 const ELEMENT_SELECTORS = {
   message: '.message',

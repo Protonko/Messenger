@@ -1,7 +1,7 @@
 import {shallow} from 'enzyme'
 import {IMediaCircleProps, MediaCircle} from 'components/common/MediaCircle'
 import {Sizes} from 'models/common/sizes'
-import {USER} from 'static/test-mocks'
+import {USER} from '../../../../static/test-mocks/user'
 
 const ELEMENT_SELECTORS = {
   mediaCircle: 'media-circle',

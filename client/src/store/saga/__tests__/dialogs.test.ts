@@ -14,7 +14,7 @@ import {
   DialogsActionTypes,
 } from 'models/store/actions/dialogs'
 import {DialogsApi} from 'api/Dialogs'
-import {DIALOG} from 'static/test-mocks'
+import {DIALOG} from '../../../static/test-mocks/dialog'
 
 describe('dialogs sagas', () => {
   describe('get dialogs', () => {

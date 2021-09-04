@@ -6,7 +6,7 @@ import {TextTypes} from 'models/common/text'
 import {Text} from 'components/common/Text'
 import {useSearchParams} from 'hooks/useSearchParams'
 
-interface IChatHeaderProps {
+export interface IChatHeaderProps {
   onPhoneClick: () => void
 }
 

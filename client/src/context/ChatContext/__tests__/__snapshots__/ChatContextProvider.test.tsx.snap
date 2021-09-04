@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ChatContextProvider Should render component: ChatContextProvider 1`] = `
+<ChatContextProvider>
+  <div>
+    123
+  </div>
+</ChatContextProvider>
+`;

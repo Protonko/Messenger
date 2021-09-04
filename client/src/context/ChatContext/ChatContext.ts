@@ -1,6 +1,6 @@
 import {createContext} from 'react'
 
-interface IChatContext {
+export interface IChatContext {
   selectedMessagesIds: string[]
   toggleSelectMessageId: (selectedMessageId: string) => void
   resetSelectedMessagesIds: () => void

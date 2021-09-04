@@ -1,0 +1,174 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ChatHeader Should render component with interlocutor: ChatHeader with interlocutor 1`] = `
+<Provider
+  store={
+    Object {
+      "clearActions": [Function],
+      "dispatch": [Function],
+      "getActions": [Function],
+      "getState": [Function],
+      "replaceReducer": [Function],
+      "subscribe": [Function],
+    }
+  }
+>
+  <Router
+    history={
+      Object {
+        "action": "POP",
+        "block": [Function],
+        "canGo": [Function],
+        "createHref": [Function],
+        "entries": Array [
+          Object {
+            "hash": "",
+            "key": "i",
+            "pathname": "/",
+            "search": "",
+            "state": undefined,
+          },
+        ],
+        "go": [MockFunction],
+        "goBack": [MockFunction],
+        "goForward": [Function],
+        "index": 0,
+        "length": 1,
+        "listen": [Function],
+        "location": Object {
+          "hash": "",
+          "key": "",
+          "pathname": "",
+          "search": "dialog=id",
+          "state": null,
+        },
+        "push": [MockFunction],
+        "replace": [Function],
+      }
+    }
+  >
+    <ChatHeader
+      onPhoneClick={[MockFunction]}
+    >
+      <div
+        className="chat-header"
+      >
+        <div
+          className="chat-header__text"
+        >
+          <Component
+            customStyles="chat-header__title"
+            type="h4"
+          >
+            <Dotdotdot
+              clamp={Infinity}
+              tagName="div"
+              truncationChar="…"
+              useNativeClamp={false}
+            >
+              <div>
+                <Component
+                  customStyles="chat-header__title"
+                  type="h4"
+                >
+                  <h4
+                    className="text text--heading-4 chat-header__title"
+                  >
+                    name
+                  </h4>
+                </Component>
+              </div>
+            </Dotdotdot>
+          </Component>
+          <Component
+            customStyles="chat-header__description"
+            type="p"
+          >
+            <Dotdotdot
+              clamp={Infinity}
+              tagName="div"
+              truncationChar="…"
+              useNativeClamp={false}
+            >
+              <div>
+                <Component
+                  customStyles="chat-header__description"
+                  type="p"
+                >
+                  <p
+                    className="text text--description chat-header__description"
+                  >
+                    (Last seen: 8/21/2021, 3:00:00 AM)
+                  </p>
+                </Component>
+              </div>
+            </Dotdotdot>
+          </Component>
+        </div>
+        <div
+          className="chat-header__call-icon"
+          onClick={[MockFunction]}
+        />
+      </div>
+    </ChatHeader>
+  </Router>
+</Provider>
+`;
+
+exports[`ChatHeader Should render component: ChatHeader 1`] = `
+<Provider
+  store={
+    Object {
+      "clearActions": [Function],
+      "dispatch": [Function],
+      "getActions": [Function],
+      "getState": [Function],
+      "replaceReducer": [Function],
+      "subscribe": [Function],
+    }
+  }
+>
+  <Router
+    history={
+      Object {
+        "action": "POP",
+        "block": [Function],
+        "canGo": [Function],
+        "createHref": [Function],
+        "entries": Array [
+          Object {
+            "hash": "",
+            "key": "i",
+            "pathname": "/",
+            "search": "",
+            "state": undefined,
+          },
+        ],
+        "go": [MockFunction],
+        "goBack": [MockFunction],
+        "goForward": [Function],
+        "index": 0,
+        "length": 1,
+        "listen": [Function],
+        "location": Object {
+          "hash": "",
+          "key": "",
+          "pathname": "",
+          "search": "dialog=id",
+          "state": null,
+        },
+        "push": [MockFunction],
+        "replace": [Function],
+      }
+    }
+  >
+    <ChatHeader
+      onPhoneClick={[MockFunction]}
+    >
+      <div
+        className="chat-header"
+      />
+    </ChatHeader>
+  </Router>
+</Provider>
+`;

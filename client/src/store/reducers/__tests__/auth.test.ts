@@ -1,7 +1,7 @@
 import auth, {initialState} from 'store/reducers/auth'
 import {AllAuthActions, AuthActionTypes} from 'models/store/actions/auth'
 import {AllErrorActions, ErrorActionTypes} from 'models/store/actions/error'
-import {USER} from 'static/test-mocks'
+import {USER} from '../../../static/test-mocks/user'
 
 describe('auth reducer', () => {
   const ACTIONS: Record<string, AllAuthActions | AllErrorActions> = {

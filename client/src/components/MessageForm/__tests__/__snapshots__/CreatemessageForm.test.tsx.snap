@@ -1,0 +1,290 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CreateMessageForm Should render component: CreateMessageForm 1`] = `
+<Provider
+  store={
+    Object {
+      "clearActions": [Function],
+      "dispatch": [Function],
+      "getActions": [Function],
+      "getState": [Function],
+      "replaceReducer": [Function],
+      "subscribe": [Function],
+    }
+  }
+>
+  <Router
+    history={
+      Object {
+        "action": "POP",
+        "block": [Function],
+        "canGo": [Function],
+        "createHref": [Function],
+        "entries": Array [
+          Object {
+            "hash": "",
+            "key": "i",
+            "pathname": "/",
+            "search": "",
+            "state": undefined,
+          },
+        ],
+        "go": [MockFunction],
+        "goBack": [MockFunction],
+        "goForward": [Function],
+        "index": 0,
+        "length": 1,
+        "listen": [Function],
+        "location": Object {
+          "hash": "",
+          "key": "",
+          "pathname": "",
+          "search": "dialog=id",
+          "state": null,
+        },
+        "push": [MockFunction],
+        "replace": [Function],
+      }
+    }
+  >
+    <CreateMessageForm>
+      <form
+        className="create-message-form"
+        onSubmit={[Function]}
+      >
+        <div
+          className="create-message-form__row"
+        >
+          <Avatar
+            src=""
+          >
+            <div
+              className="avatar"
+            >
+              <img
+                alt=""
+                className="avatar__image"
+                src=""
+              />
+              <Loader>
+                <div
+                  className="loader"
+                >
+                  <div
+                    className="loader__line"
+                    key="0"
+                  />
+                  <div
+                    className="loader__line"
+                    key="1"
+                  />
+                  <div
+                    className="loader__line"
+                    key="2"
+                  />
+                  <div
+                    className="loader__line"
+                    key="3"
+                  />
+                  <div
+                    className="loader__line"
+                    key="4"
+                  />
+                  <div
+                    className="loader__line"
+                    key="5"
+                  />
+                  <div
+                    className="loader__line"
+                    key="6"
+                  />
+                  <div
+                    className="loader__line"
+                    key="7"
+                  />
+                  <div
+                    className="loader__line"
+                    key="8"
+                  />
+                  <div
+                    className="loader__line"
+                    key="9"
+                  />
+                  <div
+                    className="loader__line"
+                    key="10"
+                  />
+                  <div
+                    className="loader__line"
+                    key="11"
+                  />
+                </div>
+              </Loader>
+            </div>
+          </Avatar>
+          <div
+            className="create-message-form__fields"
+          >
+            <Textarea
+              className="create-message-form__textarea"
+              onChange={[Function]}
+              placeholder="Write a message..."
+              value=""
+            >
+              <div
+                className="textarea create-message-form__textarea"
+              >
+                <textarea
+                  className="textarea__form"
+                  onChange={[Function]}
+                  placeholder="Write a message..."
+                  value=""
+                />
+              </div>
+            </Textarea>
+          </div>
+          <Avatar
+            src=""
+          >
+            <div
+              className="avatar"
+            >
+              <img
+                alt=""
+                className="avatar__image"
+                src=""
+              />
+              <Loader>
+                <div
+                  className="loader"
+                >
+                  <div
+                    className="loader__line"
+                    key="0"
+                  />
+                  <div
+                    className="loader__line"
+                    key="1"
+                  />
+                  <div
+                    className="loader__line"
+                    key="2"
+                  />
+                  <div
+                    className="loader__line"
+                    key="3"
+                  />
+                  <div
+                    className="loader__line"
+                    key="4"
+                  />
+                  <div
+                    className="loader__line"
+                    key="5"
+                  />
+                  <div
+                    className="loader__line"
+                    key="6"
+                  />
+                  <div
+                    className="loader__line"
+                    key="7"
+                  />
+                  <div
+                    className="loader__line"
+                    key="8"
+                  />
+                  <div
+                    className="loader__line"
+                    key="9"
+                  />
+                  <div
+                    className="loader__line"
+                    key="10"
+                  />
+                  <div
+                    className="loader__line"
+                    key="11"
+                  />
+                </div>
+              </Loader>
+            </div>
+          </Avatar>
+        </div>
+        <div
+          className="create-message-form__row create-message-form__actions"
+        >
+          <div
+            className="create-message-form__col"
+          >
+            <ul
+              className="create-message-form__icons list list--reset"
+            >
+              <li
+                className="create-message-form__icons-item"
+              >
+                <FileUploader
+                  onChange={[Function]}
+                >
+                  <div
+                    className="file-uploader"
+                  >
+                    <label
+                      className="file-uploader__label"
+                    >
+                      <div
+                        className="file-uploader__icon"
+                      />
+                      <input
+                        className="file-uploader__input"
+                        name="file"
+                        onChange={[Function]}
+                        type="file"
+                      />
+                    </label>
+                  </div>
+                </FileUploader>
+              </li>
+              <li
+                className="create-message-form__icons-item"
+              >
+                <Emoji
+                  onSelect={[Function]}
+                >
+                  <div
+                    className="emoji"
+                  >
+                    <div
+                      className="emoji__button"
+                      onClick={[Function]}
+                    />
+                  </div>
+                </Emoji>
+              </li>
+            </ul>
+          </div>
+          <div
+            className="create-message-form__col"
+          >
+            <Button
+              text="SEND"
+              type="submit"
+            >
+              <button
+                className="button"
+                type="submit"
+              >
+                <span
+                  className="button__text"
+                >
+                  SEND
+                </span>
+              </button>
+            </Button>
+          </div>
+        </div>
+      </form>
+    </CreateMessageForm>
+  </Router>
+</Provider>
+`;

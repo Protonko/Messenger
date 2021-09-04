@@ -4,7 +4,8 @@ import dialogs, {
   TDialogsReducerActions,
 } from 'store/reducers/dialogs'
 import {MessageActionsTypes} from 'models/store/actions/message'
-import {DIALOG, MESSAGE} from 'static/test-mocks'
+import {MESSAGE} from '../../../static/test-mocks/message'
+import {DIALOG} from '../../../static/test-mocks/dialog'
 
 describe('Dialogs reducer', () => {
   const ACTIONS: Record<string, TDialogsReducerActions> = {

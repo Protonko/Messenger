@@ -4,7 +4,7 @@ import {throwError} from 'redux-saga-test-plan/providers'
 import {getUsersWatcher, getUsersWorker} from 'store/saga/users'
 import {UsersActionTypes} from 'models/store/actions/users'
 import {UserApi} from 'api/User'
-import {USER} from 'static/test-mocks'
+import {USER} from '../../../static/test-mocks/user'
 
 describe('users sagas', () => {
   it('Should take GetUsers action', () => {

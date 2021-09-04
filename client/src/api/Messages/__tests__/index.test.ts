@@ -1,7 +1,7 @@
 import axios from 'axios'
 import {MessagesApi} from 'api/Messages'
 import {RESPONSE_ERROR} from 'static/constants'
-import {MESSAGE} from 'static/test-mocks'
+import {MESSAGE} from '../../../static/test-mocks/message'
 
 describe('MessagesApi', () => {
   const BODY_CREATE = {

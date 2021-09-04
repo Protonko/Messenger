@@ -1,6 +1,6 @@
 import {AllUsersActions, UsersActionTypes} from 'models/store/actions/users'
 import users, {initialState} from 'store/reducers/users'
-import {USER} from 'static/test-mocks'
+import {USER} from '../../../static/test-mocks/user'
 
 describe('Users reducer', () => {
   const ACTIONS: Record<string, AllUsersActions> = {

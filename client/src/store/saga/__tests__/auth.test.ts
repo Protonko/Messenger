@@ -13,7 +13,7 @@ import {
   SignUpAction,
 } from 'models/store/actions/auth'
 import {UserApi} from 'api/User'
-import {USER} from 'static/test-mocks'
+import {USER} from '../../../static/test-mocks/user'
 
 describe('auth sagas', () => {
   const signUpAction: SignUpAction = {

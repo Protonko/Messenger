@@ -1,5 +1,3 @@
-import {USER as USER_MOCK} from 'static/test-mocks'
-
 import {
   setLoginData,
   login,
@@ -10,6 +8,7 @@ import {
   setUserData,
 } from 'store/actions/auth'
 import {AuthActionTypes} from 'models/store/actions/auth'
+import {USER as USER_MOCK} from '../../../static/test-mocks/user'
 
 const USER = {
   email: 'test@email.com',

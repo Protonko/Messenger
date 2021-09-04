@@ -3,7 +3,8 @@ import {ReactComponent as DoubleCheck} from 'assets/icons/double-check.svg'
 import {ReactComponent as Check} from 'assets/icons/check.svg'
 import {Counter} from 'components/common/Counter'
 import {Dialog, IDialogProps} from 'components/common/Dialog'
-import {DIALOG, MESSAGE} from 'static/test-mocks'
+import {MESSAGE} from '../../../../static/test-mocks/message'
+import {DIALOG} from '../../../../static/test-mocks/dialog'
 
 const ELEMENT_SELECTORS = {
   dialog: 'dialog',

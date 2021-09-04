@@ -20,10 +20,11 @@ import {
   getMessagesWorker,
 } from 'store/saga/message'
 import {selectors} from 'store/saga/selectors'
-import {DIALOG, MESSAGE} from 'static/test-mocks'
 import {ErrorActionTypes} from '../../../models/store/actions/error'
 import type {AxiosError} from 'axios'
 import {AxiosRequestConfig, AxiosResponse} from 'axios'
+import {MESSAGE} from '../../../static/test-mocks/message'
+import {DIALOG} from '../../../static/test-mocks/dialog'
 
 describe('message sagas', () => {
   let createMessagePayload: ICreateMessagePayload
@@ -138,7 +139,7 @@ describe('message sagas', () => {
       payload: {
         messagesIds: [MESSAGE.id],
         dialogId: DIALOG.id,
-      }
+      },
     }
 
     it('Should delete messages', () => {

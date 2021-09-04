@@ -20,8 +20,13 @@ export const DeleteMessageForm = () => {
 
   return (
     <div className="delete-message-form">
-      <Button text="DELETE" onClick={onDelete} />
       <Button
+        additionalClassName="delete-message-form__button delete-message-form__button--delete"
+        text="DELETE"
+        onClick={onDelete}
+      />
+      <Button
+        additionalClassName="delete-message-form__button delete-message-form__button--cancel"
         modifier={ButtonModifier.LINKING}
         text="CANCEL"
         onClick={resetSelectedMessagesIds}

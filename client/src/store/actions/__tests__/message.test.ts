@@ -13,7 +13,7 @@ import {
   ICreateMessagePayload,
   MessageActionsTypes,
 } from 'models/store/actions/message'
-import {MESSAGE} from 'static/test-mocks'
+import {MESSAGE} from '../../../static/test-mocks/message'
 
 describe('message actions', () => {
   it('should create createMessage', () => {

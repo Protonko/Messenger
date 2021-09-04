@@ -11,7 +11,7 @@ import {
   updateLastMessage,
   appendDialog,
 } from 'store/actions/dialogs'
-import {DIALOG} from 'static/test-mocks'
+import {DIALOG} from '../../../static/test-mocks/dialog'
 
 describe('Dialog actions', () => {
   it('Should create getDialogs', () => {

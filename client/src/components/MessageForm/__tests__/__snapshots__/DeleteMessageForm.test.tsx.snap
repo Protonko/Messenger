@@ -1,0 +1,93 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`DeleteMessageForm Should render component: DeleteMessageForm 1`] = `
+<Provider
+  store={
+    Object {
+      "clearActions": [Function],
+      "dispatch": [Function],
+      "getActions": [Function],
+      "getState": [Function],
+      "replaceReducer": [Function],
+      "subscribe": [Function],
+    }
+  }
+>
+  <Router
+    history={
+      Object {
+        "action": "POP",
+        "block": [Function],
+        "canGo": [Function],
+        "createHref": [Function],
+        "entries": Array [
+          Object {
+            "hash": "",
+            "key": "i",
+            "pathname": "/",
+            "search": "",
+            "state": undefined,
+          },
+        ],
+        "go": [MockFunction],
+        "goBack": [MockFunction],
+        "goForward": [Function],
+        "index": 0,
+        "length": 1,
+        "listen": [Function],
+        "location": Object {
+          "hash": "",
+          "key": "",
+          "pathname": "",
+          "search": "dialog=id",
+          "state": null,
+        },
+        "push": [MockFunction],
+        "replace": [Function],
+      }
+    }
+  >
+    <DeleteMessageForm>
+      <div
+        className="delete-message-form"
+      >
+        <Button
+          additionalClassName="delete-message-form__button delete-message-form__button--delete"
+          onClick={[Function]}
+          text="DELETE"
+        >
+          <button
+            className="button delete-message-form__button delete-message-form__button--delete"
+            onClick={[Function]}
+            type="button"
+          >
+            <span
+              className="button__text"
+            >
+              DELETE
+            </span>
+          </button>
+        </Button>
+        <Button
+          additionalClassName="delete-message-form__button delete-message-form__button--cancel"
+          modifier="linking"
+          onClick={[MockFunction]}
+          text="CANCEL"
+        >
+          <button
+            className="button button--linking delete-message-form__button delete-message-form__button--cancel"
+            onClick={[MockFunction]}
+            type="button"
+          >
+            <span
+              className="button__text"
+            >
+              CANCEL
+            </span>
+          </button>
+        </Button>
+      </div>
+    </DeleteMessageForm>
+  </Router>
+</Provider>
+`;
