@@ -33,8 +33,10 @@ export const createSocket = (http: ServerHttp, io: Server, app: Express) => {
     socket.on(
       EventsSocket.DELETE_MESSAGES,
       (messagesIds: string[], interlocutor: string, dialogId: string) => {
-        socket.to(interlocutor).emit(EventsSocket.DELETE_MESSAGES, messagesIds, dialogId)
-      }
+        socket
+          .to(interlocutor)
+          .emit(EventsSocket.DELETE_MESSAGES, messagesIds, dialogId)
+      },
     )
 
     socket.on(

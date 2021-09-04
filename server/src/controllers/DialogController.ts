@@ -94,7 +94,9 @@ export class DialogController {
               return response.status(404).json({message: 'Chat not found'})
             }
 
-            this.io.to(interlocutor).emit(EventsSocket.NEW_DIALOG, dialogDTO(dialog, interlocutor))
+            this.io
+              .to(interlocutor)
+              .emit(EventsSocket.NEW_DIALOG, dialogDTO(dialog, interlocutor))
             return response.json(dialogDTO(dialog, author))
           } catch (error) {
             return response.json(error)

@@ -132,32 +132,44 @@ export class MessageController {
     )
   }
 
-  async delete(request: Request, response: Response<string[] | IResponseMessage>) {
+  async delete(
+    request: Request,
+    response: Response<string[] | IResponseMessage>,
+  ) {
     const {messages} = request.query
 
     if (!messages?.length) {
-      return response.status(400).json({message: 'Expected messages for delete.'})
+      return response
+        .status(400)
+        .json({message: 'Expected messages for delete.'})
     }
 
-    const messagesArray = (Array.isArray(messages) ? messages : [messages]) as string[]
+    const messagesArray = (
+      Array.isArray(messages) ? messages : [messages]
+    ) as string[]
 
-    await Message.deleteMany({_id: {$in: messagesArray}}).exec((error: IError) => {
-      try {
-        if (error) {
-          return response.status(500).json({message: error.value})
+    await Message.deleteMany({_id: {$in: messagesArray}}).exec(
+      (error: IError) => {
+        try {
+          if (error) {
+            return response.status(500).json({message: error.value})
+          }
+
+          this.updateDialogLastMessages(messagesArray, response)
+
+          return response.json(messagesArray)
+        } catch (error) {
+          return response.status(500).json({message: error.message})
         }
-
-        this.updateDialogLastMessages(messagesArray, response)
-
-        return response.json(messagesArray)
-      } catch (error) {
-        return response.status(500).json({message: error.message})
-      }
-    })
+      },
+    )
   }
 
-  private updateDialogLastMessages(messages: string[], response: Response<string[] | IResponseMessage>) {
-    messages.forEach(message => {
+  private updateDialogLastMessages(
+    messages: string[],
+    response: Response<string[] | IResponseMessage>,
+  ) {
+    messages.forEach((message) => {
       Dialog
         // @ts-ignore
         .findOne({last_message: message})
@@ -168,7 +180,7 @@ export class MessageController {
               return response.status(500).json({message: error.value})
             }
 
-            if (dialog === null) return;
+            if (dialog === null) return
 
             Message.findOne(
               {dialog: dialog._id},
@@ -191,8 +203,18 @@ export class MessageController {
                   dialog.last_message = lastMessage
                   await dialog.save()
 
-                  this.io.to(dialog.interlocutor.id).emit(EventsSocket.UPDATE_LAST_MESSAGE, dialogDTO(dialog, dialog.author.id))
-                  this.io.to(dialog.author.id).emit(EventsSocket.UPDATE_LAST_MESSAGE, dialogDTO(dialog, dialog.interlocutor.id))
+                  this.io
+                    .to(dialog.interlocutor.id)
+                    .emit(
+                      EventsSocket.UPDATE_LAST_MESSAGE,
+                      dialogDTO(dialog, dialog.author.id),
+                    )
+                  this.io
+                    .to(dialog.author.id)
+                    .emit(
+                      EventsSocket.UPDATE_LAST_MESSAGE,
+                      dialogDTO(dialog, dialog.interlocutor.id),
+                    )
                 } catch (error) {
                   response.json({message: error.message})
                 }
