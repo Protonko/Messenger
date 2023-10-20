@@ -6,6 +6,5 @@
   },
   "rules": {
     "semi": "off"
-  },
-  "extends": ["react-app", "react-app/jest"]
+  }
 }
